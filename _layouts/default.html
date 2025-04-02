@@ -13,14 +13,12 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     html, body {
       background-color: white !important;
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
     }
-
     .outer {
       width: 100%;
       max-width: 100%;
@@ -28,7 +26,6 @@
       margin: 0;
       background-color: transparent !important;
     }
-
     #header_wrap {
       background-color: #a85903 !important;
       width: 100%;
@@ -36,13 +33,11 @@
       display: flex;
       justify-content: center;
     }
-
     #header_wrap .inner {
       width: 100%;
       max-width: 1200px;
       padding: 0 20px;
     }
-
     #main_content_wrap {
       background-color: white !important;
       width: 100%;
@@ -50,29 +45,47 @@
       justify-content: center;
       padding: 20px 0;
     }
-
     #main_content {
       width: 100%;
       max-width: 1000px;
       padding: 0 20px;
     }
-
     #footer_wrap {
       background-color: #a85903 !important;
       width: 100%;
       display: flex;
       justify-content: center;
     }
-
     #footer_wrap .inner {
       width: 100%;
       max-width: 1200px;
       padding: 0 20px;
     }
-
     .square, .square1, .square2, .square-big {
       position: absolute;
       background-color: #d17a1b;
+    }
+    /* New styles for bottom containers */
+    #bottom_content_wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      background-color: #f4f4f4;
+    }
+    #bottom_content {
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .bottom_column {
+      width: 48%;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 8px;
     }
   </style>
 </head>
@@ -97,12 +110,28 @@
       {% endif %}
     </header>
   </div>
+  
   <!-- MAIN CONTENT -->
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
       {{ content }}
     </section>
   </div>
+  
+  <!-- NEW BOTTOM CONTENT -->
+  <div id="bottom_content_wrap">
+    <div id="bottom_content">
+      <div class="bottom_column">
+        <h3>Risk Management Insights</h3>
+        <p>W dzisiejszym dynamicznym świecie zarządzanie ryzykiem stało się kluczowym elementem strategii biznesowej. Analiza potencjalnych zagrożeń pozwala firmom skutecznie minimalizować nieprzewidziane straty i maksymalizować szanse na sukces.</p>
+      </div>
+      <div class="bottom_column">
+        <h3>Research Strategy</h3>
+        <p>Nowoczesne podejście do badań wymaga interdyscyplinarnego spojrzenia. Łącząc zaawansowane narzędzia analityczne z głęboką wiedzą merytoryczną, jesteśmy w stanie odkrywać innowacyjne rozwiązania i przewidywać przyszłe trendy rynkowe.</p>
+      </div>
+    </div>
+  </div>
+  
   <!-- FOOTER  -->
   <div id="footer_wrap" class="outer">
     <footer class="inner">
