@@ -58,7 +58,6 @@ Wciąż pracuje w binzesie, w sektorze bankowym. Poza tym, w zakresie dydaktyczn
 
 <br>
 
-{% include animated-squares.html %}
 
 <br>
 
