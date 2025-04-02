@@ -101,16 +101,37 @@
       max-width: 1200px;
       padding: 0 20px;
     }
+    
+    /* Zaktualizowane style dla dolnej belki (footer) */
     #footer_wrap {
       background-color: #a85903 !important;
       width: 100%;
       display: flex;
       justify-content: center;
+      height: auto; /* Możesz zmienić na konkretną wartość, np. 100px */
+      padding-top: 20px; /* Górny padding stopki */
+      padding-bottom: 20px; /* Dolny padding stopki */
+      position: relative; /* Pozycjonowanie względne */
     }
     #footer_wrap .inner {
       width: 100%;
       max-width: 1200px;
       padding: 0 20px;
+      position: relative; /* Pozycjonowanie względne */
+      left: 0px; /* Możesz zmienić tę wartość, aby przesuwać tekst w poziomie */
+      text-align: center; /* Domyślne wyrównanie tekstu */
+    }
+    #footer_wrap p {
+      margin: 5px 0; /* Odstęp między paragrafami */
+      position: relative; /* Pozycjonowanie względne */
+      left: 0px; /* Możesz zmienić tę wartość, aby przesuwać poszczególne linie tekstu */
+      top: 0px; /* Możesz zmienić tę wartość, aby przesuwać tekst w pionie */
+    }
+    #footer_wrap .copyright {
+      /* Dodatkowe style dla linii z "maintained by" */
+      position: relative;
+      top: 0px; /* Możesz zmienić tę wartość, aby przesuwać tekst w pionie */
+      left: 0px; /* Możesz zmienić tę wartość, aby przesuwać tekst w poziomie */
     }
     
     /* New styles for middle columns */
