@@ -7,6 +7,28 @@
   <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 {% seo %}
   {% include head-custom.html %}
+  <style>
+    .outer {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    
+    #main_content_wrap {
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    #main_content {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
   <!-- HEADER -->
