@@ -50,18 +50,27 @@
       max-width: 1300px;
       padding: 0 20px;
     }
+    #secondary_content_wrap {
+      background-color: white !important;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      margin-bottom: 20px; /* Dodanie marginesu poniżej kontenerów */
+    }
     #secondary_content {
       width: 100%;
       max-width: 1300px;
       padding: 0 20px;
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
     }
     .text-container {
-      width: 48%; /* Nieco mniej niż 50%, żeby było miejsce między kontenerami */
-      padding: 20px;
-      border: 1px solid #ddd;
+      width: 48%;
+      padding: 0; /* Usunięcie paddingu */
+      color: #737373; /* Kolor czcionki taki sam jak w reszcie strony */
+      text-align: justify;
+      font-size: 16px; /* Domyślny rozmiar czcionki */
     }
     #footer_wrap {
       background-color: #a85903 !important;
@@ -112,12 +121,10 @@
   <div id="secondary_content_wrap" class="outer">
     <section id="secondary_content" class="inner">
       <div class="text-container">
-        Obecnie modele są w pełni empiryczne. Bierzemy 300 zmiennych i się uczymy. A może jest duża przestrzeń zmienności zmiennej, którą da się opisać za pomocą części deterministycznej równania. Czyli podejście jak La placea - to co umiemy opisać opisujmy, a tylko to czego nie umiemy opisujemy rozkładami i innymi stochastykami.
-Szczególnie może mieć to znaczenie przy modelowaniu wartości oczekiwanej, gdzie mamy mało danych do nauki, a więc modele empiryczne ze swej natury będą zawodzić. A przecież niektóre rzeczy być może po prostu wiadomo. Może np. jeśli wiemy że PKB będzie miało -20% co jest wartością ekstremalną to wtedy jakieś elementy rynku, jakieś ryzyka zachowają się w jakiś sposób. Nie musimy więc czekać na dane, żeby się tego nauczyć. Możemy jedynie dokalibrować jakąś część tego modelu deterministycznego modelem empirycznym.
+        Tekst do lewego kontenera
       </div>
       <div class="text-container">
-        Obecnie modele są w pełni empiryczne. Bierzemy 300 zmiennych i się uczymy. A może jest duża przestrzeń zmienności zmiennej, którą da się opisać za pomocą części deterministycznej równania. Czyli podejście jak La placea - to co umiemy opisać opisujmy, a tylko to czego nie umiemy opisujemy rozkładami i innymi stochastykami.
-Szczególnie może mieć to znaczenie przy modelowaniu wartości oczekiwanej, gdzie mamy mało danych do nauki, a więc modele empiryczne ze swej natury będą zawodzić. A przecież niektóre rzeczy być może po prostu wiadomo. Może np. jeśli wiemy że PKB będzie miało -20% co jest wartością ekstremalną to wtedy jakieś elementy rynku, jakieś ryzyka zachowają się w jakiś sposób. Nie musimy więc czekać na dane, żeby się tego nauczyć. Możemy jedynie dokalibrować jakąś część tego modelu deterministycznego modelem empirycznym.
+        Tekst do prawego kontenera
       </div>
     </section>
   </div>
