@@ -33,31 +33,31 @@
       display: flex;
       justify-content: center;
       padding-top: 30px;
-      padding-bottom: 30.5px; /* Zmniejszone z 40px do 38px (o 5%) */
+      padding-bottom: 30.5px;
     }
     #header_wrap .inner {
       width: 100%;
       max-width: 1200px;
       padding: 0 20px;
-      position: relative; /* Dodaje pozycjonowanie względne */
-      left: 260px; /* Możesz zmieniać tę wartość, aby przesuwać cały blok w poziomie */
-      text-align: left; /* Wyrównanie tekstu do lewej */
+      position: relative;
+      left: 260px;
+      text-align: left;
     }
     #project_title {
       font-size: 42px;
       margin-top: 20px;
-      text-align: left; /* Wyrównanie do lewej */
-      margin-left: 0; /* Usuwa automatyczne marginesy */
-      position: relative; /* Dodaje pozycjonowanie względne */
-      left: 0px; /* Możesz zmieniać tę wartość, aby przesuwać tytuł */
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
     }
     #project_tagline {
       font-size: 24px;
       margin-top: 10px;
-      text-align: left; /* Wyrównanie do lewej */
-      margin-left: 0; /* Usuwa automatyczne marginesy */
-      position: relative; /* Dodaje pozycjonowanie względne */
-      left: 0px; /* Możesz zmieniać tę wartość, aby przesuwać podtytuł */
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
     }
     .square, .square1, .square2, .square-big {
       background-color: #d17a1b;
@@ -88,6 +88,30 @@
       top: 88px;
       left: 426px;
     }
+    
+    /* Style dla menu nawigacyjnego - dodane kontrole */
+    #myMenu {
+      width: 100%;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 0px; /* Kontrola odległości menu od góry */
+      position: relative; /* Pozycjonowanie względne */
+      top: 0px; /* Dodatkowa kontrola położenia w pionie */
+      z-index: 100;
+    }
+    
+    #myMenu a.menu-option {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+    
+    #myMenu a.menu-option:hover {
+      color: #a85903;
+    }
+    
     #main_content_wrap {
       background-color: white !important;
       width: 100%;
@@ -108,30 +132,29 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      height: auto; /* Możesz zmienić na konkretną wartość, np. 100px */
-      padding-top: 27.5px; /* Górny padding stopki */
-      padding-bottom: 27.5px; /* Dolny padding stopki */
-      position: relative; /* Pozycjonowanie względne */
+      height: auto;
+      padding-top: 27.5px;
+      padding-bottom: 27.5px;
+      position: relative;
     }
     #footer_wrap .inner {
       width: 100%;
       max-width: 1200px;
       padding: 0 20px;
-      position: relative; /* Pozycjonowanie względne */
-      left: 260px; /* Możesz zmienić tę wartość, aby przesuwać tekst w poziomie */
-      text-align: center; /* Domyślne wyrównanie tekstu */
+      position: relative;
+      left: 260px;
+      text-align: center;
     }
     #footer_wrap p {
-      margin: 5px 0; /* Odstęp między paragrafami */
-      position: relative; /* Pozycjonowanie względne */
-      left: 0px; /* Możesz zmienić tę wartość, aby przesuwać poszczególne linie tekstu */
-      top: 0px; /* Możesz zmienić tę wartość, aby przesuwać tekst w pionie */
+      margin: 5px 0;
+      position: relative;
+      left: 0px;
+      top: 0px;
     }
     #footer_wrap .copyright {
-      /* Dodatkowe style dla linii z "maintained by" */
       position: relative;
-      top: 0px; /* Możesz zmienić tę wartość, aby przesuwać tekst w pionie */
-      left: 0px; /* Możesz zmienić tę wartość, aby przesuwać tekst w poziomie */
+      top: 0px;
+      left: 0px;
     }
     
     /* New styles for middle columns */
@@ -236,19 +259,13 @@
     <div class="square-big"></div>
     
     <header class="inner">
-      <!-- Usunięty kod przycisku "View on GitHub" -->
       <h1 id="project_title">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 id="project_tagline">{{ site.description | default: site.github.project_tagline }}</h2>
-      {% if site.show_downloads %}
-        <section id="downloads">
-          <a class="zip_download_link" href="{{ site.github.zip_url }}">Download this project as a .zip file</a>
-          <a class="tar_download_link" href="{{ site.github.tar_url }}">Download this project as a tar.gz file</a>
-        </section>
-      {% endif %}
     </header>
   </div>
   
-  <!-- Rest of the HTML remains unchanged -->
+  <!-- Menu będzie teraz wstawiane z index.md przez Jekyll -->
+  
   <!-- MAIN CONTENT -->
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
