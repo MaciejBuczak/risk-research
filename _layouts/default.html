@@ -66,6 +66,27 @@
       position: absolute;
       background-color: #d17a1b;
     }
+    /* New styles for middle columns */
+    #middle_content_wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      background-color: white;
+      border: none;
+    }
+    #middle_content {
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .middle_column {
+      width: 30%;
+      background-color: white;
+      padding: 20px;
+    }
     /* New styles for bottom containers */
     #bottom_content_wrap {
       width: 100%;
@@ -128,6 +149,24 @@
     <section id="main_content" class="inner">
       {{ content }}
     </section>
+  </div>
+  
+  <!-- NEW MIDDLE CONTENT -->
+  <div id="middle_content_wrap">
+    <div id="middle_content">
+      <div class="middle_column">
+        <h3>Metody Ilościowe</h3>
+        <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+      </div>
+      <div class="middle_column">
+        <h3>Analiza Ryzyka</h3>
+        <p>Kompleksowe podejście do identyfikacji, oceny i minimalizacji ryzyka w różnych obszarach działalności organizacji, oparte na zaawansowanych metodach statystycznych.</p>
+      </div>
+      <div class="middle_column">
+        <h3>Innowacje</h3>
+        <p>Ciągłe poszukiwanie nowych rozwiązań i narzędzi, które mogą przynieść wartość dodaną w procesach zarządzania i analizy danych.</p>
+      </div>
+    </div>
   </div>
   
   <!-- NEW BOTTOM CONTENT -->
