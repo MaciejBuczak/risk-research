@@ -13,11 +13,6 @@ layout: default
   <a href="/oprisk" class="menu-option">Oprisk</a>
 </div>
 
-<div class="square"></div>
-<div class="square1"></div>
-<div class="square2"></div>
-<div class="square-big"></div>
-
 <br>
 
 **Victor Hugo "Nędzinicy"**
