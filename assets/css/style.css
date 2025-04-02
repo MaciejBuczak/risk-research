@@ -14,7 +14,7 @@
 
 #header_wrap {
   background: #a85903;
-  position: relative;
+  position: relative; /* Ważne dla pozycjonowania kwadratów */
   overflow: visible;
   
   .inner {
@@ -39,23 +39,24 @@ h6 {
 }
 
 #main_content_wrap {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
   border-top: 1px solid #725003;
   border-bottom: 1px solid #725003;
   background-color: #ffffff;
 }
 
 #main_content {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 20px !important;
+  margin: 0 !important;
   color: #737373;
   margin-top: -20px !important;
   text-align: justify;
+  box-sizing: border-box;
   
   h1,
   h2,
@@ -68,6 +69,10 @@ h6 {
 }
 
 p {
+  width: 100%;
+  max-width: none;
+  padding: 0 20px;
+  box-sizing: border-box;
   color: #737373;
   text-align: justify;
   text-indent: 2em;
@@ -83,7 +88,7 @@ body {
   height: 45px;
   background-color: #d17a1b;
   position: absolute;
-  top: 10px;
+  top: 10px;  // Od góry nagłówka
   right: 10px;
 }
 
@@ -92,7 +97,7 @@ body {
   height: 24px;
   background-color: #d17a1b;
   position: absolute;
-  top: 62px;
+  top: 62px;  // Od góry nagłówka
   right: 73px;
 }
 
@@ -101,7 +106,7 @@ body {
   height: 24px;
   background-color: #d17a1b;
   position: absolute;
-  top: 42px;
+  top: 42px;  // Od góry nagłówka
   right: 117px;
 }
 
@@ -110,7 +115,7 @@ body {
   height: 30px;
   background-color: #d17a1b;
   position: absolute;
-  top: 70px;
+  top: 70px;  // Od góry nagłówka
   left: 0px;
   z-index: 1;
 }
