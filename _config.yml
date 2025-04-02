@@ -1,0 +1,10 @@
+title: "Maciej Buczak"
+description: "Risk Management & Research"
+baseurl: ""
+url: ""
+permalink: /:title/
+
+# Włączamy obsługę Sass
+sass:
+  sass_dir: assets/css
+  style: compressed
