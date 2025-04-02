@@ -1,0 +1,123 @@
+---
+---
+@import "{{ site.theme }}";
+@import "weibull-distribution.css";
+@import "risk-correlation-heatmap.css";
+@import "monte-carlo-var.css";
+@import "decision-tree.css";
+
+// Podstawowe style
+.page-header {
+  background-color: #a85903;
+  background-image: linear-gradient(120deg, #a85903, #bf6604);
+  position: relative;
+  margin-bottom: -60px !important;
+}
+
+#header_wrap {
+  background: #a85903;
+  position: relative; /* Ważne dla pozycjonowania kwadratów */
+  overflow: visible;
+  
+  .inner {
+    background: transparent;
+    position: relative;
+  }
+}
+
+#footer_wrap {
+  background: #a85903;
+}
+
+.project-name,
+.project-tagline,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-shadow: none !important;
+}
+
+#main_content {
+  color: #737373;
+  margin-top: -20px !important;
+  text-align: justify;
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #a85903;
+  }
+}
+
+p {
+  color: #737373;
+  text-align: justify;
+  text-indent: 2em;
+}
+
+#main_content_wrap {
+  border-top: 1px solid #725003;
+  border-bottom: 1px solid #725003;
+  background-color: #ffffff;
+}
+
+body {
+  background: #a85903;
+}
+
+// Elementy dekoracyjne - teraz pozycjonowane względem górnej krawędzi header_wrap
+.square {
+  width: 45px;
+  height: 45px;
+  background-color: #d17a1b;
+  position: absolute;
+  top: 10px;  // Od góry nagłówka
+  right: 10px;
+}
+
+.square1 {
+  width: 24px;
+  height: 24px;
+  background-color: #d17a1b;
+  position: absolute;
+  top: 62px;  // Od góry nagłówka
+  right: 73px;
+}
+
+.square2 {
+  width: 24px;
+  height: 24px;
+  background-color: #d17a1b;
+  position: absolute;
+  top: 42px;  // Od góry nagłówka
+  right: 117px;
+}
+
+.square-big {
+  width: 175px;
+  height: 30px;
+  background-color: #d17a1b;
+  position: absolute;
+  top: 70px;  // Od góry nagłówka
+  left: 0px;
+  z-index: 1;
+}
+
+.project-name, .project-tagline {
+  position: relative;
+  z-index: 10;
+}
+
+#header_wrap .inner {
+  position: relative;
+  z-index: 10;
+}
+
+// Style menu i reszta stylów z twojego oryginalnego pliku...
+// Jeśli masz więcej stylów, wklej je tutaj
