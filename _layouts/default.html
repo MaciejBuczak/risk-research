@@ -13,14 +13,12 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     html, body {
       background-color: white !important;
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
     }
-
     .outer {
       width: 100%;
       max-width: 100%;
@@ -28,7 +26,6 @@
       margin: 0;
       background-color: transparent !important;
     }
-
     #header_wrap {
       background-color: #a85903 !important;
       width: 100%;
@@ -36,13 +33,11 @@
       display: flex;
       justify-content: center;
     }
-
     #header_wrap .inner {
       width: 100%;
       max-width: 1200px;
       padding: 0 20px;
     }
-
     #main_content_wrap {
       background-color: white !important;
       width: 100%;
@@ -50,26 +45,35 @@
       justify-content: center;
       padding: 20px 0;
     }
-
     #main_content {
       width: 100%;
       max-width: 1300px;
       padding: 0 20px;
     }
-
+    #secondary_content {
+      width: 100%;
+      max-width: 1300px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .text-container {
+      width: 48%; /* Nieco mniej niż 50%, żeby było miejsce między kontenerami */
+      padding: 20px;
+      border: 1px solid #ddd;
+    }
     #footer_wrap {
       background-color: #a85903 !important;
       width: 100%;
       display: flex;
       justify-content: center;
     }
-
     #footer_wrap .inner {
       width: 100%;
       max-width: 1200px;
       padding: 0 20px;
     }
-
     .square, .square1, .square2, .square-big {
       position: absolute;
       background-color: #d17a1b;
@@ -103,6 +107,19 @@
       {{ content }}
     </section>
   </div>
+  
+  <!-- SECONDARY CONTENT -->
+  <div id="secondary_content_wrap" class="outer">
+    <section id="secondary_content" class="inner">
+      <div class="text-container">
+        Tekst po lewej stronie
+      </div>
+      <div class="text-container">
+        Tekst po prawej stronie
+      </div>
+    </section>
+  </div>
+  
   <!-- FOOTER  -->
   <div id="footer_wrap" class="outer">
     <footer class="inner">
