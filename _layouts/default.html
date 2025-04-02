@@ -56,7 +56,7 @@
       display: flex;
       justify-content: center;
       padding: 20px 0;
-      margin-bottom: 20px; /* Dodanie marginesu poniżej kontenerów */
+      margin-bottom: 20px;
     }
     #secondary_content {
       width: 100%;
@@ -64,19 +64,22 @@
       padding: 0 20px;
       display: flex;
       justify-content: space-between;
-      gap: 20px; /* Dodaj odstęp między kontenerami */
+      gap: 20px;
+      border: none !important;
     }
     #secondary_content::before,
     #secondary_content::after {
       display: none !important;
       content: none !important;
+      width: 0 !important;
+      border: none !important;
     }
     .text-container {
       width: 48%;
-      padding: 0; /* Usunięcie paddingu */
-      color: #737373; /* Kolor czcionki taki sam jak w reszcie strony */
+      padding: 0;
+      color: #737373;
       text-align: justify;
-      font-size: 16px; /* Domyślny rozmiar czcionki */
+      font-size: 16px;
     }
     #footer_wrap {
       background-color: #a85903 !important;
