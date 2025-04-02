@@ -89,27 +89,43 @@
       left: 426px;
     }
     
-    /* Style dla menu nawigacyjnego - dodane kontrole */
+    /* Zaktualizowane style dla menu - zgodne z poprzednią stroną */
     #myMenu {
-      width: 100%;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
       padding: 20px 0;
-      margin-top: 0px; /* Kontrola odległości menu od góry */
-      position: relative; /* Pozycjonowanie względne */
-      top: 0px; /* Dodatkowa kontrola położenia w pionie */
+      margin-top: 0 !important;
+      width: 100%;
+      position: relative;
+      top: 0px; /* Kontrola położenia w pionie */
       z-index: 100;
     }
     
     #myMenu a.menu-option {
-      margin: 0 15px;
+      color: rgb(115, 115, 115);
       text-decoration: none;
-      color: #333;
-      font-size: 16px;
+      padding: 5px 10px;
+      margin: 0 15px;
+      font-size: 18px;
       transition: color 0.3s;
+      white-space: nowrap;
     }
     
     #myMenu a.menu-option:hover {
       color: #a85903;
+    }
+    
+    /* Style responsywne dla menu */
+    @media screen and (max-width: 768px) {
+      #myMenu {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      #myMenu a.menu-option {
+        margin: 5px 0;
+      }
     }
     
     #main_content_wrap {
