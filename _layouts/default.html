@@ -64,6 +64,12 @@
       padding: 0 20px;
       display: flex;
       justify-content: space-between;
+      gap: 20px; /* Dodaj odstęp między kontenerami */
+    }
+    #secondary_content::before,
+    #secondary_content::after {
+      display: none !important;
+      content: none !important;
     }
     .text-container {
       width: 48%;
