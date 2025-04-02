@@ -41,10 +41,7 @@
       width: 100%;
     }
     
-    .square, .square1, .square2, .square-big {
-      position: absolute;
-      background-color: #d17a1b;
-    }
+
   </style>
 </head>
 <body>
