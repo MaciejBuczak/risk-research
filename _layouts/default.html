@@ -32,11 +32,50 @@
       position: relative;
       display: flex;
       justify-content: center;
+      padding-top: 30px;
+      padding-bottom: 40px; /* Increased padding to make header bar taller */
     }
     #header_wrap .inner {
       width: 100%;
       max-width: 1200px;
       padding: 0 20px;
+    }
+    #project_title {
+      font-size: 42px;
+      margin-top: 20px;
+    }
+    #project_tagline {
+      font-size: 24px;
+      margin-top: 10px;
+    }
+    .square, .square1, .square2, .square-big {
+      background-color: #d17a1b;
+      position: absolute;
+      z-index: 1;
+    }
+    .square {
+      width: 45px;
+      height: 45px;
+      top: 28px;
+      right: 437px;
+    }
+    .square1 {
+      width: 24px;
+      height: 24px;
+      top: 79.5px;
+      right: 500px;
+    }
+    .square2 {
+      width: 24px;
+      height: 24px;
+      top: 59px;
+      right: 544px;
+    }
+    .square-big {
+      width: 175px;
+      height: 30px;
+      top: 88px;
+      left: 426px;
     }
     #main_content_wrap {
       background-color: white !important;
@@ -62,52 +101,6 @@
       max-width: 1200px;
       padding: 0 20px;
     }
-
-
-
-    
-    .square {
-  width: 45px;
-  height: 45px;
-  background-color: #d17a1b;
-  position: absolute;
-  top: 28px;   /* Dostosuj tę wartość */
-  right: 437px; /* Ta sama wartość jak oryginał */
-  z-index: 1;
-}
-    
-.square1 {
-  width: 24px;
-  height: 24px;
-  background-color: #d17a1b;
-  position: absolute;
-  top: 79.5px;  /* Dostosuj tę wartość */
-  right: 500px; /* Ta sama wartość jak oryginał */
-  z-index: 1;
-}
-
-.square2 {
-  width: 24px;
-  height: 24px;
-  background-color: #d17a1b;
-  position: absolute;
-  top: 59px;   /* Dostosuj tę wartość */
-  right: 544px; /* Ta sama wartość jak oryginał */
-  z-index: 1;
-}
-
-    .square-big {
-  width: 175px;
-  height: 30px;
-  background-color: #d17a1b;
-  position: absolute;
-  top: 88px;  /* Dostosuj tę wartość */
-  left: 426px; /* Dostosuj tę wartość */
-  z-index: 1;
-}
-
-
-
     
     /* New styles for middle columns */
     #middle_content_wrap, #second_middle_content_wrap {
@@ -223,6 +216,7 @@
     </header>
   </div>
   
+  <!-- Rest of the HTML remains unchanged -->
   <!-- MAIN CONTENT -->
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
