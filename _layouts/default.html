@@ -301,19 +301,47 @@
         top: 68px;
       }
       
-      /* Dostosowanie położenia kontenera z tytułem dla bardzo małych ekranów */
-      #header_wrap .inner {
-        left: 0px; /* Jeszcze bardziej dostosowany do małych telefonów */
-        width: calc(100% - 30px);
+      /* Radykalne resetowanie pozycji kontenera z tytułem */
+      #header_wrap {
+        padding-left: 0;
+        padding-right: 0;
+        justify-content: flex-start; /* Wyrównanie do lewej */
       }
       
-      /* Możemy nieznacznie zmniejszyć rozmiar czcionki dla bardzo małych ekranów */
+      #header_wrap .inner {
+        left: 0;
+        right: auto;
+        margin-left: 0;
+        padding-left: 10px; /* Minimalny padding, aby tekst nie przylegał do krawędzi */
+        width: 100%;
+        max-width: 100%;
+        transform: none;
+        justify-content: flex-start;
+      }
+      
       #project_title {
-        font-size: 12px; /* Nieznacznie mniejszy, ale wciąż bliski oryginałowi */
+        font-size: 24px;
+        margin-left: 0;
+        padding-left: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
       }
       
       #project_tagline {
-        font-size: 30px; /* Nieznacznie mniejszy, ale wciąż bliski oryginałowi */
+        font-size: 16px;
+        margin-left: 0;
+        padding-left: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+      }
+      
+      .outer {
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
       }
     }
     
