@@ -202,6 +202,102 @@
       }
     }
     
+    /* Media query dla telefonów - mniejsze szerokości ekranu */
+    @media screen and (max-width: 767px) {
+      /* Dostosowanie pozycji kwadratów dla telefonów */
+      .square, 
+      .browser-firefox .square,
+      .browser-safari .square,
+      .browser-edge .square,
+      .browser-chrome .square {
+        width: 30px;
+        height: 30px;
+        top: 20px;
+        right: 15%;
+      }
+      
+      .square1,
+      .browser-firefox .square1,
+      .browser-safari .square1,
+      .browser-edge .square1,
+      .browser-chrome .square1 {
+        width: 18px;
+        height: 18px;
+        top: 55px;
+        right: 20%;
+      }
+      
+      .square2,
+      .browser-firefox .square2,
+      .browser-safari .square2,
+      .browser-edge .square2,
+      .browser-chrome .square2 {
+        width: 18px;
+        height: 18px;
+        top: 40px;
+        right: 25%;
+      }
+      
+      .square-big,
+      .browser-firefox .square-big,
+      .browser-safari .square-big,
+      .browser-edge .square-big,
+      .browser-chrome .square-big {
+        width: 120px;
+        height: 20px;
+        top: 65px;
+        left: 30%;
+      }
+    }
+    
+    /* Media query dla bardzo małych telefonów */
+    @media screen and (max-width: 480px) {
+      /* Jeszcze bardziej dostosowane pozycje kwadratów dla bardzo małych ekranów */
+      .square, 
+      .browser-firefox .square,
+      .browser-safari .square,
+      .browser-edge .square,
+      .browser-chrome .square {
+        width: 25px;
+        height: 25px;
+        top: 15px;
+        right: 10%;
+      }
+      
+      .square1,
+      .browser-firefox .square1,
+      .browser-safari .square1,
+      .browser-edge .square1,
+      .browser-chrome .square1 {
+        width: 15px;
+        height: 15px;
+        top: 45px;
+        right: 15%;
+      }
+      
+      .square2,
+      .browser-firefox .square2,
+      .browser-safari .square2,
+      .browser-edge .square2,
+      .browser-chrome .square2 {
+        width: 15px;
+        height: 15px;
+        top: 30px;
+        right: 20%;
+      }
+      
+      .square-big,
+      .browser-firefox .square-big,
+      .browser-safari .square-big,
+      .browser-edge .square-big,
+      .browser-chrome .square-big {
+        width: 90px;
+        height: 15px;
+        top: 50px;
+        left: 25%;
+      }
+    }
+    
     /* Zaktualizowane style dla menu - zgodne z poprzednią stroną */
     #myMenu {
       display: flex;
