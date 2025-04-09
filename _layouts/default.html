@@ -34,6 +34,7 @@
       justify-content: center;
       padding-top: 30px;
       padding-bottom: 30.5px;
+      overflow: hidden; /* Zapobiega wystawaniu kwadratów */
     }
     #header_wrap .inner {
       width: 100%;
@@ -59,34 +60,70 @@
       position: relative;
       left: 0px;
     }
+    
+    /* Nowy kontener dla kwadratów */
+    .squares-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Pozwala klikać przez kwadraty */
+    }
+    
     .square, .square1, .square2, .square-big {
       background-color: #d17a1b;
       position: absolute;
       z-index: 1;
     }
+    
+    /* Pozycjonowanie kwadratów względem viewportu */
     .square {
       width: 45px;
       height: 45px;
       top: 28px;
-      right: 437px;
+      right: 20%; /* Używamy procentów zamiast pikseli */
     }
+    
     .square1 {
       width: 24px;
       height: 24px;
       top: 79.5px;
-      right: 500px;
+      right: 23%; /* Używamy procentów zamiast pikseli */
     }
+    
     .square2 {
       width: 24px;
       height: 24px;
       top: 59px;
-      right: 544px;
+      right: 26%; /* Używamy procentów zamiast pikseli */
     }
+    
     .square-big {
       width: 175px;
       height: 30px;
       top: 88px;
-      left: 426px;
+      left: 35%; /* Używamy procentów zamiast pikseli */
+    }
+    
+    /* Dostosowanie dla różnych rozdzielczości */
+    @media screen and (min-width: 1200px) {
+      /* Dla dużych ekranów bardziej precyzyjne pozycje */
+      .square {
+        right: 437px;
+      }
+      
+      .square1 {
+        right: 500px;
+      }
+      
+      .square2 {
+        right: 544px;
+      }
+      
+      .square-big {
+        left: 426px;
+      }
     }
     
     /* Zaktualizowane style dla menu - zgodne z poprzednią stroną */
@@ -269,11 +306,13 @@
 <body>
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
-    <!-- Pomarańczowe kwadraty umieszczone wewnątrz header_wrap -->
-    <div class="square"></div>
-    <div class="square1"></div>
-    <div class="square2"></div>
-    <div class="square-big"></div>
+    <!-- Dedykowany kontener dla kwadratów -->
+    <div class="squares-container">
+      <div class="square"></div>
+      <div class="square1"></div>
+      <div class="square2"></div>
+      <div class="square-big"></div>
+    </div>
     
     <header class="inner">
       <h1 id="project_title">{{ site.title | default: site.github.repository_name }}</h1>
