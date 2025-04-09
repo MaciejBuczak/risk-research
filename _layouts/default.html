@@ -71,58 +71,134 @@
       pointer-events: none; /* Pozwala klikać przez kwadraty */
     }
     
+    /* Domyślne style dla kwadratów */
     .square, .square1, .square2, .square-big {
       background-color: #d17a1b;
       position: absolute;
       z-index: 1;
     }
     
-    /* Pozycjonowanie kwadratów względem viewportu */
+    /* Domyślne pozycje (np. dla Chrome) */
     .square {
       width: 45px;
       height: 45px;
       top: 28px;
-      right: 20%; /* Używamy procentów zamiast pikseli */
+      right: 437px;
     }
     
     .square1 {
       width: 24px;
       height: 24px;
       top: 79.5px;
-      right: 23%; /* Używamy procentów zamiast pikseli */
+      right: 500px;
     }
     
     .square2 {
       width: 24px;
       height: 24px;
       top: 59px;
-      right: 26%; /* Używamy procentów zamiast pikseli */
+      right: 544px;
     }
     
     .square-big {
       width: 175px;
       height: 30px;
       top: 88px;
-      left: 35%; /* Używamy procentów zamiast pikseli */
+      left: 426px;
     }
     
-    /* Dostosowanie dla różnych rozdzielczości */
-    @media screen and (min-width: 1200px) {
-      /* Dla dużych ekranów bardziej precyzyjne pozycje */
-      .square {
-        right: 437px;
+    /* Korekty dla Firefox */
+    .browser-firefox .square {
+      top: 28px;
+      right: 440px; /* +3px w prawo */
+    }
+    
+    .browser-firefox .square1 {
+      top: 79.5px;
+      right: 503px; /* +3px w prawo */
+    }
+    
+    .browser-firefox .square2 {
+      top: 59px;
+      right: 547px; /* +3px w prawo */
+    }
+    
+    .browser-firefox .square-big {
+      top: 88px;
+      left: 423px; /* -3px w lewo */
+    }
+    
+    /* Korekty dla Safari */
+    .browser-safari .square {
+      top: 28px;
+      right: 435px; /* -2px w lewo */
+    }
+    
+    .browser-safari .square1 {
+      top: 79.5px;
+      right: 498px; /* -2px w lewo */
+    }
+    
+    .browser-safari .square2 {
+      top: 59px;
+      right: 542px; /* -2px w lewo */
+    }
+    
+    .browser-safari .square-big {
+      top: 88px;
+      left: 428px; /* +2px w prawo */
+    }
+    
+    /* Korekty dla Edge */
+    .browser-edge .square {
+      top: 28px;
+      right: 439px; /* +2px w prawo */
+    }
+    
+    .browser-edge .square1 {
+      top: 79.5px;
+      right: 502px; /* +2px w prawo */
+    }
+    
+    .browser-edge .square2 {
+      top: 59px;
+      right: 546px; /* +2px w prawo */
+    }
+    
+    .browser-edge .square-big {
+      top: 88px;
+      left: 424px; /* -2px w lewo */
+    }
+    
+    /* Media query dla małych ekranów - użyj procentów zamiast pikseli */
+    @media screen and (max-width: 1200px) {
+      /* Dla wszystkich przeglądarek używaj procentów na małych ekranach */
+      .square, 
+      .browser-firefox .square,
+      .browser-safari .square,
+      .browser-edge .square {
+        right: 20%;
       }
       
-      .square1 {
-        right: 500px;
+      .square1,
+      .browser-firefox .square1,
+      .browser-safari .square1,
+      .browser-edge .square1 {
+        right: 23%;
       }
       
-      .square2 {
-        right: 544px;
+      .square2,
+      .browser-firefox .square2,
+      .browser-safari .square2,
+      .browser-edge .square2 {
+        right: 26%;
       }
       
-      .square-big {
-        left: 426px;
+      .square-big,
+      .browser-firefox .square-big,
+      .browser-safari .square-big,
+      .browser-edge .square-big {
+        left: 35%;
       }
     }
     
@@ -403,5 +479,37 @@
       {% endif %}
     </footer>
   </div>
+  
+  <!-- Skrypt do wykrywania przeglądarki -->
+  <script>
+    // Funkcja do wykrywania przeglądarki
+    function detectBrowser() {
+      const userAgent = navigator.userAgent;
+      const html = document.documentElement;
+      
+      if (userAgent.indexOf("Firefox") > -1) {
+        html.classList.add("browser-firefox");
+      } else if (userAgent.indexOf("Edg") > -1) {
+        html.classList.add("browser-edge");
+      } else if (userAgent.indexOf("Chrome") > -1) {
+        html.classList.add("browser-chrome");
+      } else if (userAgent.indexOf("Safari") > -1) {
+        html.classList.add("browser-safari");
+      } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+        html.classList.add("browser-ie");
+      } else {
+        html.classList.add("browser-other");
+      }
+      
+      // Debug - pokaż w konsoli wykrytą przeglądarkę
+      console.log("Wykryta przeglądarka:", html.className);
+    }
+    
+    // Uruchom natychmiast po załadowaniu skryptu
+    detectBrowser();
+    
+    // I ponownie po pełnym załadowaniu strony (na wszelki wypadek)
+    window.addEventListener('load', detectBrowser);
+  </script>
 </body>
 </html>
