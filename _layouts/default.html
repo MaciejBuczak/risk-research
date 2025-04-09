@@ -200,22 +200,15 @@
       .browser-edge .square-big {
         left: 35%;
       }
+      
+      /* Dostosowujemy pozycję kontenera z tytułem */
+      #header_wrap .inner {
+        left: 150px; /* Dostosuj tę wartość do swoich potrzeb */
+      }
     }
     
     /* Media queries dla telefonów z proporcjonalnym położeniem kwadratów */
     @media screen and (max-width: 768px) {
-      #header_wrap .inner {
-        left: 20px;
-      }
-      
-      #project_title {
-        font-size: 32px;
-      }
-      
-      #project_tagline {
-        font-size: 18px;
-      }
-      
       /* Proporcjonalne położenie kwadratów względem ekranu komputera */
       .square, 
       .browser-firefox .square,
@@ -252,8 +245,24 @@
         left: 10%;
         top: 88px;
       }
+      
+      /* Style dla kontenera z tytułem - zachowujemy te same proporcje jak dla komputera */
+      #header_wrap .inner {
+        left: 50px; /* Dostosowany do urządzeń mobilnych */
+        width: calc(100% - 60px); /* Zapewnienie, że tekst się zmieści */
+      }
+      
+      /* Zachowujemy taki sam rozmiar czcionki jak na komputerze */
+      #project_title {
+        font-size: 42px;
+      }
+      
+      #project_tagline {
+        font-size: 24px;
+      }
     }
     
+    /* Dodatkowe style dla małych telefonów */
     @media screen and (max-width: 480px) {
       /* Jeszcze bardziej proporcjonalne położenie dla bardzo małych ekranów */
       .square, 
@@ -290,6 +299,67 @@
       .browser-chrome .square-big {
         left: 0%;
         top: 68px;
+      }
+      
+      /* Dostosowanie położenia kontenera z tytułem dla bardzo małych ekranów */
+      #header_wrap .inner {
+        left: 20px; /* Jeszcze bardziej dostosowany do małych telefonów */
+        width: calc(100% - 30px);
+      }
+      
+      /* Możemy nieznacznie zmniejszyć rozmiar czcionki dla bardzo małych ekranów */
+      #project_title {
+        font-size: 36px; /* Nieznacznie mniejszy, ale wciąż bliski oryginałowi */
+      }
+      
+      #project_tagline {
+        font-size: 20px; /* Nieznacznie mniejszy, ale wciąż bliski oryginałowi */
+      }
+    }
+    
+    /* Dodatkowe media query dla orientacji poziomej na telefonach */
+    @media screen and (max-width: 900px) and (orientation: landscape) {
+      /* Dostosowanie położenia kontenera z tytułem dla orientacji poziomej */
+      #header_wrap .inner {
+        left: 80px;
+        width: calc(100% - 100px);
+      }
+      
+      /* Dostosowanie kwadratów dla orientacji poziomej */
+      .square, 
+      .browser-firefox .square,
+      .browser-safari .square,
+      .browser-edge .square,
+      .browser-chrome .square {
+        right: 20%;
+        top: 20px;
+      }
+      
+      .square1,
+      .browser-firefox .square1,
+      .browser-safari .square1,
+      .browser-edge .square1,
+      .browser-chrome .square1 {
+        right: 25%;
+        top: 60px;
+      }
+      
+      .square2,
+      .browser-firefox .square2,
+      .browser-safari .square2,
+      .browser-edge .square2,
+      .browser-chrome .square2 {
+        right: 30%;
+        top: 40px;
+      }
+      
+      .square-big,
+      .browser-firefox .square-big,
+      .browser-safari .square-big,
+      .browser-edge .square-big,
+      .browser-chrome .square-big {
+        left: 15%;
+        top: 70px;
       }
     }
     
