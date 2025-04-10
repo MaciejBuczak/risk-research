@@ -26,6 +26,46 @@
       margin: 0;
       background-color: transparent !important;
     }
+    
+    /* Nowy kontener z niebieskim obramowaniem */
+    .blue-container-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    .blue-container {
+      width: 100%;
+      max-width: 900px;
+      height: 200px;
+      border: 2px solid blue;
+      position: relative;
+      margin: 0 auto;
+      resize: vertical; /* Pozwala na zmianę wysokości kontenera */
+      overflow: auto; /* Zapewnia, że zawartość nie wyjdzie poza kontener */
+      min-height: 100px; /* Minimalna wysokość */
+      max-height: 500px; /* Maksymalna wysokość */
+    }
+    
+    /* Styl kursora dla obszaru resize */
+    .blue-container:hover {
+      cursor: ns-resize; /* Kursor wskazujący na możliwość zmiany rozmiaru w górę/dół */
+    }
+    
+    /* Style responsywne dla kontenera */
+    @media screen and (max-width: 920px) {
+      .blue-container {
+        width: 95%;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .blue-container {
+        height: 150px;
+      }
+    }
+    
     #header_wrap {
       background-color: #a85903 !important;
       width: 100%;
@@ -569,6 +609,11 @@
   </style>
 </head>
 <body>
+  <!-- Nowy kontener z niebieskim obramowaniem -->
+  <div class="blue-container-wrap">
+    <div class="blue-container"></div>
+  </div>
+
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
     <!-- Dedykowany kontener dla kwadratów -->
