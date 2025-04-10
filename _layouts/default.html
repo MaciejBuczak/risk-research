@@ -27,12 +27,15 @@
       background-color: transparent !important;
     }
     
-    /* Nowy kontener z niebieskim obramowaniem */
+    /* Nowy kontener z niebieskim obramowaniem - z pozycjonowaniem absolutnym */
     .blue-container-wrap {
+      position: absolute;
+      top: 20px;
+      left: 0;
       width: 100%;
+      z-index: 100; /* Wysoki z-index, aby był nad innymi elementami */
       display: flex;
       justify-content: center;
-      margin-top: 20px;
     }
     
     .blue-container {
@@ -41,11 +44,11 @@
       height: 200px;
       border: 2px solid blue;
       position: relative;
-      margin: 0 auto;
       resize: vertical; /* Pozwala na zmianę wysokości kontenera */
       overflow: auto; /* Zapewnia, że zawartość nie wyjdzie poza kontener */
       min-height: 100px; /* Minimalna wysokość */
       max-height: 500px; /* Maksymalna wysokość */
+      background-color: rgba(255, 255, 255, 0.5); /* Półprzezroczyste tło */
     }
     
     /* Styl kursora dla obszaru resize */
@@ -61,8 +64,8 @@
     }
     
     @media screen and (max-width: 480px) {
-      .blue-container {
-        height: 150px;
+      .blue-container-wrap {
+        top: 10px;
       }
     }
     
@@ -609,11 +612,6 @@
   </style>
 </head>
 <body>
-  <!-- Nowy kontener z niebieskim obramowaniem -->
-  <div class="blue-container-wrap">
-    <div class="blue-container"></div>
-  </div>
-
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
     <!-- Dedykowany kontener dla kwadratów -->
@@ -628,6 +626,11 @@
       <h1 id="project_title">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 id="project_tagline">{{ site.description | default: site.github.project_tagline }}</h2>
     </header>
+  </div>
+  
+  <!-- Nowy kontener z niebieskim obramowaniem - umieszczony po nagłówku, ale z pozycjonowaniem absolutnym -->
+  <div class="blue-container-wrap">
+    <div class="blue-container"></div>
   </div>
   
   <!-- Menu będzie teraz wstawiane z index.md przez Jekyll -->
