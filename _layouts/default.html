@@ -26,34 +26,6 @@
       margin: 0;
       background-color: transparent !important;
     }
-    
-    /* Style dla nowego resizable container */
-    .resizable-container {
-      position: absolute;
-      max-width: 700px;
-      height: 200px;
-      border: 2px solid blue;
-      background-color: rgba(255, 255, 255, 0.5);
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-      resize: both;
-      overflow: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    
-    /* Styl dla uchwytu do zmiany rozmiaru */
-    .resize-handle {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 10px;
-      height: 10px;
-      background-color: blue;
-      cursor: se-resize;
-    }
-    
     #header_wrap {
       background-color: #a85903 !important;
       width: 100%;
@@ -287,12 +259,6 @@
       
       #project_tagline {
         font-size: 24px;
-      }
-      
-      /* Dostosowanie resizable container dla małych ekranów */
-      .resizable-container {
-        max-width: 90%;
-        top: 20px;
       }
     }
     
@@ -605,11 +571,6 @@
 <body>
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
-    <!-- Nowy resizable container -->
-    <div class="resizable-container">
-      <div class="resize-handle"></div>
-    </div>
-    
     <!-- Dedykowany kontener dla kwadratów -->
     <div class="squares-container">
       <div class="square"></div>
@@ -738,51 +699,6 @@
     
     // I ponownie po pełnym załadowaniu strony (na wszelki wypadek)
     window.addEventListener('load', detectBrowser);
-    
-    // Kod dla obsługi resizable container za pomocą uchwytu
-    document.addEventListener('DOMContentLoaded', function() {
-      const resizeHandle = document.querySelector('.resize-handle');
-      const container = document.querySelector('.resizable-container');
-      
-      if(resizeHandle && container) {
-        let isResizing = false;
-        let startX, startY, startWidth, startHeight;
-        
-        resizeHandle.addEventListener('mousedown', function(e) {
-          isResizing = true;
-          startX = e.clientX;
-          startY = e.clientY;
-          startWidth = container.offsetWidth;
-          startHeight = container.offsetHeight;
-          
-          document.addEventListener('mousemove', handleMouseMove);
-          document.addEventListener('mouseup', function() {
-            isResizing = false;
-            document.removeEventListener('mousemove', handleMouseMove);
-          });
-          
-          e.preventDefault();
-        });
-        
-        function handleMouseMove(e) {
-          if (!isResizing) return;
-          
-          const newWidth = startWidth + (e.clientX - startX);
-          const newHeight = startHeight + (e.clientY - startY);
-          
-          // Ustaw minimalne wymiary
-          const minWidth = 200;
-          const minHeight = 100;
-          
-          // Ustaw maksymalne wymiary
-          const maxWidth = 700;
-          
-          // Zastosuj nowe wymiary z ograniczeniami
-          container.style.width = `${Math.min(Math.max(newWidth, minWidth), maxWidth)}px`;
-          container.style.height = `${Math.max(newHeight, minHeight)}px`;
-        }
-      }
-    });
   </script>
 </body>
 </html>
