@@ -47,11 +47,24 @@
       visibility: hidden;
     }
     
-    /* Nowe style dla nagłówka z załączonego kodu */
-    .project-name, .project-tagline, #title, #tagline, #project_title, #project_tagline {
-      text-shadow: none !important;
+    /* Styl dla nagłówka - taki sam jak w oryginalnym kodzie */
+    #project_title, #title {
+      font-size: 42px;
+      margin-top: 20px;
+      text-align: left;
+      margin-left: 0;
       position: relative;
-      z-index: 10;
+      left: 0px;
+      color: white;
+    }
+    #project_tagline, #tagline {
+      font-size: 24px;
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
+      color: white;
     }
     
     /* Nowy kontener title-square-container */
@@ -73,54 +86,15 @@
 /* Nowy styl dla nagłówka w kontenerze title-square-container */
 .title-square-container .header-content {
   position: absolute;
-  top: 15px; /* Kontrolowanie położenia w pionie */
-  left: 10px; /* Kontrolowanie położenia w poziomie */
-  z-index: 10;
+  top: 25px; /* Kontrolowanie położenia w pionie */
+  left: 50px; /* Kontrolowanie położenia w poziomie */
 }
-
-/* Dodanie stylów z załączonego kodu */
-.title-square-container #title {
-  font-size: 42px;
-  margin-top: 20px;
-  text-align: left;
-  margin-left: 0;
-  position: relative;
-  left: 0px;
-  color: white;
-}
-
-.title-square-container #tagline {
-  font-size: 24px;
-  margin-top: 10px;
-  text-align: left;
-  margin-left: 0;
-  position: relative;
-  left: 0px;
-  color: white;
-  border-bottom: none !important;
-  text-decoration: none !important;
-  font-weight: normal !important;
-}
-
-/* Usunięcie pseudoelementów */
-.title-square-container #tagline::after,
-.title-square-container #tagline::before,
-h2#tagline::after,
-h2#tagline::before {
-  content: none !important;
-  display: none !important;
-  visibility: hidden !important;
-  border: none !important;
-  background: none !important;
-}
-
-    
     
     /* Nowy niebieski kwadrat w prawym górnym rogu */
     .title-square-container .blue-square {
       width: 45px;
       height: 45px;
-      background-color: #d17a1b;
+      background-color: blue;
       position: absolute;
       top: 0;
       right: 0;
@@ -130,7 +104,7 @@ h2#tagline::before {
     .title-square-container .blue-square1 {
       width: 24px;
       height: 24px;
-      background-color: #d17a1b;
+      background-color: blue;
       position: absolute;
       top: 50px; /* Możesz kontrolować położenie w pionie */
       right: 60px; /* Możesz kontrolować położenie w poziomie */
@@ -139,7 +113,7 @@ h2#tagline::before {
     .title-square-container .blue-square2 {
       width: 24px;
       height: 24px;
-      background-color: #d17a1b;
+      background-color: blue;
       position: absolute;
       top: 30px; /* Możesz kontrolować położenie w pionie */
       right: 100px; /* Możesz kontrolować położenie w poziomie */
@@ -148,10 +122,10 @@ h2#tagline::before {
     .title-square-container .blue-square-big {
       width: 175px;
       height: 30px;
-      background-color: #d17a1b;
+      background-color: blue;
       position: absolute;
       top: 80px; /* Możesz kontrolować położenie w pionie */
-      left: 0px; /* Możesz kontrolować położenie w poziomie */
+      left: 100px; /* Możesz kontrolować położenie w poziomie */
     }
     
     /* Media queries dla różnych szerokości ekranu */
