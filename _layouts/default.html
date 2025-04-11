@@ -44,7 +44,7 @@
       left: 260px;
       text-align: left;
     }
-    #project_title {
+    #project_ {
       font-size: 42px;
       margin-top: 20px;
       text-align: left;
@@ -62,16 +62,20 @@
     }
     
     /* Nowy kontener title-square-container */
-    .title-square-container {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 700px;
-      height: 200px;
-      z-index: 10;
-    }
+.title-square-container {
+  position: absolute;
+  top: 70px; /* Kontrolowanie położenia w pionie */
+  left: 50%; /* Wycentrowanie w poziomie */
+  transform: translateX(-50%);
+  width: 100%; /* Pełna szerokość w ramach max-width */
+  max-width: 700px; /* Maksymalna szerokość */
+  height: 150px; /* Wysokość kontenera - możesz zmienić */
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Delikatne białe obramowanie z przezroczystością */
+  border-radius: 5px; /* Zaokrąglone rogi */
+  box-sizing: border-box; /* Aby border nie zwiększał wymiarów */
+  padding: 10px; /* Wewnętrzny odstęp */
+}
     
     /* Nowy niebieski kwadrat w prawym górnym rogu */
     .title-square-container .blue-square {
