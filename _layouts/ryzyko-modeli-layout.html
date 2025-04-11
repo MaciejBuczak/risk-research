@@ -366,28 +366,31 @@
       font-weight: bold;
     }
     
+    /* Kontener głównego zdjęcia Z 1.1 - POPRAWIONY OSTATECZNIE */
+    .ryzmod-main-image {
+      position: relative;
+      width: 100%;
+      height: 220px; /* Zwiększona wysokość */
+      margin-bottom: 30px;
+      border: 1px solid #a85903;
+      padding: 0;
+      overflow: hidden;
+    }
 
-
-/* Kontener głównego zdjęcia Z 1.1 - POPRAWIONY */
-.ryzmod-main-image {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  margin-bottom: 30px;
-  overflow: hidden;
-  border: 1px solid #a85903;
-}
-
-.ryzmod-main-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Zachowujemy to, ale upewniamy się że wypełnia cały kontener */
-  object-position: center; /* Wycentrowanie obrazu */
-  display: block; /* Aby usunąć potencjalne luki pod obrazem */
-}
-
-
-    
+    .ryzmod-main-image img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+    }
     
     /* Napis O 1.2 na głównym zdjęciu */
     .ryzmod-overlay-text {
@@ -415,18 +418,22 @@
       gap: 30px;
     }
     
-    /* Kontener diagramu sieciowego */
+    /* Kontener diagramu sieciowego - POPRAWIONY */
     .ryzmod-network-container {
       width: 35%;
-      border: 1px solid #ddd;
-      background-color: #f9f9f9;
+      border: 1px solid #a85903;
       position: relative;
-    }
-    
-    .ryzmod-network-container img {
-      width: 100%;
+      overflow: hidden;
       height: 100%;
-      object-fit: contain;
+    }
+
+    .ryzmod-network-container img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
     
     /* Kontener tekstów po prawej stronie diagramu */
@@ -436,26 +443,21 @@
       flex-direction: column;
     }
     
-
-
-/* Tekst wstępny - POPRAWIONY (usunięte tło) */
-.ryzmod-intro-text {
-  padding: 15px 20px;
-  background-color: transparent; /* Usunięte szare tło */
-  margin-bottom: 15px;
-  position: relative;
-  font-weight: bold;
-}
-
-/* Zwykły tekst - POPRAWIONY (usunięte tło) */
-.ryzmod-regular-text {
-  padding: 15px 20px;
-  background-color: transparent; /* Usunięte szare tło */
-  position: relative;
-}
-
-
-
+    /* Tekst wstępny - POPRAWIONY (usunięte tło) */
+    .ryzmod-intro-text {
+      padding: 15px 20px;
+      background-color: transparent; /* Usunięte szare tło */
+      margin-bottom: 15px;
+      position: relative;
+      font-weight: bold;
+    }
+    
+    /* Zwykły tekst - POPRAWIONY (usunięte tło) */
+    .ryzmod-regular-text {
+      padding: 15px 20px;
+      background-color: transparent; /* Usunięte szare tło */
+      position: relative;
+    }
     
     /* Styl dla artykułów w sekcji O6 */
     .ryzmod-articles-section {
@@ -636,48 +638,40 @@
           <div class="ryzmod-header-modeli">MODELI</div>
         </div>
         
-
-
-<!-- Główne zdjęcie Z 1.1 - POPRAWIONE -->
-<div class="ryzmod-main-image">
-  <div class="ryzmod-object-id">Z 1.1</div>
-  <img src="/risk-research/assets/images/ryzyko-modeli-main-in.jpg" alt="Zdjęcie" style="width: 100%; height: 100%; object-fit: cover;">
-  <!-- Napis O 1.2 na zdjęciu -->
-  <div class="ryzmod-overlay-text">
-    <div class="ryzmod-object-id">O 1.2</div>
-    <p>Jeśli już znacie zasady dobrej prezentacji, teraz zostało już tylko zrobić ładne slajdy:-) Podstawą dobrego wyglądu slajdów jest przestrzeganie podstawowych zasad kompozycji.</p>
-  </div>
-</div>
-
-<!-- Drugi wiersz z diagramem sieciowym i tekstami - POPRAWIONE -->
-<div class="ryzmod-network-row">
-  <!-- Diagram sieciowy po lewej -->
-  <div class="ryzmod-network-container">
-    <div class="ryzmod-object-id">Z 2.1</div>
-    <img src="/risk-research/assets/images/network-diagram.jpg" alt="Diagram sieciowy">
-  </div>
-  
-  <!-- Teksty po prawej -->
-  <div class="ryzmod-text-block">
-    <!-- Tekst wstępny - bez tła -->
-    <div class="ryzmod-intro-text">
-      <div class="ryzmod-object-id">TW 2.2.1</div>
-      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-    </div>
-    
-    <!-- Zwykły tekst - bez tła -->
-    <div class="ryzmod-regular-text">
-      <div class="ryzmod-object-id">T 2.2.2</div>
-      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-    </div>
-  </div>
-</div>
-
-
-
+        <!-- Główne zdjęcie Z 1.1 - POPRAWIONE -->
+        <div class="ryzmod-main-image">
+          <div class="ryzmod-object-id">Z 1.1</div>
+          <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Zdjęcie">
+          <!-- Napis O 1.2 na zdjęciu -->
+          <div class="ryzmod-overlay-text">
+            <div class="ryzmod-object-id">O 1.2</div>
+            <p>Jeśli już znacie zasady dobrej prezentacji, teraz zostało już tylko zrobić ładne slajdy:-) Podstawą dobrego wyglądu slajdów jest przestrzeganie podstawowych zasad kompozycji.</p>
+          </div>
+        </div>
         
-        
-        <!-- Pozostała część układu (możesz dostosować lub usunąć niepotrzebne elementy) -->
+        <!-- Drugi wiersz z diagramem sieciowym i tekstami - POPRAWIONE -->
+        <div class="ryzmod-network-row">
+          <!-- Diagram sieciowy po lewej -->
+          <div class="ryzmod-network-container">
+            <div class="ryzmod-object-id">Z 2.1</div>
+            <img src="/risk-research/assets/images/network-diagram.jpg" alt="Diagram sieciowy">
+          </div>
+          
+          <!-- Teksty po prawej -->
+          <div class="ryzmod-text-block">
+            <!-- Tekst wstępny - bez tła -->
+            <div class="ryzmod-intro-text">
+              <div class="ryzmod-object-id">TW 2.2.1</div>
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+            
+            <!-- Zwykły tekst - bez tła -->
+            <div class="ryzmod-regular-text">
+              <div class="ryzmod-object-id">T 2.2.2</div>
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+          </div>
+        </div>
         
         <!-- Artykuły (O6) -->
         <div class="ryzmod-articles-section">
@@ -740,6 +734,11 @@
       </div>
     </section>
   </div>
+  
+
+
+
+
   
   <!-- FOOTER  -->
   <div id="footer_wrap" class="outer">
