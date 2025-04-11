@@ -47,24 +47,11 @@
       visibility: hidden;
     }
     
-    /* Styl dla nagłówka - taki sam jak w oryginalnym kodzie */
-    #project_title, #title {
-      font-size: 42px;
-      margin-top: 20px;
-      text-align: left;
-      margin-left: 0;
+    /* Nowe style dla nagłówka z załączonego kodu */
+    .project-name, .project-tagline, #title, #tagline, #project_title, #project_tagline {
+      text-shadow: none !important;
       position: relative;
-      left: 0px;
-      color: white;
-    }
-    #project_tagline, #tagline {
-      font-size: 24px;
-      margin-top: 10px;
-      text-align: left;
-      margin-left: 0;
-      position: relative;
-      left: 0px;
-      color: white;
+      z-index: 10;
     }
     
     /* Nowy kontener title-square-container */
@@ -88,6 +75,34 @@
   position: absolute;
   top: 25px; /* Kontrolowanie położenia w pionie */
   left: 50px; /* Kontrolowanie położenia w poziomie */
+  z-index: 10;
+}
+
+/* Dodanie stylów z załączonego kodu */
+.title-square-container #title {
+  font-size: 42px;
+  margin-top: 20px;
+  text-align: left;
+  margin-left: 0;
+  position: relative;
+  left: 0px;
+  color: white;
+  text-shadow: none !important;
+  position: relative;
+  z-index: 10;
+}
+
+.title-square-container #tagline {
+  font-size: 24px;
+  margin-top: 10px;
+  text-align: left;
+  margin-left: 0;
+  position: relative;
+  left: 0px;
+  color: white;
+  text-shadow: none !important;
+  position: relative;
+  z-index: 10;
 }
     
     /* Nowy niebieski kwadrat w prawym górnym rogu */
