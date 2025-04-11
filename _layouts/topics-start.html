@@ -317,102 +317,8 @@
       top: 0px;
       left: 0px;
     }
-    
-    /* New styles for middle columns */
-    #middle_content_wrap, #second_middle_content_wrap {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      background-color: white;
-      border: none;
-    }
-    #middle_content, #second_middle_content {
-      width: 100%;
-      max-width: 1200px;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-    }
-    .middle_column {
-      width: 30%;
-      background-color: white;
-      padding: 20px;
-    }
-    /* New styles for bottom containers */
-    #bottom_content_wrap {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      background-color: #f4f4f4;
-      border: none;
-      border-top: none !important;
-      border-bottom: none !important;
-      overflow: hidden;
-      position: relative;
-    }
-    #bottom_content_wrap::before,
-    #bottom_content_wrap::after {
-      content: none !important;
-    }
-    #bottom_content {
-      width: 100%;
-      max-width: 1200px;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-      position: relative;
-      z-index: 10;
-    }
-    .bottom_column {
-      width: 48%;
-      background-color: white;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    /* New styles for image and text section */
-    #image_text_content_wrap {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      background-color: white;
-      border: none;
-    }
-    #image_text_content {
-      width: 100%;
-      max-width: 1200px;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-    }
-    .image_column {
-      width: 48%;
-      background-color: white;
-      padding: 20px;
-    }
-    .text_column {
-      width: 48%;
-      background-color: white;
-      padding: 20px;
-    }
-    .image_placeholder {
-      width: 100%;
-      height: 400px;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #888;
-      font-size: 18px;
-    }
 
-
-
-
-        .title-square-container h2#tagline,
+    .title-square-container h2#tagline,
     .title-square-container h2[id="tagline"],
     .title-square-container .header-content h2,
     h2#tagline {
@@ -449,8 +355,106 @@
       text-decoration: none !important;
       box-shadow: none !important;
     }
-
     
+    /* NOWE STYLE DLA PROJEKTU */
+    
+    /* Główny kontener dla siatki elementów */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 30px;
+      margin-bottom: 50px;
+    }
+    
+    /* Styl dla elementów typu obiekt (O) + zdjęcie (Z) */
+    .topic-item {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .topic-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Kontener na zdjęcie (Z) */
+    .image-container {
+      position: relative;
+      height: 200px;
+      border: 1px solid #a85903;
+      overflow: hidden;
+    }
+    
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Kontener na grafiki dynamiczne (KDG) */
+    .kdg-container {
+      position: relative;
+      height: 200px;
+      border: 1px solid #a85903;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* Style dla prostokątów (O) */
+    .object-box {
+      position: relative;
+      padding: 20px;
+      min-height: 100px;
+    }
+    
+    /* Kolory dla różnych prostokątów */
+    .color-d6d2c7 {
+      background-color: #d6d2c7;
+    }
+    
+    .color-faf9f4 {
+      background-color: #faf9f4;
+    }
+    
+    .color-ece0d0 {
+      background-color: #ece0d0;
+    }
+    
+    /* Style dla typografii */
+    .object-id {
+      font-size: 14px;
+      margin-bottom: 5px;
+      color: #666;
+    }
+    
+    .object-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #a85903;
+      margin-bottom: 10px;
+    }
+    
+    .object-subtitle {
+      font-size: 20px;
+      color: #333;
+    }
+    
+    /* Style dla mediów o różnych rozmiarach */
+    @media screen and (max-width: 992px) {
+      .topics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media screen and (max-width: 576px) {
+      .topics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -483,73 +487,99 @@
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
       {{ content }}
-    </section>
-  </div>
-  
-  <!-- NEW MIDDLE CONTENT (FIRST SET) -->
-  <div id="middle_content_wrap">
-    <div id="middle_content">
-      <div class="middle_column">
-        <h3>Metody Ilościowe</h3>
-        <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-      </div>
-      <div class="middle_column">
-        <h3>Analiza Ryzyka</h3>
-        <p>Kompleksowe podejście do identyfikacji, oceny i minimalizacji ryzyka w różnych obszarach działalności organizacji, oparte na zaawansowanych metodach statystycznych.</p>
-      </div>
-      <div class="middle_column">
-        <h3>Innowacje</h3>
-        <p>Ciągłe poszukiwanie nowych rozwiązań i narzędzi, które mogą przynieść wartość dodaną w procesach zarządzania i analizy danych.</p>
-      </div>
-    </div>
-  </div>
-  
-  <!-- NEW BOTTOM CONTENT -->
-  <div id="bottom_content_wrap">
-    <div id="bottom_content">
-      <div class="bottom_column">
-        <h3>Risk Management Insights</h3>
-        <p>W dzisiejszym dynamicznym świecie zarządzanie ryzykiem stało się kluczowym elementem strategii biznesowej. Analiza potencjalnych zagrożeń pozwala firmom skutecznie minimalizować nieprzewidziane straty i maksymalizować szanse na sukces.</p>
-      </div>
-      <div class="bottom_column">
-        <h3>Research Strategy</h3>
-        <p>Nowoczesne podejście do badań wymaga interdyscyplinarnego spojrzenia. Łącząc zaawansowane narzędzia analityczne z głęboką wiedzą merytoryczną, jesteśmy w stanie odkrywać innowacyjne rozwiązania i przewidywać przyszłe trendy rynkowe.</p>
-      </div>
-    </div>
-  </div>
-  
-  <!-- NEW MIDDLE CONTENT (SECOND SET) -->
-  <div id="second_middle_content_wrap">
-    <div id="second_middle_content">
-      <div class="middle_column">
-        <h3>Metodologia Badawcza</h3>
-        <p>Systematyczne podejście do gromadzenia, analizowania i interpretacji danych, które pozwala na wyciąganie rzetelnych wniosków i podejmowanie świadomych decyzji.</p>
-      </div>
-      <div class="middle_column">
-        <h3>Zarządzanie Projektami</h3>
-        <p>Efektywne planowanie, organizacja i kontrola projektów z wykorzystaniem najnowszych narzędzi i metodyk, zapewniających osiągnięcie zamierzonych celów.</p>
-      </div>
-      <div class="middle_column">
-        <h3>Transformacja Cyfrowa</h3>
-        <p>Strategiczne wykorzystanie technologii cyfrowych do optymalizacji procesów biznesowych, zwiększenia wydajności i kreowania innowacyjnych rozwiązań.</p>
-      </div>
-    </div>
-  </div>
-  
-  <!-- NEW IMAGE AND TEXT CONTENT -->
-  <div id="image_text_content_wrap">
-    <div id="image_text_content">
-      <div class="image_column">
-        <div class="image_placeholder">
-          Zdjęcie
+
+      <!-- Nowa struktura siatki dla projektu z tematami -->
+      <div class="topics-grid">
+        <!-- Element 1: O 1.1 RYZYKO -->
+        <div class="topic-item">
+          <div class="object-box color-faf9f4">
+            <div class="object-id">O 1.1</div>
+            <div class="object-title">RYZYKO</div>
+          </div>
+        </div>
+
+        <!-- Element 2: KDG 1.2 (Kontener na dynamiczną grafikę) -->
+        <div class="topic-item">
+          <div class="kdg-container">
+            <div class="object-id">KDG 1.2</div>
+          </div>
+        </div>
+
+        <!-- Element 3: Z 1.3.1 + O 1.3.2 RYZYKO MODELI -->
+        <div class="topic-item">
+          <div class="image-container">
+            <div class="object-id">Z 1.3.1</div>
+          </div>
+          <div class="object-box color-d6d2c7">
+            <div class="object-id">O 1.3.2</div>
+            <div class="object-title">RYZYKO</div>
+            <div class="object-subtitle">MODELI</div>
+          </div>
+        </div>
+
+        <!-- Element 4: Z 2.1.1 + O 2.1.2 RYZYKO OPERACYJNE -->
+        <div class="topic-item">
+          <div class="image-container">
+            <div class="object-id">Z 2.1.1</div>
+          </div>
+          <div class="object-box color-ece0d0">
+            <div class="object-id">O 2.1.2</div>
+            <div class="object-title">RYZYKO</div>
+            <div class="object-subtitle">OPERACYJNE</div>
+          </div>
+        </div>
+
+        <!-- Element 5: Z 2.2.1 + O 2.2.2 RYZYKO KREDYTOWE -->
+        <div class="topic-item">
+          <div class="image-container">
+            <div class="object-id">Z 2.2.1</div>
+          </div>
+          <div class="object-box color-faf9f4">
+            <div class="object-id">O 2.2.2</div>
+            <div class="object-title">RYZYKO</div>
+            <div class="object-subtitle">KREDYTOWE</div>
+          </div>
+        </div>
+
+        <!-- Element 6: KDG 2.3 (Kontener na dynamiczną grafikę) -->
+        <div class="topic-item">
+          <div class="kdg-container">
+            <div class="object-id">KDG 2.3</div>
+          </div>
+        </div>
+
+        <!-- Element 7: KDG 3.1 (Kontener na dynamiczną grafikę) -->
+        <div class="topic-item">
+          <div class="kdg-container">
+            <div class="object-id">KDG 3.1</div>
+          </div>
+        </div>
+
+        <!-- Element 8: Z 3.2.1 + O 3.2.2 HOLSTYCZNA OCENA MODELU -->
+        <div class="topic-item">
+          <div class="image-container">
+            <div class="object-id">Z 3.2.1</div>
+          </div>
+          <div class="object-box color-d6d2c7">
+            <div class="object-id">O 3.2.2</div>
+            <div class="object-title">HOLSTYCZNA OCENA</div>
+            <div class="object-subtitle">MODELU</div>
+          </div>
+        </div>
+
+        <!-- Element 9: Z 3.3.1 + O 3.3.2 RYZYKO NIEOCZEKIWANE -->
+        <div class="topic-item">
+          <div class="image-container">
+            <div class="object-id">Z 3.3.1</div>
+          </div>
+          <div class="object-box color-ece0d0">
+            <div class="object-id">O 3.3.2</div>
+            <div class="object-title">RYZYKO</div>
+            <div class="object-subtitle">NIEOCZEKIWANE</div>
+          </div>
         </div>
       </div>
-      <div class="text_column">
-        <h3>Moja Perspektywa</h3>
-        <p>Łączenie zaawansowanych metod ilościowych z głęboką analizą jakościową pozwala na kompleksowe rozumienie złożonych zjawisk biznesowych. Moje wieloletnie doświadczenie w sektorze bankowym oraz współpraca z czołowymi warszawskimi uczelniami umożliwiają mi spojrzenie na ryzyko i badania z szerokiej, interdyscyplinarnej perspektywy.</p>
-        <p>Wierzę, że prawdziwa wartość tkwi w umiejętności przekształcania surowych danych w strategiczne insights, które mogą realnie wpływać na decyzje biznesowe.</p>
-      </div>
-    </div>
+    </section>
   </div>
   
   <!-- FOOTER  -->
