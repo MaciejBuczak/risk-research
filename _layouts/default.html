@@ -414,6 +414,49 @@
       color: #888;
       font-size: 18px;
     }
+
+
+
+
+        .title-square-container h2#tagline,
+    .title-square-container h2[id="tagline"],
+    .title-square-container .header-content h2,
+    h2#tagline {
+      border-bottom: none !important;
+      text-decoration: none !important;
+      box-shadow: none !important;
+      background-image: none !important;
+      font-weight: normal !important;
+      color: white !important;
+      position: relative !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Ukrycie wszystkich możliwych pseudoelementów */
+    .title-square-container h2#tagline::after,
+    .title-square-container h2#tagline::before,
+    .title-square-container h2[id="tagline"]::after,
+    .title-square-container h2[id="tagline"]::before,
+    .title-square-container .header-content h2::after,
+    .title-square-container .header-content h2::before,
+    h2#tagline::after,
+    h2#tagline::before {
+      content: none !important;
+      display: none !important;
+      visibility: hidden !important;
+      border: none !important;
+      background: none !important;
+      position: static !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      text-decoration: none !important;
+      box-shadow: none !important;
+    }
+
+    
   </style>
 </head>
 <body>
