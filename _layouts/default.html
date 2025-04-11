@@ -61,6 +61,35 @@
       left: 0px;
     }
     
+    /* Nowy kontener title-square-container */
+    .title-square-container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 700px;
+      height: 200px;
+      z-index: 10;
+    }
+    
+    /* Nowy niebieski kwadrat w prawym górnym rogu */
+    .title-square-container .blue-square {
+      width: 45px;
+      height: 45px;
+      background-color: blue;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    
+    /* Domyślne style dla kwadratów */
+    .square, .square1, .square2, .square-big {
+      background-color: #d17a1b;
+      position: absolute;
+      z-index: 1;
+    }
+    
     /* Nowy kontener dla kwadratów */
     .squares-container {
       position: absolute;
@@ -69,13 +98,6 @@
       width: 100%;
       height: 100%;
       pointer-events: none; /* Pozwala klikać przez kwadraty */
-    }
-    
-    /* Domyślne style dla kwadratów */
-    .square, .square1, .square2, .square-big {
-      background-color: #d17a1b;
-      position: absolute;
-      z-index: 1;
     }
     
     /* Domyślne pozycje (np. dla Chrome) */
@@ -571,6 +593,11 @@
 <body>
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
+    <!-- Nowy kontener title-square-container -->
+    <div class="title-square-container">
+      <div class="blue-square"></div>
+    </div>
+    
     <!-- Dedykowany kontener dla kwadratów -->
     <div class="squares-container">
       <div class="square"></div>
