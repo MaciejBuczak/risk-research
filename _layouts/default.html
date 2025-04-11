@@ -87,7 +87,6 @@
   position: relative;
   left: 0px;
   color: white;
-
 }
 
 .title-square-container #tagline {
@@ -97,10 +96,23 @@
   margin-left: 0;
   position: relative;
   left: 0px;
-
+  color: white;
+  border-bottom: none !important;
+  text-decoration: none !important;
+  font-weight: normal !important;
 }
 
-
+/* Usunięcie pseudoelementów */
+.title-square-container #tagline::after,
+.title-square-container #tagline::before,
+h2#tagline::after,
+h2#tagline::before {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  border: none !important;
+  background: none !important;
+}
 
     
     
