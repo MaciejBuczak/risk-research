@@ -13,11 +13,3 @@ layout: topics-start
   <a href="/trials" class="menu-option">trials</a>
   <a href="/oprisk" class="menu-option">Oprisk</a>
 </div>
-
-<!-- Cytat -->
-**Vincent van Gogh**
-*"Wielkie rzeczy nie dzieją się z impulsu, ale są szeregiem małych rzeczy połączonych ze sobą."*
-
-<!-- Sekcja Tematyka badań -->
-#### Tematyka badań
-Moje główne obszary badawcze koncentrują się wokół zastosowania metod ilościowych w analizie ryzyka. Szczególną uwagę poświęcam następującym zagadnieniom:
