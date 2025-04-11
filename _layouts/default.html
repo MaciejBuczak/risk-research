@@ -43,14 +43,17 @@
       position: relative;
       left: 260px;
       text-align: left;
+      /* Ukrywamy oryginalny nagłówek */
+      visibility: hidden;
     }
-    #project_ {
+    #project_title {
       font-size: 42px;
       margin-top: 20px;
       text-align: left;
       margin-left: 0;
       position: relative;
       left: 0px;
+      color: white;
     }
     #project_tagline {
       font-size: 24px;
@@ -59,6 +62,7 @@
       margin-left: 0;
       position: relative;
       left: 0px;
+      color: white;
     }
     
     /* Nowy kontener title-square-container */
@@ -76,12 +80,51 @@
   box-sizing: border-box; /* Aby border nie zwiększał wymiarów */
   padding: 10px; /* Wewnętrzny odstęp */
 }
+
+/* Nowy styl dla nagłówka w kontenerze title-square-container */
+.title-square-container .header-content {
+  position: absolute;
+  top: 25px; /* Kontrolowanie położenia w pionie */
+  left: 50px; /* Kontrolowanie położenia w poziomie */
+  z-index: 10;
+}
+
+/* Style dla nagłówka w nowym kontenerze, zachowujące oryginalne style */
+.title-square-container #title {
+  font-size: 42px;
+  margin-top: 20px;
+  text-align: left;
+  margin-left: 0;
+  position: relative;
+  left: 0px;
+  color: white;
+}
+
+.title-square-container #tagline {
+  font-size: 24px;
+  margin-top: 10px;
+  text-align: left;
+  margin-left: 0;
+  position: relative;
+  left: 0px;
+  color: white;
+  /* Usunięcie ewentualnego podkreślenia */
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+/* Usunięcie pseudoelementów, które mogłyby tworzyć podkreślenie */
+.title-square-container #tagline::after,
+.title-square-container #tagline::before {
+  content: none !important;
+  display: none !important;
+}
     
     /* Nowy niebieski kwadrat w prawym górnym rogu */
     .title-square-container .blue-square {
       width: 45px;
       height: 45px;
-      background-color: blue;
+      background-color: #d17a1b;
       position: absolute;
       top: 0;
       right: 0;
@@ -91,7 +134,7 @@
     .title-square-container .blue-square1 {
       width: 24px;
       height: 24px;
-      background-color: blue;
+      background-color: #d17a1b;
       position: absolute;
       top: 50px; /* Możesz kontrolować położenie w pionie */
       right: 60px; /* Możesz kontrolować położenie w poziomie */
@@ -100,7 +143,7 @@
     .title-square-container .blue-square2 {
       width: 24px;
       height: 24px;
-      background-color: blue;
+      background-color: #d17a1b;
       position: absolute;
       top: 30px; /* Możesz kontrolować położenie w pionie */
       right: 100px; /* Możesz kontrolować położenie w poziomie */
@@ -109,7 +152,7 @@
     .title-square-container .blue-square-big {
       width: 175px;
       height: 30px;
-      background-color: blue;
+      background-color: #d17a1b;
       position: absolute;
       top: 80px; /* Możesz kontrolować położenie w pionie */
       left: 100px; /* Możesz kontrolować położenie w poziomie */
@@ -132,11 +175,11 @@
       }
       
       /* Zachowujemy taki sam rozmiar czcionki jak na komputerze */
-      #project_title {
+      #project_title, #title {
         font-size: 42px;
       }
       
-      #project_tagline {
+      #project_tagline, #tagline {
         font-size: 24px;
       }
     }
@@ -161,7 +204,7 @@
         justify-content: flex-start;
       }
       
-      #project_title {
+      #project_title, #title {
         font-size: 32px;
         margin-left: 0;
         padding-left: 0;
@@ -170,7 +213,7 @@
         text-align: left;
       }
       
-      #project_tagline {
+      #project_tagline, #tagline {
         font-size: 24px;
         margin-left: 0;
         padding-left: 0;
@@ -378,12 +421,19 @@
   <div id="header_wrap" class="outer">
     <!-- Nowy kontener title-square-container -->
     <div class="title-square-container">
+      <!-- Przeniesiony nagłówek -->
+      <div class="header-content">
+        <h1 id="title">{{ site.title | default: site.github.repository_name }}</h1>
+        <h2 id="tagline">{{ site.description | default: site.github.project_tagline }}</h2>
+      </div>
+      
       <div class="blue-square"></div>
       <div class="blue-square1"></div>
       <div class="blue-square2"></div>
       <div class="blue-square-big"></div>
     </div>
     
+    <!-- Oryginalny header pozostawiony, ale ukryty przez CSS -->
     <header class="inner">
       <h1 id="project_title">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 id="project_tagline">{{ site.description | default: site.github.project_tagline }}</h2>
