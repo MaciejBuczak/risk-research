@@ -1,7 +1,7 @@
 ---
 layout: topics-start
 title: Tematy badań
-permalink: /topics/
+permalink: /topics-tekst/
 ---
 <!-- Menu nawigacyjne - wyświetlane przed main_content -->
 <div id="myMenu">
