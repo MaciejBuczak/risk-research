@@ -318,7 +318,7 @@
       left: 0px;
     }
     
-    /* NOWE STYLE DLA PROJEKTU RYZYKO MODELI */
+    /* NOWE STYLE DLA PROJEKTU RYZYKO MODELI - POPRAWIONE */
     
     /* Główny kontener */
     .ryzmod-container {
@@ -330,44 +330,70 @@
     
     /* Tytuł główny sekcji */
     .ryzmod-title {
-      display: flex;
-      align-items: center;
       margin-bottom: 40px;
+      display: flex;
     }
     
-    .ryzmod-title-prefix {
+    .ryzmod-title-modeli {
       color: #555;
-      font-size: 16px;
-      margin-right: 10px;
-    }
-    
-    .ryzmod-title-text {
-      color: #a85903;
-      font-size: 24px;
+      font-size: 32px;
       font-weight: bold;
     }
     
-    /* Grid container dla layoutu */
-    .ryzmod-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 30px;
-      margin-bottom: 40px;
+    .ryzmod-title-ryzyko {
+      color: #a85903;
+      font-size: 32px;
+      font-weight: bold;
+      margin-right: 15px;
     }
     
-    /* Elementy grid */
-    .ryzmod-grid-item {
+    /* Główny nagłówek sekcji */
+    .ryzmod-header {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    
+    .ryzmod-header-text {
+      color: #a85903;
+      font-size: 32px;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+    
+    .ryzmod-header-modeli {
+      color: #555;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    
+    /* Kontener głównego zdjęcia Z 1.1 */
+    .ryzmod-main-image {
       position: relative;
+      width: 100%;
+      height: 200px;
+      margin-bottom: 30px;
+      overflow: hidden;
+      border: 1px solid #a85903;
     }
     
-    /* Obiekty O - kolorowe prostokąty */
-    .ryzmod-object {
-      background-color: #fdf3e9;
-      padding: 20px;
-      position: relative;
+    .ryzmod-main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     
-    .ryzmod-object-id {
+    /* Napis O 1.2 na głównym zdjęciu */
+    .ryzmod-overlay-text {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ffebd3;
+      padding: 15px 20px;
+      max-width: 40%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .ryzmod-overlay-id {
       position: absolute;
       top: 10px;
       left: 10px;
@@ -375,79 +401,55 @@
       color: #777;
     }
     
-    /* Kontenery Z na zdjęcia */
-    .ryzmod-image-container {
-      border: 1px solid #a85903;
-      height: 150px;
-      overflow: hidden;
+    /* Drugi wiersz z diagramem sieciowym i tekstami */
+    .ryzmod-network-row {
+      display: flex;
+      margin-bottom: 40px;
+      gap: 30px;
+    }
+    
+    /* Kontener diagramu sieciowego */
+    .ryzmod-network-container {
+      width: 35%;
+      border: 1px solid #ddd;
+      background-color: #f9f9f9;
       position: relative;
     }
     
-    .ryzmod-image-container img {
+    .ryzmod-network-container img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
     
-    /* Kontenery KDG na dynamiczne grafiki */
-    .ryzmod-kdg-container {
-      border: 1px solid #a85903;
-      height: 150px;
-      position: relative;
+    /* Kontener tekstów po prawej stronie diagramu */
+    .ryzmod-text-block {
+      width: 65%;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
     }
     
-    /* Kontenery T na tekst */
-    .ryzmod-text-container {
-      padding: 15px;
-      position: relative;
-    }
-    
-    /* Kontener TW na tekst wstępny */
-    .ryzmod-intro-container {
-      padding: 15px;
-      position: relative;
-    }
-    
+    /* Tekst wstępny */
     .ryzmod-intro-text {
+      padding: 15px 20px;
+      background-color: #f9f9f9;
+      margin-bottom: 15px;
+      position: relative;
       font-weight: bold;
-      font-size: 18px;
-      line-height: 1.4;
     }
     
-    /* Styl dla całego wiersza */
-    .ryzmod-row {
-      margin-bottom: 30px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 30px;
-    }
-    
-    /* Styl dla elementu zajmującego całą szerokość */
-    .ryzmod-fullwidth {
-      grid-column: 1 / -1;
-      width: 100%;
-    }
-    
-    /* Styl dla element zajmującego 2/3 szerokości */
-    .ryzmod-two-thirds {
-      grid-column: span 2;
-    }
-    
-    /* Styl dla elementów w dwóch kolumnach */
-    .ryzmod-two-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 30px;
+    /* Zwykły tekst */
+    .ryzmod-regular-text {
+      padding: 15px 20px;
+      background-color: #f9f9f9;
+      position: relative;
     }
     
     /* Styl dla artykułów w sekcji O6 */
     .ryzmod-articles-section {
       background-color: #656461;
       padding: 30px 20px;
-      margin: 0 -20px 40px -20px;
+      margin: 40px -20px 40px -20px;
       color: white;
     }
     
@@ -474,6 +476,7 @@
       height: 120px;
       overflow: hidden;
       margin-bottom: 10px;
+      position: relative;
     }
     
     .ryzmod-article-image img {
@@ -487,6 +490,7 @@
       color: #333;
       padding: 15px;
       flex: 1;
+      position: relative;
     }
     
     .ryzmod-article-title {
@@ -501,44 +505,29 @@
       line-height: 1.4;
     }
     
-    /* Style dla wykresów dynamicznych */
-    .ryzmod-diagram {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-style: italic;
-      color: #888;
-    }
-    
-    /* Główny nagłówek sekcji */
-    .ryzmod-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-    
-    .ryzmod-header-prefix {
-      color: #555;
-      font-size: 18px;
-      margin-right: 10px;
-    }
-    
-    .ryzmod-header-text {
-      color: #a85903;
-      font-size: 32px;
-      font-weight: bold;
+    /* ID obiektów */
+    .ryzmod-object-id {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: #777;
+      z-index: 5;
     }
     
     /* Media queries dla responsywności */
     @media screen and (max-width: 992px) {
-      .ryzmod-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .ryzmod-network-row {
+        flex-direction: column;
       }
       
-      .ryzmod-row {
-        grid-template-columns: 1fr 1fr;
+      .ryzmod-network-container,
+      .ryzmod-text-block {
+        width: 100%;
+      }
+      
+      .ryzmod-network-container {
+        height: 300px;
       }
       
       .ryzmod-articles-grid {
@@ -547,27 +536,15 @@
     }
     
     @media screen and (max-width: 576px) {
-      .ryzmod-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .ryzmod-row {
-        grid-template-columns: 1fr;
-      }
-      
-      .ryzmod-two-thirds {
-        grid-column: auto;
-      }
-      
-      .ryzmod-two-columns {
-        grid-template-columns: 1fr;
-      }
-      
       .ryzmod-articles-grid {
         grid-template-columns: 1fr;
       }
+      
+      .ryzmod-overlay-text {
+        max-width: 80%;
+      }
     }
-
+    
     .title-square-container h2#tagline,
     .title-square-container h2[id="tagline"],
     .title-square-container .header-content h2,
@@ -643,119 +620,48 @@
       <div class="ryzmod-container">
         <!-- Główny nagłówek -->
         <div class="ryzmod-header">
-          <div class="ryzmod-header-text">RYZYKO <span style="color:#555;">MODELI</span></div>
+          <div class="ryzmod-header-text">RYZYKO</div>
+          <div class="ryzmod-header-modeli">MODELI</div>
         </div>
         
-        <!-- Pierwszy wiersz - Zawiera O 1.2 i Z 2.1.1 + O 2.2.1 -->
-        <div class="ryzmod-row">
-          <!-- Zdjęcie i tekst po lewej -->
-          <div class="ryzmod-grid-item">
-            <div class="ryzmod-image-container">
-              <div class="ryzmod-object-id">Z 1.1</div>
-              <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Zdjęcie">
-            </div>
-            <div class="ryzmod-object" style="background-color: #ffebd3;">
-              <div class="ryzmod-object-id">O 1.2</div>
-              <p>Jak mnie znają osoby dobrze pracujące, jestem wrogiem głupich procedur, które są tylko po to, aby były. Znoszę procedury, o których wiemy, że mają sens i wspomagają dużą strukturę zorganizowanych zadań fluktuacyjnych.</p>
-            </div>
+        <!-- Główne zdjęcie Z 1.1 -->
+        <div class="ryzmod-main-image">
+          <div class="ryzmod-object-id">Z 1.1</div>
+          <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Zdjęcie">
+          <!-- Napis O 1.2 na zdjęciu -->
+          <div class="ryzmod-overlay-text">
+            <div class="ryzmod-object-id">O 1.2</div>
+            <p>Jeśli już znacie zasady dobrej prezentacji, teraz zostało już tylko zrobić ładne slajdy:-) Podstawą dobrego wyglądu slajdów jest przestrzeganie podstawowych zasad kompozycji.</p>
+          </div>
+        </div>
+        
+        <!-- Drugi wiersz z diagramem sieciowym i tekstami -->
+        <div class="ryzmod-network-row">
+          <!-- Diagram sieciowy po lewej -->
+          <div class="ryzmod-network-container">
+            <div class="ryzmod-object-id">Z 2.1</div>
+            <img src="/risk-research/assets/images/network-diagram.jpg" alt="Diagram sieciowy">
           </div>
           
-          <!-- Diagram sieciowy pośrodku -->
-          <div class="ryzmod-grid-item" style="grid-column: span 2;">
-            <div class="ryzmod-object-id">Z 2.2.1</div>
-            <div class="ryzmod-image-container">
-              <img src="/risk-research/assets/images/network-diagram.jpg" alt="Diagram sieciowy">
-            </div>
-            <div class="ryzmod-text-container">
+          <!-- Teksty po prawej -->
+          <div class="ryzmod-text-block">
+            <!-- Tekst wstępny -->
+            <div class="ryzmod-intro-text">
               <div class="ryzmod-object-id">TW 2.2.1</div>
-              <p class="ryzmod-intro-text">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
             </div>
-            <div class="ryzmod-text-container">
+            
+            <!-- Zwykły tekst -->
+            <div class="ryzmod-regular-text">
               <div class="ryzmod-object-id">T 2.2.2</div>
               <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
             </div>
           </div>
         </div>
         
-        <!-- Drugi wiersz - Zawiera grafiki i teksty -->
-        <div class="ryzmod-row">
-          <!-- Tekst po lewej -->
-          <div class="ryzmod-grid-item">
-            <div class="ryzmod-text-container">
-              <div class="ryzmod-object-id">T 3.1</div>
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-            <div class="ryzmod-text-container">
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-            <div class="ryzmod-text-container">
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-            <div class="ryzmod-text-container">
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-          </div>
-          
-          <!-- Diagram sieci w środku -->
-          <div class="ryzmod-grid-item" style="position: relative;">
-            <div class="ryzmod-object-id">O 3.2</div>
-            <div class="ryzmod-object" style="height: 100%; display: flex; flex-direction: column; justify-content: center; background-color: #f2ece3;">
-              <p style="text-align: center;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
-            </div>
-          </div>
-          
-          <!-- Pusty blok z tekstem po prawej -->
-          <div class="ryzmod-grid-item">
-            <div class="ryzmod-object-id">O 5.1</div>
-            <div class="ryzmod-object" style="background-color: #f5dea3; height: auto; min-height: 150px;">
-              <p style="color: #a85903; font-weight: bold;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-            <div class="ryzmod-text-container">
-              <div class="ryzmod-object-id">T 5.2</div>
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-          </div>
-        </div>
+        <!-- Pozostała część układu (możesz dostosować lub usunąć niepotrzebne elementy) -->
         
-        <!-- Trzeci wiersz - Zawiera WYKRES DYNAMICZNY -->
-        <div class="ryzmod-row">
-          <div class="ryzmod-grid-item ryzmod-fullwidth">
-            <h2 style="text-align: center; margin-bottom: 20px; font-style: italic;">WYKRES DYNAMICZNY</h2>
-            <div class="ryzmod-kdg-container" style="height: 300px;">
-              <div class="ryzmod-object-id">KDG 4</div>
-              <div class="ryzmod-diagram">Tu będzie wykres dynamiczny</div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Czwarty wiersz - Zawiera teksty -->
-        <div class="ryzmod-row">
-          <div class="ryzmod-grid-item">
-            <div class="ryzmod-text-container">
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-            <div class="ryzmod-text-container">
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-          </div>
-          <div class="ryzmod-grid-item">
-            <div class="ryzmod-text-container">
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-            <div class="ryzmod-text-container">
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-          </div>
-          <div class="ryzmod-grid-item">
-            <div class="ryzmod-text-container">
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-          </div>
-        </div>
-        
-
-
-<!-- Piąty wiersz - Artykuły (O6) -->
+        <!-- Artykuły (O6) -->
         <div class="ryzmod-articles-section">
           <div class="ryzmod-articles-title">Artykuły dotyczące ryzyka modeli</div>
           <div class="ryzmod-object-id">O 6</div>
@@ -859,4 +765,3 @@
   </script>
 </body>
 </html>
-        
