@@ -356,7 +356,7 @@
       box-shadow: none !important;
     }
     
-    /* NOWE STYLE DLA PROJEKTU */
+    /* NOWE STYLE DLA PROJEKTU - POPRAWIONE */
     
     /* Główny kontener dla siatki elementów */
     .topics-grid {
@@ -372,7 +372,7 @@
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       overflow: hidden;
-      height: 380px; /* Dostosuj wysokość do swoich potrzeb */
+      height: 380px; /* Stała wysokość dla wszystkich elementów */
       display: flex;
       flex-direction: column;
     }
@@ -382,19 +382,28 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
     
-    /* Kontener na zdjęcie (Z) */
+    /* Kontener na zdjęcie (Z) - POPRAWIONY */
     .image-container {
       position: relative;
-      height: 200px;
+      padding: 0;
+      margin: 0;
       border: 1px solid #a85903;
       overflow: hidden;
       flex: 1;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
     }
     
     .image-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
+      margin: 0;
+      padding: 0;
+      display: block;
+      flex: 1;
     }
     
     /* Kontener na grafiki dynamiczne (KDG) */
@@ -407,6 +416,8 @@
       justify-content: center;
       align-items: center;
       flex: 1;
+      padding: 0;
+      margin: 0;
     }
     
     /* Style dla prostokątów (O) */
@@ -417,6 +428,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      margin: 0;
     }
     
     /* Specjalny styl dla pierwszego elementu */
@@ -426,6 +438,7 @@
       align-items: center;
       height: 100%;
       padding: 20px;
+      margin: 0;
     }
     
     .title-only .object-title {
@@ -454,6 +467,7 @@
       position: absolute;
       top: 10px;
       left: 10px;
+      z-index: 5;
     }
     
     .object-title {
@@ -560,6 +574,7 @@
         <div class="topic-item">
           <div class="image-container">
             <div class="object-id">Z 2.1.1</div>
+            <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Ryzyko operacyjne">
           </div>
           <div class="object-box color-ece0d0">
             <div class="object-id">O 2.1.2</div>
@@ -574,6 +589,7 @@
         <div class="topic-item">
           <div class="image-container">
             <div class="object-id">Z 2.2.1</div>
+            <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Ryzyko kredytowe">
           </div>
           <div class="object-box color-faf9f4">
             <div class="object-id">O 2.2.2</div>
@@ -602,6 +618,7 @@
         <div class="topic-item">
           <div class="image-container">
             <div class="object-id">Z 3.2.1</div>
+            <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Holstyczna ocena modelu">
           </div>
           <div class="object-box color-d6d2c7">
             <div class="object-id">O 3.2.2</div>
@@ -616,6 +633,7 @@
         <div class="topic-item">
           <div class="image-container">
             <div class="object-id">Z 3.3.1</div>
+            <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Ryzyko nieoczekiwane">
           </div>
           <div class="object-box color-ece0d0">
             <div class="object-id">O 3.3.2</div>
