@@ -372,6 +372,9 @@
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       overflow: hidden;
+      height: 380px; /* Dostosuj wysokość do swoich potrzeb */
+      display: flex;
+      flex-direction: column;
     }
     
     .topic-item:hover {
@@ -385,6 +388,7 @@
       height: 200px;
       border: 1px solid #a85903;
       overflow: hidden;
+      flex: 1;
     }
     
     .image-container img {
@@ -396,19 +400,37 @@
     /* Kontener na grafiki dynamiczne (KDG) */
     .kdg-container {
       position: relative;
-      height: 200px;
+      height: 100%;
       border: 1px solid #a85903;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex: 1;
     }
     
     /* Style dla prostokątów (O) */
     .object-box {
       position: relative;
       padding: 20px;
-      min-height: 100px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    /* Specjalny styl dla pierwszego elementu */
+    .title-only {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 20px;
+    }
+    
+    .title-only .object-title {
+      font-size: 42px;
+      text-align: center;
     }
     
     /* Kolory dla różnych prostokątów */
@@ -429,18 +451,32 @@
       font-size: 14px;
       margin-bottom: 5px;
       color: #666;
+      position: absolute;
+      top: 10px;
+      left: 10px;
     }
     
     .object-title {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: bold;
       color: #a85903;
-      margin-bottom: 10px;
+      margin-bottom: 0;
+      line-height: 1.2;
     }
     
     .object-subtitle {
-      font-size: 20px;
+      font-size: 28px;
+      font-weight: bold;
       color: #333;
+      line-height: 1.2;
+    }
+    
+    /* Jednoliniowe tytuły */
+    .title-wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 6px;
     }
     
     /* Style dla mediów o różnych rozmiarach */
@@ -492,7 +528,7 @@
       <div class="topics-grid">
         <!-- Element 1: O 1.1 RYZYKO -->
         <div class="topic-item">
-          <div class="object-box color-faf9f4">
+          <div class="title-only">
             <div class="object-id">O 1.1</div>
             <div class="object-title">RYZYKO</div>
           </div>
@@ -512,8 +548,10 @@
           </div>
           <div class="object-box color-d6d2c7">
             <div class="object-id">O 1.3.2</div>
-            <div class="object-title">RYZYKO</div>
-            <div class="object-subtitle">MODELI</div>
+            <div class="title-wrapper">
+              <div class="object-title">RYZYKO</div>
+              <div class="object-subtitle">MODELI</div>
+            </div>
           </div>
         </div>
 
@@ -524,8 +562,10 @@
           </div>
           <div class="object-box color-ece0d0">
             <div class="object-id">O 2.1.2</div>
-            <div class="object-title">RYZYKO</div>
-            <div class="object-subtitle">OPERACYJNE</div>
+            <div class="title-wrapper">
+              <div class="object-title">RYZYKO</div>
+              <div class="object-subtitle">OPERACYJNE</div>
+            </div>
           </div>
         </div>
 
@@ -536,8 +576,10 @@
           </div>
           <div class="object-box color-faf9f4">
             <div class="object-id">O 2.2.2</div>
-            <div class="object-title">RYZYKO</div>
-            <div class="object-subtitle">KREDYTOWE</div>
+            <div class="title-wrapper">
+              <div class="object-title">RYZYKO</div>
+              <div class="object-subtitle">KREDYTOWE</div>
+            </div>
           </div>
         </div>
 
@@ -562,8 +604,10 @@
           </div>
           <div class="object-box color-d6d2c7">
             <div class="object-id">O 3.2.2</div>
-            <div class="object-title">HOLSTYCZNA OCENA</div>
-            <div class="object-subtitle">MODELU</div>
+            <div class="title-wrapper">
+              <div class="object-title">HOLSTYCZNA OCENA</div>
+              <div class="object-subtitle">MODELU</div>
+            </div>
           </div>
         </div>
 
@@ -574,8 +618,10 @@
           </div>
           <div class="object-box color-ece0d0">
             <div class="object-id">O 3.3.2</div>
-            <div class="object-title">RYZYKO</div>
-            <div class="object-subtitle">NIEOCZEKIWANE</div>
+            <div class="title-wrapper">
+              <div class="object-title">RYZYKO</div>
+              <div class="object-subtitle">NIEOCZEKIWANE</div>
+            </div>
           </div>
         </div>
       </div>
