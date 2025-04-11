@@ -115,146 +115,8 @@
       left: 100px; /* Możesz kontrolować położenie w poziomie */
     }
     
-    /* Domyślne style dla kwadratów */
-    .square, .square1, .square2, .square-big {
-      background-color: #d17a1b;
-      position: absolute;
-      z-index: 1;
-    }
-    
-    /* Nowy kontener dla kwadratów */
-    .squares-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none; /* Pozwala klikać przez kwadraty */
-    }
-    
-    /* Domyślne pozycje (np. dla Chrome) */
-    .square {
-      width: 45px;
-      height: 45px;
-      top: 28px;
-      right: 437px;
-    }
-    
-    .square1 {
-      width: 24px;
-      height: 24px;
-      top: 79.5px;
-      right: 500px;
-    }
-    
-    .square2 {
-      width: 24px;
-      height: 24px;
-      top: 59px;
-      right: 544px;
-    }
-    
-    .square-big {
-      width: 175px;
-      height: 30px;
-      top: 84px;
-      left: 630px;
-    }
-    
-    /* Korekty dla Firefox */
-    .browser-firefox .square {
-      top: 28px;
-      right: 440px; /* +3px w prawo */
-    }
-    
-    .browser-firefox .square1 {
-      top: 79.5px;
-      right: 503px; /* +3px w prawo */
-    }
-    
-    .browser-firefox .square2 {
-      top: 59px;
-      right: 547px; /* +3px w prawo */
-    }
-    
-    .browser-firefox .square-big {
-      top: 88px;
-      left: 423px; /* -3px w lewo */
-    }
-    
-    /* Korekty dla Safari */
-    .browser-safari .square {
-      top: 28px;
-      right: 435px; /* -2px w lewo */
-    }
-    
-    .browser-safari .square1 {
-      top: 79.5px;
-      right: 498px; /* -2px w lewo */
-    }
-    
-    .browser-safari .square2 {
-      top: 59px;
-      right: 542px; /* -2px w lewo */
-    }
-    
-    .browser-safari .square-big {
-      top: 88px;
-      left: 428px; /* +2px w prawo */
-    }
-    
-    /* Korekty dla Edge */
-    .browser-edge .square {
-      top: 28px;
-      right: 439px; /* +2px w prawo */
-    }
-    
-    .browser-edge .square1 {
-      top: 79.5px;
-      right: 502px; /* +2px w prawo */
-    }
-    
-    .browser-edge .square2 {
-      top: 59px;
-      right: 546px; /* +2px w prawo */
-    }
-    
-    .browser-edge .square-big {
-      top: 88px;
-      left: 424px; /* -2px w lewo */
-    }
-    
     /* Media queries dla różnych szerokości ekranu */
     @media screen and (max-width: 1200px) {
-      /* Dla wszystkich przeglądarek używaj procentów na małych ekranach */
-      .square, 
-      .browser-firefox .square,
-      .browser-safari .square,
-      .browser-edge .square {
-        right: 20%;
-      }
-      
-      .square1,
-      .browser-firefox .square1,
-      .browser-safari .square1,
-      .browser-edge .square1 {
-        right: 23%;
-      }
-      
-      .square2,
-      .browser-firefox .square2,
-      .browser-safari .square2,
-      .browser-edge .square2 {
-        right: 26%;
-      }
-      
-      .square-big,
-      .browser-firefox .square-big,
-      .browser-safari .square-big,
-      .browser-edge .square-big {
-        left: 35%;
-      }
-      
       /* Dostosowujemy pozycję kontenera z tytułem */
       #header_wrap .inner {
         left: 150px; /* Dostosuj tę wartość do swoich potrzeb */
@@ -263,43 +125,6 @@
     
     /* Media queries dla telefonów z proporcjonalnym położeniem kwadratów */
     @media screen and (max-width: 768px) {
-      /* Proporcjonalne położenie kwadratów względem ekranu komputera */
-      .square, 
-      .browser-firefox .square,
-      .browser-safari .square,
-      .browser-edge .square,
-      .browser-chrome .square {
-        right: 5%;
-        top: 10px;
-      }
-      
-      .square1,
-      .browser-firefox .square1,
-      .browser-safari .square1,
-      .browser-edge .square1,
-      .browser-chrome .square1 {
-        right: 20%;
-        top: 90px;
-      }
-      
-      .square2,
-      .browser-firefox .square2,
-      .browser-safari .square2,
-      .browser-edge .square2,
-      .browser-chrome .square2 {
-        right: 30%;
-        top: 70px;
-      }
-      
-      .square-big,
-      .browser-firefox .square-big,
-      .browser-safari .square-big,
-      .browser-edge .square-big,
-      .browser-chrome .square-big {
-        left: 0%;
-        top: 88px;
-      }
-      
       /* Style dla kontenera z tytułem - zachowujemy te same proporcje jak dla komputera */
       #header_wrap .inner {
         left: 0px; /* Dostosowany do urządzeń mobilnych */
@@ -318,43 +143,6 @@
     
     /* Dodatkowe style dla małych telefonów */
     @media screen and (max-width: 480px) {
-      /* Jeszcze bardziej proporcjonalne położenie dla bardzo małych ekranów */
-      .square, 
-      .browser-firefox .square,
-      .browser-safari .square,
-      .browser-edge .square,
-      .browser-chrome .square {
-        right: 2.75%;
-        top: 13px;
-      }
-      
-      .square1,
-      .browser-firefox .square1,
-      .browser-safari .square1,
-      .browser-edge .square1,
-      .browser-chrome .square1 {
-        right: 20.2%;
-        top: 65px;
-      }
-      
-      .square2,
-      .browser-firefox .square2,
-      .browser-safari .square2,
-      .browser-edge .square2,
-      .browser-chrome .square2 {
-        right: 32.5%;
-        top: 44px;
-      }
-      
-      .square-big,
-      .browser-firefox .square-big,
-      .browser-safari .square-big,
-      .browser-edge .square-big,
-      .browser-chrome .square-big {
-        left: 0%;
-        top: 73px;
-      }
-      
       /* Radykalne resetowanie pozycji kontenera z tytułem */
       #header_wrap {
         padding-left: 0;
@@ -405,43 +193,6 @@
       #header_wrap .inner {
         left: 80px;
         width: calc(100% - 100px);
-      }
-      
-      /* Dostosowanie kwadratów dla orientacji poziomej */
-      .square, 
-      .browser-firefox .square,
-      .browser-safari .square,
-      .browser-edge .square,
-      .browser-chrome .square {
-        right: 20%;
-        top: 20px;
-      }
-      
-      .square1,
-      .browser-firefox .square1,
-      .browser-safari .square1,
-      .browser-edge .square1,
-      .browser-chrome .square1 {
-        right: 25%;
-        top: 60px;
-      }
-      
-      .square2,
-      .browser-firefox .square2,
-      .browser-safari .square2,
-      .browser-edge .square2,
-      .browser-chrome .square2 {
-        right: 30%;
-        top: 40px;
-      }
-      
-      .square-big,
-      .browser-firefox .square-big,
-      .browser-safari .square-big,
-      .browser-edge .square-big,
-      .browser-chrome .square-big {
-        left: 15%;
-        top: 70px;
       }
     }
     
@@ -631,14 +382,6 @@
       <div class="blue-square1"></div>
       <div class="blue-square2"></div>
       <div class="blue-square-big"></div>
-    </div>
-    
-    <!-- Dedykowany kontener dla kwadratów -->
-    <div class="squares-container">
-      <div class="square"></div>
-      <div class="square1"></div>
-      <div class="square2"></div>
-      <div class="square-big"></div>
     </div>
     
     <header class="inner">
