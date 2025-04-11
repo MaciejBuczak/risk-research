@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: topics-start
 ---
 
 <!-- Menu nawigacyjne - wyświetlane przed main_content -->
