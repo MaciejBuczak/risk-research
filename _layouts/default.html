@@ -43,22 +43,22 @@
       position: relative;
       left: 260px;
       text-align: left;
+      /* Ukrywamy oryginalny nagłówek */
+      visibility: hidden;
     }
-    #project_ {
+    #project_title {
       font-size: 42px;
       margin-top: 20px;
       text-align: left;
       margin-left: 0;
-      position: relative;
-      left: 0px;
+      color: white;
     }
     #project_tagline {
       font-size: 24px;
       margin-top: 10px;
       text-align: left;
       margin-left: 0;
-      position: relative;
-      left: 0px;
+      color: white;
     }
     
     /* Nowy kontener title-square-container */
@@ -75,6 +75,13 @@
   border-radius: 5px; /* Zaokrąglone rogi */
   box-sizing: border-box; /* Aby border nie zwiększał wymiarów */
   padding: 10px; /* Wewnętrzny odstęp */
+}
+
+/* Nowy styl dla nagłówka w kontenerze title-square-container */
+.title-square-container .header-content {
+  position: absolute;
+  top: 25px; /* Kontrolowanie położenia w pionie */
+  left: 50px; /* Kontrolowanie położenia w poziomie */
 }
     
     /* Nowy niebieski kwadrat w prawym górnym rogu */
@@ -378,12 +385,19 @@
   <div id="header_wrap" class="outer">
     <!-- Nowy kontener title-square-container -->
     <div class="title-square-container">
+      <!-- Przeniesiony nagłówek -->
+      <div class="header-content">
+        <h1 id="title">{{ site.title | default: site.github.repository_name }}</h1>
+        <h2 id="tagline">{{ site.description | default: site.github.project_tagline }}</h2>
+      </div>
+      
       <div class="blue-square"></div>
       <div class="blue-square1"></div>
       <div class="blue-square2"></div>
       <div class="blue-square-big"></div>
     </div>
     
+    <!-- Oryginalny header pozostawiony, ale ukryty przez CSS -->
     <header class="inner">
       <h1 id="project_title">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 id="project_tagline">{{ site.description | default: site.github.project_tagline }}</h2>
