@@ -428,7 +428,9 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       margin: 0;
+      text-align: center;
     }
     
     /* Specjalny styl dla pierwszego elementu */
@@ -476,20 +478,25 @@
       color: #a85903;
       margin-bottom: 0;
       line-height: 1.2;
+      text-align: center;
     }
     
     .object-subtitle {
       font-size: 28px;
       font-weight: bold;
-      color: #333;
+      color: #555; /* Zmieniono z #333 na ciemno szary */
       line-height: 1.2;
+      text-align: center;
     }
     
     /* Jednoliniowe tytuły */
     .title-wrapper {
       display: flex;
+      flex-direction: column; /* zmieniono na kolumnę dla lepszego wycentrowania */
       flex-wrap: nowrap;
       align-items: center;
+      justify-content: center;
+      width: 100%;
       gap: 6px;
     }
     
@@ -614,16 +621,17 @@
           </div>
         </div>
 
-        <!-- Element 8: Z 3.2.1 + O 3.2.2 HOLSTYCZNA OCENA MODELU -->
+        <!-- Element 8: Z 3.2.1 + O 3.2.2 HOLISTYCZNA OCENA MODELU -->
         <div class="topic-item">
           <div class="image-container">
             <div class="object-id">Z 3.2.1</div>
-            <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Holstyczna ocena modelu">
+            <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Holistyczna ocena modelu">
           </div>
           <div class="object-box color-d6d2c7">
             <div class="object-id">O 3.2.2</div>
             <div class="title-wrapper">
-              <div class="object-title">HOLSTYCZNA OCENA</div>
+              <div class="object-title">HOLISTYCZNA</div>
+              <div class="object-title">OCENA</div>
               <div class="object-subtitle">MODELU</div>
             </div>
           </div>
