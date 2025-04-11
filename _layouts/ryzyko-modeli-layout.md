@@ -318,150 +318,254 @@
       left: 0px;
     }
     
-    /* New styles for middle columns */
-    #middle_content_wrap, #second_middle_content_wrap {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      background-color: white;
-      border: none;
-    }
-    #middle_content, #second_middle_content {
+    /* NOWE STYLE DLA PROJEKTU RYZYKO MODELI */
+    
+    /* Główny kontener */
+    .ryzmod-container {
       width: 100%;
       max-width: 1200px;
-      display: flex;
-      justify-content: space-between;
+      margin: 0 auto;
       padding: 0 20px;
     }
-    .middle_column {
-      width: 30%;
-      background-color: white;
-      padding: 20px;
-    }
-    /* New styles for bottom containers */
-    #bottom_content_wrap {
-      width: 100%;
+    
+    /* Tytuł główny sekcji */
+    .ryzmod-title {
       display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      background-color: #f4f4f4;
-      border: none;
-      border-top: none !important;
-      border-bottom: none !important;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    
+    .ryzmod-title-prefix {
+      color: #555;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    
+    .ryzmod-title-text {
+      color: #a85903;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    /* Grid container dla layoutu */
+    .ryzmod-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    /* Elementy grid */
+    .ryzmod-grid-item {
+      position: relative;
+    }
+    
+    /* Obiekty O - kolorowe prostokąty */
+    .ryzmod-object {
+      background-color: #fdf3e9;
+      padding: 20px;
+      position: relative;
+    }
+    
+    .ryzmod-object-id {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: #777;
+    }
+    
+    /* Kontenery Z na zdjęcia */
+    .ryzmod-image-container {
+      border: 1px solid #a85903;
+      height: 150px;
       overflow: hidden;
       position: relative;
     }
-    #bottom_content_wrap::before,
-    #bottom_content_wrap::after {
-      content: none !important;
-    }
-    #bottom_content {
+    
+    .ryzmod-image-container img {
       width: 100%;
-      max-width: 1200px;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Kontenery KDG na dynamiczne grafiki */
+    .ryzmod-kdg-container {
+      border: 1px solid #a85903;
+      height: 150px;
       position: relative;
-      z-index: 10;
-    }
-    .bottom_column {
-      width: 48%;
-      background-color: white;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    /* New styles for image and text section */
-    #image_text_content_wrap {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      background-color: white;
-      border: none;
-    }
-    #image_text_content {
-      width: 100%;
-      max-width: 1200px;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-    }
-    .image_column {
-      width: 48%;
-      background-color: white;
-      padding: 20px;
-    }
-    .text_column {
-      width: 48%;
-      background-color: white;
-      padding: 20px;
-    }
-    .image_placeholder {
-      width: 100%;
-      height: 400px;
-      background-color: #f0f0f0;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #888;
-      font-size: 18px;
     }
-
-    /* Dodatkowe style dla strony ryzyko-modeli */
-    .model-risk-header {
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      border-bottom: 2px solid #a85903;
-    }
-
-    .model-risk-section {
-      margin-bottom: 40px;
-    }
-
-    .model-risk-section h3 {
-      color: #a85903;
-      margin-bottom: 15px;
-    }
-
-    .model-risk-image {
-      width: 100%;
-      max-width: 800px;
-      margin: 20px auto;
-      display: block;
-      border: 1px solid #eee;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .model-risk-quote {
-      font-style: italic;
+    
+    /* Kontenery T na tekst */
+    .ryzmod-text-container {
       padding: 15px;
-      background-color: #f9f5f0;
-      border-left: 4px solid #a85903;
-      margin: 20px 0;
+      position: relative;
     }
-
-    .model-risk-table {
+    
+    /* Kontener TW na tekst wstępny */
+    .ryzmod-intro-container {
+      padding: 15px;
+      position: relative;
+    }
+    
+    .ryzmod-intro-text {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1.4;
+    }
+    
+    /* Styl dla całego wiersza */
+    .ryzmod-row {
+      margin-bottom: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 30px;
+    }
+    
+    /* Styl dla elementu zajmującego całą szerokość */
+    .ryzmod-fullwidth {
+      grid-column: 1 / -1;
       width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
     }
-
-    .model-risk-table th {
-      background-color: #a85903;
+    
+    /* Styl dla element zajmującego 2/3 szerokości */
+    .ryzmod-two-thirds {
+      grid-column: span 2;
+    }
+    
+    /* Styl dla elementów w dwóch kolumnach */
+    .ryzmod-two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 30px;
+    }
+    
+    /* Styl dla artykułów w sekcji O6 */
+    .ryzmod-articles-section {
+      background-color: #656461;
+      padding: 30px 20px;
+      margin: 0 -20px 40px -20px;
       color: white;
-      padding: 10px;
-      text-align: left;
     }
-
-    .model-risk-table td {
-      border: 1px solid #ddd;
-      padding: 10px;
+    
+    .ryzmod-articles-title {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: bold;
     }
-
-    .model-risk-table tr:nth-child(even) {
-      background-color: #f9f5f0;
+    
+    .ryzmod-articles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+    }
+    
+    .ryzmod-article-item {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .ryzmod-article-image {
+      border: 1px solid #a85903;
+      height: 120px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    
+    .ryzmod-article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .ryzmod-article-text {
+      background-color: #fdf3e9;
+      color: #333;
+      padding: 15px;
+      flex: 1;
+    }
+    
+    .ryzmod-article-title {
+      font-weight: bold;
+      color: #a85903;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    
+    .ryzmod-article-desc {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    
+    /* Style dla wykresów dynamicznych */
+    .ryzmod-diagram {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-style: italic;
+      color: #888;
+    }
+    
+    /* Główny nagłówek sekcji */
+    .ryzmod-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .ryzmod-header-prefix {
+      color: #555;
+      font-size: 18px;
+      margin-right: 10px;
+    }
+    
+    .ryzmod-header-text {
+      color: #a85903;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    
+    /* Media queries dla responsywności */
+    @media screen and (max-width: 992px) {
+      .ryzmod-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .ryzmod-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .ryzmod-articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media screen and (max-width: 576px) {
+      .ryzmod-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .ryzmod-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .ryzmod-two-thirds {
+        grid-column: auto;
+      }
+      
+      .ryzmod-two-columns {
+        grid-template-columns: 1fr;
+      }
+      
+      .ryzmod-articles-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .title-square-container h2#tagline,
@@ -528,45 +632,189 @@
     </header>
   </div>
   
-  <!-- Menu będzie teraz wstawiane z index.md przez Jekyll -->
+  <!-- Menu będzie wstawiane z pliku .md przez Jekyll -->
   
   <!-- MAIN CONTENT -->
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
       {{ content }}
+      
+      <!-- Główny kontener dla layoutu strony Ryzyko Modeli -->
+      <div class="ryzmod-container">
+        <!-- Główny nagłówek -->
+        <div class="ryzmod-header">
+          <div class="ryzmod-header-text">RYZYKO <span style="color:#555;">MODELI</span></div>
+        </div>
+        
+        <!-- Pierwszy wiersz - Zawiera O 1.2 i Z 2.1.1 + O 2.2.1 -->
+        <div class="ryzmod-row">
+          <!-- Zdjęcie i tekst po lewej -->
+          <div class="ryzmod-grid-item">
+            <div class="ryzmod-image-container">
+              <div class="ryzmod-object-id">Z 1.1</div>
+              <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Zdjęcie">
+            </div>
+            <div class="ryzmod-object" style="background-color: #ffebd3;">
+              <div class="ryzmod-object-id">O 1.2</div>
+              <p>Jak mnie znają osoby dobrze pracujące, jestem wrogiem głupich procedur, które są tylko po to, aby były. Znoszę procedury, o których wiemy, że mają sens i wspomagają dużą strukturę zorganizowanych zadań fluktuacyjnych.</p>
+            </div>
+          </div>
+          
+          <!-- Diagram sieciowy pośrodku -->
+          <div class="ryzmod-grid-item" style="grid-column: span 2;">
+            <div class="ryzmod-object-id">Z 2.2.1</div>
+            <div class="ryzmod-image-container">
+              <img src="/risk-research/assets/images/network-diagram.jpg" alt="Diagram sieciowy">
+            </div>
+            <div class="ryzmod-text-container">
+              <div class="ryzmod-object-id">TW 2.2.1</div>
+              <p class="ryzmod-intro-text">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+            <div class="ryzmod-text-container">
+              <div class="ryzmod-object-id">T 2.2.2</div>
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Drugi wiersz - Zawiera grafiki i teksty -->
+        <div class="ryzmod-row">
+          <!-- Tekst po lewej -->
+          <div class="ryzmod-grid-item">
+            <div class="ryzmod-text-container">
+              <div class="ryzmod-object-id">T 3.1</div>
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+            <div class="ryzmod-text-container">
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+            <div class="ryzmod-text-container">
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+            <div class="ryzmod-text-container">
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+          </div>
+          
+          <!-- Diagram sieci w środku -->
+          <div class="ryzmod-grid-item" style="position: relative;">
+            <div class="ryzmod-object-id">O 3.2</div>
+            <div class="ryzmod-object" style="height: 100%; display: flex; flex-direction: column; justify-content: center; background-color: #f2ece3;">
+              <p style="text-align: center;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+            </div>
+          </div>
+          
+          <!-- Pusty blok z tekstem po prawej -->
+          <div class="ryzmod-grid-item">
+            <div class="ryzmod-object-id">O 5.1</div>
+            <div class="ryzmod-object" style="background-color: #f5dea3; height: auto; min-height: 150px;">
+              <p style="color: #a85903; font-weight: bold;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+            <div class="ryzmod-text-container">
+              <div class="ryzmod-object-id">T 5.2</div>
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Trzeci wiersz - Zawiera WYKRES DYNAMICZNY -->
+        <div class="ryzmod-row">
+          <div class="ryzmod-grid-item ryzmod-fullwidth">
+            <h2 style="text-align: center; margin-bottom: 20px; font-style: italic;">WYKRES DYNAMICZNY</h2>
+            <div class="ryzmod-kdg-container" style="height: 300px;">
+              <div class="ryzmod-object-id">KDG 4</div>
+              <div class="ryzmod-diagram">Tu będzie wykres dynamiczny</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Czwarty wiersz - Zawiera teksty -->
+        <div class="ryzmod-row">
+          <div class="ryzmod-grid-item">
+            <div class="ryzmod-text-container">
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+            <div class="ryzmod-text-container">
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+          </div>
+          <div class="ryzmod-grid-item">
+            <div class="ryzmod-text-container">
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+            <div class="ryzmod-text-container">
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+          </div>
+          <div class="ryzmod-grid-item">
+            <div class="ryzmod-text-container">
+              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            </div>
+          </div>
+        </div>
+        
+
+
+<!-- Piąty wiersz - Artykuły (O6) -->
+        <div class="ryzmod-articles-section">
+          <div class="ryzmod-articles-title">Artykuły dotyczące ryzyka modeli</div>
+          <div class="ryzmod-object-id">O 6</div>
+          <div class="ryzmod-articles-grid">
+            <!-- Artykuł 1 -->
+            <div class="ryzmod-article-item">
+              <div class="ryzmod-article-image">
+                <div class="ryzmod-object-id">Z 6.1.1</div>
+                <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 1">
+              </div>
+              <div class="ryzmod-article-text">
+                <div class="ryzmod-object-id">O 6.1.2</div>
+                <div class="ryzmod-article-title">Ryzyko modeli</div>
+                <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+              </div>
+            </div>
+            
+            <!-- Artykuł 2 -->
+            <div class="ryzmod-article-item">
+              <div class="ryzmod-article-image">
+                <div class="ryzmod-object-id">Z 6.2.1</div>
+                <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 2">
+              </div>
+              <div class="ryzmod-article-text">
+                <div class="ryzmod-object-id">O 6.2.2</div>
+                <div class="ryzmod-article-title">Ryzyko modeli</div>
+                <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+              </div>
+            </div>
+            
+            <!-- Artykuł 3 -->
+            <div class="ryzmod-article-item">
+              <div class="ryzmod-article-image">
+                <div class="ryzmod-object-id">Z 6.3.1</div>
+                <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 3">
+              </div>
+              <div class="ryzmod-article-text">
+                <div class="ryzmod-object-id">O 6.3.2</div>
+                <div class="ryzmod-article-title">Ryzyko modeli</div>
+                <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+              </div>
+            </div>
+            
+            <!-- Artykuł 4 -->
+            <div class="ryzmod-article-item">
+              <div class="ryzmod-article-image">
+                <div class="ryzmod-object-id">Z 6.4.1</div>
+                <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 4">
+              </div>
+              <div class="ryzmod-article-text">
+                <div class="ryzmod-object-id">O 6.4.2</div>
+                <div class="ryzmod-article-title">Ryzyko modeli</div>
+                <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-  </div>
-  
-  <!-- MODEL RISK SPECIFIC CONTENT -->
-  <div id="middle_content_wrap">
-    <div id="middle_content">
-      <div class="middle_column">
-        <h3>Definicje Ryzyka Modeli</h3>
-        <p>Ryzyko modeli to potencjalne straty wynikające z błędów w projektowaniu, implementacji lub stosowaniu modeli analitycznych w procesach decyzyjnych instytucji finansowych.</p>
-      </div>
-      <div class="middle_column">
-        <h3>Komponenty Ryzyka</h3>
-        <p>W mojej praktyce wyróżniam trzy główne komponenty ryzyka modeli: ryzyko danych, ryzyko metodologii oraz ryzyko implementacji i stosowania modelu.</p>
-      </div>
-      <div class="middle_column">
-        <h3>Zarządzanie Ryzykiem Modeli</h3>
-        <p>Skuteczne zarządzanie ryzykiem modeli wymaga systematycznego podejścia obejmującego inwentaryzację modeli, ich walidację, monitoring oraz ustalenie jasnych ról i odpowiedzialności.</p>
-      </div>
-    </div>
-  </div>
-  
-  <!-- MODEL RISK BOTTOM CONTENT -->
-  <div id="bottom_content_wrap">
-    <div id="bottom_content">
-      <div class="bottom_column">
-        <h3>Studium Przypadku</h3>
-        <p>Analiza rzeczywistych przypadków materializacji ryzyka modeli pokazuje, że najczęstszymi przyczynami są nieuwzględnione zmiany w otoczeniu biznesowym, błędy w danych wejściowych oraz niewłaściwa interpretacja wyników modelu przez użytkowników końcowych.</p>
-      </div>
-      <div class="bottom_column">
-        <h3>Najlepsze Praktyki</h3>
-        <p>W oparciu o doświadczenia z sektora bankowego rekomendujemy podejście oparte na proporcjonalności, gdzie intensywność kontroli ryzyka modeli jest dostosowana do materialności modelu i jego wpływu na procesy biznesowe.</p>
-      </div>
-    </div>
   </div>
   
   <!-- FOOTER  -->
@@ -611,3 +859,4 @@
   </script>
 </body>
 </html>
+        
