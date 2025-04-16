@@ -791,11 +791,207 @@
           </div>
         </div>
         
-        <!-- NOWE ELEMENTY: KDG4 -->
-        <div class="ryzmod-kdg-container">
-          <div class="ryzmod-object-id">KDG 4</div>
-          <div class="ryzmod-kdg-title">WYKRES DYNAMICZNY</div>
-        </div>
+
+
+
+<!-- NOWE ELEMENTY: KDG4 z interaktywnym wykresem -->
+<div class="ryzmod-kdg-container">
+  <div class="ryzmod-object-id">KDG 4</div>
+  <div id="risk-chart" style="width: 100%; height: 100%;"></div>
+  <div class="ryzmod-kdg-title">WYKRES DYNAMICZNY</div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Dane do wykresu
+      const categories = ['Ryzyko danych', 'Ryzyko założeń', 'Ryzyko implementacji', 'Ryzyko metodologiczne'];
+      const quarters = ['Q1', 'Q2', 'Q3', 'Q4'];
+      const years = ['2023', '2024', '2025'];
+      
+      // Generowanie danych z trendem wzrostowym/spadkowym
+      const generateData = () => {
+        let data = [];
+        
+        for (let y = 0; y < years.length; y++) {
+          for (let q = 0; q < quarters.length; q++) {
+            const period = `${years[y]} ${quarters[q]}`;
+            const entry = { period: period };
+            
+            categories.forEach(category => {
+              // Bazowa wartość dla kategorii
+              let baseValue = 20 + Math.floor(Math.random() * 30);
+              
+              // Dodajemy trend wzrostowy/spadkowy dla każdej kategorii
+              if (category === 'Ryzyko danych') {
+                // Ryzyko danych: trend malejący
+                baseValue = baseValue - (y * 3) - (q * 0.8);
+              } else if (category === 'Ryzyko założeń') {
+                // Ryzyko założeń: trend sinusoidalny
+                baseValue = baseValue + Math.sin((y * 4 + q) * 0.5) * 10;
+              } else if (category === 'Ryzyko implementacji') {
+                // Ryzyko implementacji: trend rosnący, potem spadek
+                if (y < 1 || (y === 1 && q < 2)) {
+                  baseValue = baseValue + (y * 5) + (q * 1.2);
+                } else {
+                  baseValue = baseValue - ((y-1) * 4) - ((q-2) * 1);
+                }
+              } else {
+                // Ryzyko metodologiczne: trend lekko rosnący
+                baseValue = baseValue + (y * 2) + (q * 0.5);
+              }
+              
+              // Dodajemy trochę losowości 
+              baseValue += (Math.random() * 5 - 2.5);
+              
+              // Upewniamy się, że wartość nie jest ujemna
+              entry[category] = Math.max(5, Math.round(baseValue));
+            });
+            
+            data.push(entry);
+          }
+        }
+        
+        return data;
+      };
+      
+      const data = generateData();
+      
+      // Ustawienie kolorów dla kategorii
+      const colors = {
+        'Ryzyko danych': '#f39c12',
+        'Ryzyko założeń': '#e74c3c',
+        'Ryzyko implementacji': '#3498db',
+        'Ryzyko metodologiczne': '#2ecc71'
+      };
+      
+      // Tworzenie wykresu
+      const createChart = () => {
+        // Sprawdzamy, czy istnieje obiekt Highcharts
+        if (typeof Highcharts === 'undefined') {
+          // Jeśli nie istnieje, ładujemy Highcharts z CDN
+          const script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/10.3.3/highcharts.js';
+          script.onload = initChart;
+          document.head.appendChild(script);
+        } else {
+          initChart();
+        }
+      };
+      
+      // Inicjalizacja wykresu po załadowaniu biblioteki
+      const initChart = () => {
+        Highcharts.chart('risk-chart', {
+          chart: {
+            type: 'spline',
+            backgroundColor: 'transparent'
+          },
+          title: {
+            text: 'Trendy ryzyka modeli w czasie',
+            style: {
+              color: '#a85903',
+              fontWeight: 'bold'
+            }
+          },
+          xAxis: {
+            categories: data.map(entry => entry.period),
+            labels: {
+              rotation: -45
+            }
+          },
+          yAxis: {
+            title: {
+              text: 'Poziom ryzyka'
+            },
+            min: 0
+          },
+          tooltip: {
+            formatter: function () {
+              return `<b>${this.series.name}</b><br/>${this.x}: ${this.y}`;
+            }
+          },
+          plotOptions: {
+            series: {
+              marker: {
+                enabled: true,
+                radius: 3
+              },
+              events: {
+                mouseOver: function () {
+                  this.update({
+                    lineWidth: 4
+                  });
+                },
+                mouseOut: function () {
+                  this.update({
+                    lineWidth: 2
+                  });
+                }
+              }
+            }
+          },
+          legend: {
+            enabled: true
+          },
+          series: categories.map(category => ({
+            name: category,
+            data: data.map(entry => entry[category]),
+            color: colors[category]
+          })),
+          responsive: {
+            rules: [{
+              condition: {
+                maxWidth: 500
+              },
+              chartOptions: {
+                legend: {
+                  enabled: false
+                }
+              }
+            }]
+          },
+          credits: {
+            enabled: false
+          }
+        });
+        
+        // Dodajemy przycisk do zmiany danych
+        const buttonContainer = document.createElement('div');
+        buttonContainer.style.position = 'absolute';
+        buttonContainer.style.top = '10px';
+        buttonContainer.style.right = '10px';
+        buttonContainer.style.zIndex = '10';
+        
+        const refreshButton = document.createElement('button');
+        refreshButton.textContent = 'Odśwież dane';
+        refreshButton.style.padding = '5px 10px';
+        refreshButton.style.backgroundColor = '#a85903';
+        refreshButton.style.color = 'white';
+        refreshButton.style.border = 'none';
+        refreshButton.style.borderRadius = '3px';
+        refreshButton.style.cursor = 'pointer';
+        
+        refreshButton.addEventListener('click', () => {
+          const newData = generateData();
+          const chart = Highcharts.charts.find(chart => chart && chart.renderTo.id === 'risk-chart');
+          
+          if (chart) {
+            categories.forEach((category, index) => {
+              chart.series[index].setData(newData.map(entry => entry[category]));
+            });
+          }
+        });
+        
+        buttonContainer.appendChild(refreshButton);
+        document.getElementById('risk-chart').parentNode.appendChild(buttonContainer);
+      };
+      
+      // Uruchomienie tworzenia wykresu
+      createChart();
+    });
+  </script>
+</div>
+
+
+        
         
         <!-- NOWE ELEMENTY: O5.1 i T 5.2 -->
         <div class="ryzmod-o51-container">
