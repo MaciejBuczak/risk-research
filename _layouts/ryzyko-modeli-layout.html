@@ -1,1184 +1,440 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-<head>
-  <meta charset='utf-8'>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,maximum-scale=2">
-  <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-{% seo %}
-  {% include head-custom.html %}
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      background-color: white !important;
-      width: 100%;
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-    .outer {
-      width: 100%;
-      max-width: 100%;
-      padding: 0;
-      margin: 0;
-      background-color: transparent !important;
-    }
-    #header_wrap {
-      background-color: #a85903 !important;
-      width: 100%;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      padding-top: 30px;
-      padding-bottom: 30.5px;
-      overflow: hidden; /* Zapobiega wystawaniu kwadratów */
-    }
-    #header_wrap .inner {
-      width: 100%;
-      max-width: 1200px;
-      padding: 0 20px;
-      position: relative;
-      left: 260px;
-      text-align: left;
-      /* Ukrywamy oryginalny nagłówek */
-      visibility: hidden;
-    }
-    #project_title {
-      font-size: 42px;
-      margin-top: 20px;
-      text-align: left;
-      margin-left: 0;
-      position: relative;
-      left: 0px;
-      color: white;
-    }
-    #project_tagline {
-      font-size: 24px;
-      margin-top: 10px;
-      text-align: left;
-      margin-left: 0;
-      position: relative;
-      left: 0px;
-      color: white;
-    }
-    
-    /* Nowy kontener title-square-container */
-.title-square-container {
-  position: absolute;
-  top: 28px; /* Kontrolowanie położenia w pionie */
-  left: 49.68%; /* Wycentrowanie w poziomie */
-  transform: translateX(-50%);
-  width: 100%; /* Pełna szerokość w ramach max-width */
-  max-width: 650px; /* Maksymalna szerokość */
-  height: 150px; /* Wysokość kontenera - możesz zmienić */
-  z-index: 10;
-}
+<!-- The key change is to move the O 6 articles section out of the ryzmod-container div -->
+<!-- and make it a full-width-section like O 9 -->
 
-/* Nowy styl dla nagłówka w kontenerze title-square-container */
-.title-square-container .header-content {
-  position: absolute;
-  top: 2.5px; /* Kontrolowanie położenia w pionie */
-  left: 10px; /* Kontrolowanie położenia w poziomie */
-  z-index: 10;
-}
-
-/* Style dla nagłówka w nowym kontenerze, zachowujące oryginalne style */
-.title-square-container #title {
-  font-size: 42px;
-  margin-top: 20px;
-  text-align: left;
-  margin-left: 0;
-  position: relative;
-  left: 0px;
-  color: white;
-}
-
-.title-square-container #tagline {
-  font-size: 24px;
-  margin-top: 10px;
-  text-align: left;
-  margin-left: 0;
-  position: relative;
-  left: 0px;
-  color: white;
-  font-weight: normal !important;
-}
-
-/* Usunięcie pseudoelementów, które mogłyby tworzyć podkreślenie */
-.title-square-container #tagline::after,
-.title-square-container #tagline::before {
-  content: none !important;
-  display: none !important;
-}
-    
-    /* Nowy niebieski kwadrat w prawym górnym rogu */
-    .title-square-container .blue-square {
-      width: 45px;
-      height: 45px;
-      background-color: #d17a1b;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-    
-    /* Nowe niebieskie kwadraty w kontenerze title-square-container */
-    .title-square-container .blue-square1 {
-      width: 24px;
-      height: 24px;
-      background-color: #d17a1b;
-      position: absolute;
-      top: 51.5px; /* Możesz kontrolować położenie w pionie */
-      right: 63px; /* Możesz kontrolować położenie w poziomie */
-    }
-    
-    .title-square-container .blue-square2 {
-      width: 24px;
-      height: 24px;
-      background-color: #d17a1b;
-      position: absolute;
-      top: 31px; /* Możesz kontrolować położenie w pionie */
-      right: 107px; /* Możesz kontrolować położenie w poziomie */
-    }
-    
-    .title-square-container .blue-square-big {
-      width: 175px;
-      height: 30px;
-      background-color: #d17a1b;
-      position: absolute;
-      top: 60px; /* Możesz kontrolować położenie w pionie */
-      left: 0px; /* Możesz kontrolować położenie w poziomie */
-    }
-    
-    /* Media queries dla różnych szerokości ekranu */
-    @media screen and (max-width: 1200px) {
-      /* Dostosowujemy pozycję kontenera z tytułem */
-      #header_wrap .inner {
-        left: 150px; /* Dostosuj tę wartość do swoich potrzeb */
-      }
-    }
-    
-    /* Media queries dla telefonów z proporcjonalnym położeniem kwadratów */
-    @media screen and (max-width: 768px) {
-      /* Style dla kontenera z tytułem - zachowujemy te same proporcje jak dla komputera */
-      #header_wrap .inner {
-        left: 0px; /* Dostosowany do urządzeń mobilnych */
-        width: calc(100% - 60px); /* Zapewnienie, że tekst się zmieści */
-      }
-      
-      /* Zachowujemy taki sam rozmiar czcionki jak na komputerze */
-      #project_title, #title {
-        font-size: 42px;
-      }
-      
-      #project_tagline, #tagline {
-        font-size: 24px;
-      }
-    }
-    
-    /* Dodatkowe style dla małych telefonów */
-    @media screen and (max-width: 480px) {
-      /* Radykalne resetowanie pozycji kontenera z tytułem */
-      #header_wrap {
-        padding-left: 0;
-        padding-right: 0;
-        justify-content: flex-start; /* Wyrównanie do lewej */
-      }
-      
-      #header_wrap .inner {
-        left: 0;
-        right: auto;
-        margin-left: 0;
-        padding-left: 10px; /* Minimalny padding, aby tekst nie przylegał do krawędzi */
-        width: 100%;
-        max-width: 100%;
-        transform: none;
-        justify-content: flex-start;
-      }
-      
-      #project_title, #title {
-        font-size: 32px;
-        margin-left: 0;
-        padding-left: 0;
-        left: 0;
-        width: 100%;
-        text-align: left;
-      }
-      
-      #project_tagline, #tagline {
-        font-size: 24px;
-        margin-left: 0;
-        padding-left: 0;
-        left: 0;
-        width: 100%;
-        text-align: left;
-      }
-      
-      .outer {
-        padding: 0;
-        margin: 0;
-        max-width: 100%;
-        width: 100%;
-      }
-    }
-    
-    /* Dodatkowe media query dla orientacji poziomej na telefonach */
-    @media screen and (max-width: 900px) and (orientation: landscape) {
-      /* Dostosowanie położenia kontenera z tytułem dla orientacji poziomej */
-      #header_wrap .inner {
-        left: 80px;
-        width: calc(100% - 100px);
-      }
-    }
-    
-    /* Zaktualizowane style dla menu - zgodne z poprzednią stroną */
-    #myMenu {
-      display: flex;
-      justify-content: center;
-      flex-wrap: nowrap;
-      padding: 20px 0;
-      margin-top: 0 !important;
-      margin-bottom: 60px;
-      width: 100%;
-      position: relative;
-      top: 21px; /* Kontrola położenia w pionie */
-      z-index: 100;
-    }
-    
-    #myMenu a.menu-option {
-      color: rgb(115, 115, 115);
-      text-decoration: none;
-      padding: 5px 10px;
-      margin: 0 15px;
-      font-size: 18px;
-      transition: color 0.3s;
-      white-space: nowrap;
-    }
-    
-    #myMenu a.menu-option:hover {
-      color: #a85903;
-    }
-    
-    /* Style responsywne dla menu */
-    @media screen and (max-width: 768px) {
-      #myMenu {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      #myMenu a.menu-option {
-        margin: 5px 0;
-      }
-    }
-    
-    #main_content_wrap {
-      background-color: white !important;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      border: none;
-    }
-    #main_content {
-      width: 100%;
-      max-width: 1200px;
-      padding: 0 20px;
-    }
-    
-    /* Zaktualizowane style dla dolnej belki (footer) */
-    #footer_wrap {
-      background-color: #a85903 !important;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      height: auto;
-      padding-top: 27.75px;
-      padding-bottom: 27.75px;
-      position: relative;
-    }
-    #footer_wrap .inner {
-      width: 100%;
-      max-width: 1200px;
-      padding: 0 20px;
-      position: relative;
-      left: 260px;
-      text-align: center;
-    }
-    #footer_wrap p {
-      margin: 5px 0;
-      position: relative;
-      left: 0px;
-      top: 0px;
-    }
-    #footer_wrap .copyright {
-      position: relative;
-      top: 0px;
-      left: 0px;
-    }
-    
-    /* NOWE STYLE DLA PROJEKTU RYZYKO MODELI - POPRAWIONE */
-    
-    /* Główny kontener */
-    .ryzmod-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    /* Tytuł główny sekcji */
-    .ryzmod-title {
-      margin-bottom: 40px;
-      display: flex;
-    }
-    
-    .ryzmod-title-modeli {
-      color: #555;
-      font-size: 32px;
-      font-weight: bold;
-    }
-    
-    .ryzmod-title-ryzyko {
-      color: #a85903;
-      font-size: 32px;
-      font-weight: bold;
-      margin-right: 15px;
-    }
-    
-    /* Główny nagłówek sekcji */
-    .ryzmod-header {
-      display: flex;
-      margin-bottom: 20px;
-    }
-    
-    .ryzmod-header-text {
-      color: #a85903;
-      font-size: 32px;
-      font-weight: bold;
-      margin-right: 15px;
-    }
-    
-    .ryzmod-header-modeli {
-      color: #555;
-      font-size: 32px;
-      font-weight: bold;
-    }
-    
-    /* Kontener głównego zdjęcia Z 1.1 - POPRAWIONY OSTATECZNIE */
-    .ryzmod-main-image {
-      position: relative;
-      width: 100%;
-      height: 220px; /* Zwiększona wysokość */
-      margin-bottom: 30px;
-      border: 1px solid #a85903;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .ryzmod-main-image img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      object-position: center !important;
-      display: block !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      max-width: none !important;
-      max-height: none !important;
-    }
-    
-    /* Napis O 1.2 na głównym zdjęciu */
-    .ryzmod-overlay-text {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      background-color: #ffebd3;
-      padding: 15px 20px;
-      max-width: 40%;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    
-    .ryzmod-overlay-id {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 12px;
-      color: #777;
-    }
-    
-    /* Drugi wiersz z diagramem sieciowym i tekstami */
-    .ryzmod-network-row {
-      display: flex;
-      margin-bottom: 40px;
-      gap: 30px;
-    }
-    
-    /* Kontener diagramu sieciowego - POPRAWIONY */
-    .ryzmod-network-container {
-      width: 35%;
-      border: 1px solid #a85903;
-      position: relative;
-      overflow: hidden;
-      height: 100%;
-    }
-
-    .ryzmod-network-container img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      display: block !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      max-width: none !important;
-      max-height: none !important;
-    }
-    
-    /* Kontener tekstów po prawej stronie diagramu */
-    .ryzmod-text-block {
-      width: 65%;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    /* Tekst wstępny - POPRAWIONY (usunięte tło) */
-    .ryzmod-intro-text {
-      padding: 15px 20px;
-      background-color: transparent; /* Usunięte szare tło */
-      margin-bottom: 15px;
-      position: relative;
-      font-weight: bold;
-    }
-    
-    /* Zwykły tekst - POPRAWIONY (usunięte tło) */
-    .ryzmod-regular-text {
-      padding: 15px 20px;
-      background-color: transparent; /* Usunięte szare tło */
-      position: relative;
-      margin-bottom: 30px;
-    }
-    
-    /* NOWE STYLE DLA DODATKOWYCH ELEMENTÓW */
-    
-    /* Style dla T.3.1 - kontener na tekst */
-    .ryzmod-text-t31 {
-      padding: 15px 20px;
-      background-color: transparent;
-      position: relative;
-      margin-bottom: 30px;
-      width: 100%;
-    }
-    
-    /* Style dla O.3.2 - kolorowy prostokąt */
-    .ryzmod-orange-box {
-      background-color: #fdf3e9;
-      padding: 20px;
-      border-left: 5px solid #a85903;
-      position: relative;
-      margin-bottom: 40px;
-    }
-    
-    /* Style dla KDG4 - kontener na dynamiczną grafikę */
-    .ryzmod-kdg-container {
-      width: 100%;
-      height: 300px;
-      border: 1px solid #a85903;
-      position: relative;
-      margin-bottom: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-    
-    .ryzmod-kdg-title {
-      position: absolute;
-      bottom: 15px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      color: #555;
-    }
-    
-    /* Style dla O5.1 - kolorowy prostokąt z tekstem */
-    .ryzmod-o51-container {
-      display: flex;
-      margin-bottom: 30px;
-      gap: 30px;
-    }
-    
-    .ryzmod-o51-box {
-      width: 35%;
-      background-color: #fdf3e9;
-      padding: 20px;
-      border-left: 5px solid #a85903;
-      position: relative;
-    }
-    
-    .ryzmod-o51-title {
-      color: #a85903;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-    
-    /* Style dla T 5.2 - tekst po prawej stronie */
-    .ryzmod-t52-text {
-      width: 65%;
-      padding: 15px 20px;
-      background-color: transparent;
-      position: relative;
-    }
-    
-    /* Style dla sekcji pełnej szerokości */
-    .full-width-section {
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-    }
-    
-    /* Styl dla artykułów w sekcji O6 */
-    .ryzmod-articles-section {
-      background-color: #656461;
-      padding: 30px 0;
-      color: white;
-      margin: 40px 0;
-    }
-    
-    .ryzmod-articles-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    .ryzmod-articles-title {
-      color: white;
-      margin-bottom: 20px;
-      font-size: 20px;
-      font-weight: bold;
-    }
-    
-    .ryzmod-articles-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-gap: 20px;
-    }
-    
-    .ryzmod-article-item {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .ryzmod-article-image {
-      border: 1px solid #a85903;
-      height: 120px;
-      overflow: hidden;
-      margin-bottom: 10px;
-      position: relative;
-    }
-    
-    .ryzmod-article-image img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      display: block !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      max-width: none !important;
-      max-height: none !important;
-    }
-    
-    .ryzmod-article-text {
-      background-color: #fdf3e9;
-      color: #333;
-      padding: 15px;
-      flex: 1;
-      position: relative;
-    }
-    
-    .ryzmod-article-title {
-      font-weight: bold;
-      color: #a85903;
-      margin-bottom: 5px;
-      font-size: 14px;
-    }
-    
-    .ryzmod-article-desc {
-      font-size: 12px;
-      line-height: 1.4;
-    }
-    
-    /* ID obiektów */
-    .ryzmod-object-id {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 12px;
-      color: #777;
-      z-index: 5;
-    }
-    
-    /* Media queries dla responsywności */
-    @media screen and (max-width: 992px) {
-      .ryzmod-network-row,
-      .ryzmod-o51-container {
-        flex-direction: column;
-      }
-      
-      .ryzmod-network-container,
-      .ryzmod-text-block,
-      .ryzmod-o51-box,
-      .ryzmod-t52-text {
-        width: 100%;
-      }
-      
-      .ryzmod-network-container {
-        height: 300px;
-        margin-bottom: 20px;
-      }
-      
-      .ryzmod-articles-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .ryzmod-o51-box {
-        margin-bottom: 20px;
-      }
-    }
-    
-    @media screen and (max-width: 576px) {
-      .ryzmod-articles-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .ryzmod-overlay-text {
-        max-width: 80%;
-      }
-    }
-    
-    .title-square-container h2#tagline,
-    .title-square-container h2[id="tagline"],
-    .title-square-container .header-content h2,
-    h2#tagline {
-      border-bottom: none !important;
-      text-decoration: none !important;
-      box-shadow: none !important;
-      background-image: none !important;
-      font-weight: normal !important;
-      color: white !important;
-      position: relative !important;
-      padding-bottom: 0 !important;
-      margin-bottom: 0 !important;
-    }
-
-    /* Ukrycie wszystkich możliwych pseudoelementów */
-    .title-square-container h2#tagline::after,
-    .title-square-container h2#tagline::before,
-    .title-square-container h2[id="tagline"]::after,
-    .title-square-container h2[id="tagline"]::before,
-    .title-square-container .header-content h2::after,
-    .title-square-container .header-content h2::before,
-    h2#tagline::after,
-    h2#tagline::before {
-      content: none !important;
-      display: none !important;
-      visibility: hidden !important;
-      border: none !important;
-      background: none !important;
-      position: static !important;
-      width: 0 !important;
-      height: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      text-decoration: none !important;
-      box-shadow: none !important;
-    }
-    
-  </style>
-</head>
-<body>
-  <!-- HEADER -->
-  <div id="header_wrap" class="outer">
-    <!-- Nowy kontener title-square-container -->
-    <div class="title-square-container">
-      <!-- Przeniesiony nagłówek -->
-      <div class="header-content">
-        <h1 id="title">{{ site.title | default: site.github.repository_name }}</h1>
-        <h2 id="tagline">{{ site.description | default: site.github.project_tagline }}</h2>
-      </div>
-      
-      <div class="blue-square"></div>
-      <div class="blue-square1"></div>
-      <div class="blue-square2"></div>
-      <div class="blue-square-big"></div>
-    </div>
-    
-    <!-- Oryginalny header pozostawiony, ale ukryty przez CSS -->
-    <header class="inner">
-      <h1 id="project_title">{{ site.title | default: site.github.repository_name }}</h1>
-      <h2 id="project_tagline">{{ site.description | default: site.github.project_tagline }}</h2>
-    </header>
+<!-- This part stays in the main container -->
+<div class="ryzmod-container">
+  <!-- Główny nagłówek -->
+  <div class="ryzmod-header">
+    <div class="ryzmod-header-text">RYZYKO</div>
+    <div class="ryzmod-header-modeli">MODELI</div>
   </div>
   
-  <!-- Menu będzie wstawiane z pliku .md przez Jekyll -->
+  <!-- Główne zdjęcie Z 1.1 - POPRAWIONE -->
+  <div class="ryzmod-main-image">
+    <div class="ryzmod-object-id">Z 1.1</div>
+    <img src="/risk-research/assets/images/ECL-rys1.jpg" alt="Zdjęcie">
+    <!-- Napis O 1.2 na zdjęciu -->
+    <div class="ryzmod-overlay-text">
+      <div class="ryzmod-object-id">O 1.2</div>
+      <p>Jeśli już znacie zasady dobrej prezentacji, teraz zostało już tylko zrobić ładne slajdy:-) Podstawą dobrego wyglądu slajdów jest przestrzeganie podstawowych zasad kompozycji.</p>
+    </div>
+  </div>
   
-  <!-- MAIN CONTENT -->
-  <div id="main_content_wrap" class="outer">
-    <section id="main_content" class="inner">
-      {{ content }}
-      
-      <!-- Główny kontener dla layoutu strony Ryzyko Modeli -->
-      <div class="ryzmod-container">
-        <!-- Główny nagłówek -->
-        <div class="ryzmod-header">
-          <div class="ryzmod-header-text">RYZYKO</div>
-          <div class="ryzmod-header-modeli">MODELI</div>
-        </div>
-        
-        <!-- Główne zdjęcie Z 1.1 - POPRAWIONE -->
-        <div class="ryzmod-main-image">
-          <div class="ryzmod-object-id">Z 1.1</div>
-          <img src="/risk-research/assets/images/ECL-rys1.jpg" alt="Zdjęcie">
-          <!-- Napis O 1.2 na zdjęciu -->
-          <div class="ryzmod-overlay-text">
-            <div class="ryzmod-object-id">O 1.2</div>
-            <p>Jeśli już znacie zasady dobrej prezentacji, teraz zostało już tylko zrobić ładne slajdy:-) Podstawą dobrego wyglądu slajdów jest przestrzeganie podstawowych zasad kompozycji.</p>
-          </div>
-        </div>
-        
-        <!-- Drugi wiersz z diagramem sieciowym i tekstami - POPRAWIONE -->
-        <div class="ryzmod-network-row">
-          <!-- Diagram sieciowy po lewej - POPRAWIONY -->
-          <div class="ryzmod-network-container" style="width: 35%; border: 1px solid #a85903; position: relative; overflow: hidden; height: 250px;">
-            <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777; z-index: 5;">Z 2.1</div>
-            <img src="/risk-research/assets/images/dashboard1_canva.jpg" alt="Diagram sieciowy" style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; margin: 0 !important; padding: 0 !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; max-width: none !important; max-height: none !important;">
-          </div>
-                
-          <!-- Teksty po prawej -->
-          <div class="ryzmod-text-block">
-            <!-- Tekst wstępny - bez tła -->
-            <div class="ryzmod-intro-text">
-              <div class="ryzmod-object-id">TW 2.2.1</div>
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-            
-            <!-- Zwykły tekst - bez tła -->
-            <div class="ryzmod-regular-text">
-              <div class="ryzmod-object-id">T 2.2.2</div>
-              <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- ZMIENIONE: T.3.1 i O 3.2 w jednym wierszu -->
-        <div class="ryzmod-t31-o32-container" style="display: flex; gap: 30px; margin-bottom: 40px;">
-          <!-- Element T.3.1 -->
-          <div class="ryzmod-text-t31" style="width: 65%; padding: 15px 20px; background-color: transparent; position: relative;">
-            <div class="ryzmod-object-id">T 3.1</div>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
-          </div>
+  <!-- Drugi wiersz z diagramem sieciowym i tekstami - POPRAWIONE -->
+  <div class="ryzmod-network-row">
+    <!-- Diagram sieciowy po lewej - POPRAWIONY -->
+    <div class="ryzmod-network-container" style="width: 35%; border: 1px solid #a85903; position: relative; overflow: hidden; height: 250px;">
+      <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777; z-index: 5;">Z 2.1</div>
+      <img src="/risk-research/assets/images/dashboard1_canva.jpg" alt="Diagram sieciowy" style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; margin: 0 !important; padding: 0 !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; max-width: none !important; max-height: none !important;">
+    </div>
           
-          <!-- Element O 3.2 -->
-          <div class="ryzmod-orange-box" style="width: 35%; background-color: #fdf3e9; padding: 20px; border-left: 5px solid #a85903; position: relative;">
-            <div class="ryzmod-object-id">O 3.2</div>
-            <h3>Zaawansowane techniki analityczne</h3>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-          </div>
-        </div>
-        
-        <!-- NOWE ELEMENTY: KDG4 z interaktywnym wykresem -->
-        <div class="ryzmod-kdg-container">
-          <div class="ryzmod-object-id">KDG 4</div>
-          <div id="risk-chart" style="width: 100%; height: 100%;"></div>
-          <div class="ryzmod-kdg-title">WYKRES DYNAMICZNY</div>
+    <!-- Teksty po prawej -->
+    <div class="ryzmod-text-block">
+      <!-- Tekst wstępny - bez tła -->
+      <div class="ryzmod-intro-text">
+        <div class="ryzmod-object-id">TW 2.2.1</div>
+        <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+      </div>
+      
+      <!-- Zwykły tekst - bez tła -->
+      <div class="ryzmod-regular-text">
+        <div class="ryzmod-object-id">T 2.2.2</div>
+        <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+      </div>
+    </div>
+  </div>
   
-          <script>
-            document.addEventListener('DOMContentLoaded', function() {
-              // Dane do wykresu
-              const categories = ['Ryzyko danych', 'Ryzyko założeń', 'Ryzyko implementacji', 'Ryzyko metodologiczne'];
-              const quarters = ['Q1', 'Q2', 'Q3', 'Q4'];
-              const years = ['2023', '2024', '2025'];
+  <!-- ZMIENIONE: T.3.1 i O 3.2 w jednym wierszu -->
+  <div class="ryzmod-t31-o32-container" style="display: flex; gap: 30px; margin-bottom: 40px;">
+    <!-- Element T.3.1 -->
+    <div class="ryzmod-text-t31" style="width: 65%; padding: 15px 20px; background-color: transparent; position: relative;">
+      <div class="ryzmod-object-id">T 3.1</div>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
+    </div>
+    
+    <!-- Element O 3.2 -->
+    <div class="ryzmod-orange-box" style="width: 35%; background-color: #fdf3e9; padding: 20px; border-left: 5px solid #a85903; position: relative;">
+      <div class="ryzmod-object-id">O 3.2</div>
+      <h3>Zaawansowane techniki analityczne</h3>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+    </div>
+  </div>
+  
+  <!-- NOWE ELEMENTY: KDG4 z interaktywnym wykresem -->
+  <div class="ryzmod-kdg-container">
+    <div class="ryzmod-object-id">KDG 4</div>
+    <div id="risk-chart" style="width: 100%; height: 100%;"></div>
+    <div class="ryzmod-kdg-title">WYKRES DYNAMICZNY</div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Dane do wykresu
+        const categories = ['Ryzyko danych', 'Ryzyko założeń', 'Ryzyko implementacji', 'Ryzyko metodologiczne'];
+        const quarters = ['Q1', 'Q2', 'Q3', 'Q4'];
+        const years = ['2023', '2024', '2025'];
+        
+        // Generowanie danych z trendem wzrostowym/spadkowym
+        const generateData = () => {
+          let data = [];
+          
+          for (let y = 0; y < years.length; y++) {
+            for (let q = 0; q < quarters.length; q++) {
+              const period = `${years[y]} ${quarters[q]}`;
+              const entry = { period: period };
               
-              // Generowanie danych z trendem wzrostowym/spadkowym
-              const generateData = () => {
-                let data = [];
+              categories.forEach(category => {
+                // Bazowa wartość dla kategorii
+                let baseValue = 20 + Math.floor(Math.random() * 30);
                 
-                for (let y = 0; y < years.length; y++) {
-                  for (let q = 0; q < quarters.length; q++) {
-                    const period = `${years[y]} ${quarters[q]}`;
-                    const entry = { period: period };
-                    
-                    categories.forEach(category => {
-                      // Bazowa wartość dla kategorii
-                      let baseValue = 20 + Math.floor(Math.random() * 30);
-                      
-                      // Dodajemy trend wzrostowy/spadkowy dla każdej kategorii
-                      if (category === 'Ryzyko danych') {
-                        // Ryzyko danych: trend malejący
-                        baseValue = baseValue - (y * 3) - (q * 0.8);
-                      } else if (category === 'Ryzyko założeń') {
-                        // Ryzyko założeń: trend sinusoidalny
-                        baseValue = baseValue + Math.sin((y * 4 + q) * 0.5) * 10;
-                      } else if (category === 'Ryzyko implementacji') {
-                        // Ryzyko implementacji: trend rosnący, potem spadek
-                        if (y < 1 || (y === 1 && q < 2)) {
-                          baseValue = baseValue + (y * 5) + (q * 1.2);
-                        } else {
-                          baseValue = baseValue - ((y-1) * 4) - ((q-2) * 1);
-                        }
-                      } else {
-                        // Ryzyko metodologiczne: trend lekko rosnący
-                        baseValue = baseValue + (y * 2) + (q * 0.5);
-                      }
-                      
-                      // Dodajemy trochę losowości 
-                      baseValue += (Math.random() * 5 - 2.5);
-                      
-                      // Upewniamy się, że wartość nie jest ujemna
-                      entry[category] = Math.max(5, Math.round(baseValue));
+                // Dodajemy trend wzrostowy/spadkowy dla każdej kategorii
+                if (category === 'Ryzyko danych') {
+                  // Ryzyko danych: trend malejący
+                  baseValue = baseValue - (y * 3) - (q * 0.8);
+                } else if (category === 'Ryzyko założeń') {
+                  // Ryzyko założeń: trend sinusoidalny
+                  baseValue = baseValue + Math.sin((y * 4 + q) * 0.5) * 10;
+                } else if (category === 'Ryzyko implementacji') {
+                  // Ryzyko implementacji: trend rosnący, potem spadek
+                  if (y < 1 || (y === 1 && q < 2)) {
+                    baseValue = baseValue + (y * 5) + (q * 1.2);
+                  } else {
+                    baseValue = baseValue - ((y-1) * 4) - ((q-2) * 1);
+                  }
+                } else {
+                  // Ryzyko metodologiczne: trend lekko rosnący
+                  baseValue = baseValue + (y * 2) + (q * 0.5);
+                }
+                
+                // Dodajemy trochę losowości 
+                baseValue += (Math.random() * 5 - 2.5);
+                
+                // Upewniamy się, że wartość nie jest ujemna
+                entry[category] = Math.max(5, Math.round(baseValue));
+              });
+              
+              data.push(entry);
+            }
+          }
+          
+          return data;
+        };
+        
+        const data = generateData();
+        
+        // Ustawienie kolorów dla kategorii
+        const colors = {
+          'Ryzyko danych': '#f39c12',
+          'Ryzyko założeń': '#e74c3c',
+          'Ryzyko implementacji': '#3498db',
+          'Ryzyko metodologiczne': '#2ecc71'
+        };
+        
+        // Tworzenie wykresu
+        const createChart = () => {
+          // Sprawdzamy, czy istnieje obiekt Highcharts
+          if (typeof Highcharts === 'undefined') {
+            // Jeśli nie istnieje, ładujemy Highcharts z CDN
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/10.3.3/highcharts.js';
+            script.onload = initChart;
+            document.head.appendChild(script);
+          } else {
+            initChart();
+          }
+        };
+        
+        // Inicjalizacja wykresu po załadowaniu biblioteki
+        const initChart = () => {
+          Highcharts.chart('risk-chart', {
+            chart: {
+              type: 'spline',
+              backgroundColor: 'transparent'
+            },
+            title: {
+              text: 'Trendy ryzyka modeli w czasie',
+              style: {
+                color: '#a85903',
+                fontWeight: 'bold'
+              }
+            },
+            xAxis: {
+              categories: data.map(entry => entry.period),
+              labels: {
+                rotation: -45
+              }
+            },
+            yAxis: {
+              title: {
+                text: 'Poziom ryzyka'
+              },
+              min: 0
+            },
+            tooltip: {
+              formatter: function () {
+                return `<b>${this.series.name}</b><br/>${this.x}: ${this.y}`;
+              }
+            },
+            plotOptions: {
+              series: {
+                marker: {
+                  enabled: true,
+                  radius: 3
+                },
+                events: {
+                  mouseOver: function () {
+                    this.update({
+                      lineWidth: 4
                     });
-                    
-                    data.push(entry);
+                  },
+                  mouseOut: function () {
+                    this.update({
+                      lineWidth: 2
+                    });
                   }
                 }
-                
-                return data;
-              };
-              
-              const data = generateData();
-              
-              // Ustawienie kolorów dla kategorii
-              const colors = {
-                'Ryzyko danych': '#f39c12',
-                'Ryzyko założeń': '#e74c3c',
-                'Ryzyko implementacji': '#3498db',
-                'Ryzyko metodologiczne': '#2ecc71'
-              };
-              
-              // Tworzenie wykresu
-              const createChart = () => {
-                // Sprawdzamy, czy istnieje obiekt Highcharts
-                if (typeof Highcharts === 'undefined') {
-                  // Jeśli nie istnieje, ładujemy Highcharts z CDN
-                  const script = document.createElement('script');
-                  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/10.3.3/highcharts.js';
-                  script.onload = initChart;
-                  document.head.appendChild(script);
-                } else {
-                  initChart();
-                }
-              };
-              
-              // Inicjalizacja wykresu po załadowaniu biblioteki
-              const initChart = () => {
-                Highcharts.chart('risk-chart', {
-                  chart: {
-                    type: 'spline',
-                    backgroundColor: 'transparent'
-                  },
-                  title: {
-                    text: 'Trendy ryzyka modeli w czasie',
-                    style: {
-                      color: '#a85903',
-                      fontWeight: 'bold'
-                    }
-                  },
-                  xAxis: {
-                    categories: data.map(entry => entry.period),
-                    labels: {
-                      rotation: -45
-                    }
-                  },
-                  yAxis: {
-                    title: {
-                      text: 'Poziom ryzyka'
-                    },
-                    min: 0
-                  },
-                  tooltip: {
-                    formatter: function () {
-                      return `<b>${this.series.name}</b><br/>${this.x}: ${this.y}`;
-                    }
-                  },
-                  plotOptions: {
-                    series: {
-                      marker: {
-                        enabled: true,
-                        radius: 3
-                      },
-                      events: {
-                        mouseOver: function () {
-                          this.update({
-                            lineWidth: 4
-                          });
-                        },
-                        mouseOut: function () {
-                          this.update({
-                            lineWidth: 2
-                          });
-                        }
-                      }
-                    }
-                  },
+              }
+            },
+            legend: {
+              enabled: true
+            },
+            series: categories.map(category => ({
+              name: category,
+              data: data.map(entry => entry[category]),
+              color: colors[category]
+            })),
+            responsive: {
+              rules: [{
+                condition: {
+                  maxWidth: 500
+                },
+                chartOptions: {
                   legend: {
-                    enabled: true
-                  },
-                  series: categories.map(category => ({
-                    name: category,
-                    data: data.map(entry => entry[category]),
-                    color: colors[category]
-                  })),
-                  responsive: {
-                    rules: [{
-                      condition: {
-                        maxWidth: 500
-                      },
-                      chartOptions: {
-                        legend: {
-                          enabled: false
-                        }
-                      }
-                    }]
-                  },
-                  credits: {
                     enabled: false
                   }
-                });
-                
-                // Dodajemy przycisk do zmiany danych
-                const buttonContainer = document.createElement('div');
-                buttonContainer.style.position = 'absolute';
-                buttonContainer.style.top = '10px';
-                buttonContainer.style.right = '10px';
-                buttonContainer.style.zIndex = '10';
-                
-                const refreshButton = document.createElement('button');
-                refreshButton.textContent = 'Odśwież dane';
-                refreshButton.style.padding = '5px 10px';
-                refreshButton.style.backgroundColor = '#a85903';
-                refreshButton.style.color = 'white';
-                refreshButton.style.border = 'none';
-                refreshButton.style.borderRadius = '3px';
-                refreshButton.style.cursor = 'pointer';
-                
-                refreshButton.addEventListener('click', () => {
-                  const newData = generateData();
-                  const chart = Highcharts.charts.find(chart => chart && chart.renderTo.id === 'risk-chart');
-                  
-                  if (chart) {
-                    categories.forEach((category, index) => {
-                      chart.series[index].setData(newData.map(entry => entry[category]));
-                    });
-                  }
-                });
-                
-                buttonContainer.appendChild(refreshButton);
-                document.getElementById('risk-chart').parentNode.appendChild(buttonContainer);
-              };
-              
-              // Uruchomienie tworzenia wykresu
-              createChart();
-            });
-          </script>
-        </div>
+                }
+              }]
+            },
+            credits: {
+              enabled: false
+            }
+          });
+          
+          // Dodajemy przycisk do zmiany danych
+          const buttonContainer = document.createElement('div');
+          buttonContainer.style.position = 'absolute';
+          buttonContainer.style.top = '10px';
+          buttonContainer.style.right = '10px';
+          buttonContainer.style.zIndex = '10';
+          
+          const refreshButton = document.createElement('button');
+          refreshButton.textContent = 'Odśwież dane';
+          refreshButton.style.padding = '5px 10px';
+          refreshButton.style.backgroundColor = '#a85903';
+          refreshButton.style.color = 'white';
+          refreshButton.style.border = 'none';
+          refreshButton.style.borderRadius = '3px';
+          refreshButton.style.cursor = 'pointer';
+          
+          refreshButton.addEventListener('click', () => {
+            const newData = generateData();
+            const chart = Highcharts.charts.find(chart => chart && chart.renderTo.id === 'risk-chart');
+            
+            if (chart) {
+              categories.forEach((category, index) => {
+                chart.series[index].setData(newData.map(entry => entry[category]));
+              });
+            }
+          });
+          
+          buttonContainer.appendChild(refreshButton);
+          document.getElementById('risk-chart').parentNode.appendChild(buttonContainer);
+        };
         
-        <!-- NOWE ELEMENTY: O5.1 i T 5.2 -->
-        <div class="ryzmod-o51-container">
-          <!-- Kolorowy prostokąt po lewej -->
-          <div class="ryzmod-o51-box">
-            <div class="ryzmod-object-id">O 5.1</div>
-            <h3 class="ryzmod-o51-title">Zaawansowane techniki analityczne</h3>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-          </div>
-          
-          <!-- Tekst po prawej -->
-          <div class="ryzmod-t52-text">
-            <div class="ryzmod-object-id">T 5.2</div>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
-          </div>
-        </div>
-      </div> <!-- zamknięcie głównego kontenera przed obiektami na pełną szerokość -->
-      
-      <!-- Artykuły (O6) - sekcja pełnej szerokości -->
-      <div class="full-width-section ryzmod-articles-section">
-        <div class="ryzmod-articles-content">
-          <div class="ryzmod-articles-title">Artykuły dotyczące ryzyka modeli</div>
-          <div class="ryzmod-object-id">O 6</div>
-          <div class="ryzmod-articles-grid">
-            <!-- Artykuł 1 -->
-            <div class="ryzmod-article-item">
-              <div class="ryzmod-article-image">
-                <div class="ryzmod-object-id">Z 6.1.1</div>
-                <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 1">
-              </div>
-              <div class="ryzmod-article-text">
-                <div class="ryzmod-object-id">O 6.1.2</div>
-                <div class="ryzmod-article-title">Ryzyko modeli</div>
-                <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
-              </div>
-            </div>
-            
-            <!-- Artykuł 2 -->
-            <div class="ryzmod-article-item">
-              <div class="ryzmod-article-image">
-                <div class="ryzmod-object-id">Z 6.2.1</div>
-                <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 2">
-              </div>
-              <div class="ryzmod-article-text">
-                <div class="ryzmod-object-id">O 6.2.2</div>
-                <div class="ryzmod-article-title">Ryzyko modeli</div>
-                <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
-              </div>
-            </div>
-            
-            <!-- Artykuł 3 -->
-            <div class="ryzmod-article-item">
-              <div class="ryzmod-article-image">
-                <div class="ryzmod-object-id">Z 6.3.1</div>
-                <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 3">
-              </div>
-              <div class="ryzmod-article-text">
-                <div class="ryzmod-object-id">O 6.3.2</div>
-                <div class="ryzmod-article-title">Ryzyko modeli</div>
-                <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
-              </div>
-            </div>
-            
-            <!-- Artykuł 4 -->
-            <div class="ryzmod-article-item">
-              <div class="ryzmod-article-image">
-                <div class="ryzmod-object-id">Z 6.4.1</div>
-                <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 4">
-              </div>
-              <div class="ryzmod-article-text">
-                <div class="ryzmod-object-id">O 6.4.2</div>
-                <div class="ryzmod-article-title">Ryzyko modeli</div>
-                <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        // Uruchomienie tworzenia wykresu
+        createChart();
+      });
+    </script>
+  </div>
+  
+  <!-- NOWE ELEMENTY: O5.1 i T 5.2 -->
+  <div class="ryzmod-o51-container">
+    <!-- Kolorowy prostokąt po lewej -->
+    <div class="ryzmod-o51-box">
+      <div class="ryzmod-object-id">O 5.1</div>
+      <h3 class="ryzmod-o51-title">Zaawansowane techniki analityczne</h3>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+    </div>
+    
+    <!-- Tekst po prawej -->
+    <div class="ryzmod-t52-text">
+      <div class="ryzmod-object-id">T 5.2</div>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
+    </div>
+  </div>
+</div> <!-- zamknięcie głównego kontenera przed obiektami na pełną szerokość -->
 
-      <!-- Kontener dla pozostałych elementów -->
-      <div class="ryzmod-container">
-        <!-- Sekcja "Czy warto to analizować?" -->
-        <div class="ryzmod-section-header" style="margin: 40px 0 20px 0; font-size: 20px; font-weight: bold; color: #555;">
-          Czy warto to analizować? T7
+<!-- MOVED SECTION: Artykuły (O6) - moved outside the container to be full width -->
+<!-- Now it's a full-width-section just like O9 -->
+<div class="full-width-section ryzmod-articles-section">
+  <div class="ryzmod-articles-content">
+    <div class="ryzmod-articles-title">Artykuły dotyczące ryzyka modeli</div>
+    <div class="ryzmod-object-id">O 6</div>
+    <div class="ryzmod-articles-grid">
+      <!-- Artykuł 1 -->
+      <div class="ryzmod-article-item">
+        <div class="ryzmod-article-image">
+          <div class="ryzmod-object-id">Z 6.1.1</div>
+          <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 1">
         </div>
-
-        <div class="ryzmod-columns" style="display: flex; gap: 30px; margin-bottom: 30px;">
-          <!-- Kolumna 1 -->
-          <div style="flex: 1;">
-            <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.1</div>
-            <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-          </div>
-          
-          <!-- Kolumna 2 -->
-          <div style="flex: 1;">
-            <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.2</div>
-            <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-          </div>
-          
-          <!-- Kolumna 3 -->
-          <div style="flex: 1;">
-            <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.3</div>
-            <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-          </div>
-        </div>
-
-        <!-- Przycisk akcji O 7.4 -->
-        <div style="display: flex; justify-content: flex-end; margin-bottom: 40px;">
-          <div style="background-color: #ff7f50; padding: 10px 20px; color: white; border-radius: 3px; cursor: pointer; position: relative;">
-            <div class="ryzmod-object-id" style="position: absolute; top: 5px; right: 5px; font-size: 12px; color: #fff;">O 7.4</div>
-            ANALIZUJ
-          </div>
-        </div>
-
-        <!-- Sekcja "Czy warto to analizować?" część 2 -->
-        <div class="ryzmod-section-header" style="margin: 40px 0 20px 0; font-size: 20px; font-weight: bold; color: #555;">
-          Czy warto to analizować? T8
-        </div>
-
-        <div class="ryzmod-columns" style="display: flex; gap: 30px; margin-bottom: 30px;">
-          <!-- Kolumna 1 -->
-          <div style="flex: 1;">
-            <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 8.1</div>
-            <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-          </div>
-          
-          <!-- Kolumna 2 -->
-          <div style="flex: 1;">
-            <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 8.2</div>
-            <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-          </div>
-        </div>
-
-        <!-- Przycisk akcji O 8.3 -->
-        <div style="display: flex; justify-content: flex-start; margin-bottom: 40px;">
-          <div style="background-color: #ffa07a; padding: 10px 20px; color: white; border-radius: 3px; cursor: pointer; position: relative;">
-            <div class="ryzmod-object-id" style="position: absolute; top: 5px; left: 5px; font-size: 12px; color: #fff;">O 8.3</div>
-            TESTUJ DOPASOWANIE
-          </div>
-        </div>
-      </div> <!-- zamknięcie drugiego kontenera -->
-      
-      <!-- Sekcja O 9 - poza kontenerem, aby zajmowała pełną szerokość -->
-      <div class="full-width-section" style="display: flex; margin-bottom: 40px;">
-        <!-- Boks lewy -->
-        <div style="flex: 1; background-color: #ece0d0; position: relative; padding: 20px;">
-          <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777;">O 9.1</div>
-        </div>
-        
-        <!-- Boks prawy - szary -->
-        <div style="flex: 1; background-color: #656461; color: white; padding: 20px; position: relative;">
-          <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #ccc;">O 9.2</div>
-          <h3 style="margin-bottom: 15px; font-size: 18px; color: white;">Czy warto to analizować?</h3>
-          <p style="color: white;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-          <p style="color: white;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+        <div class="ryzmod-article-text">
+          <div class="ryzmod-object-id">O 6.1.2</div>
+          <div class="ryzmod-article-title">Ryzyko modeli</div>
+          <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
         </div>
       </div>
       
-      <!-- Ostatni kontener dla cytatu -->
-      <div class="ryzmod-container">
-        <!-- Cytat -->
-        <div style="margin: 60px 0; position: relative;">
-          <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 10</div>
-          <h3 style="color: #a85903; margin-bottom: 20px;">Ciekawa myśl</h3>
-          <blockquote style="font-style: italic; color: #a85903; font-size: 24px; border-left: none; padding-left: 0;">
-            "Ryzyko modeli to bardzo złożony problem. Nie zawsze da się ten problem rozwiązać"
-          </blockquote>
-          <p style="color: #a85903; margin-top: 10px;">Victor Hugo</p>
+      <!-- Artykuł 2 -->
+      <div class="ryzmod-article-item">
+        <div class="ryzmod-article-image">
+          <div class="ryzmod-object-id">Z 6.2.1</div>
+          <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 2">
         </div>
-      </div> <!-- zamknięcie ostatniego kontenera -->
-    </section>
+        <div class="ryzmod-article-text">
+          <div class="ryzmod-object-id">O 6.2.2</div>
+          <div class="ryzmod-article-title">Ryzyko modeli</div>
+          <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+        </div>
+      </div>
+      
+      <!-- Artykuł 3 -->
+      <div class="ryzmod-article-item">
+        <div class="ryzmod-article-image">
+          <div class="ryzmod-object-id">Z 6.3.1</div>
+          <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 3">
+        </div>
+        <div class="ryzmod-article-text">
+          <div class="ryzmod-object-id">O 6.3.2</div>
+          <div class="ryzmod-article-title">Ryzyko modeli</div>
+          <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+        </div>
+      </div>
+      
+      <!-- Artykuł 4 -->
+      <div class="ryzmod-article-item">
+        <div class="ryzmod-article-image">
+          <div class="ryzmod-object-id">Z 6.4.1</div>
+          <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Artykuł 4">
+        </div>
+        <div class="ryzmod-article-text">
+          <div class="ryzmod-object-id">O 6.4.2</div>
+          <div class="ryzmod-article-title">Ryzyko modeli</div>
+          <p class="ryzmod-article-desc">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Container for the remaining elements -->
+<div class="ryzmod-container">
+  <!-- Sekcja "Czy warto to analizować?" -->
+  <div class="ryzmod-section-header" style="margin: 40px 0 20px 0; font-size: 20px; font-weight: bold; color: #555;">
+    Czy warto to analizować? T7
+  </div>
+
+  <div class="ryzmod-columns" style="display: flex; gap: 30px; margin-bottom: 30px;">
+    <!-- Kolumna 1 -->
+    <div style="flex: 1;">
+      <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.1</div>
+      <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+    </div>
+    
+    <!-- Kolumna 2 -->
+    <div style="flex: 1;">
+      <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.2</div>
+      <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+    </div>
+    
+    <!-- Kolumna 3 -->
+    <div style="flex: 1;">
+      <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.3</div>
+      <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+    </div>
+  </div>
+
+  <!-- Przycisk akcji O 7.4 -->
+  <div style="display: flex; justify-content: flex-end; margin-bottom: 40px;">
+    <div style="background-color: #ff7f50; padding: 10px 20px; color: white; border-radius: 3px; cursor: pointer; position: relative;">
+      <div class="ryzmod-object-id" style="position: absolute; top: 5px; right: 5px; font-size: 12px; color: #fff;">O 7.4</div>
+      ANALIZUJ
+    </div>
+  </div>
+
+  <!-- Sekcja "Czy warto to analizować?" część 2 -->
+  <div class="ryzmod-section-header" style="margin: 40px 0 20px 0; font-size: 20px; font-weight: bold; color: #555;">
+    Czy warto to analizować? T8
+  </div>
+
+  <div class="ryzmod-columns" style="display: flex; gap: 30px; margin-bottom: 30px;">
+    <!-- Kolumna 1 -->
+    <div style="flex: 1;">
+      <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 8.1</div>
+      <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+    </div>
+    
+    <!-- Kolumna 2 -->
+    <div style="flex: 1;">
+      <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 8.2</div>
+      <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+      <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+    </div>
+  </div>
+
+  <!-- Przycisk akcji O 8.3 -->
+  <div style="display: flex; justify-content: flex-start; margin-bottom: 40px;">
+    <div style="background-color: #ffa07a; padding: 10px 20px; color: white; border-radius: 3px; cursor: pointer; position: relative;">
+      <div class="ryzmod-object-id" style="position: absolute; top: 5px; left: 5px; font-size: 12px; color: #fff;">O 8.3</div>
+      TESTUJ DOPASOWANIE
+    </div>
+  </div>
+</div> <!-- zamknięcie drugiego kontenera -->
+
+<!-- Sekcja O 9 - poza kontenerem, aby zajmowała pełną szerokość -->
+<div class="full-width-section" style="display: flex; margin-bottom: 40px;">
+  <!-- Boks lewy -->
+  <div style="flex: 1; background-color: #ece0d0; position: relative; padding: 20px;">
+    <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777;">O 9.1</div>
+  </div>
+  
+  <!-- Boks prawy - szary -->
+  <div style="flex: 1; background-color: #656461; color: white; padding: 20px; position: relative;">
+    <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #ccc;">O 9.2</div>
+    <h3 style="margin-bottom: 15px; font-size: 18px; color: white;">Czy warto to analizować?</h3>
+    <p style="color: white;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+    <p style="color: white;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+  </div>
+</div>
+
+<!-- Ostatni kontener dla cytatu -->
+<div class="ryzmod-container">
+  <!-- Cytat -->
+  <div style="margin: 60px 0; position: relative;">
+    <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 10</div>
+    <h3 style="color: #a85903; margin-bottom: 20px;">Ciekawa myśl</h3>
+    <blockquote style="font-style: italic; color: #a85903; font-size: 24px; border-left: none; padding-left: 0;">
+      "Ryzyko modeli to bardzo złożony problem. Nie zawsze da się ten problem rozwiązać"
+    </blockquote>
+    <p style="color: #a85903; margin-top: 10px;">Victor Hugo</p>
+  </div>
+</div> <!-- zamknięcie ostatniego kontenera -->
+
+   </section>
   </div>
   
   <!-- FOOTER  -->
