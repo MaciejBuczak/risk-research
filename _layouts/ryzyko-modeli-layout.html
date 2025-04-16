@@ -544,13 +544,16 @@
     
     /* Styl dla artykułów w sekcji O6 */
     .ryzmod-articles-section {
-  background-color: #656461;
-  padding: 30px 20px;
-  margin: 40px -20px 40px -20px;
-  color: white;
-  width: calc(100% + 40px); /* dodajemy 40px by skompensować padding */
-  position: relative;
-  left: -20px; /* przesuwamy w lewo o 20px */
+      background-color: #656461;
+      padding: 30px 0;
+      color: white;
+      width: 100%;
+    }
+    
+    .ryzmod-articles-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
     
     .ryzmod-articles-title {
@@ -753,14 +756,14 @@
           </div>
         </div>
         
-<!-- Drugi wiersz z diagramem sieciowym i tekstami - POPRAWIONE -->
-<div class="ryzmod-network-row">
-  <!-- Diagram sieciowy po lewej - POPRAWIONY -->
-  <div class="ryzmod-network-container" style="width: 35%; border: 1px solid #a85903; position: relative; overflow: hidden; height: 250px;">
-    <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777; z-index: 5;">Z 2.1</div>
-    <img src="/risk-research/assets/images/dashboard1_canva.jpg" alt="Diagram sieciowy" style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; margin: 0 !important; padding: 0 !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; max-width: none !important; max-height: none !important;">
-  </div>
-          
+        <!-- Drugi wiersz z diagramem sieciowym i tekstami - POPRAWIONE -->
+        <div class="ryzmod-network-row">
+          <!-- Diagram sieciowy po lewej - POPRAWIONY -->
+          <div class="ryzmod-network-container" style="width: 35%; border: 1px solid #a85903; position: relative; overflow: hidden; height: 250px;">
+            <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777; z-index: 5;">Z 2.1</div>
+            <img src="/risk-research/assets/images/dashboard1_canva.jpg" alt="Diagram sieciowy" style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; margin: 0 !important; padding: 0 !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; max-width: none !important; max-height: none !important;">
+          </div>
+                
           <!-- Teksty po prawej -->
           <div class="ryzmod-text-block">
             <!-- Tekst wstępny - bez tła -->
@@ -777,7 +780,7 @@
           </div>
         </div>
         
-<!-- ZMIENIONE: T.3.1 i O 3.2 w jednym wierszu -->
+        <!-- ZMIENIONE: T.3.1 i O 3.2 w jednym wierszu -->
         <div class="ryzmod-t31-o32-container" style="display: flex; gap: 30px; margin-bottom: 40px;">
           <!-- Element T.3.1 -->
           <div class="ryzmod-text-t31" style="width: 65%; padding: 15px 20px; background-color: transparent; position: relative;">
@@ -794,14 +797,12 @@
           </div>
         </div>
         
+        <!-- NOWE ELEMENTY: KDG4 z interaktywnym wykresem -->
+        <div class="ryzmod-kdg-container">
+          <div class="ryzmod-object-id">KDG 4</div>
+          <div id="risk-chart" style="width: 100%; height: 100%;"></div>
+          <div class="ryzmod-kdg-title">WYKRES DYNAMICZNY</div>
 
-
-
-<!-- NOWE ELEMENTY: KDG4 z interaktywnym wykresem -->
-<div class="ryzmod-kdg-container">
-  <div class="ryzmod-object-id">KDG 4</div>
-  <div id="risk-chart" style="width: 100%; height: 100%;"></div>
-  <div class="ryzmod-kdg-title">WYKRES DYNAMICZNY</div>
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1005,16 +1006,18 @@
             <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
           </div>
           
-<!-- Tekst po prawej -->
+          <!-- Tekst po prawej -->
           <div class="ryzmod-t52-text">
             <div class="ryzmod-object-id">T 5.2</div>
             <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
             <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
           </div>
         </div>
-        
-        <!-- Artykuły (O6) -->
-        <div class="ryzmod-articles-section">
+      </div> <!-- zamknięcie głównego kontenera przed obiektami na pełną szerokość -->
+      
+      <!-- Artykuły (O6) - poza kontenerem, aby zajmowały pełną szerokość -->
+      <div class="ryzmod-articles-section">
+        <div class="ryzmod-articles-content">
           <div class="ryzmod-articles-title">Artykuły dotyczące ryzyka modeli</div>
           <div class="ryzmod-object-id">O 6</div>
           <div class="ryzmod-articles-grid">
@@ -1071,113 +1074,104 @@
             </div>
           </div>
         </div>
-
-
-
-
-
-<!-- Sekcja "Czy warto to analizować?" -->
-<div class="ryzmod-section-header" style="margin: 40px 0 20px 0; font-size: 20px; font-weight: bold; color: #555;">
-  Czy warto to analizować? T7
-</div>
-
-<div class="ryzmod-columns" style="display: flex; gap: 30px; margin-bottom: 30px;">
-  <!-- Kolumna 1 -->
-  <div style="flex: 1;">
-    <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.1</div>
-    <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-    <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-  </div>
-  
-  <!-- Kolumna 2 -->
-  <div style="flex: 1;">
-    <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.2</div>
-    <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-    <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-  </div>
-  
-  <!-- Kolumna 3 -->
-  <div style="flex: 1;">
-    <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.3</div>
-    <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-    <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-  </div>
-</div>
-
-<!-- Przycisk akcji O 7.4 -->
-<div style="display: flex; justify-content: flex-end; margin-bottom: 40px;">
-  <div style="background-color: #ff7f50; padding: 10px 20px; color: white; border-radius: 3px; cursor: pointer;">
-    <div class="ryzmod-object-id" style="position: absolute; top: 5px; right: 5px; font-size: 12px; color: #fff;">O 7.4</div>
-    ANALIZUJ
-  </div>
-</div>
-
-<!-- Sekcja "Czy warto to analizować?" część 2 -->
-<div class="ryzmod-section-header" style="margin: 40px 0 20px 0; font-size: 20px; font-weight: bold; color: #555;">
-  Czy warto to analizować? T8
-</div>
-
-<div class="ryzmod-columns" style="display: flex; gap: 30px; margin-bottom: 30px;">
-  <!-- Kolumna 1 -->
-  <div style="flex: 1;">
-    <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 8.1</div>
-    <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-    <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-  </div>
-  
-  <!-- Kolumna 2 -->
-  <div style="flex: 1;">
-    <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 8.2</div>
-    <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-    <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-  </div>
-</div>
-
-<!-- Przycisk akcji O 8.3 -->
-<div style="display: flex; justify-content: flex-start; margin-bottom: 40px;">
-  <div style="background-color: #ffa07a; padding: 10px 20px; color: white; border-radius: 3px; cursor: pointer;">
-    <div class="ryzmod-object-id" style="position: absolute; top: 5px; left: 5px; font-size: 12px; color: #fff;">O 8.3</div>
-    TESTUJ DOPASOWANIE
-  </div>
-</div>
-
-
-
-<!-- Sekcja O 9 - dwa boksy obok siebie, zajmujące pełną szerokość bez przerwy między nimi -->
-<div style="display: flex; margin-bottom: 40px; width: calc(100% + 40px); position: relative; left: -20px;">
-  <!-- Boks lewy -->
-  <div style="flex: 1; background-color: #ece0d0; position: relative; padding: 20px;">
-    <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777;">O 9.1</div>
-  </div>
-  
-  <!-- Boks prawy - szary -->
-  <div style="flex: 1; background-color: #656461; color: white; padding: 20px; position: relative;">
-    <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #ccc;">O 9.2</div>
-    <h3 style="margin-bottom: 15px; font-size: 18px; color: white;">Czy warto to analizować?</h3>
-    <p style="color: white;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
-    <p style="color: white;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
-  </div>
-</div>
-
-        
-
-<!-- Cytat -->
-<div style="margin: 60px 0; position: relative;">
-  <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 10</div>
-  <h3 style="color: #a85903; margin-bottom: 20px;">Ciekawa myśl</h3>
-  <blockquote style="font-style: italic; color: #a85903; font-size: 24px; border-left: none; padding-left: 0;">
-    "Ryzyko modeli to bardzo złożony problem. Nie zawsze da się ten problem rozwiązać"
-  </blockquote>
-  <p style="color: #a85903; margin-top: 10px;">Victor Hugo</p>
-</div>
-
-        
-
-
-
-        
-        
       </div>
+
+      <!-- Otwieramy nowy kontener dla pozostałych elementów -->
+      <div class="ryzmod-container">
+        <!-- Sekcja "Czy warto to analizować?" -->
+        <div class="ryzmod-section-header" style="margin: 40px 0 20px 0; font-size: 20px; font-weight: bold; color: #555;">
+          Czy warto to analizować? T7
+        </div>
+
+        <div class="ryzmod-columns" style="display: flex; gap: 30px; margin-bottom: 30px;">
+          <!-- Kolumna 1 -->
+          <div style="flex: 1;">
+            <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.1</div>
+            <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+          </div>
+          
+          <!-- Kolumna 2 -->
+          <div style="flex: 1;">
+            <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.2</div>
+            <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+          </div>
+          
+          <!-- Kolumna 3 -->
+          <div style="flex: 1;">
+            <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 7.3</div>
+            <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+          </div>
+        </div>
+
+        <!-- Przycisk akcji O 7.4 -->
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 40px;">
+          <div style="background-color: #ff7f50; padding: 10px 20px; color: white; border-radius: 3px; cursor: pointer;">
+            <div class="ryzmod-object-id" style="position: absolute; top: 5px; right: 5px; font-size: 12px; color: #fff;">O 7.4</div>
+            ANALIZUJ
+          </div>
+        </div>
+
+        <!-- Sekcja "Czy warto to analizować?" część 2 -->
+        <div class="ryzmod-section-header" style="margin: 40px 0 20px 0; font-size: 20px; font-weight: bold; color: #555;">
+          Czy warto to analizować? T8
+        </div>
+
+        <div class="ryzmod-columns" style="display: flex; gap: 30px; margin-bottom: 30px;">
+          <!-- Kolumna 1 -->
+          <div style="flex: 1;">
+            <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 8.1</div>
+            <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+          </div>
+          
+          <!-- Kolumna 2 -->
+          <div style="flex: 1;">
+            <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 8.2</div>
+            <p style="margin-bottom: 15px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+          </div>
+        </div>
+
+        <!-- Przycisk akcji O 8.3 -->
+        <div style="display: flex; justify-content: flex-start; margin-bottom: 40px;">
+          <div style="background-color: #ffa07a; padding: 10px 20px; color: white; border-radius: 3px; cursor: pointer;">
+            <div class="ryzmod-object-id" style="position: absolute; top: 5px; left: 5px; font-size: 12px; color: #fff;">O 8.3</div>
+            TESTUJ DOPASOWANIE
+          </div>
+        </div>
+      </div> <!-- zamknięcie drugiego kontenera -->
+      
+      <!-- Sekcja O 9 - poza kontenerem, aby zajmowała pełną szerokość -->
+      <div style="display: flex; width: 100%; margin-bottom: 40px;">
+        <!-- Boks lewy -->
+        <div style="flex: 1; background-color: #ece0d0; position: relative; padding: 20px;">
+          <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777;">O 9.1</div>
+        </div>
+        
+        <!-- Boks prawy - szary -->
+        <div style="flex: 1; background-color: #656461; color: white; padding: 20px; position: relative;">
+          <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #ccc;">O 9.2</div>
+          <h3 style="margin-bottom: 15px; font-size: 18px; color: white;">Czy warto to analizować?</h3>
+          <p style="color: white;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+          <p style="color: white;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+        </div>
+      </div>
+      
+      <!-- Otwieramy ostatni kontener dla cytatu -->
+      <div class="ryzmod-container">
+        <!-- Cytat -->
+        <div style="margin: 60px 0; position: relative;">
+          <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 10</div>
+          <h3 style="color: #a85903; margin-bottom: 20px;">Ciekawa myśl</h3>
+          <blockquote style="font-style: italic; color: #a85903; font-size: 24px; border-left: none; padding-left: 0;">
+            "Ryzyko modeli to bardzo złożony problem. Nie zawsze da się ten problem rozwiązać"
+          </blockquote>
+          <p style="color: #a85903; margin-top: 10px;">Victor Hugo</p>
+        </div>
+      </div> <!-- zamknięcie ostatniego kontenera -->
     </section>
   </div>
   
@@ -1223,3 +1217,4 @@
   </script>
 </body>
 </html>
+          
