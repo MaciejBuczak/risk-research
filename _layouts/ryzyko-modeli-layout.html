@@ -548,6 +548,9 @@
   padding: 30px 20px;
   margin: 40px -20px 40px -20px;
   color: white;
+  width: calc(100% + 40px); /* dodajemy 40px by skompensować padding */
+  position: relative;
+  left: -20px; /* przesuwamy w lewo o 20px */
     }
     
     .ryzmod-articles-title {
@@ -1138,8 +1141,10 @@
   </div>
 </div>
 
+
+
 <!-- Sekcja O 9 - dwa boksy obok siebie, zajmujące pełną szerokość bez przerwy między nimi -->
-<div style="display: flex; margin-bottom: 40px; width: 100%;">
+<div style="display: flex; margin-bottom: 40px; width: calc(100% + 40px); position: relative; left: -20px;">
   <!-- Boks lewy -->
   <div style="flex: 1; background-color: #ece0d0; position: relative; padding: 20px;">
     <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777;">O 9.1</div>
@@ -1153,6 +1158,8 @@
     <p style="color: white;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
   </div>
 </div>
+
+        
 
 <!-- Cytat -->
 <div style="margin: 60px 0; position: relative;">
