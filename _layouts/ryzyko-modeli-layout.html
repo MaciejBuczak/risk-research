@@ -466,6 +466,80 @@
       padding: 15px 20px;
       background-color: transparent; /* Usunięte szare tło */
       position: relative;
+      margin-bottom: 30px;
+    }
+    
+    /* NOWE STYLE DLA DODATKOWYCH ELEMENTÓW */
+    
+    /* Style dla T.3.1 - kontener na tekst */
+    .ryzmod-text-t31 {
+      padding: 15px 20px;
+      background-color: transparent;
+      position: relative;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+    
+    /* Style dla O.3.2 - kolorowy prostokąt */
+    .ryzmod-orange-box {
+      background-color: #fdf3e9;
+      padding: 20px;
+      border-left: 5px solid #a85903;
+      position: relative;
+      margin-bottom: 40px;
+    }
+    
+    /* Style dla KDG4 - kontener na dynamiczną grafikę */
+    .ryzmod-kdg-container {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #a85903;
+      position: relative;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    .ryzmod-kdg-title {
+      position: absolute;
+      bottom: 15px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #555;
+    }
+    
+    /* Style dla O5.1 - kolorowy prostokąt z tekstem */
+    .ryzmod-o51-container {
+      display: flex;
+      margin-bottom: 30px;
+      gap: 30px;
+    }
+    
+    .ryzmod-o51-box {
+      width: 35%;
+      background-color: #fdf3e9;
+      padding: 20px;
+      border-left: 5px solid #a85903;
+      position: relative;
+    }
+    
+    .ryzmod-o51-title {
+      color: #a85903;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    
+    /* Style dla T 5.2 - tekst po prawej stronie */
+    .ryzmod-t52-text {
+      width: 65%;
+      padding: 15px 20px;
+      background-color: transparent;
+      position: relative;
     }
     
     /* Styl dla artykułów w sekcji O6 */
@@ -550,21 +624,29 @@
     
     /* Media queries dla responsywności */
     @media screen and (max-width: 992px) {
-      .ryzmod-network-row {
+      .ryzmod-network-row,
+      .ryzmod-o51-container {
         flex-direction: column;
       }
       
       .ryzmod-network-container,
-      .ryzmod-text-block {
+      .ryzmod-text-block,
+      .ryzmod-o51-box,
+      .ryzmod-t52-text {
         width: 100%;
       }
       
       .ryzmod-network-container {
         height: 300px;
+        margin-bottom: 20px;
       }
       
       .ryzmod-articles-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .ryzmod-o51-box {
+        margin-bottom: 20px;
       }
     }
     
@@ -692,6 +774,43 @@
           </div>
         </div>
         
+        <!-- NOWE ELEMENTY: T.3.1 -->
+        <div class="ryzmod-text-t31">
+          <div class="ryzmod-object-id">T 3.1</div>
+          <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
+          <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
+        </div>
+        
+        <!-- NOWE ELEMENTY: O.3.2 -->
+        <div class="ryzmod-orange-box">
+          <div class="ryzmod-object-id">O 3.2</div>
+          <h3>Zaawansowane techniki analityczne</h3>
+          <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
+        </div>
+        
+        <!-- NOWE ELEMENTY: KDG4 -->
+        <div class="ryzmod-kdg-container">
+          <div class="ryzmod-object-id">KDG 4</div>
+          <div class="ryzmod-kdg-title">WYKRES DYNAMICZNY</div>
+        </div>
+        
+        <!-- NOWE ELEMENTY: O5.1 i T 5.2 -->
+        <div class="ryzmod-o51-container">
+          <!-- Kolorowy prostokąt po lewej -->
+          <div class="ryzmod-o51-box">
+            <div class="ryzmod-object-id">O 5.1</div>
+            <h3 class="ryzmod-o51-title">Zaawansowane techniki analityczne</h3>
+            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+          </div>
+          
+<!-- Tekst po prawej -->
+          <div class="ryzmod-t52-text">
+            <div class="ryzmod-object-id">T 5.2</div>
+            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
+            <p>Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Modele matematyczne odgrywają kluczową rolę w analizie ryzyka i symulacji różnych scenariuszy biznesowych.</p>
+          </div>
+        </div>
+        
         <!-- Artykuły (O6) -->
         <div class="ryzmod-articles-section">
           <div class="ryzmod-articles-title">Artykuły dotyczące ryzyka modeli</div>
@@ -753,11 +872,6 @@
       </div>
     </section>
   </div>
-  
-
-
-
-
   
   <!-- FOOTER  -->
   <div id="footer_wrap" class="outer">
