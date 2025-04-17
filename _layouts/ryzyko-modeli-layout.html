@@ -2121,12 +2121,13 @@
 </style>
 
 
-
 <!-- Sekcja O 22 - na pełną szerokość -->
 <div class="elegant-section-full-width">
   <div class="ryzmod-container">
-    <div class="section-header-button">
-      <span>Zobacz więcej</span>
+    <div class="section-header-container">
+      <div class="section-header-button">
+        <span>Zobacz więcej</span>
+      </div>
     </div>
     <div class="elegant-cards-container">
       <div class="elegant-card">
@@ -2180,16 +2181,23 @@
     margin-right: -50vw;
   }
 
+  .section-header-container {
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+  }
+
   .section-header-button {
     background-color: #cc903e;
     color: white;
     text-align: center;
-    padding: 10px 20px;
-    max-width: 200px;
-    margin: 0 auto 30px;
+    padding: 10px 25px;
+    width: auto;
+    display: inline-block;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 20px;
     letter-spacing: 0.5px;
+    margin-left: 30px;
   }
 
   .elegant-cards-container {
@@ -2308,8 +2316,14 @@
     .elegant-section-full-width {
       padding: 40px 0;
     }
+    
+    .section-header-button {
+      margin-left: 20px;
+      font-size: 18px;
+    }
   }
 </style>
+
 
 
 <!-- Sekcja O 23  -->
