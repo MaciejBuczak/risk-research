@@ -2102,65 +2102,73 @@
 
 <!-- Sekcja O 22  -->
 <div class="ryzmod-container">
-  <div class="elegant-cards-container">
-    <div class="elegant-card">
-      <div class="card-image">
-        <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
-        <div class="card-overlay"></div>
+  <div class="elegant-section-container">
+    <div class="elegant-cards-container">
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Zaawansowana analityka</h3>
+          <p>Kompleksowe rozwiązania analityczne wykorzystujące najnowsze narzędzia statystyczne i modele predykcyjne dla precyzyjnej oceny ryzyka biznesowego.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
       </div>
-      <div class="card-content">
-        <h3>Zaawansowana analityka</h3>
-        <p>Kompleksowe rozwiązania analityczne wykorzystujące najnowsze narzędzia statystyczne i modele predykcyjne dla precyzyjnej oceny ryzyka biznesowego.</p>
-        <a href="#" class="elegant-button">Dowiedz się więcej</a>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Strategia biznesowa</h3>
+          <p>Spersonalizowane podejście do rozwoju i implementacji modeli strategicznych, uwzględniających specyfikę branży i indywidualne potrzeby organizacji.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
       </div>
-    </div>
-    
-    <div class="elegant-card">
-      <div class="card-image">
-        <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
-        <div class="card-overlay"></div>
-      </div>
-      <div class="card-content">
-        <h3>Strategia biznesowa</h3>
-        <p>Spersonalizowane podejście do rozwoju i implementacji modeli strategicznych, uwzględniających specyfikę branży i indywidualne potrzeby organizacji.</p>
-        <a href="#" class="elegant-button">Dowiedz się więcej</a>
-      </div>
-    </div>
-    
-    <div class="elegant-card">
-      <div class="card-image">
-        <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
-        <div class="card-overlay"></div>
-      </div>
-      <div class="card-content">
-        <h3>Walidacja modeli</h3>
-        <p>Niezależna weryfikacja skuteczności modeli biznesowych i finansowych zgodnie z najwyższymi standardami branżowymi i wymogami regulacyjnymi.</p>
-        <a href="#" class="elegant-button">Dowiedz się więcej</a>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Walidacja modeli</h3>
+          <p>Niezależna weryfikacja skuteczności modeli biznesowych i finansowych zgodnie z najwyższymi standardami branżowymi i wymogami regulacyjnymi.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 <style>
+  .elegant-section-container {
+    background-color: #656461;
+    padding: 60px 40px;
+    border-radius: 12px;
+    margin: 40px 0;
+  }
+
   .elegant-cards-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    margin: 80px 0;
+    margin: 0;
   }
   
   .elegant-card {
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     height: 100%;
   }
   
   .elegant-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(168, 89, 3, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   }
   
   .card-image {
@@ -2249,11 +2257,19 @@
     .elegant-cards-container {
       grid-template-columns: repeat(2, 1fr);
     }
+    
+    .elegant-section-container {
+      padding: 40px 30px;
+    }
   }
   
   @media screen and (max-width: 576px) {
     .elegant-cards-container {
       grid-template-columns: 1fr;
+    }
+    
+    .elegant-section-container {
+      padding: 30px 20px;
     }
   }
 </style>
