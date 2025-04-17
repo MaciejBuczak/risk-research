@@ -2329,13 +2329,20 @@
     overflow: hidden;
     border-radius: 50%;
     margin-right: 15px;
-    /* Usunięto border i background-color */
+    position: relative;
+    background-color: transparent;
   }
   
   .author-avatar-fixed img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 50%;
+    /* Zwiększamy skalę, aby ukryć ramkę */
+    transform: scale(1.2);
+    /* Centrujemy przybliżony obraz */
+    position: relative;
+    z-index: 1;
   }
   
   .author-info-fixed {
