@@ -4248,10 +4248,12 @@
   .interactive-wave-grid {
     position: relative;
     height: 550px;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: linear-gradient(135deg, #656461 0%, #4a4a49 100%);
     overflow: hidden;
     border-radius: 12px;
     margin: 60px 0;
+    width: 100%;
+    max-width: 100%;
   }
   
   #waveCanvas {
@@ -4269,8 +4271,8 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     padding: 0 60px;
+    justify-content: center;
   }
   
   .content-box {
@@ -4279,12 +4281,8 @@
     background: rgba(255, 255, 255, 0.95);
     border-radius: 16px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-    transform: translateX(60px);
-    transition: transform 0.5s ease;
-  }
-  
-  .interactive-wave-grid:hover .content-box {
     transform: translateX(0);
+    transition: transform 0.5s ease;
   }
   
   .content-pill {
@@ -4361,12 +4359,10 @@
   
   @media screen and (max-width: 992px) {
     .content-wrapper {
-      justify-content: center;
-      padding: 0 20px;
+      padding: 0 30px;
     }
     
     .content-box {
-      transform: translateX(0);
       max-width: 100%;
     }
   }
@@ -4380,10 +4376,13 @@
       font-size: 28px;
     }
   }
-  
-  /* JavaScript dla canvas z animacją fali */
+</style>
+
+<script>
   document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('waveCanvas');
+    if (!canvas) return;
+    
     const ctx = canvas.getContext('2d');
     
     let width = canvas.width = canvas.offsetWidth;
@@ -4404,7 +4403,7 @@
     let time = 0;
     const waveSpeed = 0.002;
     const waveAmplitude = 15;
-    const waveFrequency = 0.05;
+    let waveFrequency = 0.05;
     
     // Funkcja rysująca siatkę z efektem fali
     function drawGrid() {
@@ -4448,7 +4447,7 @@
       waveFrequency = 0.05 + (mouseX / width) * 0.05;
     });
   });
-</style>
+</script>
 
   
   
