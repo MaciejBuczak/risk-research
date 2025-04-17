@@ -3953,7 +3953,502 @@
     
 
 
+  <!-- Sekcja O 29  -->
+<div class="dynamic-floating-shapes">
+  <div class="shapes-container">
+    <!-- Animowane kształty -->
+    <div class="floating-shape shape-circle"></div>
+    <div class="floating-shape shape-square"></div>
+    <div class="floating-shape shape-triangle"></div>
+    <div class="floating-shape shape-plus"></div>
+    <div class="floating-shape shape-ring"></div>
+    <div class="floating-shape shape-dots"></div>
+  </div>
+  
+  <div class="content-overlay">
+    <div class="overlay-inner">
+      <h2>Zaawansowane modelowanie statystyczne</h2>
+      <p>Wykorzystujemy najnowsze techniki modelowania do identyfikacji i przewidywania kluczowych trendów rynkowych, umożliwiając precyzyjne zarządzanie ryzykiem.</p>
+      <div class="stats-highlights">
+        <div class="stat-item">
+          <div class="stat-number" data-count="97"><span>0</span>%</div>
+          <div class="stat-desc">Dokładność predykcji</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="42"><span>0</span></div>
+          <div class="stat-desc">Modele analityczne</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="15"><span>0</span>+</div>
+          <div class="stat-desc">Lat doświadczenia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<style>
+  .dynamic-floating-shapes {
+    position: relative;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+    height: 500px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 60px 0;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+  }
+  
+  .shapes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .floating-shape {
+    position: absolute;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  
+  .shape-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #a85903;
+    top: 15%;
+    left: 10%;
+    animation: floatAnimation 15s ease-in-out infinite;
+  }
+  
+  .shape-square {
+    width: 100px;
+    height: 100px;
+    background-color: #cc903e;
+    top: 60%;
+    left: 20%;
+    transform: rotate(45deg);
+    animation: floatAnimation 18s ease-in-out infinite 2s;
+  }
+  
+  .shape-triangle {
+    width: 0;
+    height: 0;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 120px solid #d17a1b;
+    top: 35%;
+    right: 15%;
+    animation: floatAnimation 20s ease-in-out infinite 1s;
+  }
+  
+  .shape-plus {
+    width: 20px;
+    height: 80px;
+    background-color: #e3b287;
+    top: 20%;
+    right: 25%;
+    animation: floatAnimation 17s ease-in-out infinite 3s;
+  }
+  
+  .shape-plus::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    background-color: #e3b287;
+    top: 30px;
+    left: -30px;
+  }
+  
+  .shape-ring {
+    width: 120px;
+    height: 120px;
+    border: 25px solid #ffebd3;
+    border-radius: 50%;
+    bottom: 15%;
+    right: 10%;
+    animation: floatAnimation 19s ease-in-out infinite;
+  }
+  
+  .shape-dots {
+    bottom: 30%;
+    left: 35%;
+    animation: floatAnimation 16s ease-in-out infinite 2s;
+  }
+  
+  .shape-dots::before,
+  .shape-dots::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #a85903;
+  }
+  
+  .shape-dots::before {
+    top: -20px;
+    left: 0;
+  }
+  
+  .shape-dots::after {
+    top: 20px;
+    left: 20px;
+  }
+  
+  @keyframes floatAnimation {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, 15px) rotate(5deg); }
+    50% { transform: translate(-5px, 10px) rotate(0deg); }
+    75% { transform: translate(-10px, -5px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+  
+  .content-overlay {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    z-index: 2;
+  }
+  
+  .overlay-inner {
+    max-width: 800px;
+    text-align: center;
+  }
+  
+  .overlay-inner h2 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .overlay-inner p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    text-indent: 0;
+  }
+  
+  .stats-highlights {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+  }
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-number {
+    font-size: 42px;
+    font-weight: 700;
+    color: #a85903;
+    margin-bottom: 10px;
+  }
+  
+  .stat-desc {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  /* Animacja liczb */
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* JavaScript do animacji liczników */
+  document.addEventListener('DOMContentLoaded', function() {
+    const statItems = document.querySelectorAll('.stat-number');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const span = entry.target.querySelector('span');
+          const finalValue = parseInt(entry.target.getAttribute('data-count'));
+          let currentValue = 0;
+          const duration = 2000; // 2 sekundy
+          const increment = finalValue / (duration / 16);
+          
+          const updateCounter = () => {
+            currentValue += increment;
+            if (currentValue < finalValue) {
+              span.textContent = Math.floor(currentValue);
+              requestAnimationFrame(updateCounter);
+            } else {
+              span.textContent = finalValue;
+            }
+          };
+          
+          entry.target.style.animation = `countUp 1s forwards`;
+          requestAnimationFrame(updateCounter);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    statItems.forEach(item => {
+      observer.observe(item);
+    });
+  });
+</style>
+
+
+  <!-- Sekcja O 30  -->
+<div class="interactive-wave-grid">
+  <canvas id="waveCanvas"></canvas>
+  
+  <div class="content-wrapper">
+    <div class="content-box">
+      <div class="content-pill">Analiza statystyczna</div>
+      <h2>Odkryj ukryte wzorce w danych</h2>
+      <p>Nasze modele statystyczne wykrywają subtelne korelacje i trendy, które umożliwiają podejmowanie trafnych decyzji biznesowych w oparciu o solidne podstawy analityczne.</p>
+      
+      <div class="feature-items">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
+            </svg>
+          </div>
+          <div class="feature-text">Zaawansowane modelowanie predykcyjne</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="currentColor" d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z"/>
+            </svg>
+          </div>
+          <div class="feature-text">Analiza szeregów czasowych</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+            </svg>
+          </div>
+          <div class="feature-text">Symulacje Monte Carlo</div>
+        </div>
+      </div>
+      
+      <a href="#" class="content-button">Eksploruj możliwości</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .interactive-wave-grid {
+    position: relative;
+    height: 550px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 60px 0;
+  }
+  
+  #waveCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+  }
+  
+  .content-wrapper {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 60px;
+  }
+  
+  .content-box {
+    max-width: 550px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    transform: translateX(60px);
+    transition: transform 0.5s ease;
+  }
+  
+  .interactive-wave-grid:hover .content-box {
+    transform: translateX(0);
+  }
+  
+  .content-pill {
+    display: inline-block;
+    background: #a85903;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+  
+  .content-box h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .content-box p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    text-indent: 0;
+  }
+  
+  .feature-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(168, 89, 3, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a85903;
+  }
+  
+  .feature-text {
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .content-button {
+    display: inline-block;
+    background: #a85903;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .content-button:hover {
+    background: #8a4803;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(168, 89, 3, 0.3);
+  }
+  
+  @media screen and (max-width: 992px) {
+    .content-wrapper {
+      justify-content: center;
+      padding: 0 20px;
+    }
+    
+    .content-box {
+      transform: translateX(0);
+      max-width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .content-box {
+      padding: 30px;
+    }
+    
+    .content-box h2 {
+      font-size: 28px;
+    }
+  }
+  
+  /* JavaScript dla canvas z animacją fali */
+  document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    let width = canvas.width = canvas.offsetWidth;
+    let height = canvas.height = canvas.offsetHeight;
+    
+    window.addEventListener('resize', () => {
+      width = canvas.width = canvas.offsetWidth;
+      height = canvas.height = canvas.offsetHeight;
+    });
+    
+    // Konfiguracja siatki
+    const gridSize = 30;
+    const gridDotSize = 1;
+    const gridRows = Math.ceil(height / gridSize);
+    const gridCols = Math.ceil(width / gridSize);
+    
+    // Parametry fali
+    let time = 0;
+    const waveSpeed = 0.002;
+    const waveAmplitude = 15;
+    const waveFrequency = 0.05;
+    
+    // Funkcja rysująca siatkę z efektem fali
+    function drawGrid() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+      
+      for (let i = 0; i < gridRows; i++) {
+        for (let j = 0; j < gridCols; j++) {
+          const x = j * gridSize;
+          const y = i * gridSize;
+          
+          // Efekt fali
+          const distanceToCenter = Math.sqrt(
+            Math.pow(x - width / 2, 2) + 
+            Math.pow(y - height / 2, 2)
+          );
+          
+          const offset = Math.sin(distanceToCenter * waveFrequency - time) * waveAmplitude;
+          
+          // Rysowanie punktu siatki
+          ctx.beginPath();
+          ctx.arc(x + offset, y + offset, gridDotSize, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      
+      time += waveSpeed;
+      requestAnimationFrame(drawGrid);
+    }
+    
+    // Uruchomienie animacji
+    drawGrid();
+    
+    // Dodanie interaktywności
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      
+      // Można dodać interaktywny efekt przy ruchu myszy
+      waveFrequency = 0.05 + (mouseX / width) * 0.05;
+    });
+  });
+</style>
 
   
   
