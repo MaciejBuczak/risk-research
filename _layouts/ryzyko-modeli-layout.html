@@ -1181,11 +1181,16 @@
       
       <!-- Sekcja O 9 - poza kontenerem, aby zajmowała pełną szerokość -->
       <div class="full-width-section" style="display: flex; margin-bottom: 40px;">
-        <!-- Boks lewy -->
-        <div style="flex: 1; background-color: #ece0d0; position: relative; padding: 20px;">
-          <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777;">O 9.1</div>
-        </div>
-        
+<!-- Boks lewy -->
+<div style="flex: 1; background-color: #ece0d0; position: relative; padding: 20px; overflow: hidden;">
+  <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777; z-index: 5;">O 9.1</div>
+  
+  <!-- Dodane zdjęcie z ciemnym nakładaniem -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/risk-research/assets/images/ryzyko-modeli-main.jpg'); background-size: cover; background-position: center; filter: brightness(0.7) contrast(1.1);"></div>
+  
+  <!-- Dodatkowa ciemna nakładka -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4);"></div>
+</div>
         <!-- Boks prawy - szary -->
         <div style="flex: 1; background-color: #656461; color: white; padding: 20px; position: relative;">
           <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #ccc;">O 9.2</div>
