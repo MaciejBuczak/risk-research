@@ -2105,7 +2105,7 @@
   <div class="elegant-cards-container">
     <div class="elegant-card">
       <div class="card-image">
-        <img src="/risk-research/assets/images/analysis.jpg" alt="Analiza danych">
+        <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
         <div class="card-overlay"></div>
       </div>
       <div class="card-content">
@@ -2117,7 +2117,7 @@
     
     <div class="elegant-card">
       <div class="card-image">
-        <img src="/risk-research/assets/images/strategy.jpg" alt="Strategia biznesowa">
+        <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
         <div class="card-overlay"></div>
       </div>
       <div class="card-content">
@@ -2129,7 +2129,7 @@
     
     <div class="elegant-card">
       <div class="card-image">
-        <img src="/risk-research/assets/images/validation.jpg" alt="Walidacja modeli">
+        <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
         <div class="card-overlay"></div>
       </div>
       <div class="card-content">
@@ -2263,58 +2263,48 @@
 
 
   <!-- Sekcja O 23  -->
-<div class="quote-section">
-  <div class="quote-background"></div>
-  <div class="quote-container">
-    <div class="quote-mark">"</div>
-    <blockquote>
+<div class="quote-section-fixed">
+  <div class="quote-container-fixed">
+    <div class="quote-mark-fixed">"</div>
+    <blockquote class="quote-text-fixed">
       Skuteczne zarządzanie ryzykiem modeli to nie tylko identyfikacja zagrożeń, ale przede wszystkim umiejętność przekształcania ich w strategiczne możliwości rozwoju biznesu.
     </blockquote>
-    <div class="quote-author">
-      <div class="author-avatar">
-        <img src="/risk-research/assets/images/author.jpg" alt="Autor cytatu">
+    <div class="quote-author-fixed">
+      <div class="author-avatar-fixed">
+        <img src="/risk-research/assets/images/author.jpg" alt="Autor cytatu" onerror="this.src='https://via.placeholder.com/60'">
       </div>
-      <div class="author-info">
-        <span class="author-name">Maciej Buczak</span>
-        <span class="author-title">Ekspert ds. zarządzania ryzykiem</span>
+      <div class="author-info-fixed">
+        <span class="author-name-fixed">Maciej Buczak</span>
+        <span class="author-title-fixed">Ekspert ds. zarządzania ryzykiem</span>
       </div>
     </div>
   </div>
 </div>
 
 <style>
-  .quote-section {
+  .quote-section-fixed {
     position: relative;
     margin: 100px 0;
-    height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .quote-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/risk-research/assets/images/abstract-bg.jpg');
+    height: auto;
+    min-height: 350px;
+    padding: 80px 0;
+    background-color: #2c2c2c;
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("/risk-research/assets/images/abstract-bg.jpg");
     background-size: cover;
     background-position: center;
-    filter: brightness(0.3) saturate(0.8);
-    z-index: 1;
+    background-attachment: fixed;
   }
   
-  .quote-container {
+  .quote-container-fixed {
     position: relative;
-    z-index: 2;
     max-width: 850px;
+    margin: 0 auto;
     padding: 0 30px;
     text-align: center;
+    color: white;
   }
   
-  .quote-mark {
+  .quote-mark-fixed {
     font-size: 120px;
     color: rgba(255, 255, 255, 0.2);
     line-height: 0;
@@ -2322,7 +2312,7 @@
     font-family: Georgia, serif;
   }
   
-  blockquote {
+  .quote-text-fixed {
     font-size: 32px;
     color: white;
     line-height: 1.5;
@@ -2333,32 +2323,33 @@
     font-style: italic;
   }
   
-  .quote-author {
+  .quote-author-fixed {
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  .author-avatar {
+  .author-avatar-fixed {
     width: 60px;
     height: 60px;
     overflow: hidden;
     border-radius: 50%;
     margin-right: 15px;
     border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
   }
   
-  .author-avatar img {
+  .author-avatar-fixed img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
   
-  .author-info {
+  .author-info-fixed {
     text-align: left;
   }
   
-  .author-name {
+  .author-name-fixed {
     display: block;
     color: white;
     font-size: 18px;
@@ -2366,18 +2357,18 @@
     margin-bottom: 5px;
   }
   
-  .author-title {
+  .author-title-fixed {
     display: block;
     color: rgba(255, 255, 255, 0.7);
     font-size: 16px;
   }
   
   @media screen and (max-width: 768px) {
-    blockquote {
+    .quote-text-fixed {
       font-size: 24px;
     }
     
-    .quote-mark {
+    .quote-mark-fixed {
       font-size: 80px;
     }
   }
