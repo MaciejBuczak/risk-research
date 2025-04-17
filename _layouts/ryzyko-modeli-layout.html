@@ -1383,6 +1383,28 @@
 
 
 
+<!-- Sekcja O 13 - poza kontenerem, aby zajmowała pełną szerokość -->
+<div class="full-width-section" style="display: flex; margin-bottom: 40px;">
+  <!-- Boks prawy (teraz po lewej) - szary -->
+  <div style="width: 50%; background-color: #cc903e; color: white; padding: 40px 80px; position: relative; box-sizing: border-box;">
+    <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #ccc;">O 13.2</div>
+    <h3 style="margin-bottom: 25px; font-size: 26px; color: white;">Czy warto to analizować?</h3>
+    <p style="font-size: 22px; color: white; margin-bottom: 30px; line-height: 1.5;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji. Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych, dostarczając kluczowych informacji do podejmowania strategicznych decyzji.</p>
+    <p style="font-size: 22px; color: white; margin-top: 30px;">Zaawansowane techniki analityczne pozwalają na precyzyjne modelowanie zjawisk ekonomicznych i biznesowych.</p>
+  </div>
+  
+  <!-- Boks lewy (teraz po prawej) -->
+  <div style="width: 50%; background-color: #656461; position: relative; padding: 20px; overflow: hidden; box-sizing: border-box;">
+    <div class="ryzmod-object-id" style="position: absolute; top: 10px; left: 10px; font-size: 12px; color: #777; z-index: 5;">O 13.1</div>
+    
+    <!-- Dodane zdjęcie z ciemnym nakładaniem -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/risk-research/assets/images/ryzyko-modeli-main-in.jpg'); background-size: cover; background-position: center; filter: brightness(0.7) contrast(1.1);"></div>
+    
+    <!-- Dodatkowa ciemna nakładka -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4);"></div>
+  </div>
+</div>
+  
 
 <!-- Sekcja O 14 - poza kontenerem, aby zajmowała pełną szerokość -->
 <div class="full-width-section" style="display: flex; margin-bottom: 40px;">
@@ -1407,6 +1429,114 @@
 </div>
 
 
+
+
+<!-- Sekcja O 15 -->
+<div class="ryzmod-container">
+  <div class="model-cards-container">
+    <!-- Pierwszy obiekt -->
+    <div class="model-card">
+      <div class="model-icon-container">
+        <div class="research-area-icon">
+          <svg viewBox="0 0 24 24" width="48" height="48">
+            <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
+          </svg>
+        </div>
+      </div>
+      <h3 class="model-title">Model Risk</h3>
+      <p class="model-description">
+        Comprehensive analysis of uncertainty and errors in financial models, along with methods for their identification, measurement, and risk management.
+      </p>
+    </div>
+    
+    <!-- Drugi obiekt -->
+    <div class="model-card">
+      <div class="model-icon-container">
+        <div class="research-area-icon">
+          <svg viewBox="0 0 24 24" width="48" height="48">
+            <path fill="#a85903" d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z"/>
+          </svg>
+        </div>
+      </div>
+      <h3 class="model-title">Holistic Model Assessment</h3>
+      <p class="model-description">
+        Comprehensive verification of models combining quantitative analysis (statistical tests) and qualitative analysis (business expertise) for a complete effectiveness evaluation.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .model-cards-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px; /* Zwiększona przerwa między obiektami */
+    margin: 40px 0;
+    width: 100%;
+  }
+  
+  .model-card {
+    flex: 1;
+    padding: 40px 30px; /* Zwiększony padding */
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
+    max-width: 48%; /* Ograniczenie maksymalnej szerokości */
+  }
+  
+  .model-icon-container {
+    width: 100px; /* Zwiększona wielkość ikony */
+    height: 100px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .research-area-icon {
+    color: #a85903;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .model-icon-brown-bg .research-area-icon {
+    color: white;
+  }
+  
+  .model-title {
+    color: #a85903;
+    font-size: 24px; /* Zwiększony rozmiar czcionki */
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .model-description {
+    color: #666;
+    font-size: 16px; /* Zwiększony rozmiar czcionki */
+    line-height: 1.6;
+  }
+  
+  /* Responsywność */
+  @media screen and (max-width: 768px) {
+    .model-cards-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .model-card {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+</style>
   
   
   <!-- FOOTER  -->
