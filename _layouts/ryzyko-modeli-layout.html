@@ -2268,8 +2268,9 @@
       Skuteczne zarządzanie ryzykiem modeli to nie tylko identyfikacja zagrożeń, ale przede wszystkim umiejętność przekształcania ich w strategiczne możliwości rozwoju biznesu.
     </blockquote>
     <div class="quote-author-fixed">
-      <div class="author-avatar-fixed">
-        <img src="/risk-research/assets/images/Maciej Buczak-zdjęcie.jpg" alt="Autor cytatu" onerror="this.src='https://via.placeholder.com/60'">
+      <!-- Całkowicie przebudowany kontener zdjęcia -->
+      <div class="author-avatar-new">
+        <img src="/risk-research/assets/images/Maciej Buczak-zdjęcie.jpg" alt="Autor cytatu">
       </div>
       <div class="author-info-fixed">
         <span class="author-name-fixed">Maciej Buczak</span>
@@ -2323,26 +2324,22 @@
     justify-content: center;
   }
   
-  .author-avatar-fixed {
+  /* Całkowicie nowy styl dla zdjęcia autora */
+  .author-avatar-new {
     width: 60px;
     height: 60px;
-    overflow: hidden;
-    border-radius: 50%;
     margin-right: 15px;
-    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
     background-color: transparent;
+    flex-shrink: 0;
   }
   
-  .author-avatar-fixed img {
+  .author-avatar-new img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
-    /* Zwiększamy skalę, aby ukryć ramkę */
-    transform: scale(1.2);
-    /* Centrujemy przybliżony obraz */
-    position: relative;
-    z-index: 1;
+    display: block;
   }
   
   .author-info-fixed {
