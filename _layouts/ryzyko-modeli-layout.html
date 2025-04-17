@@ -1189,16 +1189,16 @@
 <!-- Kontener-zdjęcia -->
 <div class="full-width-image-container">
   <div class="image-tile">
-    <img src="/risk-research/assets/images/ryzko-modeli-main.jpg" alt="Filiżanka kawy i książka">
+    <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Notatnik i biurko">
   </div>
   <div class="image-tile">
-    <img src="/risk-research/assets/images/ryzyko-modeli-main-in.jpg" alt="Zielony liść z kroplami wody">
+    <img src="/risk-research/assets/images/ryzyko-modeli-main-in.jpg" alt="Analiza danych na telefonie i papierze">
   </div>
   <div class="image-tile">
-    <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Kobieta z kwiatami">
+    <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Osoba przeglądająca dane">
   </div>
   <div class="image-tile">
-    <img src="/risk-research/assets/images/ryzyko-modeli-main-in.jpg" alt="Liście palmowe">
+    <img src="/risk-research/assets/images/ryzyko-modeli-main-in.jpg" alt="Dokumenty biznesowe">
   </div>
 </div>
 
@@ -1209,8 +1209,10 @@
     margin-right: calc(-50vw + 50%);
     display: flex;
     overflow: hidden;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    font-size: 0; /* Eliminuje odstępy między elementami inline */
   }
   
   .image-tile {
@@ -1218,6 +1220,10 @@
     height: 150px;
     overflow: hidden;
     position: relative;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 0; /* Eliminuje potencjalne odstępy */
   }
   
   .image-tile img {
@@ -1225,11 +1231,9 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
-  }
-  
-  .image-tile:hover img {
-    transform: scale(1.05);
+    margin: 0;
+    padding: 0;
+    border: none;
   }
   
   @media screen and (max-width: 768px) {
