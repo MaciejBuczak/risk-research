@@ -1184,6 +1184,73 @@
 </style>
 
 
+
+
+<!-- Kontener-zdjęcia -->
+<div class="full-width-image-container">
+  <div class="image-tile">
+    <img src="/risk-research/assets/images/ryzko-modeli-main.jpg" alt="Filiżanka kawy i książka">
+  </div>
+  <div class="image-tile">
+    <img src="/risk-research/assets/images/ryzyko-modeli-main-in.jpg" alt="Zielony liść z kroplami wody">
+  </div>
+  <div class="image-tile">
+    <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Kobieta z kwiatami">
+  </div>
+  <div class="image-tile">
+    <img src="/risk-research/assets/images/ryzyko-modeli-main-in.jpg" alt="Liście palmowe">
+  </div>
+</div>
+
+<style>
+  .full-width-image-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    display: flex;
+    overflow: hidden;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .image-tile {
+    flex: 1;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .image-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  .image-tile:hover img {
+    transform: scale(1.05);
+  }
+  
+  @media screen and (max-width: 768px) {
+    .full-width-image-container {
+      flex-wrap: wrap;
+    }
+    
+    .image-tile {
+      flex: 1 0 50%;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .image-tile {
+      flex: 1 0 100%;
+    }
+  }
+</style>
+        
+
+
         
 
         <!-- Sekcja "Czy warto to analizować?" część 2 -->
