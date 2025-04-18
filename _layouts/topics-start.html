@@ -807,6 +807,10 @@
 
 
 
+
+  
+
+
 <!-- Sekcja O 1 - na pełną szerokość z zawartością w kontenerze -->
 <div class="elegant-section-full-width">
   <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
@@ -983,9 +987,11 @@
   
 
 
-<!-- Sekcja O 2 -->
+
+
+  <!-- Sekcja O 2 -->
 <div class="elegant-section-full-width">
-  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+  <div class="ryzmod-container">
     <div class="elegant-cards-container">
       <div class="elegant-card">
         <div class="card-image">
@@ -1114,8 +1120,8 @@
 <style>
   .elegant-section-full-width {
     background-color: #656461;
-    padding: 0; /* Zmieniono z 60px 0 na 0 */
-    margin: 0; /* Zmieniono z 60px 0 na 0 */
+    padding: 0;
+    margin: 0;
     width: 100vw;
     position: relative;
     left: 50%;
@@ -1124,11 +1130,20 @@
     margin-right: -50vw;
   }
 
+  .ryzmod-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
   .elegant-cards-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    padding: 0 0; /* Dodano padding do kontenera kart zamiast do sekcji */
+    gap: 20px;
+    padding: 0;
+    height: 100vh; /* Ustawia wysokość kontenera na pełną wysokość viewportu */
+    align-items: stretch;
+    margin: 0;
   }
   
   .elegant-card {
@@ -1140,6 +1155,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    margin: 0;
   }
   
   .elegant-card:hover {
@@ -1376,6 +1392,9 @@
   
   .card-content {
     padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
   
   .card-content h3 {
@@ -1402,6 +1421,7 @@
     margin-bottom: 25px;
     font-size: 16px;
     text-indent: 0;
+    flex-grow: 1;
   }
   
   .elegant-button {
@@ -1413,6 +1433,7 @@
     position: relative;
     padding-bottom: 2px;
     transition: all 0.3s ease;
+    margin-top: auto;
   }
   
   .elegant-button:after {
@@ -1439,13 +1460,20 @@
   @media screen and (max-width: 576px) {
     .elegant-cards-container {
       grid-template-columns: 1fr;
+      height: auto;
     }
     
-    .elegant-section-full-width {
-      padding: 0; /* Zmieniono z 40px 0 na 0 */
+    .elegant-card {
+      margin-bottom: 20px;
+    }
+    
+    .elegant-card:last-child {
+      margin-bottom: 0;
     }
   }
 </style>
+
+
 
   
 
