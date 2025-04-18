@@ -991,8 +991,6 @@
 
 
 
-
-
 <!-- Sekcja O 2 z poprawioną wysokością kart i położeniem kreski -->
 <div class="elegant-section-full-width">
   <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
@@ -1004,7 +1002,6 @@
         </div>
         <div class="card-content">
           <h3>RYZYKO MODELI</h3>
-          <div class="orange-line"></div>
         </div>
       </div>
       
@@ -1015,7 +1012,6 @@
         </div>
         <div class="card-content">
           <h3>Strategia biznesowa</h3>
-          <div class="orange-line"></div>
         </div>
       </div>
       
@@ -1074,6 +1070,7 @@
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: auto; /* Auto zamiast fixed */
   }
   
   .elegant-card:hover {
@@ -1120,7 +1117,10 @@
   }
   
   .card-content {
-    padding: 45px 30px; /* Wydłużono obszar pod zdjęciem - zwiększono padding-top i padding-bottom */
+    padding-top: 30px; /* Padding od góry */
+    padding-bottom: 120px; /* Podwojony padding od dołu dla wydłużenia obszaru */
+    padding-left: 30px;
+    padding-right: 30px;
     text-align: left; /* Wyrównanie do lewej */
     position: relative;
   }
@@ -1129,16 +1129,18 @@
     color: #a85903;
     font-size: 22px;
     margin: 0;
-    padding-bottom: 10px; /* Przestrzeń między tekstem a kreską */
+    position: relative;
   }
   
-  /* Nowa klasa do pomarańczowej kreski - zamiast pseudoelementu :after */
-  .orange-line {
-    height: 3px;
+  /* Dodana kreska pod nagłówkiem */
+  .card-content h3:after {
+    content: '';
+    position: absolute;
+    left: 0; /* Kreska zaczyna się w tym samym miejscu co tekst */
+    bottom: -12px; /* Odległość kreski od tekstu */
     width: 40px;
+    height: 3px;
     background: #a85903;
-    margin-top: 10px;
-    /* Bez margin-left - kreska zaczyna się w tym samym miejscu co tekst */
   }
   
   @media screen and (max-width: 992px) {
