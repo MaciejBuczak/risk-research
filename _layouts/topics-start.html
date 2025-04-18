@@ -993,7 +993,7 @@
 
 
 
-<!-- Sekcja O 2 z poprawioną wysokością kart -->
+<!-- Sekcja O 2 z poprawioną wysokością kart i położeniem kreski -->
 <div class="elegant-section-full-width">
   <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
     <div class="elegant-cards-container">
@@ -1004,6 +1004,7 @@
         </div>
         <div class="card-content">
           <h3>RYZYKO MODELI</h3>
+          <div class="orange-line"></div>
         </div>
       </div>
       
@@ -1014,6 +1015,7 @@
         </div>
         <div class="card-content">
           <h3>Strategia biznesowa</h3>
+          <div class="orange-line"></div>
         </div>
       </div>
       
@@ -1072,7 +1074,6 @@
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    /* Usunięto height: 100% aby karty nie rozciągały się na pełną wysokość */
   }
   
   .elegant-card:hover {
@@ -1114,32 +1115,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 220px; /* Ustalona wysokość zamiast flex: 1 */
+    height: 220px;
     border-radius: 0 0 12px 12px;
   }
   
   .card-content {
-    padding: 25px 30px; /* Zmniejszono padding z góry i dołu */
-    text-align: center; /* Wycentrowanie tekstu */
+    padding: 45px 30px; /* Wydłużono obszar pod zdjęciem - zwiększono padding-top i padding-bottom */
+    text-align: left; /* Wyrównanie do lewej */
+    position: relative;
   }
   
   .card-content h3 {
-    color: #a85903; /* Kolor brązowy dla wszystkich nagłówków */
+    color: #a85903;
     font-size: 22px;
-    margin: 0; /* Usunięto margines na dole */
-    position: relative;
-    padding-bottom: 12px;
+    margin: 0;
+    padding-bottom: 10px; /* Przestrzeń między tekstem a kreską */
   }
   
-  .card-content h3:after {
-    content: '';
-    position: absolute;
-    left: 50%; /* Wycentrowanie linii pod tekstem */
-    transform: translateX(-50%); /* Wycentrowanie linii pod tekstem */
-    bottom: 0;
-    width: 40px;
+  /* Nowa klasa do pomarańczowej kreski - zamiast pseudoelementu :after */
+  .orange-line {
     height: 3px;
+    width: 40px;
     background: #a85903;
+    margin-top: 10px;
+    /* Bez margin-left - kreska zaczyna się w tym samym miejscu co tekst */
   }
   
   @media screen and (max-width: 992px) {
@@ -1158,7 +1157,6 @@
     }
   }
 </style>
-
 
 
 
