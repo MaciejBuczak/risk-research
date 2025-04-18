@@ -1012,48 +1012,56 @@
         </div>
       </div>
       
-      <!-- Zmodyfikowany trzeci obiekt z dynamiczną grafiką -->
-      <div class="elegant-card">
-        <div class="card-dynamic-graphic">
-          <svg viewBox="0 0 300 220" width="100%" height="220">
+      <!-- Zmodyfikowany trzeci obiekt z dynamiczną grafiką na całą wysokość -->
+      <div class="elegant-card full-chart-card">
+        <div class="card-dynamic-graphic-full">
+          <svg viewBox="0 0 300 400" width="100%" height="100%">
             <!-- Tło -->
-            <rect x="0" y="0" width="100%" height="100%" fill="#f9f9f9" rx="8" />
+            <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
             
             <!-- Siatka -->
             <g stroke="#eee" stroke-width="1">
               <line x1="50" y1="50" x2="250" y2="50" />
-              <line x1="50" y1="90" x2="250" y2="90" />
-              <line x1="50" y1="130" x2="250" y2="130" />
-              <line x1="50" y1="170" x2="250" y2="170" />
-              <line x1="90" y1="30" x2="90" y2="170" />
-              <line x1="130" y1="30" x2="130" y2="170" />
-              <line x1="170" y1="30" x2="170" y2="170" />
-              <line x1="210" y1="30" x2="210" y2="170" />
-              <line x1="250" y1="30" x2="250" y2="170" />
+              <line x1="50" y1="100" x2="250" y2="100" />
+              <line x1="50" y1="150" x2="250" y2="150" />
+              <line x1="50" y1="200" x2="250" y2="200" />
+              <line x1="50" y1="250" x2="250" y2="250" />
+              <line x1="50" y1="300" x2="250" y2="300" />
+              <line x1="50" y1="350" x2="250" y2="350" />
+              <line x1="90" y1="30" x2="90" y2="350" />
+              <line x1="130" y1="30" x2="130" y2="350" />
+              <line x1="170" y1="30" x2="170" y2="350" />
+              <line x1="210" y1="30" x2="210" y2="350" />
+              <line x1="250" y1="30" x2="250" y2="350" />
             </g>
             
             <!-- Animowana fala -->
-            <path d="M50,130 C70,110 85,150 100,130 C115,110 130,90 150,110 C170,130 185,80 200,100 C215,120 230,150 250,130" 
+            <path d="M50,200 C70,180 85,220 100,200 C115,180 130,160 150,180 C170,200 185,150 200,170 C215,190 230,220 250,200" 
                   fill="none" stroke="#a85903" stroke-width="3" class="animated-path" />
                   
             <!-- Obszar pod falą -->
-            <path d="M50,130 C70,110 85,150 100,130 C115,110 130,90 150,110 C170,130 185,80 200,100 C215,120 230,150 250,130 L250,170 L50,170 Z" 
+            <path d="M50,200 C70,180 85,220 100,200 C115,180 130,160 150,180 C170,200 185,150 200,170 C215,190 230,220 250,200 L250,350 L50,350 Z" 
                   fill="url(#wave-gradient)" />
                   
             <!-- Punkty danych -->
-            <circle cx="50" cy="130" r="5" fill="#a85903" class="pulse-point" />
-            <circle cx="100" cy="130" r="5" fill="#a85903" class="pulse-point" />
-            <circle cx="150" cy="110" r="5" fill="#a85903" class="pulse-point" />
-            <circle cx="200" cy="100" r="5" fill="#a85903" class="pulse-point" />
-            <circle cx="250" cy="130" r="5" fill="#a85903" class="pulse-point" />
+            <circle cx="50" cy="200" r="5" fill="#a85903" class="pulse-point" />
+            <circle cx="100" cy="200" r="5" fill="#a85903" class="pulse-point" />
+            <circle cx="150" cy="180" r="5" fill="#a85903" class="pulse-point" />
+            <circle cx="200" cy="170" r="5" fill="#a85903" class="pulse-point" />
+            <circle cx="250" cy="200" r="5" fill="#a85903" class="pulse-point" />
             
             <!-- Kółka animowane -->
             <g class="floating-circles">
-              <circle cx="180" cy="60" r="15" fill="#a85903" fill-opacity="0.1" />
-              <circle cx="80" cy="90" r="10" fill="#a85903" fill-opacity="0.1" />
-              <circle cx="220" cy="150" r="8" fill="#a85903" fill-opacity="0.1" />
-              <circle cx="120" cy="40" r="12" fill="#a85903" fill-opacity="0.1" />
+              <circle cx="180" cy="100" r="15" fill="#a85903" fill-opacity="0.1" />
+              <circle cx="80" cy="150" r="10" fill="#a85903" fill-opacity="0.1" />
+              <circle cx="220" cy="270" r="8" fill="#a85903" fill-opacity="0.1" />
+              <circle cx="120" cy="80" r="12" fill="#a85903" fill-opacity="0.1" />
+              <circle cx="170" cy="320" r="14" fill="#a85903" fill-opacity="0.1" />
+              <circle cx="70" cy="270" r="9" fill="#a85903" fill-opacity="0.1" />
             </g>
+            
+            <!-- Tytuł wykresu -->
+            <text x="150" y="30" text-anchor="middle" fill="#a85903" font-size="16" font-weight="bold">Walidacja modeli</text>
             
             <!-- Definicje gradientów -->
             <defs>
@@ -1063,11 +1071,6 @@
               </linearGradient>
             </defs>
           </svg>
-        </div>
-        <div class="card-content">
-          <h3>Walidacja modeli</h3>
-          <p>Niezależna weryfikacja skuteczności modeli biznesowych i finansowych zgodnie z najwyższymi standardami branżowymi i wymogami regulacyjnymi.</p>
-          <a href="#" class="elegant-button">Dowiedz się więcej</a>
         </div>
       </div>
     </div>
@@ -1099,6 +1102,8 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   
   .elegant-card:hover {
@@ -1132,7 +1137,26 @@
     background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
   }
   
-  /* Style dla dynamicznej grafiki */
+  /* Karta z pełnowymiarowym wykresem */
+  .full-chart-card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Style dla dynamicznej grafiki na pełną wysokość */
+  .card-dynamic-graphic-full {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #faf3e3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 12px;
+  }
+  
+  /* Style dla dynamicznej grafiki (stara wersja) */
   .card-dynamic-graphic {
     height: 220px;
     position: relative;
@@ -1183,6 +1207,8 @@
   .floating-circles circle:nth-child(2) { animation: floatCircles 9s ease-in-out infinite 1s; }
   .floating-circles circle:nth-child(3) { animation: floatCircles 8s ease-in-out infinite 2s; }
   .floating-circles circle:nth-child(4) { animation: floatCircles 10s ease-in-out infinite 0.5s; }
+  .floating-circles circle:nth-child(5) { animation: floatCircles 9s ease-in-out infinite 1.5s; }
+  .floating-circles circle:nth-child(6) { animation: floatCircles 8s ease-in-out infinite 0.7s; }
   
   .card-content {
     padding: 30px;
