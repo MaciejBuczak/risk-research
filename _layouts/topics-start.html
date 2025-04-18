@@ -602,6 +602,7 @@
 
 
 
+
 <!-- Całkowicie przebudowana sekcja O 2_1 zgodna z obrazkiem 2 -->
 <div class="risk-section">
   <div class="risk-container">
@@ -653,151 +654,8 @@
   </div>
 </div>
 
-<style>
-/* Całkowicie nowe style, aby uniknąć konfliktów z istniejącymi */
-.risk-section {
-  background-color: #656461;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  box-sizing: border-box;
-  display: block;
-  line-height: 0; /* Eliminuje niewidzialne marginesy */
-  font-size: 0; /* Eliminuje niewidzialne marginesy */
-}
-
-.risk-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  line-height: normal;
-  font-size: 16px;
-}
-
-.risk-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  padding: 0;
-  margin: 0;
-}
-
-.risk-card {
-  background: #faf3e3;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  margin: 0;
-  padding: 0;
-  display: block;
-  line-height: normal;
-}
-
-.risk-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
-.text-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 300px;
-}
-
-.text-card h2 {
-  color: #a85903;
-  font-size: 42px;
-  font-weight: bold;
-  margin: 0;
-  text-align: center;
-}
-
-.svg-graphic {
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.img-container {
-  height: 220px;
-  position: relative;
-  overflow: hidden;
-}
-
-.img-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s ease;
-  display: block;
-}
-
-.risk-card:hover .img-container img {
-  transform: scale(1.05);
-}
-
-.img-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
-}
-
-.card-text {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
-  text-align: left;
-  position: relative;
-}
-
-.card-text h3 {
-  color: #a85903;
-  font-size: 26px;
-  margin: 0;
-  position: relative;
-}
-
-.card-text h3:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -12px;
-  width: 40px;
-  height: 3px;
-  background: #a85903;
-}
-
-@media screen and (max-width: 992px) {
-  .risk-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .risk-cards {
-    grid-template-columns: 1fr;
-  }
-  
-  .text-card h2 {
-    font-size: 36px;
-  }
-}
-</style>
-
-
-  
-
-
+<!-- Odstęp między sekcjami -->
+<div class="section-spacing"></div>
 
 <!-- Sekcja O 2_2 z poprawioną wysokością -->
 <div class="risk-section">
@@ -853,6 +711,9 @@
     </div>
   </div>
 </div>
+
+<!-- Odstęp między sekcjami -->
+<div class="section-spacing"></div>
 
 <!-- Sekcja O 2_3 z poprawioną wysokością -->
 <div class="risk-section">
@@ -911,8 +772,18 @@
   </div>
 </div>
 
+<!-- Odstęp po ostatniej sekcji -->
+<div class="section-spacing"></div>
+
 <style>
-/* Wspólne style dla O 2_2 i O 2_3 */
+/* Nowy styl dla odstępów między sekcjami */
+.section-spacing {
+  height: 60px;
+  width: 100%;
+  clear: both;
+}
+
+/* Wspólne style dla wszystkich sekcji */
 .risk-section {
   background-color: #656461;
   width: 100vw;
@@ -925,6 +796,7 @@
   display: block;
   line-height: 0; /* Eliminuje niewidzialne marginesy */
   font-size: 0; /* Eliminuje niewidzialne marginesy */
+  padding: 20px 0; /* Dodany padding dla przestrzeni wewnątrz sekcji */
 }
 
 .risk-container {
@@ -943,8 +815,9 @@
   margin: 0;
 }
 
-.risk-card {
-  background: #ece0d0; /* Zachowujemy oryginalny kolor tła dla O 2_2 */
+/* Pierwszy kontener - karty domyślne */
+.risk-section:nth-of-type(1) .risk-card {
+  background: #faf3e3;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -955,14 +828,57 @@
   line-height: normal;
 }
 
-/* Dla O 2_3 zmieniamy tło na faf3e3 */
-.risk-section:nth-of-type(2) .risk-card {
+/* Drugi kontener - karty z tłem ece0d0 */
+.risk-section:nth-of-type(3) .risk-card {
+  background: #ece0d0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  margin: 0;
+  padding: 0;
+  display: block;
+  line-height: normal;
+}
+
+/* Trzeci kontener - karty z tłem faf3e3 */
+.risk-section:nth-of-type(5) .risk-card {
   background: #faf3e3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  margin: 0;
+  padding: 0;
+  display: block;
+  line-height: normal;
 }
 
 .risk-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.text-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.text-card h2 {
+  color: #a85903;
+  font-size: 42px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+.svg-graphic {
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .img-container {
@@ -990,14 +906,6 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
-}
-
-.svg-graphic {
-  height: 220px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0 0 12px 12px;
 }
 
 .card-text {
@@ -1030,6 +938,10 @@
   .risk-cards {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .section-spacing {
+    height: 40px; /* Mniejszy odstęp na mniejszych ekranach */
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -1037,14 +949,19 @@
     grid-template-columns: 1fr;
   }
   
+  .text-card h2 {
+    font-size: 36px;
+  }
+  
   .card-text h3 {
     font-size: 22px;
   }
+  
+  .section-spacing {
+    height: 30px; /* Jeszcze mniejszy odstęp na małych ekranach */
+  }
 }
 </style>
-
-
-
 
 
 
