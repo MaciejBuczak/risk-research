@@ -603,7 +603,8 @@
 
 
 
-<!-- Całkowicie przebudowana sekcja O 2_1 zgodna z obrazkiem 2 -->
+
+<!-- Sekcja O 2_1 zgodna z obrazkiem 2 - bez zmian struktury -->
 <div class="risk-section">
   <div class="risk-container">
     <div class="risk-cards">
@@ -655,7 +656,7 @@
 </div>
 
 <!-- Odstęp między sekcjami -->
-<div class="section-spacing"></div>
+<div style="height: 60px; clear: both;"></div>
 
 <!-- Sekcja O 2_2 z poprawioną wysokością -->
 <div class="risk-section">
@@ -713,7 +714,7 @@
 </div>
 
 <!-- Odstęp między sekcjami -->
-<div class="section-spacing"></div>
+<div style="height: 60px; clear: both;"></div>
 
 <!-- Sekcja O 2_3 z poprawioną wysokością -->
 <div class="risk-section">
@@ -773,17 +774,10 @@
 </div>
 
 <!-- Odstęp po ostatniej sekcji -->
-<div class="section-spacing"></div>
+<div style="height: 60px; clear: both;"></div>
 
 <style>
-/* Nowy styl dla odstępów między sekcjami */
-.section-spacing {
-  height: 60px;
-  width: 100%;
-  clear: both;
-}
-
-/* Wspólne style dla wszystkich sekcji */
+/* Całkowicie nowe style, aby uniknąć konfliktów z istniejącymi */
 .risk-section {
   background-color: #656461;
   width: 100vw;
@@ -796,7 +790,6 @@
   display: block;
   line-height: 0; /* Eliminuje niewidzialne marginesy */
   font-size: 0; /* Eliminuje niewidzialne marginesy */
-  padding: 20px 0; /* Dodany padding dla przestrzeni wewnątrz sekcji */
 }
 
 .risk-container {
@@ -815,34 +808,7 @@
   margin: 0;
 }
 
-/* Pierwszy kontener - karty domyślne */
-.risk-section:nth-of-type(1) .risk-card {
-  background: #faf3e3;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  margin: 0;
-  padding: 0;
-  display: block;
-  line-height: normal;
-}
-
-/* Drugi kontener - karty z tłem ece0d0 */
-.risk-section:nth-of-type(3) .risk-card {
-  background: #ece0d0;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  margin: 0;
-  padding: 0;
-  display: block;
-  line-height: normal;
-}
-
-/* Trzeci kontener - karty z tłem faf3e3 */
-.risk-section:nth-of-type(5) .risk-card {
+.risk-card {
   background: #faf3e3;
   border-radius: 12px;
   overflow: hidden;
@@ -875,7 +841,7 @@
 }
 
 .svg-graphic {
-  height: 220px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -910,7 +876,7 @@
 
 .card-text {
   padding-top: 30px;
-  padding-bottom: 120px;
+  padding-bottom: 30px;
   padding-left: 30px;
   padding-right: 30px;
   text-align: left;
@@ -938,10 +904,6 @@
   .risk-cards {
     grid-template-columns: repeat(2, 1fr);
   }
-  
-  .section-spacing {
-    height: 40px; /* Mniejszy odstęp na mniejszych ekranach */
-  }
 }
 
 @media screen and (max-width: 576px) {
@@ -952,18 +914,8 @@
   .text-card h2 {
     font-size: 36px;
   }
-  
-  .card-text h3 {
-    font-size: 22px;
-  }
-  
-  .section-spacing {
-    height: 30px; /* Jeszcze mniejszy odstęp na małych ekranach */
-  }
 }
 </style>
-
-
 
 
 
