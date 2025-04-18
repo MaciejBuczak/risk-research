@@ -609,7 +609,12 @@
 
 
 
-<!-- Sekcja O 2_1 zgodna z obrazkiem 2 - bez zmian struktury -->
+
+
+
+
+
+<!-- Sekcja O 2_1 zgodna z obrazkiem 2 - zmodyfikowane kolory tła -->
 <div class="risk-section">
   <div class="risk-container">
     <div class="risk-cards">
@@ -618,12 +623,11 @@
         <h2>_ryzyko</h2>
       </div>
       
-      <!-- Środkowy obiekt - grafika SVG -->
-      <div class="risk-card">
+      <!-- Środkowy obiekt - grafika SVG - przezroczyste tło -->
+      <div class="risk-card middle-card-transparent">
         <div class="svg-graphic">
           <svg viewBox="0 0 300 300" width="100%" height="100%">
-            <!-- Tło -->
-            <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
+            <!-- Bez prostokąta tła -->
             
             <!-- Proste figury geometryczne -->
             <rect x="60" y="60" width="40" height="40" fill="#a85903" opacity="0.2" />
@@ -646,8 +650,8 @@
         </div>
       </div>
       
-      <!-- Prawy obiekt - tekstowo-zdjęciowy -->
-      <div class="risk-card">
+      <!-- Prawy obiekt - tekstowo-zdjęciowy - kolor d6d2c7 -->
+      <div class="risk-card right-card-d6d2c7">
         <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
           <div class="img-overlay"></div>
@@ -663,11 +667,12 @@
 <!-- Odstęp między sekcjami -->
 <div style="height: 60px; clear: both;"></div>
 
-<!-- Sekcja O 2_2 z poprawioną wysokością -->
+<!-- Sekcja O 2_2 z poprawioną wysokością i kolorami tła -->
 <div class="risk-section">
   <div class="risk-container">
     <div class="risk-cards">
-      <div class="risk-card">
+      <!-- Lewy obiekt - kolor ece0d0 -->
+      <div class="risk-card left-card-ece0d0">
         <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
           <div class="img-overlay"></div>
@@ -677,6 +682,7 @@
         </div>
       </div>
       
+      <!-- Środkowy obiekt - bez zmian koloru tła -->
       <div class="risk-card">
         <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
@@ -687,12 +693,11 @@
         </div>
       </div>
       
-      <!-- Trzeci obiekt z prostą grafiką -->
-      <div class="risk-card">
+      <!-- Prawy obiekt z prostą grafiką - przezroczyste tło -->
+      <div class="risk-card right-card-transparent">
         <div class="svg-graphic">
           <svg viewBox="0 0 300 300" width="100%" height="100%">
-            <!-- Tło -->
-            <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
+            <!-- Bez prostokąta tła -->
             
             <!-- Proste figury geometryczne -->
             <rect x="60" y="60" width="40" height="40" fill="#a85903" opacity="0.2" />
@@ -721,16 +726,15 @@
 <!-- Odstęp między sekcjami -->
 <div style="height: 60px; clear: both;"></div>
 
-<!-- Sekcja O 2_3 z poprawioną wysokością -->
+<!-- Sekcja O 2_3 z poprawioną wysokością i kolorami tła -->
 <div class="risk-section">
   <div class="risk-container">
     <div class="risk-cards">
-      <!-- Trzeci obiekt z prostą grafiką - teraz pierwszy (z lewej) -->
-      <div class="risk-card">
+      <!-- Lewy obiekt z prostą grafiką - przezroczyste tło -->
+      <div class="risk-card left-card-transparent">
         <div class="svg-graphic">
           <svg viewBox="0 0 300 300" width="100%" height="100%">
-            <!-- Tło -->
-            <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
+            <!-- Bez prostokąta tła -->
             
             <!-- Proste figury geometryczne -->
             <rect x="60" y="60" width="40" height="40" fill="#a85903" opacity="0.2" />
@@ -753,8 +757,8 @@
         </div>
       </div>
       
-      <!-- Pierwszy obiekt ze zdjęciem - teraz w środku -->
-      <div class="risk-card">
+      <!-- Środkowy obiekt - kolor d6d2c7 -->
+      <div class="risk-card middle-card-d6d2c7">
         <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
           <div class="img-overlay"></div>
@@ -764,8 +768,8 @@
         </div>
       </div>
       
-      <!-- Drugi obiekt ze zdjęciem - teraz po prawej -->
-      <div class="risk-card">
+      <!-- Prawy obiekt - kolor ece0d0 -->
+      <div class="risk-card right-card-ece0d0">
         <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
           <div class="img-overlay"></div>
@@ -813,6 +817,7 @@
   margin: 0;
 }
 
+/* Domyślny kolor dla kart */
 .risk-card {
   background: #faf3e3;
   border-radius: 12px;
@@ -823,6 +828,23 @@
   padding: 0;
   display: block;
   line-height: normal;
+}
+
+/* Style dla kart z różnymi kolorami tła */
+.risk-card.middle-card-transparent,
+.risk-card.right-card-transparent,
+.risk-card.left-card-transparent {
+  background: transparent;
+}
+
+.risk-card.right-card-d6d2c7,
+.risk-card.middle-card-d6d2c7 {
+  background: #d6d2c7;
+}
+
+.risk-card.left-card-ece0d0,
+.risk-card.right-card-ece0d0 {
+  background: #ece0d0;
 }
 
 .risk-card:hover {
@@ -928,12 +950,6 @@
   }
 }
 </style>
-
-
-
-
-
-
 
 
 
