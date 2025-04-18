@@ -799,34 +799,33 @@
 
 
 
-
-<!-- Sekcja O 2_2 z poprawioną wysokością kart i położeniem kreski -->
-<div class="elegant-section-full-width">
-  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-    <div class="elegant-cards-container">
-      <div class="elegant-card">
-        <div class="card-image">
+<!-- Sekcja O 2_2 z poprawioną wysokością -->
+<div class="risk-section">
+  <div class="risk-container">
+    <div class="risk-cards">
+      <div class="risk-card">
+        <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
-          <div class="card-overlay"></div>
+          <div class="img-overlay"></div>
         </div>
-        <div class="card-content">
+        <div class="card-text">
           <h3>ryzyko.OPERACYJNE</h3>
         </div>
       </div>
       
-      <div class="elegant-card">
-        <div class="card-image">
+      <div class="risk-card">
+        <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
-          <div class="card-overlay"></div>
+          <div class="img-overlay"></div>
         </div>
-        <div class="card-content">
+        <div class="card-text">
           <h3>ryzyko.KREDYTOWE</h3>
         </div>
       </div>
       
       <!-- Trzeci obiekt z prostą grafiką -->
-      <div class="elegant-card">
-        <div class="simple-graphic">
+      <div class="risk-card">
+        <div class="svg-graphic">
           <svg viewBox="0 0 300 300" width="100%" height="100%">
             <!-- Tło -->
             <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
@@ -854,131 +853,14 @@
     </div>
   </div>
 </div>
-<style>
-  .elegant-section-full-width {
-    background-color: #656461;
-    padding: 0 0;
-    margin: 0 0;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-  }
 
-  .elegant-cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-  }
-  
-  .elegant-card {
-    background: #ece0d0;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    height: auto; /* Auto zamiast fixed */
-  }
-  
-  .elegant-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card-image {
-    height: 220px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s ease;
-  }
-  
-  .elegant-card:hover .card-image img {
-    transform: scale(1.05);
-  }
-  
-  .card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
-  }
-  
-  /* Style dla prostej grafiki */
-  .simple-graphic {
-    position: relative;
-    overflow: hidden;
-    background: #faf3e3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 220px;
-    border-radius: 0 0 12px 12px;
-  }
-  
-  .card-content {
-    padding-top: 30px; /* Padding od góry */
-    padding-bottom: 120px; /* Podwojony padding od dołu dla wydłużenia obszaru */
-    padding-left: 30px;
-    padding-right: 30px;
-    text-align: left; /* Wyrównanie do lewej */
-    position: relative;
-  }
-  
-  .card-content h3 {
-    color: #a85903;
-    font-size: 26px;
-    margin: 0;
-    position: relative;
-  }
-  
-  /* Dodana kreska pod nagłówkiem */
-  .card-content h3:after {
-    content: '';
-    position: absolute;
-    left: 0; /* Kreska zaczyna się w tym samym miejscu co tekst */
-    bottom: -12px; /* Odległość kreski od tekstu */
-    width: 40px;
-    height: 3px;
-    background: #a85903;
-  }
-  
-  @media screen and (max-width: 992px) {
-    .elegant-cards-container {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media screen and (max-width: 576px) {
-    .elegant-cards-container {
-      grid-template-columns: 1fr;
-    }
-    
-    .elegant-section-full-width {
-      padding: 40px 0;
-    }
-  }
-</style>
-
-
-
-
-<!-- Sekcja O 2_3 z poprawioną wysokością kart, położeniem kreski i zmienioną kolejnością obiektów -->
-<div class="elegant-section-full-width">
-  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-    <div class="elegant-cards-container">
+<!-- Sekcja O 2_3 z poprawioną wysokością -->
+<div class="risk-section">
+  <div class="risk-container">
+    <div class="risk-cards">
       <!-- Trzeci obiekt z prostą grafiką - teraz pierwszy (z lewej) -->
-      <div class="elegant-card">
-        <div class="simple-graphic">
+      <div class="risk-card">
+        <div class="svg-graphic">
           <svg viewBox="0 0 300 300" width="100%" height="100%">
             <!-- Tło -->
             <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
@@ -1005,142 +887,160 @@
       </div>
       
       <!-- Pierwszy obiekt ze zdjęciem - teraz w środku -->
-      <div class="elegant-card">
-        <div class="card-image">
+      <div class="risk-card">
+        <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
-          <div class="card-overlay"></div>
+          <div class="img-overlay"></div>
         </div>
-        <div class="card-content">
+        <div class="card-text">
           <h3>holistyczna_ocena.MODELU</h3>
         </div>
       </div>
       
       <!-- Drugi obiekt ze zdjęciem - teraz po prawej -->
-      <div class="elegant-card">
-        <div class="card-image">
+      <div class="risk-card">
+        <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
-          <div class="card-overlay"></div>
+          <div class="img-overlay"></div>
         </div>
-        <div class="card-content">
+        <div class="card-text">
           <h3>ryzyko.NIEOCZEKIWANE</h3>
         </div>
       </div>
     </div>
   </div>
 </div>
-<style>
-  .elegant-section-full-width {
-    background-color: #656461;
-    padding: 0 0;
-    margin: 0 0;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-  }
 
-  .elegant-cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+<style>
+/* Wspólne style dla O 2_2 i O 2_3 */
+.risk-section {
+  background-color: #656461;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+  display: block;
+  line-height: 0; /* Eliminuje niewidzialne marginesy */
+  font-size: 0; /* Eliminuje niewidzialne marginesy */
+}
+
+.risk-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  line-height: normal;
+  font-size: 16px;
+}
+
+.risk-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.risk-card {
+  background: #ece0d0; /* Zachowujemy oryginalny kolor tła dla O 2_2 */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  margin: 0;
+  padding: 0;
+  display: block;
+  line-height: normal;
+}
+
+/* Dla O 2_3 zmieniamy tło na faf3e3 */
+.risk-section:nth-of-type(2) .risk-card {
+  background: #faf3e3;
+}
+
+.risk-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.img-container {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+  display: block;
+}
+
+.risk-card:hover .img-container img {
+  transform: scale(1.05);
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+}
+
+.svg-graphic {
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 12px 12px;
+}
+
+.card-text {
+  padding-top: 30px;
+  padding-bottom: 120px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: left;
+  position: relative;
+}
+
+.card-text h3 {
+  color: #a85903;
+  font-size: 26px;
+  margin: 0;
+  position: relative;
+}
+
+.card-text h3:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 40px;
+  height: 3px;
+  background: #a85903;
+}
+
+@media screen and (max-width: 992px) {
+  .risk-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .risk-cards {
+    grid-template-columns: 1fr;
   }
   
-  .elegant-card {
-    background: #faf3e3;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    height: auto; /* Auto zamiast fixed */
+  .card-text h3 {
+    font-size: 22px;
   }
-  
-  .elegant-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card-image {
-    height: 220px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s ease;
-  }
-  
-  .elegant-card:hover .card-image img {
-    transform: scale(1.05);
-  }
-  
-  .card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
-  }
-  
-  /* Style dla prostej grafiki */
-  .simple-graphic {
-    position: relative;
-    overflow: hidden;
-    background: #faf3e3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 220px;
-    border-radius: 0 0 12px 12px;
-  }
-  
-  .card-content {
-    padding-top: 30px; /* Padding od góry */
-    padding-bottom: 120px; /* Podwojony padding od dołu dla wydłużenia obszaru */
-    padding-left: 30px;
-    padding-right: 30px;
-    text-align: left; /* Wyrównanie do lewej */
-    position: relative;
-  }
-  
-  .card-content h3 {
-    color: #a85903;
-    font-size: 26px;
-    margin: 0;
-    position: relative;
-  }
-  
-  /* Dodana kreska pod nagłówkiem */
-  .card-content h3:after {
-    content: '';
-    position: absolute;
-    left: 0; /* Kreska zaczyna się w tym samym miejscu co tekst */
-    bottom: -12px; /* Odległość kreski od tekstu */
-    width: 40px;
-    height: 3px;
-    background: #a85903;
-  }
-  
-  @media screen and (max-width: 992px) {
-    .elegant-cards-container {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media screen and (max-width: 576px) {
-    .elegant-cards-container {
-      grid-template-columns: 1fr;
-    }
-    
-    .elegant-section-full-width {
-      padding: 40px 0;
-    }
-  }
+}
 </style>
 
 
