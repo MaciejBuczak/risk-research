@@ -601,21 +601,19 @@
 
 
 
-<!-- Sekcja O 2_1 z nowym układem obiektów - POPRAWIONA WYSOKOŚĆ -->
-<div class="elegant-section-full-width">
-  <div class="ryzmod-container">
-    <div class="elegant-cards-container">
-      
-      <!-- Lewy obiekt - tylko tekst RYZYKO jak na screenie -->
-      <div class="elegant-card text-only-card">
-        <div class="text-content">
-          <h2>_ryzyko</h2>
-        </div>
+
+<!-- Całkowicie przebudowana sekcja O 2_1 zgodna z obrazkiem 2 -->
+<div class="risk-section">
+  <div class="risk-container">
+    <div class="risk-cards">
+      <!-- Lewy obiekt - tylko tekst RYZYKO -->
+      <div class="risk-card text-card">
+        <h2>_ryzyko</h2>
       </div>
       
       <!-- Środkowy obiekt - grafika SVG -->
-      <div class="elegant-card">
-        <div class="simple-graphic">
+      <div class="risk-card">
+        <div class="svg-graphic">
           <svg viewBox="0 0 300 300" width="100%" height="100%">
             <!-- Tło -->
             <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
@@ -642,169 +640,159 @@
       </div>
       
       <!-- Prawy obiekt - tekstowo-zdjęciowy -->
-      <div class="elegant-card">
-        <div class="card-image">
+      <div class="risk-card">
+        <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
-          <div class="card-overlay"></div>
+          <div class="img-overlay"></div>
         </div>
-        <div class="card-content">
+        <div class="card-text">
           <h3>ryzyko.MODELI</h3>
         </div>
       </div>
-      
     </div>
   </div>
 </div>
+
 <style>
-  .elegant-section-full-width {
-    background-color: #656461;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    height: auto;
-    /* Usunięto padding i margin, aby maksymalnie zmniejszyć wysokość */
-  }
+/* Całkowicie nowe style, aby uniknąć konfliktów z istniejącymi */
+.risk-section {
+  background-color: #656461;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+  display: block;
+  line-height: 0; /* Eliminuje niewidzialne marginesy */
+  font-size: 0; /* Eliminuje niewidzialne marginesy */
+}
 
-  .ryzmod-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
+.risk-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  line-height: normal;
+  font-size: 16px;
+}
 
-  .elegant-cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    padding: 0;
-    /* Usunięto padding, aby karty dotykały górnych krawędzi */
-    margin: 0;
+.risk-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.risk-card {
+  background: #faf3e3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  margin: 0;
+  padding: 0;
+  display: block;
+  line-height: normal;
+}
+
+.risk-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.text-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.text-card h2 {
+  color: #a85903;
+  font-size: 42px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+.svg-graphic {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-container {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+  display: block;
+}
+
+.risk-card:hover .img-container img {
+  transform: scale(1.05);
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+}
+
+.card-text {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: left;
+  position: relative;
+}
+
+.card-text h3 {
+  color: #a85903;
+  font-size: 26px;
+  margin: 0;
+  position: relative;
+}
+
+.card-text h3:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 40px;
+  height: 3px;
+  background: #a85903;
+}
+
+@media screen and (max-width: 992px) {
+  .risk-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .risk-cards {
+    grid-template-columns: 1fr;
   }
   
-  .elegant-card {
-    background: #faf3e3;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    height: auto;
-    margin-top: 0;
-    margin-bottom: 0;
+  .text-card h2 {
+    font-size: 36px;
   }
-  
-  .elegant-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Nowy styl dla karty tylko z tekstem */
-  .text-only-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .text-content {
-    padding: 30px;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .text-content h2 {
-    color: #a85903;
-    font-size: 42px;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .card-image {
-    height: 220px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s ease;
-  }
-  
-  .elegant-card:hover .card-image img {
-    transform: scale(1.05);
-  }
-  
-  .card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
-  }
-  
-  /* Style dla prostej grafiki */
-  .simple-graphic {
-    position: relative;
-    overflow: hidden;
-    background: #faf3e3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px; /* Zwiększona wysokość dla lepszej proporcji */
-    border-radius: 12px;
-  }
-  
-  .card-content {
-    padding-top: 30px;
-    padding-bottom: 120px;
-    padding-left: 30px;
-    padding-right: 30px;
-    text-align: left;
-    position: relative;
-  }
-  
-  .card-content h3 {
-    color: #a85903;
-    font-size: 26px;
-    margin: 0;
-    position: relative;
-  }
-  
-  /* Dodana kreska pod nagłówkiem */
-  .card-content h3:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -12px;
-    width: 40px;
-    height: 3px;
-    background: #a85903;
-  }
-  
-  @media screen and (max-width: 992px) {
-    .elegant-cards-container {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media screen and (max-width: 576px) {
-    .elegant-cards-container {
-      grid-template-columns: 1fr;
-    }
-    
-    .text-content h2 {
-      font-size: 36px;
-    }
-  }
+}
 </style>
-
 
 
   
