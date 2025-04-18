@@ -988,37 +988,108 @@
 
 
 
-
-<!-- Lewy obiekt -->
-<div class="risk-section">
-  <p class="section-number">O 2.1.2</p>
-  <h2 class="risk-title">
-    <span class="primary-text">RYZYKO</span>
-    <span class="secondary-text">OPERACYJNE</span>
-  </h2>
-</div>
-
-<!-- Środkowy obiekt -->
-<div class="risk-section">
-  <p class="section-number">O 2.2.2</p>
-  <h2 class="risk-title">
-    <span class="primary-text">RYZYKO</span>
-    <span class="secondary-text">KREDYTOWE</span>
-  </h2>
+<!-- Sekcja O 2 -->
+<div class="risk-categories-section">
+  <div class="risk-container">
+    <!-- Lewy obiekt -->
+    <div class="risk-box">
+      <div class="risk-image">
+        <img src="/risk-research/assets/images/ryzyko-operacyjne.jpg" alt="Ryzyko operacyjne">
+      </div>
+      <div class="risk-content">
+        <p class="section-number">O 2.1.2</p>
+        <h2 class="risk-title">
+          <span class="primary-text">RYZYKO</span>
+          <span class="secondary-text">OPERACYJNE</span>
+        </h2>
+      </div>
+    </div>
+    
+    <!-- Środkowy obiekt -->
+    <div class="risk-box">
+      <div class="risk-image">
+        <img src="/risk-research/assets/images/ryzyko-kredytowe.jpg" alt="Ryzyko kredytowe">
+      </div>
+      <div class="risk-content">
+        <p class="section-number">O 2.2.2</p>
+        <h2 class="risk-title">
+          <span class="primary-text">RYZYKO</span>
+          <span class="secondary-text">KREDYTOWE</span>
+        </h2>
+      </div>
+    </div>
+    
+    <!-- Prawy obiekt -->
+    <div class="risk-box">
+      <div class="risk-image">
+        <img src="/risk-research/assets/images/ryzyko-rynkowe.jpg" alt="Ryzyko rynkowe">
+      </div>
+      <div class="risk-content">
+        <p class="section-number">O 2.3.2</p>
+        <h2 class="risk-title">
+          <span class="primary-text">RYZYKO</span>
+          <span class="secondary-text">RYNKOWE</span>
+        </h2>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
-  .risk-section {
+  .risk-categories-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+  }
+  
+  .risk-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  .risk-box {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .risk-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .risk-image {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .risk-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .risk-box:hover .risk-image img {
+    transform: scale(1.05);
+  }
+  
+  .risk-content {
     background-color: #f2e8d9;
     padding: 40px 30px;
     text-align: center;
-    border-radius: 8px;
   }
   
   .section-number {
     color: #444;
     margin-bottom: 20px;
     font-size: 16px;
+    font-weight: 500;
   }
   
   .risk-title {
@@ -1039,9 +1110,32 @@
     font-size: 32px;
     font-weight: bold;
   }
+  
+  @media (max-width: 992px) {
+    .risk-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .risk-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .risk-content {
+      padding: 30px 20px;
+    }
+    
+    .primary-text {
+      font-size: 30px;
+    }
+    
+    .secondary-text {
+      font-size: 26px;
+    }
+  }
 </style>
 
-  
 
 
 <!-- Sekcja O 3 - na pełną szerokość z zawartością w kontenerze -->
