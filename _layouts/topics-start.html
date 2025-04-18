@@ -983,7 +983,6 @@
   
 
 
-
 <!-- Sekcja O 2 -->
 <div class="elegant-section-full-width">
   <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
@@ -1289,23 +1288,23 @@
   
   @keyframes floatBubbles {
     0% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-10px) translateX(5px); }
-    50% { transform: translateY(0) translateX(10px); }
-    75% { transform: translateY(10px) translateX(5px); }
+    25% { transform: translateY(-5px) translateX(2px); }
+    50% { transform: translateY(0) translateX(4px); }
+    75% { transform: translateY(5px) translateX(2px); }
     100% { transform: translateY(0) translateX(0); }
   }
   
   .floating-bubbles circle {
-    animation: floatBubbles 20s ease-in-out infinite;
+    animation: floatBubbles 60s ease-in-out infinite;
     transform-origin: center;
   }
   
-  .floating-bubbles circle:nth-child(1) { animation-duration: 18s; animation-delay: 0s; }
-  .floating-bubbles circle:nth-child(2) { animation-duration: 22s; animation-delay: 1s; }
-  .floating-bubbles circle:nth-child(3) { animation-duration: 19s; animation-delay: 2s; }
-  .floating-bubbles circle:nth-child(4) { animation-duration: 24s; animation-delay: 3s; }
-  .floating-bubbles circle:nth-child(5) { animation-duration: 21s; animation-delay: 1.5s; }
-  .floating-bubbles circle:nth-child(6) { animation-duration: 20s; animation-delay: 2.5s; }
+  .floating-bubbles circle:nth-child(1) { animation-duration: 65s; animation-delay: 0s; }
+  .floating-bubbles circle:nth-child(2) { animation-duration: 70s; animation-delay: 5s; }
+  .floating-bubbles circle:nth-child(3) { animation-duration: 72s; animation-delay: 10s; }
+  .floating-bubbles circle:nth-child(4) { animation-duration: 68s; animation-delay: 15s; }
+  .floating-bubbles circle:nth-child(5) { animation-duration: 75s; animation-delay: 7s; }
+  .floating-bubbles circle:nth-child(6) { animation-duration: 80s; animation-delay: 12s; }
   
   @keyframes rotateSquare {
     0% { transform: rotate(0deg); }
@@ -1314,24 +1313,24 @@
   
   .rotating-square {
     transform-origin: 20px 20px;
-    animation: rotateSquare 30s linear infinite;
+    animation: rotateSquare 120s linear infinite;
   }
   
   .rotating-square-reverse {
     transform-origin: 280px 20px;
-    animation: rotateSquare 30s linear infinite reverse;
+    animation: rotateSquare 120s linear infinite reverse;
   }
   
   .rotating-square-delay {
     transform-origin: 20px 380px;
-    animation: rotateSquare 30s linear infinite;
-    animation-delay: 5s;
+    animation: rotateSquare 120s linear infinite;
+    animation-delay: 20s;
   }
   
   .rotating-square-reverse-delay {
     transform-origin: 280px 380px;
-    animation: rotateSquare 30s linear infinite reverse;
-    animation-delay: 5s;
+    animation: rotateSquare 120s linear infinite reverse;
+    animation-delay: 20s;
   }
   
   .card-content {
