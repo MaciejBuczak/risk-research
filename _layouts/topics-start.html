@@ -988,7 +988,12 @@
 
 
 
-<!-- Sekcja O 2 -->
+
+
+
+
+
+<!-- Sekcja O 2 z poprawioną wysokością kart -->
 <div class="elegant-section-full-width">
   <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
     <div class="elegant-cards-container">
@@ -997,7 +1002,7 @@
           <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
           <div class="card-overlay"></div>
         </div>
-        <div class="card-content" style="color: #a85903;">
+        <div class="card-content">
           <h3>RYZYKO MODELI</h3>
         </div>
       </div>
@@ -1013,29 +1018,29 @@
       </div>
       
       <!-- Trzeci obiekt z prostą grafiką -->
-      <div class="elegant-card full-chart-card">
+      <div class="elegant-card">
         <div class="simple-graphic">
-          <svg viewBox="0 0 300 400" width="100%" height="100%">
+          <svg viewBox="0 0 300 300" width="100%" height="100%">
             <!-- Tło -->
             <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
             
             <!-- Proste figury geometryczne -->
-            <rect x="60" y="80" width="40" height="40" fill="#a85903" opacity="0.2" />
-            <rect x="200" y="120" width="60" height="60" fill="#a85903" opacity="0.15" />
-            <rect x="100" y="280" width="30" height="30" fill="#a85903" opacity="0.25" />
+            <rect x="60" y="60" width="40" height="40" fill="#a85903" opacity="0.2" />
+            <rect x="200" y="100" width="60" height="60" fill="#a85903" opacity="0.15" />
+            <rect x="100" y="210" width="30" height="30" fill="#a85903" opacity="0.25" />
             
-            <circle cx="120" cy="100" r="25" fill="#1c8ab0" opacity="0.2" />
-            <circle cx="240" cy="220" r="30" fill="#1c8ab0" opacity="0.15" />
-            <circle cx="80" cy="240" r="20" fill="#1c8ab0" opacity="0.25" />
+            <circle cx="120" cy="80" r="25" fill="#1c8ab0" opacity="0.2" />
+            <circle cx="240" cy="180" r="30" fill="#1c8ab0" opacity="0.15" />
+            <circle cx="80" cy="190" r="20" fill="#1c8ab0" opacity="0.25" />
             
-            <polygon points="180,40 160,80 200,80" fill="#8ab01c" opacity="0.2" />
-            <polygon points="220,300 190,350 250,350" fill="#8ab01c" opacity="0.15" />
-            <polygon points="60,180 40,220 80,220" fill="#8ab01c" opacity="0.25" />
+            <polygon points="180,40 160,70 200,70" fill="#8ab01c" opacity="0.2" />
+            <polygon points="220,230 190,260 250,260" fill="#8ab01c" opacity="0.15" />
+            <polygon points="60,140 40,170 80,170" fill="#8ab01c" opacity="0.25" />
             
             <!-- Kilka prostych linii łączących -->
-            <line x1="80" y1="100" x2="120" y2="100" stroke="#a85903" stroke-width="1" opacity="0.1" />
-            <line x1="180" y1="80" x2="200" y2="120" stroke="#8ab01c" stroke-width="1" opacity="0.1" />
-            <line x1="240" y1="220" x2="220" y2="300" stroke="#1c8ab0" stroke-width="1" opacity="0.1" />
+            <line x1="80" y1="80" x2="120" y2="80" stroke="#a85903" stroke-width="1" opacity="0.1" />
+            <line x1="180" y1="70" x2="200" y2="100" stroke="#8ab01c" stroke-width="1" opacity="0.1" />
+            <line x1="240" y1="180" x2="220" y2="230" stroke="#1c8ab0" stroke-width="1" opacity="0.1" />
           </svg>
         </div>
       </div>
@@ -1067,9 +1072,7 @@
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    /* Usunięto height: 100% aby karty nie rozciągały się na pełną wysokość */
   }
   
   .elegant-card:hover {
@@ -1103,33 +1106,27 @@
     background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
   }
   
-  /* Karta z pełnowymiarowym wykresem */
-  .full-chart-card {
-    display: flex;
-    flex-direction: column;
-  }
-  
   /* Style dla prostej grafiki */
   .simple-graphic {
-    flex: 1;
     position: relative;
     overflow: hidden;
     background: #faf3e3;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    border-radius: 12px;
+    height: 220px; /* Ustalona wysokość zamiast flex: 1 */
+    border-radius: 0 0 12px 12px;
   }
   
   .card-content {
-    padding: 30px;
+    padding: 25px 30px; /* Zmniejszono padding z góry i dołu */
+    text-align: center; /* Wycentrowanie tekstu */
   }
   
   .card-content h3 {
-    color: #333;
+    color: #a85903; /* Kolor brązowy dla wszystkich nagłówków */
     font-size: 22px;
-    margin-bottom: 15px;
+    margin: 0; /* Usunięto margines na dole */
     position: relative;
     padding-bottom: 12px;
   }
@@ -1137,45 +1134,12 @@
   .card-content h3:after {
     content: '';
     position: absolute;
-    left: 0;
+    left: 50%; /* Wycentrowanie linii pod tekstem */
+    transform: translateX(-50%); /* Wycentrowanie linii pod tekstem */
     bottom: 0;
     width: 40px;
     height: 3px;
     background: #a85903;
-  }
-  
-  .card-content p {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    font-size: 16px;
-    text-indent: 0;
-  }
-  
-  .elegant-button {
-    display: inline-block;
-    color: #a85903;
-    font-weight: 500;
-    text-decoration: none;
-    font-size: 16px;
-    position: relative;
-    padding-bottom: 2px;
-    transition: all 0.3s ease;
-  }
-  
-  .elegant-button:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: #a85903;
-    transition: width 0.3s ease;
-  }
-  
-  .elegant-button:hover:after {
-    width: 100%;
   }
   
   @media screen and (max-width: 992px) {
@@ -1194,6 +1158,14 @@
     }
   }
 </style>
+
+
+
+
+
+
+
+  
 
 
 
