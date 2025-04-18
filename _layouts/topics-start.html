@@ -604,18 +604,19 @@
 
 
 
-<!-- Poprawiona sekcja O 2_1 z szarym paskiem z lewej strony -->
-<div class="risk-section">
+<!-- Sekcja O 2_1 zgodna z obrazkiem 2 - z szarym paskiem po lewej -->
+<div class="risk-section layout-o21">
   <div class="risk-container">
-    <div class="risk-cards with-sidebar">
-      <!-- Szary pasek z napisem "_ryzyko" -->
-      <div class="gray-sidebar">
+    <!-- Główny grid z 3 kolumnami -->
+    <div class="layout-grid">
+      <!-- Szary pasek z tekstem -->
+      <div class="gray-bar">
         <h2 class="ryzyko-text">_ryzyko</h2>
       </div>
       
-      <!-- Środkowy obiekt - grafika SVG - przezroczyste tło -->
-      <div class="risk-card middle-card-transparent">
-        <div class="svg-graphic">
+      <!-- Środkowy element z przezroczystym tłem -->
+      <div class="yellow-box">
+        <div class="svg-container">
           <svg viewBox="0 0 300 300" width="100%" height="100%">
             <!-- Proste figury geometryczne -->
             <rect x="60" y="60" width="40" height="40" fill="#a85903" opacity="0.2" />
@@ -638,13 +639,13 @@
         </div>
       </div>
       
-      <!-- Prawy obiekt - tekstowo-zdjęciowy - kolor d6d2c7 -->
-      <div class="risk-card right-card-d6d2c7">
+      <!-- Prawy element z kolorem d6d2c7 -->
+      <div class="yellow-box right-box">
         <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
           <div class="img-overlay"></div>
         </div>
-        <div class="card-text">
+        <div class="text-container">
           <h3>ryzyko.<span>MODELI</span></h3>
         </div>
       </div>
@@ -652,26 +653,159 @@
   </div>
 </div>
 
+<!-- Odstęp między sekcjami -->
+<div style="height: 60px; clear: both;"></div>
+
+<!-- Sekcja O 2_2 z poprawioną wysokością -->
+<div class="risk-section">
+  <div class="risk-container">
+    <div class="risk-cards">
+      <div class="risk-card">
+        <div class="img-container">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
+          <div class="img-overlay"></div>
+        </div>
+        <div class="card-text">
+          <h3>ryzyko.<span>OPERACYJNE</span></h3>
+        </div>
+      </div>
+      
+      <div class="risk-card">
+        <div class="img-container">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="img-overlay"></div>
+        </div>
+        <div class="card-text">
+          <h3>ryzyko.<span>KREDYTOWE</span></h3>
+        </div>
+      </div>
+      
+      <!-- Trzeci obiekt z prostą grafiką -->
+      <div class="risk-card">
+        <div class="svg-graphic">
+          <svg viewBox="0 0 300 300" width="100%" height="100%">
+            <!-- Tło -->
+            <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
+            
+            <!-- Proste figury geometryczne -->
+            <rect x="60" y="60" width="40" height="40" fill="#a85903" opacity="0.2" />
+            <rect x="200" y="100" width="60" height="60" fill="#a85903" opacity="0.15" />
+            <rect x="100" y="210" width="30" height="30" fill="#a85903" opacity="0.25" />
+            
+            <circle cx="120" cy="80" r="25" fill="#1c8ab0" opacity="0.2" />
+            <circle cx="240" cy="180" r="30" fill="#1c8ab0" opacity="0.15" />
+            <circle cx="80" cy="190" r="20" fill="#1c8ab0" opacity="0.25" />
+            
+            <polygon points="180,40 160,70 200,70" fill="#8ab01c" opacity="0.2" />
+            <polygon points="220,230 190,260 250,260" fill="#8ab01c" opacity="0.15" />
+            <polygon points="60,140 40,170 80,170" fill="#8ab01c" opacity="0.25" />
+            
+            <!-- Kilka prostych linii łączących -->
+            <line x1="80" y1="80" x2="120" y2="80" stroke="#a85903" stroke-width="1" opacity="0.1" />
+            <line x1="180" y1="70" x2="200" y2="100" stroke="#8ab01c" stroke-width="1" opacity="0.1" />
+            <line x1="240" y1="180" x2="220" y2="230" stroke="#1c8ab0" stroke-width="1" opacity="0.1" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Odstęp między sekcjami -->
+<div style="height: 60px; clear: both;"></div>
+
+<!-- Sekcja O 2_3 z poprawioną wysokością -->
+<div class="risk-section">
+  <div class="risk-container">
+    <div class="risk-cards">
+      <!-- Trzeci obiekt z prostą grafiką - teraz pierwszy (z lewej) -->
+      <div class="risk-card">
+        <div class="svg-graphic">
+          <svg viewBox="0 0 300 300" width="100%" height="100%">
+            <!-- Tło -->
+            <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
+            
+            <!-- Proste figury geometryczne -->
+            <rect x="60" y="60" width="40" height="40" fill="#a85903" opacity="0.2" />
+            <rect x="200" y="100" width="60" height="60" fill="#a85903" opacity="0.15" />
+            <rect x="100" y="210" width="30" height="30" fill="#a85903" opacity="0.25" />
+            
+            <circle cx="120" cy="80" r="25" fill="#1c8ab0" opacity="0.2" />
+            <circle cx="240" cy="180" r="30" fill="#1c8ab0" opacity="0.15" />
+            <circle cx="80" cy="190" r="20" fill="#1c8ab0" opacity="0.25" />
+            
+            <polygon points="180,40 160,70 200,70" fill="#8ab01c" opacity="0.2" />
+            <polygon points="220,230 190,260 250,260" fill="#8ab01c" opacity="0.15" />
+            <polygon points="60,140 40,170 80,170" fill="#8ab01c" opacity="0.25" />
+            
+            <!-- Kilka prostych linii łączących -->
+            <line x1="80" y1="80" x2="120" y2="80" stroke="#a85903" stroke-width="1" opacity="0.1" />
+            <line x1="180" y1="70" x2="200" y2="100" stroke="#8ab01c" stroke-width="1" opacity="0.1" />
+            <line x1="240" y1="180" x2="220" y2="230" stroke="#1c8ab0" stroke-width="1" opacity="0.1" />
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Pierwszy obiekt ze zdjęciem - teraz w środku -->
+      <div class="risk-card">
+        <div class="img-container">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
+          <div class="img-overlay"></div>
+        </div>
+        <div class="card-text">
+          <h3>holistyczna_ocena.<span>MODELU</span></h3>
+        </div>
+      </div>
+      
+      <!-- Drugi obiekt ze zdjęciem - teraz po prawej -->
+      <div class="risk-card">
+        <div class="img-container">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="img-overlay"></div>
+        </div>
+        <div class="card-text">
+          <h3>ryzyko.<span>NIEOCZEKIWANE</span></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Odstęp po ostatniej sekcji -->
+<div style="height: 60px; clear: both;"></div>
+
 <style>
-/* Style dla poprawionego układu kontenera O 2_1 */
-.risk-cards.with-sidebar {
+/* Style dla kontenera O 2_1 */
+.risk-section.layout-o21 {
+  background-color: #656461;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 0;
+}
+
+.layout-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
-/* Szary pasek z boku */
-.gray-sidebar {
+/* Szary pasek po lewej */
+.gray-bar {
   background-color: #706f6c;
   border-radius: 12px;
+  padding: 20px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  padding-left: 30px;
-  height: 100%;
+  height: 350px;
 }
 
-/* Tekst ryzyko */
 .ryzyko-text {
   color: #a85903;
   font-size: 42px;
@@ -679,30 +813,192 @@
   margin: 0;
 }
 
-/* Media query dla mniejszych ekranów */
+/* Żółte boxy (środkowy i prawy) */
+.yellow-box {
+  background-color: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.yellow-box.right-box {
+  background-color: #d6d2c7;
+}
+
+.svg-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-container {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+}
+
+.text-container {
+  padding: 30px;
+  position: relative;
+}
+
+.text-container h3 {
+  margin: 0;
+  color: #a85903;
+  font-size: 26px;
+  position: relative;
+}
+
+.text-container h3 span {
+  color: #555;
+}
+
+.text-container h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 40px;
+  height: 3px;
+  background-color: #555;
+}
+
+/* Style dla pozostałych kontenerów */
+.risk-section {
+  background-color: #656461;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+  display: block;
+  line-height: 0;
+  font-size: 0;
+}
+
+.risk-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  line-height: normal;
+  font-size: 16px;
+}
+
+.risk-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.risk-card {
+  background: #faf3e3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  margin: 0;
+  padding: 0;
+  display: block;
+  line-height: normal;
+}
+
+.risk-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.svg-graphic {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-text {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: left;
+  position: relative;
+}
+
+.card-text h3 {
+  position: relative;
+  margin: 0;
+  font-size: 26px;
+  color: #a85903;
+}
+
+.card-text h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 40px;
+  height: 3px;
+  background-color: #555;
+}
+
+.card-text h3 span {
+  color: #555;
+}
+
+/* Responsywność */
 @media screen and (max-width: 992px) {
-  .risk-cards.with-sidebar {
+  .layout-grid {
     grid-template-columns: 1fr 1fr;
   }
   
-  .gray-sidebar {
+  .gray-bar {
     grid-column: 1 / span 2;
     height: 80px;
     margin-bottom: 20px;
   }
+  
+  .risk-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media screen and (max-width: 576px) {
-  .risk-cards.with-sidebar {
+  .layout-grid {
     grid-template-columns: 1fr;
   }
   
-  .gray-sidebar {
+  .gray-bar {
     grid-column: 1;
+  }
+  
+  .risk-cards {
+    grid-template-columns: 1fr;
   }
 }
 </style>
-
 
 
 
@@ -1004,7 +1300,94 @@
 
 
 
+  <!-- Zmodyfikowana sekcja O 2_1 z szarym paskiem zamiast obiektu po lewej -->
+<div class="risk-section">
+  <div class="risk-container o21-modified">
+    <!-- Szary pasek z napisem "_ryzyko" -->
+    <div class="gray-bar">
+      <h2 class="ryzyko-text">_ryzyko</h2>
+    </div>
+    
+    <div class="risk-cards two-columns">
+      <!-- Środkowy obiekt - grafika SVG - przezroczyste tło -->
+      <div class="risk-card middle-card-transparent">
+        <div class="svg-graphic">
+          <svg viewBox="0 0 300 300" width="100%" height="100%">
+            <!-- Proste figury geometryczne -->
+            <rect x="60" y="60" width="40" height="40" fill="#a85903" opacity="0.2" />
+            <rect x="200" y="100" width="60" height="60" fill="#a85903" opacity="0.15" />
+            <rect x="100" y="210" width="30" height="30" fill="#a85903" opacity="0.25" />
+            
+            <circle cx="120" cy="80" r="25" fill="#1c8ab0" opacity="0.2" />
+            <circle cx="240" cy="180" r="30" fill="#1c8ab0" opacity="0.15" />
+            <circle cx="80" cy="190" r="20" fill="#1c8ab0" opacity="0.25" />
+            
+            <polygon points="180,40 160,70 200,70" fill="#8ab01c" opacity="0.2" />
+            <polygon points="220,230 190,260 250,260" fill="#8ab01c" opacity="0.15" />
+            <polygon points="60,140 40,170 80,170" fill="#8ab01c" opacity="0.25" />
+            
+            <!-- Kilka prostych linii łączących -->
+            <line x1="80" y1="80" x2="120" y2="80" stroke="#a85903" stroke-width="1" opacity="0.1" />
+            <line x1="180" y1="70" x2="200" y2="100" stroke="#8ab01c" stroke-width="1" opacity="0.1" />
+            <line x1="240" y1="180" x2="220" y2="230" stroke="#1c8ab0" stroke-width="1" opacity="0.1" />
+          </svg>
+        </div>
+      </div>
       
+      <!-- Prawy obiekt - tekstowo-zdjęciowy - kolor d6d2c7 -->
+      <div class="risk-card right-card-d6d2c7">
+        <div class="img-container">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="img-overlay"></div>
+        </div>
+        <div class="card-text">
+          <h3>ryzyko.<span>MODELI</span></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Style dla zmodyfikowanego kontenera O 2_1 */
+.risk-container.o21-modified {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Szary pasek */
+.gray-bar {
+  background-color: #706f6c;
+  height: 80px;
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 30px;
+}
+
+/* Tekst ryzyko */
+.ryzyko-text {
+  color: #a85903;
+  font-size: 42px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Dwie kolumny zamiast trzech */
+.risk-cards.two-columns {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Media query dla mniejszych ekranów */
+@media screen and (max-width: 992px) {
+  .risk-cards.two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+</style>    
 
 
 
