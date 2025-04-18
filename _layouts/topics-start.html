@@ -989,9 +989,9 @@
 
 
 
-  <!-- Sekcja O 2 -->
+ <!-- Sekcja O 2 -->
 <div class="elegant-section-full-width">
-  <div class="ryzmod-container">
+  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
     <div class="elegant-cards-container">
       <div class="elegant-card">
         <div class="card-image">
@@ -1017,100 +1017,30 @@
         </div>
       </div>
       
-      <!-- Zmodyfikowany trzeci obiekt z nową dynamiczną grafiką -->
+      <!-- Trzeci obiekt z prostą grafiką -->
       <div class="elegant-card full-chart-card">
-        <div class="card-dynamic-graphic-full">
+        <div class="simple-graphic">
           <svg viewBox="0 0 300 400" width="100%" height="100%">
             <!-- Tło -->
             <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
             
-            <!-- Gradient tła -->
-            <rect x="0" y="0" width="100%" height="100%" fill="url(#background-gradient)" rx="8" />
+            <!-- Proste figury geometryczne -->
+            <rect x="60" y="80" width="40" height="40" fill="#a85903" opacity="0.2" />
+            <rect x="200" y="120" width="60" height="60" fill="#a85903" opacity="0.15" />
+            <rect x="100" y="280" width="30" height="30" fill="#a85903" opacity="0.25" />
             
-            <!-- Powoli pływające figury geometryczne -->
+            <circle cx="120" cy="100" r="25" fill="#1c8ab0" opacity="0.2" />
+            <circle cx="240" cy="220" r="30" fill="#1c8ab0" opacity="0.15" />
+            <circle cx="80" cy="240" r="20" fill="#1c8ab0" opacity="0.25" />
             
-            <!-- Kwadraty -->
-            <rect x="40" y="60" width="25" height="25" fill="#a85903" opacity="0.2" class="floating-shape square-1" />
-            <rect x="180" y="120" width="40" height="40" fill="#a85903" opacity="0.15" class="floating-shape square-2" />
-            <rect x="70" y="280" width="20" height="20" fill="#a85903" opacity="0.25" class="floating-shape square-3" />
-            <rect x="220" y="320" width="30" height="30" fill="#a85903" opacity="0.2" class="floating-shape square-4" />
-            <rect x="140" y="180" width="15" height="15" fill="#a85903" opacity="0.3" class="floating-shape square-5" />
+            <polygon points="180,40 160,80 200,80" fill="#8ab01c" opacity="0.2" />
+            <polygon points="220,300 190,350 250,350" fill="#8ab01c" opacity="0.15" />
+            <polygon points="60,180 40,220 80,220" fill="#8ab01c" opacity="0.25" />
             
-            <!-- Koła -->
-            <circle cx="90" cy="100" r="18" fill="#1c8ab0" opacity="0.15" class="floating-shape circle-1" />
-            <circle cx="240" cy="80" r="25" fill="#1c8ab0" opacity="0.2" class="floating-shape circle-2" />
-            <circle cx="60" cy="220" r="15" fill="#1c8ab0" opacity="0.25" class="floating-shape circle-3" />
-            <circle cx="200" cy="250" r="20" fill="#1c8ab0" opacity="0.1" class="floating-shape circle-4" />
-            <circle cx="120" cy="350" r="22" fill="#1c8ab0" opacity="0.2" class="floating-shape circle-5" />
-            
-            <!-- Trójkąty -->
-            <polygon points="150,40 130,70 170,70" fill="#8ab01c" opacity="0.2" class="floating-shape triangle-1" />
-            <polygon points="260,180 230,220 290,220" fill="#8ab01c" opacity="0.15" class="floating-shape triangle-2" />
-            <polygon points="50,150 30,180 70,180" fill="#8ab01c" opacity="0.25" class="floating-shape triangle-3" />
-            <polygon points="180,300 160,340 200,340" fill="#8ab01c" opacity="0.2" class="floating-shape triangle-4" />
-            <polygon points="100,240 80,270 120,270" fill="#8ab01c" opacity="0.3" class="floating-shape triangle-5" />
-            
-            <!-- Linie łączące niektóre figury -->
-            <line x1="65" y1="72" x2="90" y2="100" stroke="#a85903" stroke-width="0.5" opacity="0.1" class="connecting-line line-1" />
-            <line x1="150" y1="70" x2="180" y2="120" stroke="#8ab01c" stroke-width="0.5" opacity="0.1" class="connecting-line line-2" />
-            <line x1="240" y1="80" x2="260" y2="180" stroke="#1c8ab0" stroke-width="0.5" opacity="0.1" class="connecting-line line-3" />
-            <line x1="50" y1="150" x2="70" y2="280" stroke="#8ab01c" stroke-width="0.5" opacity="0.1" class="connecting-line line-4" />
-            <line x1="200" y1="250" x2="220" y2="320" stroke="#1c8ab0" stroke-width="0.5" opacity="0.1" class="connecting-line line-5" />
-            <line x1="100" y1="240" x2="120" y2="350" stroke="#8ab01c" stroke-width="0.5" opacity="0.1" class="connecting-line line-6" />
-            <line x1="90" y1="100" x2="140" y2="180" stroke="#1c8ab0" stroke-width="0.5" opacity="0.1" class="connecting-line line-7" />
-            <line x1="180" y1="300" x2="150" y2="180" stroke="#8ab01c" stroke-width="0.5" opacity="0.1" class="connecting-line line-8" />
-            
-            <!-- Dekoracyjne kropki w tle -->
-            <g class="background-dots">
-              <circle cx="30" cy="30" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="60" cy="30" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="90" cy="30" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="120" cy="30" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="150" cy="30" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="180" cy="30" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="210" cy="30" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="240" cy="30" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="30" r="1" fill="#a85903" opacity="0.2" />
-              
-              <circle cx="30" cy="60" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="60" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="30" cy="90" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="90" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="30" cy="120" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="120" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="30" cy="150" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="150" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="30" cy="180" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="180" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="30" cy="210" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="210" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="30" cy="240" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="240" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="30" cy="270" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="270" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="30" cy="300" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="300" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="30" cy="330" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="330" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="30" cy="360" r="1" fill="#a85903" opacity="0.2" />
-              
-              <circle cx="60" cy="360" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="90" cy="360" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="120" cy="360" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="150" cy="360" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="180" cy="360" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="210" cy="360" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="240" cy="360" r="1" fill="#a85903" opacity="0.2" />
-              <circle cx="270" cy="360" r="1" fill="#a85903" opacity="0.2" />
-            </g>
-            
-            <!-- Definicje gradientów -->
-            <defs>
-              <linearGradient id="background-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#faf3e3" />
-                <stop offset="100%" stop-color="#f5ead6" />
-              </linearGradient>
-            </defs>
+            <!-- Kilka prostych linii łączących -->
+            <line x1="80" y1="100" x2="120" y2="100" stroke="#a85903" stroke-width="1" opacity="0.1" />
+            <line x1="180" y1="80" x2="200" y2="120" stroke="#8ab01c" stroke-width="1" opacity="0.1" />
+            <line x1="240" y1="220" x2="220" y2="300" stroke="#1c8ab0" stroke-width="1" opacity="0.1" />
           </svg>
         </div>
       </div>
@@ -1120,8 +1050,8 @@
 <style>
   .elegant-section-full-width {
     background-color: #656461;
-    padding: 0;
-    margin: 0;
+    padding: 60px 0;
+    margin: 60px 0;
     width: 100vw;
     position: relative;
     left: 50%;
@@ -1130,20 +1060,10 @@
     margin-right: -50vw;
   }
 
-  .ryzmod-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0;
-  }
-
   .elegant-cards-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 0;
-    height: 100vh; /* Ustawia wysokość kontenera na pełną wysokość viewportu */
-    align-items: stretch;
-    margin: 0;
+    gap: 30px;
   }
   
   .elegant-card {
@@ -1155,7 +1075,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    margin: 0;
   }
   
   .elegant-card:hover {
@@ -1195,8 +1114,8 @@
     flex-direction: column;
   }
   
-  /* Style dla dynamicznej grafiki na pełną wysokość */
-  .card-dynamic-graphic-full {
+  /* Style dla prostej grafiki */
+  .simple-graphic {
     flex: 1;
     position: relative;
     overflow: hidden;
@@ -1208,193 +1127,8 @@
     border-radius: 12px;
   }
   
-  /* Style dla dynamicznej grafiki (stara wersja) */
-  .card-dynamic-graphic {
-    height: 220px;
-    position: relative;
-    overflow: hidden;
-    background: #faf3e3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  @keyframes pathAnimation {
-    0% { stroke-dashoffset: 500; }
-    100% { stroke-dashoffset: 0; }
-  }
-  
-  .animated-path {
-    stroke-dasharray: 500;
-    stroke-dashoffset: 500;
-    animation: pathAnimation 3s ease-in-out forwards;
-  }
-  
-  .animated-path.primary-line {
-    animation-duration: 3.5s;
-  }
-  
-  .animated-path.secondary-line {
-    animation-duration: 4s;
-    animation-delay: 0.5s;
-  }
-  
-  .animated-path.tertiary-line {
-    animation-duration: 4.5s;
-    animation-delay: 1s;
-  }
-  
-  @keyframes pulseEffect {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.5); opacity: 0.7; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  
-  .pulse-point {
-    animation: pulseEffect 2s infinite;
-  }
-  
-  @keyframes floatShape {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(3px, -2px) rotate(1deg); }
-    50% { transform: translate(6px, 0) rotate(2deg); }
-    75% { transform: translate(3px, 2px) rotate(1deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
-  }
-  
-  @keyframes floatShapeReverse {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(-3px, -2px) rotate(-1deg); }
-    50% { transform: translate(-6px, 0) rotate(-2deg); }
-    75% { transform: translate(-3px, 2px) rotate(-1deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
-  }
-  
-  .floating-shape {
-    transform-origin: center;
-  }
-  
-  .square-1 {
-    animation: floatShape 90s ease-in-out infinite;
-  }
-  
-  .square-2 {
-    animation: floatShapeReverse 85s ease-in-out infinite;
-    animation-delay: 5s;
-  }
-  
-  .square-3 {
-    animation: floatShape 95s ease-in-out infinite;
-    animation-delay: 10s;
-  }
-  
-  .square-4 {
-    animation: floatShapeReverse 100s ease-in-out infinite;
-    animation-delay: 15s;
-  }
-  
-  .square-5 {
-    animation: floatShape 88s ease-in-out infinite;
-    animation-delay: 7s;
-  }
-  
-  .circle-1 {
-    animation: floatShape 92s ease-in-out infinite;
-    animation-delay: 8s;
-  }
-  
-  .circle-2 {
-    animation: floatShapeReverse 97s ease-in-out infinite;
-    animation-delay: 12s;
-  }
-  
-  .circle-3 {
-    animation: floatShape 89s ease-in-out infinite;
-    animation-delay: 3s;
-  }
-  
-  .circle-4 {
-    animation: floatShapeReverse 94s ease-in-out infinite;
-    animation-delay: 18s;
-  }
-  
-  .circle-5 {
-    animation: floatShape 103s ease-in-out infinite;
-    animation-delay: 9s;
-  }
-  
-  .triangle-1 {
-    animation: floatShape 96s ease-in-out infinite;
-    animation-delay: 6s;
-  }
-  
-  .triangle-2 {
-    animation: floatShapeReverse 91s ease-in-out infinite;
-    animation-delay: 14s;
-  }
-  
-  .triangle-3 {
-    animation: floatShape 93s ease-in-out infinite;
-    animation-delay: 11s;
-  }
-  
-  .triangle-4 {
-    animation: floatShapeReverse 99s ease-in-out infinite;
-    animation-delay: 4s;
-  }
-  
-  .triangle-5 {
-    animation: floatShape 87s ease-in-out infinite;
-    animation-delay: 16s;
-  }
-  
-  @keyframes fadeLine {
-    0% { opacity: 0.05; }
-    50% { opacity: 0.12; }
-    100% { opacity: 0.05; }
-  }
-  
-  .connecting-line {
-    animation: fadeLine 25s ease-in-out infinite;
-  }
-  
-  .line-1 {
-    animation-delay: 2s;
-  }
-  
-  .line-2 {
-    animation-delay: 5s;
-  }
-  
-  .line-3 {
-    animation-delay: 8s;
-  }
-  
-  .line-4 {
-    animation-delay: 3s;
-  }
-  
-  .line-5 {
-    animation-delay: 6s;
-  }
-  
-  .line-6 {
-    animation-delay: 9s;
-  }
-  
-  .line-7 {
-    animation-delay: 4s;
-  }
-  
-  .line-8 {
-    animation-delay: 7s;
-  }
-  
   .card-content {
     padding: 30px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
   }
   
   .card-content h3 {
@@ -1421,7 +1155,6 @@
     margin-bottom: 25px;
     font-size: 16px;
     text-indent: 0;
-    flex-grow: 1;
   }
   
   .elegant-button {
@@ -1433,7 +1166,6 @@
     position: relative;
     padding-bottom: 2px;
     transition: all 0.3s ease;
-    margin-top: auto;
   }
   
   .elegant-button:after {
@@ -1460,15 +1192,10 @@
   @media screen and (max-width: 576px) {
     .elegant-cards-container {
       grid-template-columns: 1fr;
-      height: auto;
     }
     
-    .elegant-card {
-      margin-bottom: 20px;
-    }
-    
-    .elegant-card:last-child {
-      margin-bottom: 0;
+    .elegant-section-full-width {
+      padding: 40px 0;
     }
   }
 </style>
