@@ -989,149 +989,208 @@
 
 
 <!-- Sekcja O 2 -->
-<div class="risk-categories-section">
-  <div class="risk-container">
-    <!-- Lewy obiekt -->
-    <div class="risk-box">
-      <div class="risk-image">
-        <img src="/risk-research/assets/images/ryzyko-operacyjne.jpg" alt="Ryzyko operacyjne">
+<div class="elegant-section-full-width">
+  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <div class="elegant-cards-container">
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content" style="color: #a85903;">
+          <h3>RYZYKO MODELI</h3>
+        </div>
       </div>
-      <div class="risk-content">
-        <p class="section-number">O 2.1.2</p>
-        <h2 class="risk-title">
-          <span class="primary-text">RYZYKO</span>
-          <span class="secondary-text">OPERACYJNE</span>
-        </h2>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Strategia biznesowa</h3>
+        </div>
       </div>
-    </div>
-    
-    <!-- Środkowy obiekt -->
-    <div class="risk-box">
-      <div class="risk-image">
-        <img src="/risk-research/assets/images/ryzyko-kredytowe.jpg" alt="Ryzyko kredytowe">
-      </div>
-      <div class="risk-content">
-        <p class="section-number">O 2.2.2</p>
-        <h2 class="risk-title">
-          <span class="primary-text">RYZYKO</span>
-          <span class="secondary-text">KREDYTOWE</span>
-        </h2>
-      </div>
-    </div>
-    
-    <!-- Prawy obiekt -->
-    <div class="risk-box">
-      <div class="risk-image">
-        <img src="/risk-research/assets/images/ryzyko-rynkowe.jpg" alt="Ryzyko rynkowe">
-      </div>
-      <div class="risk-content">
-        <p class="section-number">O 2.3.2</p>
-        <h2 class="risk-title">
-          <span class="primary-text">RYZYKO</span>
-          <span class="secondary-text">RYNKOWE</span>
-        </h2>
+      
+      <!-- Trzeci obiekt z prostą grafiką -->
+      <div class="elegant-card full-chart-card">
+        <div class="simple-graphic">
+          <svg viewBox="0 0 300 400" width="100%" height="100%">
+            <!-- Tło -->
+            <rect x="0" y="0" width="100%" height="100%" fill="#faf3e3" rx="8" />
+            
+            <!-- Proste figury geometryczne -->
+            <rect x="60" y="80" width="40" height="40" fill="#a85903" opacity="0.2" />
+            <rect x="200" y="120" width="60" height="60" fill="#a85903" opacity="0.15" />
+            <rect x="100" y="280" width="30" height="30" fill="#a85903" opacity="0.25" />
+            
+            <circle cx="120" cy="100" r="25" fill="#1c8ab0" opacity="0.2" />
+            <circle cx="240" cy="220" r="30" fill="#1c8ab0" opacity="0.15" />
+            <circle cx="80" cy="240" r="20" fill="#1c8ab0" opacity="0.25" />
+            
+            <polygon points="180,40 160,80 200,80" fill="#8ab01c" opacity="0.2" />
+            <polygon points="220,300 190,350 250,350" fill="#8ab01c" opacity="0.15" />
+            <polygon points="60,180 40,220 80,220" fill="#8ab01c" opacity="0.25" />
+            
+            <!-- Kilka prostych linii łączących -->
+            <line x1="80" y1="100" x2="120" y2="100" stroke="#a85903" stroke-width="1" opacity="0.1" />
+            <line x1="180" y1="80" x2="200" y2="120" stroke="#8ab01c" stroke-width="1" opacity="0.1" />
+            <line x1="240" y1="220" x2="220" y2="300" stroke="#1c8ab0" stroke-width="1" opacity="0.1" />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 <style>
-  .risk-categories-section {
+  .elegant-section-full-width {
+    background-color: #656461;
     padding: 60px 0;
-    background-color: #f9f9f9;
+    margin: 60px 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
   }
-  
-  .risk-container {
-    max-width: 1200px;
-    margin: 0 auto;
+
+  .elegant-cards-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    padding: 0 20px;
   }
   
-  .risk-box {
-    border-radius: 8px;
+  .elegant-card {
+    background: #faf3e3;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   
-  .risk-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  .elegant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   }
   
-  .risk-image {
-    height: 200px;
+  .card-image {
+    height: 220px;
+    position: relative;
     overflow: hidden;
   }
   
-  .risk-image img {
+  .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.8s ease;
   }
   
-  .risk-box:hover .risk-image img {
+  .elegant-card:hover .card-image img {
     transform: scale(1.05);
   }
   
-  .risk-content {
-    background-color: #f2e8d9;
-    padding: 40px 30px;
-    text-align: center;
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
   }
   
-  .section-number {
-    color: #444;
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: 500;
-  }
-  
-  .risk-title {
+  /* Karta z pełnowymiarowym wykresem */
+  .full-chart-card {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin: 0;
   }
   
-  .primary-text {
+  /* Style dla prostej grafiki */
+  .simple-graphic {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #faf3e3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 12px;
+  }
+  
+  .card-content {
+    padding: 30px;
+  }
+  
+  .card-content h3 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  
+  .card-content h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #a85903;
+  }
+  
+  .card-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 16px;
+    text-indent: 0;
+  }
+  
+  .elegant-button {
+    display: inline-block;
     color: #a85903;
-    font-size: 36px;
-    font-weight: bold;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
   }
   
-  .secondary-text {
-    color: #555;
-    font-size: 32px;
-    font-weight: bold;
+  .elegant-button:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #a85903;
+    transition: width 0.3s ease;
   }
   
-  @media (max-width: 992px) {
-    .risk-container {
+  .elegant-button:hover:after {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .elegant-cards-container {
       grid-template-columns: repeat(2, 1fr);
     }
   }
   
-  @media (max-width: 576px) {
-    .risk-container {
+  @media screen and (max-width: 576px) {
+    .elegant-cards-container {
       grid-template-columns: 1fr;
     }
     
-    .risk-content {
-      padding: 30px 20px;
-    }
-    
-    .primary-text {
-      font-size: 30px;
-    }
-    
-    .secondary-text {
-      font-size: 26px;
+    .elegant-section-full-width {
+      padding: 40px 0;
     }
   }
 </style>
