@@ -600,22 +600,18 @@
 
 
 
-
-
-
-
-<!-- Sekcja O 2_1 zgodna z obrazkiem 2 - z szarym paskiem po lewej -->
+<!-- Sekcja O 2_1 z poprawionym szarym paskiem -->
 <div class="risk-section layout-o21">
-  <div class="risk-container">
-    <!-- Główny grid z 3 kolumnami -->
-    <div class="layout-grid">
-      <!-- Szary pasek z tekstem -->
-      <div class="gray-bar">
-        <h2 class="ryzyko-text">_ryzyko</h2>
-      </div>
-      
+  <div class="risk-container special-container">
+    <!-- Szary pasek z napisem "_ryzyko" -->
+    <div class="gray-bar-fixed">
+      <div class="ryzyko-text">_ryzyko</div>
+    </div>
+    
+    <!-- Kontenery na pozostałe elementy -->
+    <div class="content-grid">
       <!-- Środkowy element z przezroczystym tłem -->
-      <div class="yellow-box">
+      <div class="yellow-box transparent-box">
         <div class="svg-container">
           <svg viewBox="0 0 300 300" width="100%" height="100%">
             <!-- Proste figury geometryczne -->
@@ -640,7 +636,7 @@
       </div>
       
       <!-- Prawy element z kolorem d6d2c7 -->
-      <div class="yellow-box right-box">
+      <div class="yellow-box d6d2c7-box">
         <div class="img-container">
           <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
           <div class="img-overlay"></div>
@@ -787,23 +783,27 @@
   padding: 0;
 }
 
-.layout-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 30px;
-  margin: 0 auto;
+.risk-container.special-container {
   max-width: 1200px;
+  margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+  height: 350px;
 }
 
-/* Szary pasek po lewej */
-.gray-bar {
+/* Szary pasek z tekstem "_ryzyko" */
+.gray-bar-fixed {
+  position: absolute;
+  top: 33%; /* Pozycjonowanie w 1/3 wysokości kontenera */
+  left: 0;
   background-color: #706f6c;
-  border-radius: 12px;
+  border-radius: 0; /* Bez zaokrąglonych rogów */
   padding: 20px;
+  width: 340px; /* Szerokość odpowiadająca pierwszej kolumnie */
+  height: 80px;
   display: flex;
   align-items: center;
-  height: 350px;
+  z-index: 1;
 }
 
 .ryzyko-text {
@@ -813,17 +813,32 @@
   margin: 0;
 }
 
-/* Żółte boxy (środkowy i prawy) */
+/* Siatka dla zawartości */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  position: absolute;
+  top: 0;
+  right: 20px; /* Uwzględnienie paddingu kontenera */
+  width: calc(66.66% - 30px); /* 2/3 szerokości minus gap */
+  height: 100%;
+}
+
+/* Boxy dla zawartości */
 .yellow-box {
-  background-color: transparent;
   border-radius: 12px;
   overflow: hidden;
-  height: 350px;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.yellow-box.right-box {
+.transparent-box {
+  background-color: transparent;
+}
+
+.d6d2c7-box {
   background-color: #d6d2c7;
 }
 
@@ -970,14 +985,31 @@
 
 /* Responsywność */
 @media screen and (max-width: 992px) {
-  .layout-grid {
-    grid-template-columns: 1fr 1fr;
+  .risk-container.special-container {
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
   
-  .gray-bar {
-    grid-column: 1 / span 2;
-    height: 80px;
-    margin-bottom: 20px;
+  .gray-bar-fixed {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .content-grid {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .yellow-box {
+    height: 350px;
   }
   
   .risk-cards {
@@ -986,20 +1018,11 @@
 }
 
 @media screen and (max-width: 576px) {
-  .layout-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .gray-bar {
-    grid-column: 1;
-  }
-  
   .risk-cards {
     grid-template-columns: 1fr;
   }
 }
 </style>
-
 
 
 
@@ -1070,6 +1093,12 @@
 <!-- Odstęp między sekcjami -->
 <div style="height: 60px; clear: both;"></div>
 
+
+
+
+
+      
+      
 <!-- Sekcja O 2_3 z poprawioną wysokością i kolorami tła -->
 <div class="risk-section">
   <div class="risk-container">
@@ -1300,7 +1329,7 @@
 
 
 
-  <!-- Zmodyfikowana sekcja O 2_1 z szarym paskiem zamiast obiektu po lewej -->
+  <!-- Zmodyfikowana sekcja O 2_4 z szarym paskiem zamiast obiektu po lewej -->
 <div class="risk-section">
   <div class="risk-container o21-modified">
     <!-- Szary pasek z napisem "_ryzyko" -->
