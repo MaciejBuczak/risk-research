@@ -607,28 +607,19 @@
 
 
 
-
-
-
-
-
-
-
-<!-- Sekcja O 2_1 zgodna z obrazkiem 2 - zmodyfikowane kolory tła -->
+<!-- Zmodyfikowana sekcja O 2_1 z szarym paskiem zamiast obiektu po lewej -->
 <div class="risk-section">
-  <div class="risk-container">
-    <div class="risk-cards">
-      <!-- Lewy obiekt - tylko tekst RYZYKO -->
-      <div class="risk-card text-card">
-        <h2>_ryzyko</h2>
-      </div>
-      
+  <div class="risk-container o21-modified">
+    <!-- Szary pasek z napisem "_ryzyko" -->
+    <div class="gray-bar">
+      <h2 class="ryzyko-text">_ryzyko</h2>
+    </div>
+    
+    <div class="risk-cards two-columns">
       <!-- Środkowy obiekt - grafika SVG - przezroczyste tło -->
       <div class="risk-card middle-card-transparent">
         <div class="svg-graphic">
           <svg viewBox="0 0 300 300" width="100%" height="100%">
-            <!-- Bez prostokąta tła -->
-            
             <!-- Proste figury geometryczne -->
             <rect x="60" y="60" width="40" height="40" fill="#a85903" opacity="0.2" />
             <rect x="200" y="100" width="60" height="60" fill="#a85903" opacity="0.15" />
@@ -663,6 +654,53 @@
     </div>
   </div>
 </div>
+
+<style>
+/* Style dla zmodyfikowanego kontenera O 2_1 */
+.risk-container.o21-modified {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Szary pasek */
+.gray-bar {
+  background-color: #706f6c;
+  height: 80px;
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 30px;
+}
+
+/* Tekst ryzyko */
+.ryzyko-text {
+  color: #a85903;
+  font-size: 42px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Dwie kolumny zamiast trzech */
+.risk-cards.two-columns {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Media query dla mniejszych ekranów */
+@media screen and (max-width: 992px) {
+  .risk-cards.two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+
+
+
+
 
 <!-- Odstęp między sekcjami -->
 <div style="height: 60px; clear: both;"></div>
