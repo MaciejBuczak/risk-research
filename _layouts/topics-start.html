@@ -664,9 +664,19 @@
   </div>
 </div>
 
+
+
+      
+
+      
 <!-- Odstęp między sekcjami -->
 <div style="height: 60px; clear: both;"></div>
 
+
+
+
+
+      
 <!-- Sekcja O 2_2 z poprawioną wysokością i kolorami tła -->
 <div class="risk-section">
   <div class="risk-container">
@@ -723,9 +733,18 @@
   </div>
 </div>
 
+
+
+
+      
 <!-- Odstęp między sekcjami -->
 <div style="height: 60px; clear: both;"></div>
 
+
+
+
+
+      
 <!-- Sekcja O 2_3 z poprawioną wysokością i kolorami tła -->
 <div class="risk-section">
   <div class="risk-container">
@@ -785,6 +804,107 @@
 <!-- Odstęp po ostatniej sekcji -->
 <div style="height: 60px; clear: both;"></div>
 
+
+
+
+
+
+
+<!-- Zmodyfikowana sekcja O 2_4 z szarym paskiem zamiast obiektu po lewej -->
+<div class="risk-section">
+  <div class="risk-container o21-modified">
+    <!-- Szary pasek z napisem "_ryzyko" -->
+    <div class="gray-bar">
+      <h2 class="ryzyko-text">_ryzyko</h2>
+    </div>
+    
+    <div class="risk-cards two-columns">
+      <!-- Środkowy obiekt - grafika SVG - przezroczyste tło -->
+      <div class="risk-card middle-card-transparent">
+        <div class="svg-graphic">
+          <svg viewBox="0 0 300 300" width="100%" height="100%">
+            <!-- Proste figury geometryczne -->
+            <rect x="60" y="60" width="40" height="40" fill="#a85903" opacity="0.2" />
+            <rect x="200" y="100" width="60" height="60" fill="#a85903" opacity="0.15" />
+            <rect x="100" y="210" width="30" height="30" fill="#a85903" opacity="0.25" />
+            
+            <circle cx="120" cy="80" r="25" fill="#1c8ab0" opacity="0.2" />
+            <circle cx="240" cy="180" r="30" fill="#1c8ab0" opacity="0.15" />
+            <circle cx="80" cy="190" r="20" fill="#1c8ab0" opacity="0.25" />
+            
+            <polygon points="180,40 160,70 200,70" fill="#8ab01c" opacity="0.2" />
+            <polygon points="220,230 190,260 250,260" fill="#8ab01c" opacity="0.15" />
+            <polygon points="60,140 40,170 80,170" fill="#8ab01c" opacity="0.25" />
+            
+            <!-- Kilka prostych linii łączących -->
+            <line x1="80" y1="80" x2="120" y2="80" stroke="#a85903" stroke-width="1" opacity="0.1" />
+            <line x1="180" y1="70" x2="200" y2="100" stroke="#8ab01c" stroke-width="1" opacity="0.1" />
+            <line x1="240" y1="180" x2="220" y2="230" stroke="#1c8ab0" stroke-width="1" opacity="0.1" />
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Prawy obiekt - tekstowo-zdjęciowy - kolor d6d2c7 -->
+      <div class="risk-card right-card-d6d2c7">
+        <div class="img-container">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="img-overlay"></div>
+        </div>
+        <div class="card-text">
+          <h3>ryzyko.<span>MODELI</span></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Style dla zmodyfikowanego kontenera O 2_1 */
+.risk-container.o21-modified {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Szary pasek */
+.gray-bar {
+  background-color: #706f6c;
+  height: 80px;
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 30px;
+}
+
+/* Tekst ryzyko */
+.ryzyko-text {
+  color: #a85903;
+  font-size: 42px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Dwie kolumny zamiast trzech */
+.risk-cards.two-columns {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Media query dla mniejszych ekranów */
+@media screen and (max-width: 992px) {
+  .risk-cards.two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+
+
+      
+
+      
 <style>
 /* Całkowicie nowe style, aby uniknąć konfliktów z istniejącymi */
 .risk-section {
@@ -959,6 +1079,9 @@
       
 
 
+
+
+      
 
 
 
