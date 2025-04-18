@@ -604,18 +604,15 @@
 
 
 
-
-
-
-<!-- Zmodyfikowana sekcja O 2_1 z szarym paskiem zamiast obiektu po lewej -->
+<!-- Poprawiona sekcja O 2_1 z szarym paskiem z lewej strony -->
 <div class="risk-section">
-  <div class="risk-container o21-modified">
-    <!-- Szary pasek z napisem "_ryzyko" -->
-    <div class="gray-bar">
-      <h2 class="ryzyko-text">_ryzyko</h2>
-    </div>
-    
-    <div class="risk-cards two-columns">
+  <div class="risk-container">
+    <div class="risk-cards with-sidebar">
+      <!-- Szary pasek z napisem "_ryzyko" -->
+      <div class="gray-sidebar">
+        <h2 class="ryzyko-text">_ryzyko</h2>
+      </div>
+      
       <!-- Środkowy obiekt - grafika SVG - przezroczyste tło -->
       <div class="risk-card middle-card-transparent">
         <div class="svg-graphic">
@@ -656,23 +653,22 @@
 </div>
 
 <style>
-/* Style dla zmodyfikowanego kontenera O 2_1 */
-.risk-container.o21-modified {
-  display: flex;
-  flex-direction: column;
+/* Style dla poprawionego układu kontenera O 2_1 */
+.risk-cards.with-sidebar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
 }
 
-/* Szary pasek */
-.gray-bar {
+/* Szary pasek z boku */
+.gray-sidebar {
   background-color: #706f6c;
-  height: 80px;
-  width: 100%;
   border-radius: 12px;
-  margin-bottom: 30px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding-left: 30px;
+  height: 100%;
 }
 
 /* Tekst ryzyko */
@@ -683,18 +679,32 @@
   margin: 0;
 }
 
-/* Dwie kolumny zamiast trzech */
-.risk-cards.two-columns {
-  grid-template-columns: repeat(2, 1fr);
-}
-
 /* Media query dla mniejszych ekranów */
 @media screen and (max-width: 992px) {
-  .risk-cards.two-columns {
+  .risk-cards.with-sidebar {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .gray-sidebar {
+    grid-column: 1 / span 2;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .risk-cards.with-sidebar {
     grid-template-columns: 1fr;
+  }
+  
+  .gray-sidebar {
+    grid-column: 1;
   }
 }
 </style>
+
+
+
 
 
 
