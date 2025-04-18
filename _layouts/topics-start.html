@@ -983,7 +983,8 @@
   
 
 
-  <!-- Sekcja O 2 - na pełną szerokość z zawartością w kontenerze -->
+
+<!-- Sekcja O 2 -->
 <div class="elegant-section-full-width">
   <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
     <div class="elegant-cards-container">
@@ -1011,10 +1012,57 @@
         </div>
       </div>
       
+      <!-- Zmodyfikowany trzeci obiekt z dynamiczną grafiką -->
       <div class="elegant-card">
-        <div class="card-image">
-          <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
-          <div class="card-overlay"></div>
+        <div class="card-dynamic-graphic">
+          <svg viewBox="0 0 300 220" width="100%" height="220">
+            <!-- Tło -->
+            <rect x="0" y="0" width="100%" height="100%" fill="#f9f9f9" rx="8" />
+            
+            <!-- Siatka -->
+            <g stroke="#eee" stroke-width="1">
+              <line x1="50" y1="50" x2="250" y2="50" />
+              <line x1="50" y1="90" x2="250" y2="90" />
+              <line x1="50" y1="130" x2="250" y2="130" />
+              <line x1="50" y1="170" x2="250" y2="170" />
+              <line x1="90" y1="30" x2="90" y2="170" />
+              <line x1="130" y1="30" x2="130" y2="170" />
+              <line x1="170" y1="30" x2="170" y2="170" />
+              <line x1="210" y1="30" x2="210" y2="170" />
+              <line x1="250" y1="30" x2="250" y2="170" />
+            </g>
+            
+            <!-- Animowana fala -->
+            <path d="M50,130 C70,110 85,150 100,130 C115,110 130,90 150,110 C170,130 185,80 200,100 C215,120 230,150 250,130" 
+                  fill="none" stroke="#a85903" stroke-width="3" class="animated-path" />
+                  
+            <!-- Obszar pod falą -->
+            <path d="M50,130 C70,110 85,150 100,130 C115,110 130,90 150,110 C170,130 185,80 200,100 C215,120 230,150 250,130 L250,170 L50,170 Z" 
+                  fill="url(#wave-gradient)" />
+                  
+            <!-- Punkty danych -->
+            <circle cx="50" cy="130" r="5" fill="#a85903" class="pulse-point" />
+            <circle cx="100" cy="130" r="5" fill="#a85903" class="pulse-point" />
+            <circle cx="150" cy="110" r="5" fill="#a85903" class="pulse-point" />
+            <circle cx="200" cy="100" r="5" fill="#a85903" class="pulse-point" />
+            <circle cx="250" cy="130" r="5" fill="#a85903" class="pulse-point" />
+            
+            <!-- Kółka animowane -->
+            <g class="floating-circles">
+              <circle cx="180" cy="60" r="15" fill="#a85903" fill-opacity="0.1" />
+              <circle cx="80" cy="90" r="10" fill="#a85903" fill-opacity="0.1" />
+              <circle cx="220" cy="150" r="8" fill="#a85903" fill-opacity="0.1" />
+              <circle cx="120" cy="40" r="12" fill="#a85903" fill-opacity="0.1" />
+            </g>
+            
+            <!-- Definicje gradientów -->
+            <defs>
+              <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#a85903" stop-opacity="0.3" />
+                <stop offset="100%" stop-color="#a85903" stop-opacity="0.05" />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
         <div class="card-content">
           <h3>Walidacja modeli</h3>
@@ -1083,6 +1131,58 @@
     height: 100%;
     background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
   }
+  
+  /* Style dla dynamicznej grafiki */
+  .card-dynamic-graphic {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    background: #faf3e3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @keyframes pathAnimation {
+    0% { stroke-dashoffset: 500; }
+    100% { stroke-dashoffset: 0; }
+  }
+  
+  .animated-path {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: pathAnimation 3s ease-in-out forwards;
+  }
+  
+  @keyframes pulseEffect {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .pulse-point {
+    animation: pulseEffect 2s infinite;
+  }
+  
+  .pulse-point:nth-child(2) { animation-delay: 0.4s; }
+  .pulse-point:nth-child(3) { animation-delay: 0.8s; }
+  .pulse-point:nth-child(4) { animation-delay: 1.2s; }
+  .pulse-point:nth-child(5) { animation-delay: 1.6s; }
+  
+  @keyframes floatCircles {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+  }
+  
+  .floating-circles {
+    animation: floatCircles 8s ease-in-out infinite;
+  }
+  
+  .floating-circles circle:nth-child(1) { animation: floatCircles 7s ease-in-out infinite; }
+  .floating-circles circle:nth-child(2) { animation: floatCircles 9s ease-in-out infinite 1s; }
+  .floating-circles circle:nth-child(3) { animation: floatCircles 8s ease-in-out infinite 2s; }
+  .floating-circles circle:nth-child(4) { animation: floatCircles 10s ease-in-out infinite 0.5s; }
   
   .card-content {
     padding: 30px;
@@ -1157,6 +1257,7 @@
   }
 </style>
 
+  
 
 
 <!-- Sekcja O 3 - na pełną szerokość z zawartością w kontenerze -->
