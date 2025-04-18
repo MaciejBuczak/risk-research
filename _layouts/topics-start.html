@@ -604,6 +604,11 @@
 
 
 
+
+
+
+
+
 <!-- Sekcja O 2_1 zgodna z obrazkiem 2 - bez zmian struktury -->
 <div class="risk-section">
   <div class="risk-container">
@@ -648,7 +653,7 @@
           <div class="img-overlay"></div>
         </div>
         <div class="card-text">
-          <h3>ryzyko.MODELI</h3>
+          <h3>ryzyko.<span>MODELI</span></h3>
         </div>
       </div>
     </div>
@@ -668,7 +673,7 @@
           <div class="img-overlay"></div>
         </div>
         <div class="card-text">
-          <h3>ryzyko.OPERACYJNE</h3>
+          <h3>ryzyko.<span>OPERACYJNE</span></h3>
         </div>
       </div>
       
@@ -678,7 +683,7 @@
           <div class="img-overlay"></div>
         </div>
         <div class="card-text">
-          <h3>ryzyko.KREDYTOWE</h3>
+          <h3>ryzyko.<span>KREDYTOWE</span></h3>
         </div>
       </div>
       
@@ -755,7 +760,7 @@
           <div class="img-overlay"></div>
         </div>
         <div class="card-text">
-          <h3>holistyczna_ocena.MODELU</h3>
+          <h3>holistyczna_ocena.<span>MODELU</span></h3>
         </div>
       </div>
       
@@ -766,7 +771,7 @@
           <div class="img-overlay"></div>
         </div>
         <div class="card-text">
-          <h3>ryzyko.NIEOCZEKIWANE</h3>
+          <h3>ryzyko.<span>NIEOCZEKIWANE</span></h3>
         </div>
       </div>
     </div>
@@ -883,21 +888,28 @@
   position: relative;
 }
 
+/* Nowe style dla tekstów */
 .card-text h3 {
-  color: #a85903;
-  font-size: 26px;
-  margin: 0;
   position: relative;
+  margin: 0;
+  font-size: 26px;
+  color: #a85903; /* Kolor brązowy dla pierwszej części */
 }
 
-.card-text h3:after {
+/* Dodanie stylu dla części po kropce - będzie w kolorze szarym */
+.card-text h3::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: -12px;
   width: 40px;
   height: 3px;
-  background: #a85903;
+  background-color: #555; /* Zmiana na szary kolor kreski */
+}
+
+/* Przypisanie koloru dla części po kropce */
+.card-text h3 span {
+  color: #555; /* Kolor szary dla drugiej części */
 }
 
 @media screen and (max-width: 992px) {
@@ -917,6 +929,18 @@
 }
 </style>
 
+
+
+
+
+
+
+
+
+
+
+
+      
 
 
 
