@@ -807,6 +807,171 @@
 
 
 
+<style>
+/* Całkowicie nowe style, aby uniknąć konfliktów z istniejącymi */
+.risk-section {
+  background-color: #656461;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+  display: block;
+  line-height: 0; /* Eliminuje niewidzialne marginesy */
+  font-size: 0; /* Eliminuje niewidzialne marginesy */
+}
+
+.risk-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  line-height: normal;
+  font-size: 16px;
+}
+
+.risk-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Domyślny kolor dla kart */
+.risk-card {
+  background: #faf3e3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  margin: 0;
+  padding: 0;
+  display: block;
+  line-height: normal;
+}
+
+/* Style dla kart z różnymi kolorami tła */
+.risk-card.middle-card-transparent,
+.risk-card.right-card-transparent,
+.risk-card.left-card-transparent {
+  background: transparent;
+}
+
+.risk-card.right-card-d6d2c7,
+.risk-card.middle-card-d6d2c7 {
+  background: #d6d2c7;
+}
+
+.risk-card.left-card-ece0d0,
+.risk-card.right-card-ece0d0 {
+  background: #ece0d0;
+}
+
+.risk-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.text-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.text-card h2 {
+  color: #a85903;
+  font-size: 42px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+.svg-graphic {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-container {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+  display: block;
+}
+
+.risk-card:hover .img-container img {
+  transform: scale(1.05);
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+}
+
+.card-text {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: left;
+  position: relative;
+}
+
+/* Nowe style dla tekstów */
+.card-text h3 {
+  position: relative;
+  margin: 0;
+  font-size: 26px;
+  color: #a85903; /* Kolor brązowy dla pierwszej części */
+}
+
+/* Dodanie stylu dla części po kropce - będzie w kolorze szarym */
+.card-text h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 40px;
+  height: 3px;
+  background-color: #555; /* Zmiana na szary kolor kreski */
+}
+
+/* Przypisanie koloru dla części po kropce */
+.card-text h3 span {
+  color: #555; /* Kolor szary dla drugiej części */
+}
+
+@media screen and (max-width: 992px) {
+  .risk-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .risk-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .text-card h2 {
+    font-size: 36px;
+  }
+}
+</style>
 
 
 
