@@ -613,14 +613,13 @@
 
 
 
-
 <!-- Sekcja O 2_1 zgodna z obrazkiem 2 - zmodyfikowane kolory tła -->
 <div class="risk-section">
   <div class="risk-container">
     <div class="risk-cards">
       <!-- Nowy lewy obiekt - prostokąt z napisem "_ryzyko" -->
-      <div class="risk-card" style="background-color: #faf3e3; border: 1px solid #a85903; display: flex; justify-content: center; align-items: center; min-height: 300px;">
-        <div style="color: #a85903; font-size: 36px; font-weight: bold;">_ryzyko</div>
+      <div class="risk-card new-ryzyko-box">
+        <div class="new-ryzyko-text">_ryzyko</div>
       </div>
       
       <!-- Środkowy obiekt - grafika SVG - przezroczyste tło -->
@@ -663,6 +662,36 @@
     </div>
   </div>
 </div>
+
+<!-- Dodaj tę sekcję stylów po istniejących stylach -->
+<style>
+/* Zupełnie nowe nazwy klas, aby uniknąć konfliktów */
+.new-ryzyko-box {
+  background-color: #faf3e3 !important;
+  border: 1px solid #a85903 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-height: 300px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.new-ryzyko-box:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+.new-ryzyko-text {
+  color: #a85903 !important;
+  font-size: 36px !important;
+  font-weight: bold !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+</style>
 
 
 
