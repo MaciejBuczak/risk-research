@@ -611,16 +611,13 @@
 
 
 
-
-
-
 <!-- Sekcja O 2_1 zgodna z obrazkiem 2 - zmodyfikowane kolory tła -->
 <div class="risk-section">
   <div class="risk-container">
     <div class="risk-cards">
-      <!-- Lewy obiekt - tylko tekst RYZYKO -->
-      <div class="risk-card text-card">
-        <h2>_ryzyko</h2>
+      <!-- Nowy lewy obiekt - prostokąt z napisem "_ryzyko" -->
+      <div class="risk-card text-card new-left-card">
+        <div class="ryzyko-text">_ryzyko</div>
       </div>
       
       <!-- Środkowy obiekt - grafika SVG - przezroczyste tło -->
@@ -663,6 +660,39 @@
     </div>
   </div>
 </div>
+
+<style>
+/* Dodatkowe style dla nowego lewego obiektu */
+.risk-card.new-left-card {
+  background-color: #faf3e3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #a85903;
+  height: 100%;
+  position: relative;
+}
+
+.ryzyko-text {
+  color: #a85903;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* Upewnienie się, że grid-template nie zmieni proporcji */
+.risk-cards {
+  grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Reszta stylów pozostaje bez zmian */
+</style>
+
+
+
 
 
 
