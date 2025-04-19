@@ -563,184 +563,6 @@
       animation-delay: 1.5s;
     }
   </style>
-  
-  <!-- Nowe style dodane specjalnie dla sekcji O 2_1 z własnym selektorem -->
-  <style>
-    /* Całkowicie nowe style dla sekcji O 2_1 */
-    .risk-section {
-      background-color: #656461;
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      box-sizing: border-box;
-      display: block;
-      line-height: 0;
-      font-size: 0;
-    }
-
-    .risk-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      line-height: normal;
-      font-size: 16px;
-    }
-
-    .risk-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      padding: 0;
-      margin: 0;
-    }
-
-    /* Domyślny wygląd kart */
-    .risk-card {
-      background: #faf3e3;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      margin: 0;
-      padding: 0;
-      display: block;
-      line-height: normal;
-    }
-
-    /* Style dla kart z różnymi tłami */
-    .middle-card-transparent,
-    .right-card-transparent,
-    .left-card-transparent {
-      background: transparent;
-    }
-
-    .right-card-d6d2c7,
-    .middle-card-d6d2c7 {
-      background: #d6d2c7;
-    }
-
-    .left-card-ece0d0,
-    .right-card-ece0d0 {
-      background: #ece0d0;
-    }
-
-    /* Efekt hover dla kart */
-    .risk-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Grafika SVG */
-    .svg-graphic {
-      height: 300px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Kontener na obrazek */
-    .img-container {
-      height: 220px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .img-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s ease;
-      display: block;
-    }
-
-    .risk-card:hover .img-container img {
-      transform: scale(1.05);
-    }
-
-    .img-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
-    }
-
-    /* Styl dla tekstu w kartach */
-    .card-text {
-      padding-top: 30px;
-      padding-bottom: 30px;
-      padding-left: 30px;
-      padding-right: 30px;
-      text-align: left;
-      position: relative;
-    }
-
-    .card-text h3 {
-      position: relative;
-      margin: 0;
-      font-size: 26px;
-      color: #a85903;
-    }
-
-    .card-text h3::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -12px;
-      width: 40px;
-      height: 3px;
-      background-color: #555;
-    }
-
-    .card-text h3 span {
-      color: #555;
-    }
-
-    /* NOWY UNIKALNY STYL dla lewego obiektu w sekcji O 2_1 */
-    .custom-ryzyko-box-2023 {
-      background-color: #faf3e3 !important;
-      border: 1px solid #a85903 !important;
-      border-radius: 12px !important;
-      overflow: hidden !important;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
-      transition: transform 0.4s ease, box-shadow 0.4s ease !important;
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      min-height: 300px !important;
-      height: 100% !important;
-    }
-
-    .custom-ryzyko-box-2023:hover {
-      transform: translateY(-10px) !important;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2) !important;
-    }
-
-    .custom-ryzyko-text-2023 {
-      color: #a85903 !important;
-      font-size: 36px !important;
-      font-weight: bold !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    /* Media queries dla różnych szerokości ekranu */
-    @media screen and (max-width: 992px) {
-      .risk-cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media screen and (max-width: 576px) {
-      .risk-cards {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
   <!-- HEADER -->
@@ -768,18 +590,37 @@
   
   <!-- Menu będzie teraz wstawiane z index.md przez Jekyll -->
 
+
   <!-- MAIN CONTENT -->
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
       {{ content }}
 
-<!-- Sekcja O 2_1 zgodna z obrazkiem 2 - NOWA IMPLEMENTACJA -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Sekcja O 2_1 zgodna z obrazkiem 2 - zmodyfikowane kolory tła -->
 <div class="risk-section">
   <div class="risk-container">
     <div class="risk-cards">
-      <!-- Zupełnie nowy lewy obiekt z unikalnymi klasami -->
-      <div class="custom-ryzyko-box-2023">
-        <div class="custom-ryzyko-text-2023">_ryzyko</div>
+      <!-- Lewy obiekt - tylko tekst RYZYKO -->
+      <div class="risk-card text-card">
+        <h2>_ryzyko</h2>
       </div>
       
       <!-- Środkowy obiekt - grafika SVG - przezroczyste tło -->
@@ -823,9 +664,19 @@
   </div>
 </div>
 
+
+
+      
+
+      
 <!-- Odstęp między sekcjami -->
 <div style="height: 60px; clear: both;"></div>
 
+
+
+
+
+      
 <!-- Sekcja O 2_2 z poprawioną wysokością i kolorami tła -->
 <div class="risk-section">
   <div class="risk-container">
@@ -852,8 +703,6 @@
         </div>
       </div>
       
-
-
       <!-- Prawy obiekt z prostą grafiką - przezroczyste tło -->
       <div class="risk-card right-card-transparent">
         <div class="svg-graphic">
@@ -884,9 +733,18 @@
   </div>
 </div>
 
+
+
+
+      
 <!-- Odstęp między sekcjami -->
 <div style="height: 60px; clear: both;"></div>
 
+
+
+
+
+      
 <!-- Sekcja O 2_3 z poprawioną wysokością i kolorami tła -->
 <div class="risk-section">
   <div class="risk-container">
@@ -946,7 +804,204 @@
 <!-- Odstęp po ostatniej sekcji -->
 <div style="height: 60px; clear: both;"></div>
 
-<!-- Pozostała zawartość strony... -->
+
+
+
+<style>
+/* Całkowicie nowe style, aby uniknąć konfliktów z istniejącymi */
+.risk-section {
+  background-color: #656461;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+  display: block;
+  line-height: 0; /* Eliminuje niewidzialne marginesy */
+  font-size: 0; /* Eliminuje niewidzialne marginesy */
+}
+
+.risk-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  line-height: normal;
+  font-size: 16px;
+}
+
+.risk-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Domyślny kolor dla kart */
+.risk-card {
+  background: #faf3e3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  margin: 0;
+  padding: 0;
+  display: block;
+  line-height: normal;
+}
+
+/* Style dla kart z różnymi kolorami tła */
+.risk-card.middle-card-transparent,
+.risk-card.right-card-transparent,
+.risk-card.left-card-transparent {
+  background: transparent;
+}
+
+.risk-card.right-card-d6d2c7,
+.risk-card.middle-card-d6d2c7 {
+  background: #d6d2c7;
+}
+
+.risk-card.left-card-ece0d0,
+.risk-card.right-card-ece0d0 {
+  background: #ece0d0;
+}
+
+.risk-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.text-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.text-card h2 {
+  color: #a85903;
+  font-size: 42px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+.svg-graphic {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-container {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+  display: block;
+}
+
+.risk-card:hover .img-container img {
+  transform: scale(1.05);
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+}
+
+.card-text {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: left;
+  position: relative;
+}
+
+/* Nowe style dla tekstów */
+.card-text h3 {
+  position: relative;
+  margin: 0;
+  font-size: 26px;
+  color: #a85903; /* Kolor brązowy dla pierwszej części */
+}
+
+/* Dodanie stylu dla części po kropce - będzie w kolorze szarym */
+.card-text h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 40px;
+  height: 3px;
+  background-color: #555; /* Zmiana na szary kolor kreski */
+}
+
+/* Przypisanie koloru dla części po kropce */
+.card-text h3 span {
+  color: #555; /* Kolor szary dla drugiej części */
+}
+
+@media screen and (max-width: 992px) {
+  .risk-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .risk-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .text-card h2 {
+    font-size: 36px;
+  }
+}
+</style>
+
+
+
+      
+
+
+
+
+
+      
+
+      
+
+
+
+
+
+
+      
+
+
+
+
+      
+
+
+
+
+  
+
 
       <!-- Nowa struktura siatki dla projektu z tematami -->
       <div class="topics-grid">
@@ -993,12 +1048,735 @@
           </div>
         </div>
 
-        <!-- Pozostałe elementy grida... -->
-        <!-- ... -->
+        <!-- Element 3: Z 1.3.1 + O 1.3.2 RYZYKO MODELI -->
+        <div class="topic-item">
+          <div class="image-container">
+            <div class="object-id">Z 1.3.1</div>
+            <img src="/risk-research/assets/images/ryzyko-modeli-main.jpg" alt="Ryzyko modeli">
+          </div>
+          <div class="object-box color-d6d2c7">
+            <div class="object-id">O 1.3.2</div>
+            <div class="title-wrapper">
+              <div class="object-title">RYZYKO</div>
+              <div class="object-subtitle">MODELI</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Element 4: Z 2.1.1 + O 2.1.2 RYZYKO OPERACYJNE -->
+        <div class="topic-item">
+          <div class="image-container">
+            <div class="object-id">Z 2.1.1</div>
+            <img src="/risk-research/assets/images/ryzyko-operacyjne-main.jpg" alt="Ryzyko operacyjne">
+          </div>
+          <div class="object-box color-ece0d0">
+            <div class="object-id">O 2.1.2</div>
+            <div class="title-wrapper">
+              <div class="object-title">RYZYKO</div>
+              <div class="object-subtitle">OPERACYJNE</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Element 5: Z 2.2.1 + O 2.2.2 RYZYKO KREDYTOWE -->
+        <div class="topic-item">
+          <div class="image-container">
+            <div class="object-id">Z 2.2.1</div>
+            <img src="/risk-research/assets/images/ryzyko-kredytowe-main.jpg" alt="Ryzyko kredytowe">
+          </div>
+          <div class="object-box color-faf9f4">
+            <div class="object-id">O 2.2.2</div>
+            <div class="title-wrapper">
+              <div class="object-title">RYZYKO</div>
+              <div class="object-subtitle">KREDYTOWE</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Element 6: KDG 2.3 (Kontener na dynamiczną grafikę - Wykres kołowy) -->
+        <div class="topic-item">
+          <div class="kdg-container">
+            <div class="object-id">KDG 2.3</div>
+            <div class="dynamic-graphic">
+              <!-- Wykres kołowy ryzyka -->
+              <svg width="280" height="220" viewBox="0 0 280 220">
+                <!-- Grupa animowanego wykresu -->
+                <g class="float">
+                  <!-- Segmenty wykresu kołowego -->
+                  <path d="M140,110 L140,30 A80,80 0 0,1 213,140 Z" fill="#b06a07" fill-opacity="0.8" />
+                  <path d="M140,110 L213,140 A80,80 0 0,1 140,190 Z" fill="#b06a07" fill-opacity="0.6" />
+                  <path d="M140,110 L140,190 A80,80 0 0,1 67,140 Z" fill="#b06a07" fill-opacity="0.4" />
+                  <path d="M140,110 L67,140 A80,80 0 0,1 140,30 Z" fill="#b06a07" fill-opacity="0.2" />
+                  
+                  <!-- Obramowanie wykresu -->
+                  <circle cx="140" cy="110" r="80" fill="none" stroke="#b06a07" stroke-width="2" />
+                  
+                  <!-- Linie środkowe -->
+                  <line x1="140" y1="30" x2="140" y2="190" stroke="#b06a07" stroke-width="1" stroke-opacity="0.5" />
+                  <line x1="67" y1="140" x2="213" y2="140" stroke="#b06a07" stroke-width="1" stroke-opacity="0.5" />
+                  
+                  <!-- Punkty centralne -->
+                  <circle cx="140" cy="110" r="5" fill="#b06a07" />
+                  
+                  <!-- Etykiety segmentów (małe) -->
+                  <text x="175" y="75" font-family="Arial" font-size="10" fill="#555">A</text>
+                  <text x="175" y="155" font-family="Arial" font-size="10" fill="#555">B</text>
+                  <text x="95" y="155" font-family="Arial" font-size="10" fill="#555">C</text>
+                  <text x="95" y="75" font-family="Arial" font-size="10" fill="#555">D</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Element 7: KDG 3.1 (Kontener na dynamiczną grafikę - Macierz ryzyka) -->
+        <div class="topic-item">
+          <div class="kdg-container">
+            <div class="object-id">KDG 3.1</div>
+            <div class="dynamic-graphic">
+              <!-- Macierz ryzyka -->
+              <svg width="280" height="220" viewBox="0 0 280 220">
+                <!-- Tło macierzy -->
+                <rect x="40" y="40" width="200" height="140" fill="#f8f8f8" stroke="#ddd" stroke-width="1" />
+                
+                <!-- Siatka -->
+                <line x1="40" y1="80" x2="240" y2="80" stroke="#ddd" stroke-width="1" />
+                <line x1="40" y1="120" x2="240" y2="120" stroke="#ddd" stroke-width="1" />
+                <line x1="40" y1="160" x2="240" y2="160" stroke="#ddd" stroke-width="1" />
+                <line x1="107" y1="40" x2="107" y2="180" stroke="#ddd" stroke-width="1" />
+                <line x1="173" y1="40" x2="173" y2="180" stroke="#ddd" stroke-width="1" />
+                
+                <!-- Obramowanie -->
+                <rect x="40" y="40" width="200" height="140" fill="none" stroke="#555" stroke-width="2" />
+                
+                <!-- Komórki ryzyka z różnym kolorem -->
+                <rect x="173" y="40" width="67" height="40" fill="#b06a07" fill-opacity="0.8" />
+                <rect x="173" y="80" width="67" height="40" fill="#b06a07" fill-opacity="0.6" />
+                <rect x="107" y="40" width="66" height="40" fill="#b06a07" fill-opacity="0.6" />
+                <rect x="173" y="120" width="67" height="40" fill="#b06a07" fill-opacity="0.4" />
+                <rect x="107" y="80" width="66" height="40" fill="#b06a07" fill-opacity="0.4" />
+                <rect x="40" y="40" width="67" height="40" fill="#b06a07" fill-opacity="0.4" />
+                <rect x="107" y="120" width="66" height="40" fill="#b06a07" fill-opacity="0.2" />
+                <rect x="40" y="80" width="67" height="40" fill="#b06a07" fill-opacity="0.2" />
+                <rect x="40" y="120" width="67" height="40" fill="#b06a07" fill-opacity="0.1" />
+                
+                <!-- Przykładowe punkty ryzyka (pulsujące kółka) -->
+                <circle cx="200" cy="60" r="8" fill="#b06a07" class="pulse" />
+                <circle cx="130" cy="100" r="6" fill="#b06a07" class="pulse" />
+                <circle cx="75" cy="140" r="5" fill="#b06a07" class="pulse" />
+                
+                <!-- Etykiety osi -->
+                <text x="25" y="60" font-family="Arial" font-size="10" fill="#555">H</text>
+                <text x="25" y="100" font-family="Arial" font-size="10" fill="#555">M</text>
+                <text x="25" y="140" font-family="Arial" font-size="10" fill="#555">L</text>
+                <text x="73" y="200" font-family="Arial" font-size="10" fill="#555">L</text>
+                <text x="140" y="200" font-family="Arial" font-size="10" fill="#555">M</text>
+                <text x="207" y="200" font-family="Arial" font-size="10" fill="#555">H</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Element 8: Z 3.2.1 + O 3.2.2 HOLISTYCZNA OCENA MODELU -->
+        <div class="topic-item">
+          <div class="image-container">
+            <div class="object-id">Z 3.2.1</div>
+            <img src="/risk-research/assets/images/dashboard1_canva.jpg" alt="Holistyczna ocena modelu">
+          </div>
+          <div class="object-box color-d6d2c7">
+            <div class="object-id">O 3.2.2</div>
+            <div class="title-wrapper">
+              <div class="object-title">HOLISTYCZNA</div>
+              <div class="object-title">OCENA</div>
+              <div class="object-subtitle">MODELU</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Element 9: Z 3.3.1 + O 3.3.2 RYZYKO NIEOCZEKIWANE -->
+        <div class="topic-item">
+          <div class="image-container">
+            <div class="object-id">Z 3.3.1</div>
+            <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Ryzyko nieoczekiwane">
+          </div>
+          <div class="object-box color-ece0d0">
+            <div class="object-id">O 3.3.2</div>
+            <div class="title-wrapper">
+              <div class="object-title">RYZYKO</div>
+              <div class="object-subtitle">NIEOCZEKIWANE</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+<!-- Sekcja O 1 - na pełną szerokość z zawartością w kontenerze -->
+<div class="elegant-section-full-width">
+  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <div class="elegant-cards-container">
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Zaawansowana analityka</h3>
+          <p>Kompleksowe rozwiązania analityczne wykorzystujące najnowsze narzędzia statystyczne i modele predykcyjne dla precyzyjnej oceny ryzyka biznesowego.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Strategia biznesowa</h3>
+          <p>Spersonalizowane podejście do rozwoju i implementacji modeli strategicznych, uwzględniających specyfikę branży i indywidualne potrzeby organizacji.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Walidacja modeli</h3>
+          <p>Niezależna weryfikacja skuteczności modeli biznesowych i finansowych zgodnie z najwyższymi standardami branżowymi i wymogami regulacyjnymi.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .elegant-section-full-width {
+    background-color: #656461;
+    padding: 60px 0;
+    margin: 60px 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .elegant-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .elegant-card {
+    background: #faf3e3;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 100%;
+  }
+  
+  .elegant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-image {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  
+  .elegant-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+  }
+  
+  .card-content {
+    padding: 30px;
+  }
+  
+  .card-content h3 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  
+  .card-content h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #a85903;
+  }
+  
+  .card-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 16px;
+    text-indent: 0;
+  }
+  
+  .elegant-button {
+    display: inline-block;
+    color: #a85903;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  .elegant-button:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #a85903;
+    transition: width 0.3s ease;
+  }
+  
+  .elegant-button:hover:after {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .elegant-cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .elegant-cards-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .elegant-section-full-width {
+      padding: 40px 0;
+    }
+  }
+</style>
+  
+
+
+
+  
+
+
+
+<!-- Sekcja O 3 - na pełną szerokość z zawartością w kontenerze -->
+<div class="elegant-section-full-width">
+  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <div class="elegant-cards-container">
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Zaawansowana analityka</h3>
+          <p>Kompleksowe rozwiązania analityczne wykorzystujące najnowsze narzędzia statystyczne i modele predykcyjne dla precyzyjnej oceny ryzyka biznesowego.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Strategia biznesowa</h3>
+          <p>Spersonalizowane podejście do rozwoju i implementacji modeli strategicznych, uwzględniających specyfikę branży i indywidualne potrzeby organizacji.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Walidacja modeli</h3>
+          <p>Niezależna weryfikacja skuteczności modeli biznesowych i finansowych zgodnie z najwyższymi standardami branżowymi i wymogami regulacyjnymi.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .elegant-section-full-width {
+    background-color: #656461;
+    padding: 60px 0;
+    margin: 60px 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .elegant-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .elegant-card {
+    background: #faf3e3;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 100%;
+  }
+  
+  .elegant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-image {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  
+  .elegant-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+  }
+  
+  .card-content {
+    padding: 30px;
+  }
+  
+  .card-content h3 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  
+  .card-content h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #a85903;
+  }
+  
+  .card-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 16px;
+    text-indent: 0;
+  }
+  
+  .elegant-button {
+    display: inline-block;
+    color: #a85903;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  .elegant-button:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #a85903;
+    transition: width 0.3s ease;
+  }
+  
+  .elegant-button:hover:after {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .elegant-cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .elegant-cards-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .elegant-section-full-width {
+      padding: 40px 0;
+    }
+  }
+</style>
+
+
+<!-- Sekcja O 4 - na pełną szerokość z zawartością w kontenerze -->
+<div class="elegant-section-full-width">
+  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <div class="elegant-cards-container">
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Zaawansowana analityka</h3>
+          <p>Kompleksowe rozwiązania analityczne wykorzystujące najnowsze narzędzia statystyczne i modele predykcyjne dla precyzyjnej oceny ryzyka biznesowego.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Strategia biznesowa</h3>
+          <p>Spersonalizowane podejście do rozwoju i implementacji modeli strategicznych, uwzględniających specyfikę branży i indywidualne potrzeby organizacji.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Walidacja modeli</h3>
+          <p>Niezależna weryfikacja skuteczności modeli biznesowych i finansowych zgodnie z najwyższymi standardami branżowymi i wymogami regulacyjnymi.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .elegant-section-full-width {
+    background-color: #656461;
+    padding: 60px 0;
+    margin: 60px 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .elegant-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .elegant-card {
+    background: #faf3e3;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 100%;
+  }
+  
+  .elegant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-image {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  
+  .elegant-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+  }
+  
+  .card-content {
+    padding: 30px;
+  }
+  
+  .card-content h3 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  
+  .card-content h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #a85903;
+  }
+  
+  .card-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 16px;
+    text-indent: 0;
+  }
+  
+  .elegant-button {
+    display: inline-block;
+    color: #a85903;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  .elegant-button:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #a85903;
+    transition: width 0.3s ease;
+  }
+  
+  .elegant-button:hover:after {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .elegant-cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .elegant-cards-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .elegant-section-full-width {
+      padding: 40px 0;
+    }
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   <!-- FOOTER  -->
   <div id="footer_wrap" class="outer">
     <footer class="inner">
@@ -1041,12 +1819,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-        
