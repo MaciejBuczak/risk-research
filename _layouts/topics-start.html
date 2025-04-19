@@ -562,11 +562,152 @@
       animation: pulse 3s infinite ease-in-out;
       animation-delay: 1.5s;
     }
-    
-    /* Nowe style dla prostokąta z tekstem "_ryzyko" */
-    .risk-card.ryzyko-rectangle {
+  </style>
+  
+  <!-- Nowe style dodane specjalnie dla sekcji O 2_1 z własnym selektorem -->
+  <style>
+    /* Całkowicie nowe style dla sekcji O 2_1 */
+    .risk-section {
+      background-color: #656461;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      box-sizing: border-box;
+      display: block;
+      line-height: 0;
+      font-size: 0;
+    }
+
+    .risk-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      line-height: normal;
+      font-size: 16px;
+    }
+
+    .risk-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Domyślny wygląd kart */
+    .risk-card {
+      background: #faf3e3;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      margin: 0;
+      padding: 0;
+      display: block;
+      line-height: normal;
+    }
+
+    /* Style dla kart z różnymi tłami */
+    .middle-card-transparent,
+    .right-card-transparent,
+    .left-card-transparent {
+      background: transparent;
+    }
+
+    .right-card-d6d2c7,
+    .middle-card-d6d2c7 {
+      background: #d6d2c7;
+    }
+
+    .left-card-ece0d0,
+    .right-card-ece0d0 {
+      background: #ece0d0;
+    }
+
+    /* Efekt hover dla kart */
+    .risk-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Grafika SVG */
+    .svg-graphic {
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Kontener na obrazek */
+    .img-container {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+      display: block;
+    }
+
+    .risk-card:hover .img-container img {
+      transform: scale(1.05);
+    }
+
+    .img-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+    }
+
+    /* Styl dla tekstu w kartach */
+    .card-text {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      padding-left: 30px;
+      padding-right: 30px;
+      text-align: left;
+      position: relative;
+    }
+
+    .card-text h3 {
+      position: relative;
+      margin: 0;
+      font-size: 26px;
+      color: #a85903;
+    }
+
+    .card-text h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -12px;
+      width: 40px;
+      height: 3px;
+      background-color: #555;
+    }
+
+    .card-text h3 span {
+      color: #555;
+    }
+
+    /* NOWY UNIKALNY STYL dla lewego obiektu w sekcji O 2_1 */
+    .custom-ryzyko-box-2023 {
       background-color: #faf3e3 !important;
       border: 1px solid #a85903 !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+      transition: transform 0.4s ease, box-shadow 0.4s ease !important;
       display: flex !important;
       justify-content: center !important;
       align-items: center !important;
@@ -574,12 +715,30 @@
       height: 100% !important;
     }
 
-    .ryzyko-text {
+    .custom-ryzyko-box-2023:hover {
+      transform: translateY(-10px) !important;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .custom-ryzyko-text-2023 {
       color: #a85903 !important;
       font-size: 36px !important;
       font-weight: bold !important;
       margin: 0 !important;
       padding: 0 !important;
+    }
+
+    /* Media queries dla różnych szerokości ekranu */
+    @media screen and (max-width: 992px) {
+      .risk-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media screen and (max-width: 576px) {
+      .risk-cards {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -609,19 +768,18 @@
   
   <!-- Menu będzie teraz wstawiane z index.md przez Jekyll -->
 
-
   <!-- MAIN CONTENT -->
   <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
       {{ content }}
 
-<!-- Sekcja O 2_1 zgodna z obrazkiem 2 - zmodyfikowane kolory tła -->
+<!-- Sekcja O 2_1 zgodna z obrazkiem 2 - NOWA IMPLEMENTACJA -->
 <div class="risk-section">
   <div class="risk-container">
     <div class="risk-cards">
-      <!-- Nowy lewy obiekt - prostokąt z napisem "_ryzyko" -->
-      <div class="risk-card ryzyko-rectangle">
-        <div class="ryzyko-text">_ryzyko</div>
+      <!-- Zupełnie nowy lewy obiekt z unikalnymi klasami -->
+      <div class="custom-ryzyko-box-2023">
+        <div class="custom-ryzyko-text-2023">_ryzyko</div>
       </div>
       
       <!-- Środkowy obiekt - grafika SVG - przezroczyste tło -->
@@ -665,11 +823,9 @@
   </div>
 </div>
 
-      
 <!-- Odstęp między sekcjami -->
 <div style="height: 60px; clear: both;"></div>
 
-      
 <!-- Sekcja O 2_2 z poprawioną wysokością i kolorami tła -->
 <div class="risk-section">
   <div class="risk-container">
@@ -696,6 +852,8 @@
         </div>
       </div>
       
+
+
       <!-- Prawy obiekt z prostą grafiką - przezroczyste tło -->
       <div class="risk-card right-card-transparent">
         <div class="svg-graphic">
@@ -726,11 +884,9 @@
   </div>
 </div>
 
-      
 <!-- Odstęp między sekcjami -->
 <div style="height: 60px; clear: both;"></div>
 
-      
 <!-- Sekcja O 2_3 z poprawioną wysokością i kolorami tła -->
 <div class="risk-section">
   <div class="risk-container">
@@ -790,168 +946,107 @@
 <!-- Odstęp po ostatniej sekcji -->
 <div style="height: 60px; clear: both;"></div>
 
-<style>
-/* Całkowicie nowe style, aby uniknąć konfliktów z istniejącymi */
-.risk-section {
-  background-color: #656461;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  box-sizing: border-box;
-  display: block;
-  line-height: 0; /* Eliminuje niewidzialne marginesy */
-  font-size: 0; /* Eliminuje niewidzialne marginesy */
-}
+<!-- Pozostała zawartość strony... -->
 
-.risk-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  line-height: normal;
-  font-size: 16px;
-}
+      <!-- Nowa struktura siatki dla projektu z tematami -->
+      <div class="topics-grid">
+        <!-- Element 1: O 1.1 RYZYKO -->
+        <div class="topic-item">
+          <div class="title-only">
+            <div class="object-id">O 1.1</div>
+            <div class="object-title">RYZYKO</div>
+          </div>
+        </div>
 
-.risk-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  padding: 0;
-  margin: 0;
-}
+        <!-- Element 2: KDG 1.2 (Kontener na dynamiczną grafikę - Rozkład normalny) -->
+        <div class="topic-item">
+          <div class="kdg-container">
+            <div class="object-id">KDG 1.2</div>
+            <div class="dynamic-graphic">
+              <!-- Rozkład normalny / krzywa dzwonowa -->
+              <svg width="280" height="220" viewBox="0 0 280 220">
+                <!-- Osie -->
+                <line x1="40" y1="180" x2="240" y2="180" stroke="#555" stroke-width="2" />
+                <line x1="40" y1="40" x2="40" y2="180" stroke="#555" stroke-width="2" />
+                
+                <!-- Krzywa dzwonowa -->
+                <path d="M40,180 C40,180 60,180 80,170 C100,160 120,120 140,80 C160,40 180,60 200,120 C220,180 240,180 240,180" 
+                      fill="none" stroke="#b06a07" stroke-width="3" class="pulse" />
+                
+                <!-- Punkty danych -->
+                <circle cx="80" cy="170" r="4" fill="#b06a07" />
+                <circle cx="100" cy="150" r="4" fill="#b06a07" />
+                <circle cx="120" cy="120" r="4" fill="#b06a07" />
+                <circle cx="140" cy="80" r="4" fill="#b06a07" class="delayed-pulse" />
+                <circle cx="160" cy="100" r="4" fill="#b06a07" />
+                <circle cx="180" cy="130" r="4" fill="#b06a07" />
+                <circle cx="200" cy="160" r="4" fill="#b06a07" />
+                
+                <!-- Średnia -->
+                <line x1="140" y1="80" x2="140" y2="180" stroke="#b06a07" stroke-width="2" stroke-dasharray="5,5" />
+                <text x="130" y="195" font-family="Arial" font-size="12" fill="#555">μ</text>
+                
+                <!-- Wartość oczekiwana -->
+                <circle cx="140" cy="80" r="6" fill="#b06a07" fill-opacity="0.4" />
+              </svg>
+            </div>
+          </div>
+        </div>
 
-/* Domyślny kolor dla kart */
-.risk-card {
-  background: #faf3e3;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  margin: 0;
-  padding: 0;
-  display: block;
-  line-height: normal;
-}
+        <!-- Pozostałe elementy grida... -->
+        <!-- ... -->
+      </div>
+    </section>
+  </div>
 
-/* Style dla kart z różnymi kolorami tła */
-.risk-card.middle-card-transparent,
-.risk-card.right-card-transparent,
-.risk-card.left-card-transparent {
-  background: transparent;
-}
-
-.risk-card.right-card-d6d2c7,
-.risk-card.middle-card-d6d2c7 {
-  background: #d6d2c7;
-}
-
-.risk-card.left-card-ece0d0,
-.risk-card.right-card-ece0d0 {
-  background: #ece0d0;
-}
-
-.risk-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
-.text-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 300px;
-}
-
-.text-card h2 {
-  color: #a85903;
-  font-size: 42px;
-  font-weight: bold;
-  margin: 0;
-  text-align: center;
-}
-
-.svg-graphic {
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.img-container {
-  height: 220px;
-  position: relative;
-  overflow: hidden;
-}
-
-.img-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s ease;
-  display: block;
-}
-
-.risk-card:hover .img-container img {
-  transform: scale(1.05);
-}
-
-.img-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
-}
-
-.card-text {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
-  text-align: left;
-  position: relative;
-}
-
-/* Nowe style dla tekstów */
-.card-text h3 {
-  position: relative;
-  margin: 0;
-  font-size: 26px;
-  color: #a85903; /* Kolor brązowy dla pierwszej części */
-}
-
-/* Dodanie stylu dla części po kropce - będzie w kolorze szarym */
-.card-text h3::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -12px;
-  width: 40px;
-  height: 3px;
-  background-color: #555; /* Zmiana na szary kolor kreski */
-}
-
-/* Przypisanie koloru dla części po kropce */
-.card-text h3 span {
-  color: #555; /* Kolor szary dla drugiej części */
-}
-
-@media screen and (max-width: 992px) {
-  .risk-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .risk-cards {
-    grid-template-columns: 1fr;
-  }
+  <!-- FOOTER  -->
+  <div id="footer_wrap" class="outer">
+    <footer class="inner">
+      {% if site.github.is_project_page %}
+      <p class="copyright">Maintained by <a href="{{ site.github.owner_url }}">Maciej Buczak</a></p>
+      {% endif %}
+    </footer>
+  </div>
   
-  .text-card h2 {
-    font-size: 36px;
-  }
-}
-</style>
+  <!-- Skrypt do wykrywania przeglądarki -->
+  <script>
+    // Funkcja do wykrywania przeglądarki
+    function detectBrowser() {
+      const userAgent = navigator.userAgent;
+      const html = document.documentElement;
+      
+      if (userAgent.indexOf("Firefox") > -1) {
+        html.classList.add("browser-firefox");
+      } else if (userAgent.indexOf("Edg") > -1) {
+        html.classList.add("browser-edge");
+      } else if (userAgent.indexOf("Chrome") > -1) {
+        html.classList.add("browser-chrome");
+      } else if (userAgent.indexOf("Safari") > -1) {
+        html.classList.add("browser-safari");
+      } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+        html.classList.add("browser-ie");
+      } else {
+        html.classList.add("browser-other");
+      }
+      
+      // Debug - pokaż w konsoli wykrytą przeglądarkę
+      console.log("Wykryta przeglądarka:", html.className);
+    }
+    
+    // Uruchom natychmiast po załadowaniu skryptu
+    detectBrowser();
+    
+    // I ponownie po pełnym załadowaniu strony (na wszelki wypadek)
+    window.addEventListener('load', detectBrowser);
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+        
