@@ -19,6 +19,8 @@
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
     .outer {
       width: 100%;
@@ -288,16 +290,21 @@
       padding: 0 20px;
     }
     
-    /* Zaktualizowane style dla dolnej belki (footer) */
+    /* Poprawione style dla dolnej belki (footer) */
     #footer_wrap {
       background-color: #a85903 !important;
-      width: 100%;
+      width: 100vw;
       display: flex;
       justify-content: center;
       height: auto;
       padding-top: 27.75px;
       padding-bottom: 27.75px;
       position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      margin-bottom: 0;
     }
     #footer_wrap .inner {
       width: 100%;
@@ -823,7 +830,7 @@
           <!-- Kolumna 2 -->
           <div style="flex: 1;">
             <div class="ryzmod-object-id" style="margin-bottom: 10px; font-size: 12px; color: #777;">T 8.2</div>
-            <p style="margin-bottom: 15px;">W odniesieniu do poziomów nieoczekiwanych można powiedzieć, że wyznaczenie zabezpieczeń kapitałowych (wymogu kapitałowego) na poziomie odczytu kwantyla 99.9% rozkładu zagregowanych strat miało uchronić bank przed łączną kwotą rocznych strat, jaka zrealizuje się w tym niepomyślnym roku.
+<p style="margin-bottom: 15px;">W odniesieniu do poziomów nieoczekiwanych można powiedzieć, że wyznaczenie zabezpieczeń kapitałowych (wymogu kapitałowego) na poziomie odczytu kwantyla 99.9% rozkładu zagregowanych strat miało uchronić bank przed łączną kwotą rocznych strat, jaka zrealizuje się w tym niepomyślnym roku.
               Integracja pojęcia poziomu kwantyla z horyzontem badania jest całkowicie zasadna. Takie rozumowanie prowadzi następnie do powszechnie przyjmowanego rozumowania dotyczącego interpretacji kwantyla 99.9%, jako poziomu rocznych strat występujących z prawdopodobieństwem 1 raz na 1000 lat. Rozumowanie to jest również wspierane przez nadzorcę:
              <p><i>"Tylko w ograniczonych przypadkach, na przykład gdy największy punkt danych jest wykazany jako większy lub równy zdarzeniu występującemu rzadziej niż raz na 1000 lat, użycie krzywych empirycznych do oszacowania ogona może być zaakceptowane w modelach SBA."</i></p>
             <p>Takie podejście ma swoje konsekwencje metodologiczne. Nie jest to jednak w moim przekonaniu podejście poprawne.</p>
@@ -1154,5 +1161,10 @@ wydarzeń względem całego spektrum innych scenariuszy, gdzie wskazany explicit
   </script>
 </body>
 </html>
+
+
+
+
+
 
             
