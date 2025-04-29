@@ -2477,14 +2477,67 @@ wydarzeń względem całego spektrum innych scenariuszy, gdzie wskazany explicit
   
   
   
-  <!-- FOOTER  -->
-  <div id="footer_wrap" class="outer">
-    <footer class="inner">
-      {% if site.github.is_project_page %}
-      <p class="copyright">Maintained by <a href="{{ site.github.owner_url }}">Maciej Buczak</a></p>
-      {% endif %}
-    </footer>
+
+<!-- FOOTER - niezależna implementacja -->
+<style>
+  #custom_footer_container {
+    background-color: #a85903;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 27.75px;
+    padding-bottom: 27.75px;
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  #custom_footer_content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    position: relative;
+    left: 260px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  #custom_footer_container p {
+    margin: 5px 0;
+    position: relative;
+    color: white;
+    font-size: 16px;
+  }
+  
+  #custom_footer_container a {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    #custom_footer_content {
+      left: 150px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    #custom_footer_content {
+      left: 0;
+      padding: 0 30px;
+    }
+  }
+</style>
+
+<div id="custom_footer_container">
+  <div id="custom_footer_content">
+    {% if site.github.is_project_page %}
+    <p>Maintained by <a href="{{ site.github.owner_url }}">Maciej Buczak</a></p>
+    {% endif %}
   </div>
+</div>
+
+
+  
   
   <!-- Skrypt do wykrywania przeglądarki -->
   <script>
