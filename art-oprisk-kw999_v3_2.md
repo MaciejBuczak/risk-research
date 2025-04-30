@@ -1,5 +1,5 @@
 ---
-layout: art-oprisk-kw999-layout_v3_1
+layout: art-oprisk-kw999-layout_v3_2
 ---
 <!-- Menu nawigacyjne - wyświetlane przed main_content -->
 <div id="myMenu">
