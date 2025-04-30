@@ -233,6 +233,87 @@
         width: calc(100% - 100px);
       }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* TUTAJ DODAJ STYLE DLA CZCIONKI CHARTER - WERSJA OMIJAJĄCA MENU */
+/* Zamiast stylować cały main_content_wrap, stylujemy tylko konkretne kontenery treści */
+#main_content > *:not(#myMenu):not([id^="myMenu"]), 
+.ryzmod-container > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-text-block > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-intro-text > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-regular-text > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-text-t31 > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-t52-text > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-o51-box > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-orange-box > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-footnote > *:not(#myMenu):not([id^="myMenu"]) {
+  font-family: 'Charter', serif;
+}
+
+/* Specyficzne selektory dla paragrafów w głównej treści */
+#main_content p, 
+.ryzmod-container p,
+.ryzmod-text-block p,
+.ryzmod-intro-text p,
+.ryzmod-regular-text p,
+.ryzmod-text-t31 p,
+.ryzmod-t52-text p,
+.ryzmod-o51-box p,
+.ryzmod-orange-box p,
+.ryzmod-footnote p {
+  font-family: 'Charter', serif;
+}
+
+/* Specyficzne selektory dla nagłówków w głównej treści */
+.ryzmod-container h1, .ryzmod-container h2, .ryzmod-container h3, 
+.ryzmod-container h4, .ryzmod-container h5, .ryzmod-container h6,
+.ryzmod-text-block h5,
+.ryzmod-intro-text h5,
+.ryzmod-text-t31 h5,
+.ryzmod-t52-text h5 {
+  font-family: 'Charter', serif;
+}
+
+/* Dodatkowe selektory dla innych elementów tekstowych */
+.ryzmod-title-modeli,
+.ryzmod-title-ryzyko,
+.ryzmod-header-modeli,
+.ryzmod-overlay-text,
+.ryzmod-article-text,
+.ryzmod-article-title,
+.ryzmod-article-desc,
+.ryzmod-o51-title {
+  font-family: 'Charter', serif;
+}
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
     
     /* Zaktualizowane style dla menu - zgodne z poprzednią stroną */
     #myMenu {
