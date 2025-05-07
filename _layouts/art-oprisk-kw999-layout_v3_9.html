@@ -1937,6 +1937,289 @@
 
 
 
+
+
+
+
+
+
+<!-- Nowy element: Ramka informacyjna w dokładnym stylu z obrazka -->
+<div class="ryzmod-info-box2" style="width: 100%; margin: 30px 0; background-color: white; position: relative; box-sizing: border-box; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden;">
+  
+  <!-- Nagłówek -->
+  <div style="background-color: #D4AF37; color: white; padding: 10px 15px; font-family: 'Arial Black', sans-serif; font-style: italic; font-size: 18px; font-weight: bold; text-transform: uppercase;">
+    MODEL KWANTYLA RYZYKA
+  </div>
+  
+  <!-- Główna zawartość -->
+  <div style="padding: 20px;">
+    <!-- Formuła matematyczna -->
+    <div style="display: flex; justify-content: center; align-items: center; font-family: 'Cambria Math', 'Times New Roman', serif; font-size: 32px; margin-bottom: 25px; flex-wrap: wrap;">
+      <!-- VaR -->
+      <div style="padding: 0 5px; position: relative; cursor: pointer; transition: transform 0.2s ease, color 0.2s ease;">
+        VaR<sub style="font-size: 0.6em;">α</sub>
+        <div style="position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%); background-color: #D4AF37; color: white; padding: 5px 10px; border-radius: 5px; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif; white-space: nowrap; opacity: 0; transition: opacity 0.3s ease; z-index: 100; pointer-events: none;">Wartość narażona na ryzyko</div>
+      </div>
+      
+      <!-- = -->
+      <div style="padding: 0 5px;">
+        =
+      </div>
+      
+      <!-- μ -->
+      <div style="padding: 0 5px; position: relative; cursor: pointer; transition: transform 0.2s ease, color 0.2s ease;">
+        μ
+        <div style="position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%); background-color: #D4AF37; color: white; padding: 5px 10px; border-radius: 5px; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif; white-space: nowrap; opacity: 0; transition: opacity 0.3s ease; z-index: 100; pointer-events: none;">Wartość oczekiwana rozkładu</div>
+      </div>
+      
+      <!-- + -->
+      <div style="padding: 0 5px;">
+        +
+      </div>
+      
+      <!-- σ -->
+      <div style="padding: 0 5px; position: relative; cursor: pointer; transition: transform 0.2s ease, color 0.2s ease;">
+        σ
+        <div style="position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%); background-color: #D4AF37; color: white; padding: 5px 10px; border-radius: 5px; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif; white-space: nowrap; opacity: 0; transition: opacity 0.3s ease; z-index: 100; pointer-events: none;">Odchylenie standardowe</div>
+      </div>
+      
+      <!-- · -->
+      <div style="padding: 0 5px;">
+        ·
+      </div>
+      
+      <!-- Φ^-1 -->
+      <div style="padding: 0 5px; position: relative; cursor: pointer; transition: transform 0.2s ease, color 0.2s ease;">
+        Φ<sup style="font-size: 0.6em;">-1</sup>
+        <div style="position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%); background-color: #D4AF37; color: white; padding: 5px 10px; border-radius: 5px; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif; white-space: nowrap; opacity: 0; transition: opacity 0.3s ease; z-index: 100; pointer-events: none;">Odwrotność dystrybuanty rozkładu normalnego</div>
+      </div>
+      
+      <!-- ( -->
+      <div style="padding: 0 5px;">
+        (
+      </div>
+      
+      <!-- α -->
+      <div style="padding: 0 5px; position: relative; cursor: pointer; transition: transform 0.2s ease, color 0.2s ease;">
+        <span id="alpha-value" style="color: #D4AF37; font-weight: bold;">0.999</span>
+        <div style="position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%); background-color: #D4AF37; color: white; padding: 5px 10px; border-radius: 5px; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif; white-space: nowrap; opacity: 0; transition: opacity 0.3s ease; z-index: 100; pointer-events: none;">Poziom ufności</div>
+      </div>
+      
+      <!-- ) -->
+      <div style="padding: 0 5px;">
+        )
+      </div>
+    </div>
+    
+    <!-- Wizualizacja rozkładu normalnego -->
+    <div style="position: relative; height: 250px; margin: 30px 0;">
+      <div style="position: relative; width: 100%; height: 200px;">
+        <!-- Osie -->
+        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background-color: #333;"></div>
+        <div style="position: absolute; bottom: 0; left: 50px; width: 2px; height: 100%; background-color: #333;"></div>
+        
+        <!-- Etykiety osi -->
+        <div style="position: absolute; bottom: -20px; right: 10px; font-size: 12px; color: #777;">Wartości</div>
+        <div style="position: absolute; transform: rotate(-90deg); transform-origin: left center; left: 40px; top: 50%; font-size: 12px; color: #777;">Prawdopodobieństwo</div>
+        
+        <!-- Krzywa dzwonowa -->
+        <svg width="100%" height="100%" viewBox="0 0 100 60" preserveAspectRatio="none" style="position: absolute; top: 0; left: 0;">
+          <!-- Obszar pod krzywą -->
+          <path d="M10,60 C10,60 25,10 50,10 C75,10 90,60 90,60 L90,60 L10,60 Z" fill="rgba(212, 175, 55, 0.1)" stroke="none"></path>
+          
+          <!-- Krzywa dzwonowa -->
+          <path d="M10,60 C10,60 25,10 50,10 C75,10 90,60 90,60" fill="none" stroke="#333" stroke-width="2"></path>
+        </svg>
+        
+        <!-- Obszar VaR -->
+        <div id="var-area" style="position: absolute; bottom: 0; right: 0; height: 100%; background-color: rgba(212, 175, 55, 0.2); border-left: 1px solid #D4AF37; width: 10%; transition: width 0.5s ease;"></div>
+        
+        <!-- Linia VaR -->
+        <div id="var-line" style="position: absolute; width: 2px; height: 100%; background-color: #D4AF37; bottom: 0; right: 10%; transition: right 0.5s ease;"></div>
+        
+        <!-- Etykieta VaR -->
+        <div id="var-label" style="position: absolute; right: 15px; top: 20px; color: #D4AF37; font-weight: bold; font-size: 14px; transition: right 0.5s ease;">VaR<sub>99.9%</sub></div>
+      </div>
+    </div>
+    
+    <!-- Wartości liczbowe -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-around; margin: 30px 0;">
+      <div style="width: 45%; margin-bottom: 20px; padding: 15px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); background-color: #f9f9f9;">
+        <div style="font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #333;">Poziom ufności (α)</div>
+        <div id="num-confidence" style="font-size: 20px; font-weight: 600; color: #D4AF37;">99.9%</div>
+        <div style="font-size: 12px; color: #777; margin-top: 10px;">Określa prawdopodobieństwo, że strata nie przekroczy VaR</div>
+      </div>
+      
+      <div style="width: 45%; margin-bottom: 20px; padding: 15px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); background-color: #f9f9f9;">
+        <div style="font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #333;">Wartość Φ<sup>-1</sup>(α)</div>
+        <div id="num-phi-inverse" style="font-size: 20px; font-weight: 600; color: #D4AF37;">3.09</div>
+        <div style="font-size: 12px; color: #777; margin-top: 10px;">Odwrotność dystrybuanty rozkładu normalnego</div>
+      </div>
+    </div>
+    
+    <!-- Kontrolka poziomu ufności -->
+    <div style="margin: 30px 0; padding: 20px; background-color: #f5f5f5; border-radius: 8px;">
+      <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px;">
+        <span>Poziom ufności:</span>
+        <span id="confidence-value">99.9%</span>
+      </div>
+      <input type="range" id="confidence-slider" min="90" max="99.9" step="0.1" value="99.9" style="width: 100%; height: 6px; background: linear-gradient(to right, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.7)); border-radius: 3px; outline: none; -webkit-appearance: none; appearance: none;">
+      <style>
+        #confidence-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #D4AF37;
+          cursor: pointer;
+          box-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+        }
+        #confidence-slider::-moz-range-thumb {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #D4AF37;
+          cursor: pointer;
+          border: none;
+          box-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+        }
+        [style*="position: relative; cursor: pointer"]:hover {
+          transform: translateY(-3px);
+          color: #D4AF37;
+        }
+        [style*="position: relative; cursor: pointer"]:hover div[style*="position: absolute"] {
+          opacity: 1;
+        }
+      </style>
+    </div>
+  </div>
+  
+  <!-- Skrypt obsługujący interaktywność -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elementy DOM
+      const confidenceSlider = document.getElementById('confidence-slider');
+      const confidenceValue = document.getElementById('confidence-value');
+      const alphaValue = document.getElementById('alpha-value');
+      const varLine = document.getElementById('var-line');
+      const varLabel = document.getElementById('var-label');
+      const varArea = document.getElementById('var-area');
+      const numConfidence = document.getElementById('num-confidence');
+      const numPhiInverse = document.getElementById('num-phi-inverse');
+      
+      // Funkcja do obliczania odwrotności dystrybuanty rozkładu normalnego
+      function normalInverse(p) {
+        // Przybliżenie dla odwrotności dystrybuanty
+        if (p <= 0 || p >= 1) {
+          return NaN;
+        }
+        
+        if (p === 0.5) {
+          return 0;
+        }
+        
+        const a1 = -3.969683028665376e+01;
+        const a2 = 2.209460984245205e+02;
+        const a3 = -2.759285104469687e+02;
+        const a4 = 1.383577518672690e+02;
+        const a5 = -3.066479806614716e+01;
+        const a6 = 2.506628277459239e+00;
+        
+        const b1 = -5.447609879822406e+01;
+        const b2 = 1.615858368580409e+02;
+        const b3 = -1.556989798598866e+02;
+        const b4 = 6.680131188771972e+01;
+        const b5 = -1.328068155288572e+01;
+        
+        const c1 = -7.784894002430293e-03;
+        const c2 = -3.223964580411365e-01;
+        const c3 = -2.400758277161838e+00;
+        const c4 = -2.549732539343734e+00;
+        const c5 = 4.374664141464968e+00;
+        const c6 = 2.938163982698783e+00;
+        
+        const d1 = 7.784695709041462e-03;
+        const d2 = 3.224671290700398e-01;
+        const d3 = 2.445134137142996e+00;
+        const d4 = 3.754408661907416e+00;
+        
+        let q, r, x;
+        
+        if (p < 0.5) {
+          q = p;
+        } else {
+          q = 1 - p;
+        }
+        
+        r = Math.sqrt(-Math.log(q));
+        
+        if (r <= 5) {
+          r -= 1.6;
+          x = (((((a6 * r + a5) * r + a4) * r + a3) * r + a2) * r + a1) * r / 
+              (((((b5 * r + b4) * r + b3) * r + b2) * r + b1) * r + 1);
+        } else {
+          r -= 5;
+          x = (((((c6 * r + c5) * r + c4) * r + c3) * r + c2) * r + c1) / 
+              ((((d4 * r + d3) * r + d2) * r + d1) * r + 1);
+        }
+        
+        if (p < 0.5) {
+          return -x;
+        } else {
+          return x;
+        }
+      }
+      
+      // Funkcja do aktualizacji wartości
+      function updateValues() {
+        const confidencePercent = parseFloat(confidenceSlider.value).toFixed(1);
+        const alpha = confidencePercent / 100;
+        
+        // Obliczenie wartości
+        const phiInverse = normalInverse(alpha);
+        
+        // Aktualizacja wartości wyświetlanych
+        confidenceValue.textContent = confidencePercent + '%';
+        alphaValue.textContent = alpha.toFixed(3);
+        numConfidence.textContent = confidencePercent + '%';
+        numPhiInverse.textContent = phiInverse.toFixed(2);
+        
+        // Aktualizacja wizualizacji
+        // Mapujemy poziom ufności 90-99.9% na pozycję 40-10% od prawej strony
+        const linePosition = 40 - ((confidencePercent - 90) / (99.9 - 90)) * 30;
+        varLine.style.right = linePosition + '%';
+        varLabel.innerHTML = 'VaR<sub>' + confidencePercent + '%</sub>';
+        varLabel.style.right = (linePosition + 5) + '%';
+        varArea.style.width = linePosition + '%';
+        
+        // Efekt animacji dla wartości alfa
+        alphaValue.style.animation = 'none';
+        setTimeout(() => {
+          alphaValue.style.animation = 'pulse 2s';
+        }, 10);
+      }
+      
+      // Obsługa zdarzeń
+      confidenceSlider.addEventListener('input', updateValues);
+      
+      // Dodanie stylów animacji
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+          100% { transform: scale(1); }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      // Inicjalizacja
+      updateValues();
+    });
+  </script>
+</div>
+
         
         
 
