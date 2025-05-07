@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,maximum-scale=2">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&family=Indie+Flower&family=Shadows+Into+Light&family=Satisfy&display=swap" rel="stylesheet">
+{% seo %}
+  {% include head-custom.html %}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      background-color: white !important;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    
+    .outer {
+      width: 100%;
+      max-width: 100%;
+      padding: 0;
+      margin: 0;
+      background-color: transparent !important;
+    }
+    
+    /* Ulepszona wersja nagłówka z subtelnym cieniem */
+    #header_wrap {
+      background: linear-gradient(to bottom, #b86a12, #a85903) !important;
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding-top: 30px;
+      padding-bottom: 30.5px;
+      overflow: hidden; /* Zapobiega wystawaniu kwadratów */
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); /* Delikatny cień pod nagłówkiem */
+    }
+    
+    #header_wrap .inner {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+      position: relative;
+      left: 260px;
+      text-align: left;
+      visibility: hidden;
+    }
+    
+    #project_title {
+      font-size: 42px;
+      margin-top: 20px;
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
+      color: white;
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Delikatny cień dla tekstu */
+    }
+    
+    #project_tagline {
+      font-size: 24px;
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Delikatny cień dla tekstu */
+    }
+    
+    /* Ulepszony kontener title-square-container z efektem głębi */
+    .title-square-container {
+      position: absolute;
+      top: 28px;
+      left: 49.68%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 650px;
+      height: 150px;
+      z-index: 10;
+    }
+    
+    /* Udoskonalony styl dla nagłówka z cieniem */
+    .title-square-container .header-content {
+      position: absolute;
+      top: 2.5px;
+      left: 10px;
+      z-index: 10;
+    }
+    
+    /* Udoskonalone style z efektami 3D */
+    .title-square-container #title {
+      font-size: 42px;
+      margin-top: 20px;
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Wzmocniony cień */
+      transform: translateZ(0);
+      transition: text-shadow 0.3s ease;
+    }
+    
+    /* Efekt hover dla tytułu */
+    .title-square-container #title:hover {
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(255, 255, 255, 0.1);
+    }
+    
+    .title-square-container #tagline {
+      font-size: 24px;
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
+      color: white;
+      font-weight: normal !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+      transition: text-shadow 0.3s ease;
+    }
+    
+    /* Efekt hover dla podtytułu */
+    .title-square-container #tagline:hover {
+      text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Usunięcie pseudoelementów */
+    .title-square-container #tagline::after,
+    .title-square-container #tagline::before {
+      content: none !important;
+      display: none !important;
+    }
+    
+    /* Ulepszone kwadraty z efektami 3D */
+    .title-square-container .blue-square {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #e1861d, #d17a1b);
+      position: absolute;
+      top: 0;
+      right: 0;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      transform: translateZ(0) rotate(0deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    /* Efekt hover dla kwadratów */
+    .title-square-container .blue-square:hover {
+      transform: translateZ(10px) rotate(2deg);
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.25);
+    }
+    
+    .title-square-container .blue-square1 {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #e1861d, #d17a1b);
+      position: absolute;
+      top: 51.5px;
+      right: 63px;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+      transform: translateZ(0) rotate(0deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .title-square-container .blue-square1:hover {
+      transform: translateZ(5px) rotate(-3deg);
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    
+    .title-square-container .blue-square2 {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #e1861d, #d17a1b);
+      position: absolute;
+      top: 31px;
+      right: 107px;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+      transform: translateZ(0) rotate(0deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .title-square-container .blue-square2:hover {
+      transform: translateZ(5px) rotate(3deg);
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    
+    .title-square-container .blue-square-big {
+      width: 175px;
+      height: 30px;
+      background: linear-gradient(to right, #e1861d, #d17a1b);
+      position: absolute;
+      top: 60px;
+      left: 0px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      transform: translateZ(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .title-square-container .blue-square-big:hover {
+      transform: translateZ(8px);
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Media queries dla różnych szerokości ekranu */
+    @media screen and (max-width: 1200px) {
+      #header_wrap .inner {
+        left: 150px;
+      }
+    }
+    
+    /* Media queries dla telefonów */
+    @media screen and (max-width: 768px) {
+      #header_wrap .inner {
+        left: 0px;
+        width: calc(100% - 60px);
+      }
+      
+      #project_title, #title {
+        font-size: 42px;
+      }
+      
+      #project_tagline, #tagline {
+        font-size: 24px;
+      }
+    }
+    
+    /* Dodatkowe style dla małych telefonów */
+    @media screen and (max-width: 480px) {
+      #header_wrap {
+        padding-left: 0;
+        padding-right: 0;
+        justify-content: flex-start;
+      }
+      
+      #header_wrap .inner {
+        left: 0;
+        right: auto;
+        margin-left: 0;
+        padding-left: 10px;
+        width: 100%;
+        max-width: 100%;
+        transform: none;
+        justify-content: flex-start;
+      }
+      
+      #project_title, #title {
+        font-size: 32px;
+        margin-left: 0;
+        padding-left: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+      }
+      
+      #project_tagline, #tagline {
+        font-size: 24px;
+        margin-left: 0;
+        padding-left: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+      }
+      
+      .outer {
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+    
+    /* Dodatkowe media query dla orientacji poziomej na telefonach */
+    @media screen and (max-width: 900px) and (orientation: landscape) {
+      #header_wrap .inner {
+        left: 80px;
+        width: calc(100% - 100px);
+      }
+    }
+    
+    /* STYLE DLA CZCIONKI CHARTER - WERSJA OMIJAJĄCA MENU */
+    #main_content > *:not(#myMenu):not([id^="myMenu"]), 
+    .ryzmod-container > *:not(#myMenu):not([id^="myMenu"]),
+    .ryzmod-text-block > *:not(#myMenu):not([id^="myMenu"]),
+    .ryzmod-intro-text > *:not(#myMenu):not([id^="myMenu"]),
+    .ryzmod-regular-text > *:not(#myMenu):not([id^="myMenu"]),
+    .ryzmod-text-t31 > *:not(#myMenu):not([id^="myMenu"]),
+    .ryzmod-t52-text > *:not(#myMenu):not([id^="myMenu"]),
+    .ryzmod-o51-box > *:not(#myMenu):not([id^="myMenu"]),
+    .ryzmod-orange-box > *:not(#myMenu):not([id^="myMenu"]),
+    .ryzmod-footnote > *:not(#myMenu):not([id^="myMenu"]) {
+      font-family: Georgia, serif;
+      font-size: 18px;
+    }
+    
+    /* Specyficzne selektory dla paragrafów w głównej treści */
+    #main_content p, 
+    .ryzmod-container p,
+    .ryzmod-text-block p,
+    .ryzmod-intro-text p,
+    .ryzmod-regular-text p,
+    .ryzmod-text-t31 p,
+    .ryzmod-t52-text p,
+    .ryzmod-o51-box p,
+    .ryzmod-orange-box p,
+    .ryzmod-footnote p {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      line-height: 1.6;
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.01); /* Mikroskopijny cień dla lepszej czytelności */
+    }
+    
+    /* Specyficzne selektory dla nagłówków z efektem głębi */
+    .ryzmod-container h1, .ryzmod-container h2, .ryzmod-container h3, 
+    .ryzmod-container h4, .ryzmod-container h5, .ryzmod-container h6,
+    .ryzmod-text-block h5,
+    .ryzmod-intro-text h5,
+    .ryzmod-text-t31 h5,
+    .ryzmod-t52-text h5 {
+      font-family: Georgia, serif;
+      position: relative;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+      transition: text-shadow 0.3s ease;
+    }
+    
+    /* Efekt hover dla nagłówków */
+    .ryzmod-container h1:hover, .ryzmod-container h2:hover, 
+    .ryzmod-container h3:hover, .ryzmod-container h4:hover, 
+    .ryzmod-container h5:hover, .ryzmod-container h6:hover,
+    .ryzmod-text-block h5:hover,
+    .ryzmod-intro-text h5:hover,
+    .ryzmod-text-t31 h5:hover,
+    .ryzmod-t52-text h5:hover {
+      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Dodatkowe selektory dla innych elementów tekstowych */
+    .ryzmod-title-modeli,
+    .ryzmod-title-ryzyko,
+    .ryzmod-header-modeli,
+    .ryzmod-overlay-text,
+    .ryzmod-article-text,
+    .ryzmod-article-title,
+    .ryzmod-article-desc,
+    .ryzmod-o51-title {
+      font-family: Georgia, serif;
+    }
+    
+    /* Ulepszone menu z efektami głębi */
+    #myMenu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      padding: 20px 0;
+      margin-top: 0 !important;
+      margin-bottom: 60px;
+      width: 100%;
+      position: relative;
+      top: 21px;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Delikatny cień pod menu */
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+      border-radius: 4px;
+    }
+    
+    #myMenu a.menu-option {
+      color: rgb(115, 115, 115);
+      text-decoration: none;
+      padding: 5px 10px;
+      margin: 0 15px;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Ulepszony efekt hover dla menu */
+    #myMenu a.menu-option:hover {
+      color: #a85903;
+      transform: translateY(-2px);
+      text-shadow: 0 1px 1px rgba(168, 89, 3, 0.1);
+    }
+    
+    /* Efekt podkreślenia dla menu */
+    #myMenu a.menu-option::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: #a85903;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      opacity: 0;
+      border-radius: 1px;
+    }
+    
+    #myMenu a.menu-option:hover::after {
+      width: 80%;
+      opacity: 1;
+    }
+    
+    /* Style responsywne dla menu */
+    @media screen and (max-width: 768px) {
+      #myMenu {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      #myMenu a.menu-option {
+        margin: 5px 0;
+      }
+    }
+    
+    /* Główna sekcja treści z delikatnym tłem */
+    #main_content_wrap {
+      background: linear-gradient(to bottom, #ffffff, #fafafa) !important;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      border: none;
+      box-shadow: inset 0 5px 10px -5px rgba(0, 0, 0, 0.05); /* Wewnętrzny cień u góry */
+    }
+    
+    #main_content {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1; /* Zapewnienie właściwego układu warstw */
+    }
+    
+    /* Ulepszony footer z gradientem i cieniem */
+    #footer_wrap {
+      background: linear-gradient(to bottom, #a85903, #8b4513) !important;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      height: auto;
+      padding-top: 27.75px;
+      padding-bottom: 27.75px;
+      position: relative;
+      box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1); /* Cień u góry footera */
+    }
+    
+    #footer_wrap .inner {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+      position: relative;
+      left: 260px;
+      text-align: center;
+    }
+    
+    #footer_wrap p {
+      margin: 5px 0;
+      position: relative;
+      left: 0px;
+      top: 0px;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Delikatny cień dla tekstu */
+    }
+    
+    #footer_wrap .copyright {
+      position: relative;
+      top: 0px;
+      left: 0px;
+    }
+    
+    /* STYLE DLA PROJEKTU RYZYKO MODELI - ULEPSZONE Z EFEKTAMI 3D */
+    
+    /* Główny kontener z subtelnym cieniem */
+    .ryzmod-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.01);
+      position: relative;
+    }
+    
+    /* Tytuł główny sekcji z ulepszonym wyglądem */
+    .ryzmod-title {
+      margin-bottom: 40px;
+      display: flex;
+      position: relative;
+    }
+    
+    .ryzmod-title-modeli {
+      color: #555;
+      font-size: 32px;
+      font-weight: bold;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+      transition: text-shadow 0.3s ease;
+    }
+    
+    .ryzmod-title-modeli:hover {
+      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.08);
+    }
+    
+    .ryzmod-title-ryzyko {
+      color: #a85903;
+      font-size: 32px;
+      font-weight: bold;
+      margin-right: 15px;
+      text-shadow: 0 1px 1px rgba(168, 89, 3, 0.1);
+      transition: text-shadow 0.3s ease;
+    }
+    
+    .ryzmod-title-ryzyko:hover {
+      text-shadow: 0 2px 2px rgba(168, 89, 3, 0.15);
+    }
+    
+    /* Główny nagłówek sekcji z efektami */
+    .ryzmod-header {
+      display: flex;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    /* Ulepszony styl nagłówka z efektem głębi */
+    .ryzmod-header-text {
+      color: #8b4513;
+      font-size: 32px;
+      font-weight: bold;
+      margin-right: 15px;
+      font-family: 'Caveat';
+      text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.15), 0 0 1px rgba(139, 69, 19, 0.05);
+      transform: translateZ(0);
+      transition: all 0.3s ease;
+    }
+    
+    /* Efekt hover dla nagłówka */
+    .ryzmod-header-text:hover {
+      text-shadow: 2px 2px 3px rgba(139, 69, 19, 0.2), 0 0 2px rgba(139, 69, 19, 0.1);
+      transform: translateZ(5px);
+    }
+    
+    .ryzmod-header-modeli {
+      color: #555;
+      font-size: 32px;
+      font-weight: bold;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+      transition: text-shadow 0.3s ease;
+    }
+    
+    .ryzmod-header-modeli:hover {
+      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Ulepszony kontener głównego zdjęcia z głębią */
+    .ryzmod-main-image {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      margin-bottom: 30px;
+      border: 1px solid #a85903;
+      padding: 0;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      border-radius: 4px;
+      transform: translateZ(0);
+    }
+    
+    /* Efekt hover dla zdjęcia */
+    .ryzmod-main-image:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px) translateZ(0);
+    }
+
+    .ryzmod-main-image img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      max-width: none !important;
+      max-height: none !important;
+      transition: transform 0.5s ease;
+    }
+    
+    /* Efekt hover dla zdjęcia - delikatne powiększenie */
+    .ryzmod-main-image:hover img {
+      transform: scale(1.02);
+    }
+    
+    /* Napis na głównym zdjęciu z efektem głębi */
+    .ryzmod-overlay-text {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(255, 235, 211, 0.9);
+      padding: 15px 20px;
+      max-width: 40%;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      backdrop-filter: blur(5px);
+      transform: translateZ(20px);
+      transition: all 0.3s ease;
+    }
+    
+    /* Efekt hover dla napisu */
+    .ryzmod-overlay-text:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 2px 5px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px) translateZ(25px);
+    }
+    
+    .ryzmod-overlay-id {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: #777;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 3px 6px;
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Drugi wiersz z diagramem z efektami 3D */
+    .ryzmod-network-row {
+      display: flex;
+      margin-bottom: 0;
+      gap: 30px;
+      position: relative;
+    }
+    
+    /* Kontener diagramu sieciowego z głębią */
+    .ryzmod-network-container {
+      width: 35%;
+      border: 1px solid #a85903;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Efekt hover dla diagramu */
+    .ryzmod-network-container:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .ryzmod-network-container img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      max-width: none !important;
+      max-height: none !important;
+      transition: transform 0.5s ease;
+    }
+    
+    /* Efekt hover dla obrazu diagramu */
+    .ryzmod-network-container:hover img {
+      transform: scale(1.03);
+    }
+    
+    /* Kontener tekstów z efektem głębi */
+    .ryzmod-text-block {
+      width: 65%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Tekst wstępny z subtelnym cieniem */
+    .ryzmod-intro-text {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 20px;
+      padding-right: 0;
+      background-color: transparent;
+      margin-bottom: 15px;
+      position: relative;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Efekt hover dla tekstu wstępnego */
+    .ryzmod-intro-text:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transform: translateY(-2px);
+    }
+    
+    /* Zwykły tekst z subtelnym cieniem */
+    .ryzmod-regular-text {
+      padding: 15px 20px;
+      background-color: transparent;
+      position: relative;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Efekt hover dla zwykłego tekstu */
+    .ryzmod-regular-text:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transform: translateY(-2px);
+    }
+    
+    /* Style dla T.3.1 - kontener na tekst z efektem głębi */
+    .ryzmod-text-t31 {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 20px;
+      background-color: transparent;
+      position: relative;
+      margin-bottom: 30px;
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+/* Efekt hover dla T.3.1 */
+.ryzmod-text-t31:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Style dla O.3.2 - kolorowy prostokąt z efektem głębi */
+.ryzmod-orange-box {
+  background-color: #fdf3e9;
+  background: linear-gradient(to bottom right, #fdf3e9, #fcf2ec);
+  padding: 20px;
+  position: relative;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 15px rgba(168, 89, 3, 0.1), 0 2px 5px rgba(168, 89, 3, 0.05);
+  border-radius: 4px;
+  border-right: 5px solid #a85903;
+  transform: translateZ(0);
+  transition: all 0.3s ease;
+}
+
+/* Efekt hover dla kolorowego prostokąta */
+.ryzmod-orange-box:hover {
+  box-shadow: 0 8px 20px rgba(168, 89, 3, 0.15), 0 3px 8px rgba(168, 89, 3, 0.08);
+  transform: translateY(-3px) translateZ(0);
+}
+
+/* Style dla KDG4 - kontener na dynamiczną grafikę z efektami 3D */
+.ryzmod-kdg-container {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #a85903;
+  position: relative;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), 0 3px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  transform: perspective(1000px) rotateX(0deg);
+  transition: all 0.4s ease;
+}
+
+/* Efekt hover dla kontenera na grafikę */
+.ryzmod-kdg-container:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08);
+  transform: perspective(1000px) rotateX(2deg) translateY(-5px);
+}
+
+.ryzmod-kdg-title {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: text-shadow 0.3s ease;
+}
+
+.ryzmod-kdg-title:hover {
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Style dla O5.1 - kolorowy prostokąt z tekstem i efektem głębi */
+.ryzmod-o51-container {
+  display: flex;
+  margin-bottom: 30px;
+  gap: 30px;
+  position: relative;
+}
+
+.ryzmod-o51-box {
+  width: 35%;
+  background: linear-gradient(to bottom right, #fdf3e9, #fcf2ec);
+  padding: 20px;
+  border-left: 5px solid #a85903;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(168, 89, 3, 0.1), 0 2px 5px rgba(168, 89, 3, 0.05);
+  border-radius: 4px;
+  transform: translateZ(0);
+  transition: all 0.3s ease;
+}
+
+/* Efekt hover dla kolorowego prostokąta */
+.ryzmod-o51-box:hover {
+  box-shadow: 0 8px 20px rgba(168, 89, 3, 0.15), 0 3px 8px rgba(168, 89, 3, 0.08);
+  transform: translateY(-3px) translateZ(0);
+}
+
+.ryzmod-o51-title {
+  color: #a85903;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 0 1px 1px rgba(168, 89, 3, 0.1);
+  transition: text-shadow 0.3s ease;
+}
+
+.ryzmod-o51-title:hover {
+  text-shadow: 0 2px 2px rgba(168, 89, 3, 0.15);
+}
+
+/* Style dla T 5.2 - tekst po prawej stronie z efektem głębi */
+.ryzmod-t52-text {
+  width: 65%;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 20px;
+  padding-right: 0;
+  background-color: transparent;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* Efekt hover dla T 5.2 */
+.ryzmod-t52-text:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Style dla sekcji pełnej szerokości z efektem głębi */
+.full-width-section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08), 0 -8px 25px rgba(0, 0, 0, 0.08);
+  z-index: 0;
+}
+
+/* Styl dla artykułów w sekcji O6 z efektami 3D */
+.ryzmod-articles-section {
+  background: linear-gradient(to bottom, #6e6d6a, #656461);
+  padding: 30px 0;
+  color: white;
+  margin: 40px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 -10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 0;
+}
+
+.ryzmod-articles-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.ryzmod-articles-title {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Efekt 3D dla siatki artykułów */
+.ryzmod-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  perspective: 1000px;
+}
+
+/* Elementy artykułów z efektem głębi */
+.ryzmod-article-item {
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateZ(0);
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+/* Efekt hover dla artykułów */
+.ryzmod-article-item:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px) translateZ(10px) rotateX(2deg);
+}
+
+.ryzmod-article-image {
+  border: 1px solid #a85903;
+  height: 120px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.ryzmod-article-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  transition: transform 0.5s ease;
+}
+
+/* Efekt hover dla obrazów artykułów */
+.ryzmod-article-item:hover .ryzmod-article-image img {
+  transform: scale(1.05);
+}
+
+.ryzmod-article-text {
+  background: linear-gradient(to bottom right, #fdf3e9, #fcf2ec);
+  color: #333;
+  padding: 15px;
+  flex: 1;
+  position: relative;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.ryzmod-article-title {
+  font-weight: bold;
+  color: #a85903;
+  margin-bottom: 5px;
+  font-size: 14px;
+  text-shadow: 0 1px 1px rgba(168, 89, 3, 0.1);
+}
+
+.ryzmod-article-desc {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* ID obiektów z efektem głębi */
+.ryzmod-object-id {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 12px;
+  color: #777;
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 3px 6px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Ulepszone style dla przypisu z efektem głębi */
+.ryzmod-footnote-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 15px 20px;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background: linear-gradient(to bottom, #f9f9f9, #f5f5f5);
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+  position: relative;
+  transform: translateZ(0);
+  transition: all 0.3s ease;
+}
+
+/* Efekt hover dla przypisu */
+.ryzmod-footnote-container:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08), 0 2px 5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px) translateZ(0);
+}
+
+.ryzmod-footnote {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  position: relative;
+}
+
+/* Style dla pierwszej litery w akapicie z efektem 3D */
+span[style*="float: left; font-size: 400%"] {
+  font-size: 400%;
+  line-height: 0.8;
+  float: left;
+  margin-right: 8px;
+  margin-top: 5px;
+  color: #737373;
+  text-shadow: 
+    1px 1px 0 rgba(115, 115, 115, 0.1),
+    2px 2px 0 rgba(115, 115, 115, 0.05);
+  transform: perspective(500px) rotateY(5deg);
+  transform-origin: left center;
+  transition: all 0.3s ease;
+}
+
+/* Efekt hover dla pierwszej litery */
+span[style*="float: left; font-size: 400%"]:hover {
+  text-shadow: 
+    2px 2px 0 rgba(115, 115, 115, 0.15),
+    3px 3px 0 rgba(115, 115, 115, 0.1);
+  transform: perspective(500px) rotateY(0deg);
+}
+
+/* Efekty 3D dla tabeli i list */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 1px 5px rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th {
+  background: linear-gradient(to bottom, #a85903, #8b4513);
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s ease;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background-color: #fdf3e9;
+  transform: translateZ(5px);
+}
+
+/* Efekty dla list */
+ul, ol {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+li {
+  margin-bottom: 8px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+li:hover {
+  transform: translateX(3px);
+}
+
+/* Efekty dla przycisków */
+button {
+  padding: 8px 16px;
+  background: linear-gradient(to bottom, #a85903, #8b4513);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  transform: translateZ(0);
+}
+
+button:hover {
+  background: linear-gradient(to bottom, #c26b14, #a85903);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15), 0 2px 5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px) translateZ(0);
+}
+
+/* Efekty dla odnośników */
+a {
+  color: #a85903;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #c26b14;
+  text-shadow: 0 1px 1px rgba(168, 89, 3, 0.1);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #a85903;
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Style dla dwukolumnowego układu z efektami 3D */
+.ryzmod-columns {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  perspective: 1000px;
+}
+
+.ryzmod-columns > div {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transform: translateZ(0);
+  transition: all 0.3s ease;
+}
+
+.ryzmod-columns > div:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08), 0 2px 5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-3px) translateZ(5px);
+}
+
+/* Media queries dla responsywności */
+@media screen and (max-width: 992px) {
+  .ryzmod-network-row,
+  .ryzmod-o51-container,
+  .ryzmod-columns {
+    flex-direction: column;
+  }
+  
+  .ryzmod-network-container,
+  .ryzmod-text-block,
+  .ryzmod-o51-box,
+  .ryzmod-t52-text,
+  .ryzmod-columns > div {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .ryzmod-network-container {
+    height: 300px;
+  }
+  
+  .ryzmod-articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ryzmod-articles-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ryzmod-overlay-text {
+    max-width: 80%;
+  }
+  
+  .title-square-container #title,
+  #project_title, #title {
+    font-size: 32px;
+  }
+  
+  .title-square-container #tagline,
+  #project_tagline, #tagline {
+    font-size: 20px;
+  }
+}
+
+/* Styl dla nagłówków z efektami 3D */
+h5[style*="color: #8b4513"] {
+  font-family: Arial Black, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #8b4513;
+  position: relative;
+  padding-bottom: 10px;
+  margin-top: 0;
+  text-shadow: 0 1px 2px rgba(139, 69, 19, 0.1);
+  transition: all 0.3s ease;
+}
+
+h5[style*="color: #8b4513"]:hover {
+  text-shadow: 0 2px 4px rgba(139, 69, 19, 0.15);
+  transform: translateY(-1px);
+}
+
+h5[style*="color: #8b4513"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(to right, rgba(139, 69, 19, 0.8), rgba(139, 69, 19, 0.1));
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+
+h5[style*="color: #8b4513"]:hover::after {
+  width: 100px;
+}
+
+/* Delikatne podświetlenie cytatu */
+blockquote, p i {
+  background-color: rgba(253, 243, 233, 0.5);
+  padding: 10px 15px;
+  border-left: 3px solid rgba(168, 89, 3, 0.5);
+  margin: 15px 0;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+blockquote:hover, p i:hover {
+  background-color: rgba(253, 243, 233, 0.8);
+  border-left-color: rgba(168, 89, 3, 0.8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transform: translateX(3px);
+}
+
+/* Ukrycie podkreśleń przy nagłówkach */
+.title-square-container h2#tagline,
+.title-square-container h2[id="tagline"],
+.title-square-container .header-content h2,
+h2#tagline {
+  border-bottom: none !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  font-weight: normal !important;
+  color: white !important;
+  position: relative !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Ukrycie wszystkich możliwych pseudoelementów */
+.title-square-container h2#tagline::after,
+.title-square-container h2#tagline::before,
+.title-square-container h2[id="tagline"]::after,
+.title-square-container h2[id="tagline"]::before,
+.title-square-container .header-content h2::after,
+.title-square-container .header-content h2::before,
+h2#tagline::after,
+h2#tagline::before {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  border: none !important;
+  background: none !important;
+  position: static !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+
+
+
+
+    
