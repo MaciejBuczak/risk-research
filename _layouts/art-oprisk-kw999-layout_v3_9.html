@@ -1314,6 +1314,165 @@
         
 
 
+
+<!-- Nowy element: Ramka informacyjna ze wzorem i interaktywnym suwakiem -->
+<div class="ryzmod-info-box2" style="width: 100%; margin: 30px 0; background-color: white; position: relative; box-sizing: border-box; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden;">
+  
+  <!-- Nagłówek -->
+  <div style="background-color: #D4AF37; color: white; padding: 10px 15px; font-family: 'Arial Black', sans-serif; font-style: italic; font-size: 18px; font-weight: bold; text-transform: uppercase;">
+    FORMUŁA VAR
+  </div>
+  
+  <!-- Główny tekst - Nazwa wzoru -->
+  <div style="padding: 25px 20px 5px; text-align: center;">
+    <div style="font-family: 'Arial Black', sans-serif; font-style: italic; font-size: 32px; font-weight: 900; text-transform: uppercase; color: #333;">
+      WZÓR KWANTYLA
+    </div>
+  </div>
+  
+  <!-- Wzór matematyczny w nowatorskim stylu -->
+  <div style="padding: 10px 20px; position: relative;">
+    <!-- Tło siatki matematycznej -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 175, 55, 0.08) 1px, transparent 1px); background-size: 20px 20px; z-index: 0;"></div>
+    
+    <!-- Kontener ze wzorem -->
+    <div style="position: relative; text-align: center; margin: 30px 0; z-index: 1;">
+      <div style="display: inline-block; padding: 15px 30px; background-color: rgba(255,255,255,0.8); border-radius: 8px; box-shadow: 0 0 20px 5px rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.3);">
+        <div style="font-family: 'Times New Roman', serif; font-size: 38px; color: #333333;">
+          VaR<sub style="font-size: 24px;">α</sub> = μ + σ · Φ<sup style="font-size: 20px;">-1</sup>(<span id="confidence-value">99.9</span>%)
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Wizualizacja rozkładu z interaktywnym suwakiem -->
+  <div style="padding: 10px 20px 25px; background-color: rgba(245,245,245,0.5); border-top: 1px solid rgba(212, 175, 55, 0.2); position: relative;">
+    <div style="font-family: 'Arial', sans-serif; font-size: 14px; font-weight: bold; color: #333333; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; text-align: center;">
+      Wizualizacja rozkładu z poziomem ufności
+    </div>
+    
+    <!-- Wykres słupkowy rozkładu -->
+    <div style="display: flex; justify-content: center; align-items: flex-end; height: 80px; margin-bottom: 20px; position: relative;">
+      <div id="distribution-bars" style="display: flex; justify-content: center; align-items: flex-end; width: 100%; height: 80px;">
+        <div style="width: 8px; height: 20px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 35px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 50px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 70px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 80px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 70px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 50px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 35px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 20px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 10px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 5px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+        <div style="width: 8px; height: 3px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      </div>
+      
+      <!-- Linia poziomu ufności z przesuwanym markerem -->
+      <div id="confidence-line" style="position: absolute; top: 40px; left: 0; width: 100%; height: 2px; background-color: rgba(51, 51, 51, 0.5);"></div>
+      <div id="confidence-marker" style="position: absolute; top: 36px; right: 10%; width: 12px; height: 12px; background-color: #D4AF37; border-radius: 50%; box-shadow: 0 0 10px 2px rgba(212, 175, 55, 0.4); cursor: pointer;"></div>
+      <div id="confidence-label" style="position: absolute; top: 36px; right: 5%; color: #333333; font-size: 14px; font-weight: bold;">99.9%</div>
+    </div>
+    
+    <!-- Interaktywny suwak -->
+    <div style="padding: 0 20px; margin-bottom: 10px;">
+      <input type="range" id="confidence-slider" min="90" max="99.9" step="0.1" value="99.9" style="width: 100%; height: 20px; -webkit-appearance: none; appearance: none; background: #f0f0f0; outline: none; border-radius: 10px; box-shadow: inset 0 0 5px rgba(0,0,0,0.2);">
+      <style>
+        #confidence-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #D4AF37;
+          cursor: pointer;
+          box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        }
+        #confidence-slider::-moz-range-thumb {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #D4AF37;
+          cursor: pointer;
+          box-shadow: 0 0 5px rgba(0,0,0,0.3);
+          border: none;
+        }
+      </style>
+    </div>
+    
+    <!-- Etykieta z poziomem ufności -->
+    <div style="text-align: center; font-family: 'Arial', sans-serif; font-size: 14px; color: #555;">
+      Poziom ufności: <span id="confidence-display">99.9</span>%
+    </div>
+  </div>
+
+  <!-- Skrypt obsługujący interaktywność -->
+  <script>
+    // Pobieranie elementów
+    const slider = document.getElementById('confidence-slider');
+    const confidenceDisplay = document.getElementById('confidence-display');
+    const confidenceValue = document.getElementById('confidence-value');
+    const confidenceMarker = document.getElementById('confidence-marker');
+    const confidenceLabel = document.getElementById('confidence-label');
+    
+    // Aktualizacja pozycji markera na wykresie
+    function updateMarkerPosition(value) {
+      // Przekształcenie wartości na pozycję
+      // 90% = 75% szerokości od prawej, 99.9% = 10% szerokości od prawej
+      const position = 75 - ((value - 90) / (99.9 - 90)) * 65;
+      confidenceMarker.style.right = position + '%';
+      confidenceLabel.style.right = (position - 5) + '%';
+      confidenceLabel.textContent = value + '%';
+    }
+    
+    // Funkcja obsługująca zmianę wartości suwaka
+    slider.oninput = function() {
+      const value = parseFloat(this.value).toFixed(1);
+      confidenceDisplay.textContent = value;
+      confidenceValue.textContent = value;
+      updateMarkerPosition(value);
+    };
+    
+    // Obsługa przeciągania markera
+    let isDragging = false;
+    
+    confidenceMarker.addEventListener('mousedown', function(e) {
+      isDragging = true;
+      e.preventDefault();
+    });
+    
+    document.addEventListener('mouseup', function() {
+      isDragging = false;
+    });
+    
+    document.addEventListener('mousemove', function(e) {
+      if (isDragging) {
+        const container = document.getElementById('distribution-bars');
+        const rect = container.getBoundingClientRect();
+        const containerWidth = rect.width;
+        const offsetX = e.clientX - rect.left;
+        
+        // Ograniczenie pozycji w zakresie 10% do 75% od prawej strony
+        let position = 100 - (offsetX / containerWidth * 100);
+        position = Math.max(10, Math.min(75, position));
+        
+        // Przekształcenie pozycji na wartość
+        const value = 90 + ((75 - position) / 65) * (99.9 - 90);
+        const roundedValue = parseFloat(value.toFixed(1));
+        
+        // Aktualizacja wartości i pozycji
+        slider.value = roundedValue;
+        confidenceDisplay.textContent = roundedValue;
+        confidenceValue.textContent = roundedValue;
+        updateMarkerPosition(roundedValue);
+      }
+    });
+  </script>
+</div>
+
+
+        
+
         
 
 <!-- Nowy element: Ramka informacyjna w stylu Roadster -->
