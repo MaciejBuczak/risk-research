@@ -1249,6 +1249,71 @@
 
 
 
+<!-- Nowy element: Ramka informacyjna w dokładnym stylu z obrazka -->
+<div class="ryzmod-info-box2" style="width: 100%; margin: 30px 0; background-color: white; position: relative; box-sizing: border-box; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden;">
+  
+  <!-- Nagłówek -->
+  <div style="background-color: #D4AF37; color: white; padding: 10px 15px; font-family: 'Arial Black', sans-serif; font-style: italic; font-size: 18px; font-weight: bold; text-transform: uppercase;">
+    FORMUŁA VAR
+  </div>
+  
+  <!-- Główny tekst - Nazwa wzoru -->
+  <div style="padding: 25px 20px 5px; text-align: center;">
+    <div style="font-family: 'Arial Black', sans-serif; font-style: italic; font-size: 32px; font-weight: 900; text-transform: uppercase; color: #333;">
+      WZÓR KWANTYLA
+    </div>
+  </div>
+  
+  <!-- Wzór matematyczny w nowatorskim stylu -->
+  <div style="padding: 10px 20px; position: relative;">
+    <!-- Tło siatki matematycznej -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 175, 55, 0.08) 1px, transparent 1px); background-size: 20px 20px; z-index: 0;"></div>
+    
+    <!-- Kontener ze wzorem -->
+    <div style="position: relative; text-align: center; margin: 30px 0; z-index: 1;">
+      <div style="display: inline-block; padding: 15px 30px; background-color: rgba(255,255,255,0.8); border-radius: 8px; box-shadow: 0 0 20px 5px rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.3);">
+        <div style="font-family: 'Times New Roman', serif; font-size: 38px; color: #333333;">
+          VaR<sub style="font-size: 24px;">α</sub> = μ + σ · Φ<sup style="font-size: 20px;">-1</sup>(α)
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Wizualizacja rozkładu -->
+  <div style="padding: 10px 20px 25px; background-color: rgba(245,245,245,0.5); border-top: 1px solid rgba(212, 175, 55, 0.2); position: relative;">
+    <div style="font-family: 'Arial', sans-serif; font-size: 14px; font-weight: bold; color: #333333; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; text-align: center;">
+      Wizualizacja rozkładu z poziomem ufności
+    </div>
+    
+    <!-- Wykres słupkowy rozkładu -->
+    <div style="display: flex; justify-content: center; align-items: flex-end; height: 80px; margin-bottom: 10px;">
+      <div style="width: 8px; height: 20px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 35px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 50px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 70px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 80px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 70px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 50px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 35px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 20px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 10px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 5px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+      <div style="width: 8px; height: 3px; background: linear-gradient(to top, #D4AF37, #FFC266); margin: 0 2px; border-radius: 3px 3px 0 0;"></div>
+    </div>
+    
+    <!-- Linia poziomu ufności -->
+    <div style="position: relative; height: 20px;">
+      <div style="position: absolute; top: 10px; left: 0; width: 100%; height: 2px; background-color: rgba(51, 51, 51, 0.5);"></div>
+      <div style="position: absolute; top: 6px; right: 10%; width: 12px; height: 12px; background-color: #D4AF37; border-radius: 50%; box-shadow: 0 0 10px 2px rgba(212, 175, 55, 0.4);"></div>
+      <div style="position: absolute; top: 7px; right: 5%; color: #333333; font-size: 14px; font-weight: bold;">99.9%</div>
+    </div>
+  </div>
+</div>
+
+
+        
+
+
         
 
 <!-- Nowy element: Ramka informacyjna w stylu Roadster -->
