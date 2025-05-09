@@ -1297,6 +1297,94 @@
         
 
 
+                <!-- Sekcja "Czy warto to analizować?" część 2 -->
+
+        <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
+          <!-- Kolumna 1 -->
+          <div style="flex: 1;">
+            <p style="margin-bottom: 15px;">Poziom kwantyla odczytu (99.9%) zaproponowany przez nadzorcę, spójny z poziomami określonymi dla ryzyka kredytowego oraz rynkowego, budził od początku wiele kontrowersji.
+              Ogniskowały się one wokół percepcji nadmiernego konserwatyzmu.
+              Wskazywano skutki przyjęcia tak wysokiego poziomu: duże problemy z wiarygodnością wyniku na tak dalekim kwantylu, a także bardzo wysokie poziomy kapitałów korespondujące z poziomem 99.9%.
+              Nadzorca nie wsłuchał się w ten głos. Poziom został utrzymany.</p>
+            <p>Za takim postrzeganiem w/w kwantyla jako nadmiernie konserwatywnego, stoi pewna zakorzeniona intuicja związana z jego interpretacją.
+              Intuicja ta wskazuje na zintegrowanie pojęcia kwantyla rozkładu z horyzontem czasu jaki jest domniemany w modelowaniu badanego zjawiska.
+              W naszym przypadku horyzont został wskazany explicite jako roczny.
+              Oznaczało to, że model zaawansowanego pomiaru AMA miał mieć zdolność do wyznaczania wartości oczekiwanej, którą była roczna wartość strat operacyjnych (czyli suma wszystkich rocznych strat), jak również do wyznaczenia poziomu strat nieoczekiwanych (99.9%) rozumianych również jako suma rocznych strat.</p>
+          </div>
+          
+          <!-- Kolumna 2 -->
+          <div style="flex: 1;">
+            <p style="margin-bottom: 15px;">W odniesieniu do poziomów nieoczekiwanych można powiedzieć, że wyznaczenie zabezpieczeń kapitałowych (wymogu kapitałowego) na poziomie odczytu kwantyla 99.9% rozkładu zagregowanych strat miało uchronić bank przed łączną kwotą rocznych strat, jaka zrealizuje się w tym niepomyślnym roku.
+              Integracja pojęcia poziomu kwantyla z horyzontem badania jest całkowicie zasadna. Takie rozumowanie prowadzi następnie do powszechnie przyjmowanego rozumowania dotyczącego interpretacji kwantyla 99.9%, jako poziomu rocznych strat występujących z prawdopodobieństwem 1 raz na 1000 lat. Rozumowanie to jest również wspierane przez nadzorcę:
+             <p><i>"Tylko w ograniczonych przypadkach, na przykład gdy największy punkt danych jest wykazany jako większy lub równy zdarzeniu występującemu <u>rzadziej niż raz na 1000 lat</u>, użycie krzywych empirycznych do oszacowania ogona może być zaakceptowane w modelach SBA." [1]</i></p>
+            <p>Takie podejście ma swoje konsekwencje metodologiczne. Nie jest to jednak w moim przekonaniu podejście poprawne.</p>
+          </div>
+        </div>
+
+
+
+
+
+
+
+<!-- Nowy element: Kontener z wykresem Macierzy 2x2 -->
+<div class="ryzmod-info-box2" style="width: 100%; margin: 30px 0; background-color: white; position: relative; box-sizing: border-box; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden;">
+  
+  <!-- SVG z samą Macierzą 2x2 -->
+  <svg viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+    <!-- Tło -->
+    <rect width="300" height="320" fill="#f7f5f0" rx="5" ry="5"/>
+    
+    <!-- Nagłówek -->
+    <rect width="300" height="60" fill="#9A9176" rx="5" ry="5"/>
+    <text x="150" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">MACIERZ 2x2</text>
+    
+    <!-- Macierz 2x2 -->
+    <g transform="translate(50, 80)">
+      <rect width="200" height="40" rx="5" ry="5" fill="#a85903"/>
+      <text x="100" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold">MACIERZ 2x2</text>
+      
+      <!-- Macierz -->
+      <rect x="50" y="70" width="100" height="100" fill="none" stroke="#9A9176" stroke-width="2"/>
+      <line x1="50" y1="120" x2="150" y2="120" stroke="#9A9176" stroke-width="2"/>
+      <line x1="100" y1="70" x2="100" y2="170" stroke="#9A9176" stroke-width="2"/>
+      
+      <rect x="55" y="75" width="40" height="40" fill="#D4AF37" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="75" y="100" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Wysoki/
+      Wysoki</text>
+      
+      <rect x="105" y="75" width="40" height="40" fill="#ACA48E" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="125" y="100" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Niski/
+      Wysoki</text>
+      
+      <rect x="55" y="125" width="40" height="40" fill="#ACA48E" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="75" y="150" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Wysoki/
+      Niski</text>
+      
+      <rect x="105" y="125" width="40" height="40" fill="#C3BDAD" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="125" y="150" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Niski/
+      Niski</text>
+      
+      <text x="50" y="55" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle" transform="rotate(-90, 50, 120)">PRIORYTET</text>
+      <text x="100" y="190" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle">WPŁYW</text>
+    </g>
+  </svg>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
         
 
 <!-- Nowy element: Ramka informacyjna 2 -->
