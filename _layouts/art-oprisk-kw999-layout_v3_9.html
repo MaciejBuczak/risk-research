@@ -1327,47 +1327,47 @@
 
 
 
-
-
-
-
 <!-- Nowy element: Kontener z wykresem Macierzy 2x2 -->
 <div class="ryzmod-info-box2" style="width: 100%; margin: 30px 0; background-color: white; position: relative; box-sizing: border-box; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden;">
   
-  <!-- SVG z samą Macierzą 2x2 - poprawiony viewBox -->
-  <svg viewBox="420 100 200 210" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
-    <!-- Tło - usuwam, bo niepotrzebne przy wyciętym fragmencie -->
-    
-    <!-- Model 2: Macierz 2x2 -->
-    <rect width="200" height="40" rx="5" ry="5" fill="#a85903"/>
-    <text x="100" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold">MACIERZ 2x2</text>
-    
-    <!-- Macierz -->
-    <rect x="50" y="70" width="100" height="100" fill="none" stroke="#9A9176" stroke-width="2"/>
-    <line x1="50" y1="120" x2="150" y2="120" stroke="#9A9176" stroke-width="2"/>
-    <line x1="100" y1="70" x2="100" y2="170" stroke="#9A9176" stroke-width="2"/>
-    
-    <rect x="55" y="75" width="40" height="40" fill="#D4AF37" fill-opacity="0.7" rx="3" ry="3"/>
-    <text x="75" y="100" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Wysoki/
-    Wysoki</text>
-    
-    <rect x="105" y="75" width="40" height="40" fill="#ACA48E" fill-opacity="0.7" rx="3" ry="3"/>
-    <text x="125" y="100" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Niski/
-    Wysoki</text>
-    
-    <rect x="55" y="125" width="40" height="40" fill="#ACA48E" fill-opacity="0.7" rx="3" ry="3"/>
-    <text x="75" y="150" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Wysoki/
-    Niski</text>
-    
-    <rect x="105" y="125" width="40" height="40" fill="#C3BDAD" fill-opacity="0.7" rx="3" ry="3"/>
-    <text x="125" y="150" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Niski/
-    Niski</text>
-    
-    <text x="50" y="55" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle" transform="rotate(-90, 50, 120)">PRIORYTET</text>
-    <text x="100" y="190" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle">WPŁYW</text>
-  </svg>
+  <!-- Nagłówek o stałej wysokości -->
+  <div style="background-color: #a85903; color: white; padding: 10px 15px; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; height: 40px; display: flex; align-items: center;">
+    MACIERZ 2x2
+  </div>
+  
+  <!-- SVG z samą Macierzą 2x2 -->
+  <div style="padding: 20px;">
+    <svg width="100%" height="220" xmlns="http://www.w3.org/2000/svg" style="background-color: #f7f5f0; border-radius: 5px;">
+      <!-- Macierz -->
+      <rect x="100" y="20" width="100" height="100" fill="none" stroke="#9A9176" stroke-width="2"/>
+      <line x1="100" y1="70" x2="200" y2="70" stroke="#9A9176" stroke-width="2"/>
+      <line x1="150" y1="20" x2="150" y2="120" stroke="#9A9176" stroke-width="2"/>
+      
+      <rect x="105" y="25" width="40" height="40" fill="#D4AF37" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="125" y="50" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Wysoki/
+      Wysoki</text>
+      
+      <rect x="155" y="25" width="40" height="40" fill="#ACA48E" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="175" y="50" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Niski/
+      Wysoki</text>
+      
+      <rect x="105" y="75" width="40" height="40" fill="#ACA48E" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="125" y="100" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Wysoki/
+      Niski</text>
+      
+      <rect x="155" y="75" width="40" height="40" fill="#C3BDAD" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="175" y="100" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Niski/
+      Niski</text>
+      
+      <text x="85" y="70" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle" transform="rotate(-90, 85, 70)">PRIORYTET</text>
+      <text x="150" y="140" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle">WPŁYW</text>
+    </svg>
+  </div>
   
 </div>
+
+
+
 
 
 
