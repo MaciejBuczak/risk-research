@@ -1143,6 +1143,160 @@
 
 
 
+
+
+<!-- Nowy element: Kontener z wykresem SVG -->
+<div class="ryzmod-info-box2" style="width: 100%; margin: 30px 0; background-color: white; position: relative; box-sizing: border-box; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden;">
+  
+  <!-- SVG zamiast całej wcześniejszej zawartości -->
+  <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+    <!-- Tło -->
+    <rect width="800" height="600" fill="#f7f5f0" rx="5" ry="5"/>
+    
+    <!-- Nagłówek -->
+    <rect width="800" height="60" fill="#9A9176" rx="5" ry="5"/>
+    <text x="30" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white">MODELE MYŚLOWE</text>
+    
+    <!-- Model 1: Drzewo Decyzyjne -->
+    <g transform="translate(160, 100)">
+      <rect width="200" height="40" rx="5" ry="5" fill="#a85903"/>
+      <text x="100" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold">DRZEWO DECYZYJNE</text>
+      
+      <!-- Drzewo -->
+      <line x1="100" y1="40" x2="100" y2="70" stroke="#9A9176" stroke-width="2"/>
+      <circle cx="100" cy="80" r="20" fill="#D4AF37"/>
+      <text x="100" y="85" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Start</text>
+      
+      <line x1="100" y1="100" x2="60" y2="130" stroke="#9A9176" stroke-width="2"/>
+      <line x1="100" y1="100" x2="140" y2="130" stroke="#9A9176" stroke-width="2"/>
+      
+      <circle cx="60" cy="140" r="18" fill="#ACA48E"/>
+      <text x="60" y="145" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Opcja A</text>
+      
+      <circle cx="140" cy="140" r="18" fill="#ACA48E"/>
+      <text x="140" y="145" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Opcja B</text>
+      
+      <line x1="60" y1="158" x2="40" y2="180" stroke="#9A9176" stroke-width="1.5"/>
+      <line x1="60" y1="158" x2="80" y2="180" stroke="#9A9176" stroke-width="1.5"/>
+      
+      <circle cx="40" cy="190" r="15" fill="#C3BDAD"/>
+      <text x="40" y="193" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle">A1</text>
+      
+      <circle cx="80" cy="190" r="15" fill="#C3BDAD"/>
+      <text x="80" y="193" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle">A2</text>
+    </g>
+    
+    <!-- Model 2: Macierz 2x2 -->
+    <g transform="translate(420, 100)">
+      <rect width="200" height="40" rx="5" ry="5" fill="#a85903"/>
+      <text x="100" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold">MACIERZ 2x2</text>
+      
+      <!-- Macierz -->
+      <rect x="50" y="70" width="100" height="100" fill="none" stroke="#9A9176" stroke-width="2"/>
+      <line x1="50" y1="120" x2="150" y2="120" stroke="#9A9176" stroke-width="2"/>
+      <line x1="100" y1="70" x2="100" y2="170" stroke="#9A9176" stroke-width="2"/>
+      
+      <rect x="55" y="75" width="40" height="40" fill="#D4AF37" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="75" y="100" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Wysoki/
+      Wysoki</text>
+      
+      <rect x="105" y="75" width="40" height="40" fill="#ACA48E" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="125" y="100" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Niski/
+      Wysoki</text>
+      
+      <rect x="55" y="125" width="40" height="40" fill="#ACA48E" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="75" y="150" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Wysoki/
+      Niski</text>
+      
+      <rect x="105" y="125" width="40" height="40" fill="#C3BDAD" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="125" y="150" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Niski/
+      Niski</text>
+      
+      <text x="50" y="55" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle" transform="rotate(-90, 50, 120)">PRIORYTET</text>
+      <text x="100" y="190" font-family="Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle">WPŁYW</text>
+    </g>
+    
+    <!-- Model 3: Mapa Myśli -->
+    <g transform="translate(160, 320)">
+      <rect width="200" height="40" rx="5" ry="5" fill="#a85903"/>
+      <text x="100" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold">MAPA MYŚLI</text>
+      
+      <!-- Mapa myśli -->
+      <ellipse cx="100" cy="100" rx="40" ry="25" fill="#D4AF37"/>
+      <text x="100" y="105" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Główna idea</text>
+      
+      <line x1="100" y1="75" x2="100" y2="55" stroke="#9A9176" stroke-width="2"/>
+      <line x1="65" y1="90" x2="35" y2="75" stroke="#9A9176" stroke-width="2"/>
+      <line x1="65" y1="110" x2="35" y2="125" stroke="#9A9176" stroke-width="2"/>
+      <line x1="135" y1="90" x2="165" y2="75" stroke="#9A9176" stroke-width="2"/>
+      <line x1="135" y1="110" x2="165" y2="125" stroke="#9A9176" stroke-width="2"/>
+      <line x1="100" y1="125" x2="100" y2="145" stroke="#9A9176" stroke-width="2"/>
+      
+      <ellipse cx="100" cy="45" rx="30" ry="18" fill="#ACA48E"/>
+      <text x="100" y="49" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle">Temat 1</text>
+      
+      <ellipse cx="25" cy="70" rx="30" ry="18" fill="#ACA48E"/>
+      <text x="25" y="74" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle">Temat 2</text>
+      
+      <ellipse cx="25" cy="130" rx="30" ry="18" fill="#ACA48E"/>
+      <text x="25" y="134" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle">Temat 3</text>
+      
+      <ellipse cx="175" cy="70" rx="30" ry="18" fill="#ACA48E"/>
+      <text x="175" y="74" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle">Temat 4</text>
+      
+      <ellipse cx="175" cy="130" rx="30" ry="18" fill="#ACA48E"/>
+      <text x="175" y="134" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle">Temat 5</text>
+      
+      <ellipse cx="100" cy="155" rx="30" ry="18" fill="#ACA48E"/>
+      <text x="100" y="159" font-family="Arial, sans-serif" font-size="9" fill="white" text-anchor="middle">Temat 6</text>
+    </g>
+    
+    <!-- Model 4: Model SWOT -->
+    <g transform="translate(420, 320)">
+      <rect width="200" height="40" rx="5" ry="5" fill="#a85903"/>
+      <text x="100" y="25" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold">ANALIZA SWOT</text>
+      
+      <!-- SWOT -->
+      <rect x="50" y="60" width="100" height="100" fill="none" stroke="#9A9176" stroke-width="2"/>
+      <line x1="50" y1="110" x2="150" y2="110" stroke="#9A9176" stroke-width="2"/>
+      <line x1="100" y1="60" x2="100" y2="160" stroke="#9A9176" stroke-width="2"/>
+      
+      <rect x="55" y="65" width="40" height="40" fill="#D4AF37" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="75" y="85" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">S</text>
+      <text x="75" y="98" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle">Mocne strony</text>
+      
+      <rect x="105" y="65" width="40" height="40" fill="#ACA48E" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="125" y="85" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">W</text>
+      <text x="125" y="98" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle">Słabe strony</text>
+      
+      <rect x="55" y="115" width="40" height="40" fill="#ACA48E" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="75" y="135" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">O</text>
+      <text x="75" y="148" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle">Szanse</text>
+      
+      <rect x="105" y="115" width="40" height="40" fill="#C3BDAD" fill-opacity="0.7" rx="3" ry="3"/>
+      <text x="125" y="135" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">T</text>
+      <text x="125" y="148" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle">Zagrożenia</text>
+    </g>
+    
+    <!-- Legenda -->
+    <rect x="330" y="510" width="140" height="80" fill="white" fill-opacity="0.7" rx="5" ry="5"/>
+    
+    <circle cx="345" cy="525" r="6" fill="#a85903"/>
+    <text x="360" y="530" font-family="Arial, sans-serif" font-size="12" fill="#666">Główny model</text>
+    
+    <circle cx="345" cy="550" r="6" fill="#D4AF37"/>
+    <text x="360" y="555" font-family="Arial, sans-serif" font-size="12" fill="#666">Element kluczowy</text>
+    
+    <circle cx="345" cy="575" r="6" fill="#ACA48E"/>
+    <text x="360" y="580" font-family="Arial, sans-serif" font-size="12" fill="#666">Elementy podrzędne</text>
+  </svg>
+  
+</div>
+
+
+        
+
+
         
 
 <!-- Nowy element: Ramka informacyjna 2 -->
