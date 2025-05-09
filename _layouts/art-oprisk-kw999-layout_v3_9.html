@@ -3122,6 +3122,158 @@
 
 
 
+        <!-- Sekcja "Czy warto to analizować?" część 2 -->
+
+        <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
+          <!-- Kolumna 1 -->
+<div class="ryzmod-t31-o32-container" style="display: flex; gap: 20px; margin-bottom: 40px;">
+  
+  <!-- Element z wykresem -->
+  <div class="ryzmod-orange-box" style="width: 100%; background-color: #FEFDFA; margin-top: 43px; margin-bottom: 80px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; border-top: 5px solid #D4AF37; position: relative;">
+    <h3 style="color: #D4AF37; font-family: 'Poppins', serif; font-weight: bold; font-size: 18px; margin-bottom: 20px;">Rozkład wartości skrajnych</h3>
+    
+    <!-- Kontener na wykres -->
+    <div style="width: 100%; height: 400px;">
+      <canvas id="extremeValuesChart"></canvas>
+    </div>
+    
+    <p style="font-family: 'Poppins', serif; font-size: 16px; line-height: 1.5; text-indent: 0; text-align: left; margin-top: 20px;">
+      Wykres przedstawia przykładowy rozkład wartości skrajnych. Widoczny jest charakterystyczny wzór z długim ogonem, typowy dla modelowania zdarzeń rzadkich na dalekich kwantylach rozkładu prawdopodobieństwa.
+    </p>
+  </div>
+</div>
+
+<!-- Skrypt do inicjalizacji wykresu -->
+<script>
+  // Sprawdź, czy Chart.js jest już załadowany, jeśli nie - załaduj
+  if (typeof Chart === 'undefined') {
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+    script.onload = initializeChart;
+    document.head.appendChild(script);
+  } else {
+    // Jeśli Chart.js jest już załadowany, inicjalizuj wykres
+    document.addEventListener('DOMContentLoaded', initializeChart);
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      initializeChart();
+    }
+  }
+
+  function initializeChart() {
+    // Pobierz kontekst canvasa
+    var ctx = document.getElementById('extremeValuesChart').getContext('2d');
+    
+    // Dane do wykresu
+    var data = {
+      labels: ['0.1%', '0.5%', '1%', '5%', '10%', '15%', '20%', '25%'],
+      datasets: [{
+        label: 'Wartości skrajne',
+        data: [98, 85, 72, 56, 42, 30, 22, 15],
+        backgroundColor: 'rgba(212, 175, 55, 0.2)',
+        borderColor: '#D4AF37',
+        borderWidth: 2,
+        pointBackgroundColor: '#D4AF37',
+        pointRadius: 5,
+        tension: 0.4
+      }]
+    };
+    
+    // Konfiguracja wykresu
+    var config = {
+      type: 'line',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Rozkład wartości skrajnych w modelu',
+            font: {
+              family: "'Poppins', serif",
+              size: 16,
+              weight: 'bold'
+            },
+          
+          },
+          legend: {
+            position: 'bottom',
+            labels: {
+              font: {
+                family: "'Poppins', serif"
+              }
+            }
+          },
+          tooltip: {
+            titleFont: {
+              family: "'Poppins', serif"
+            },
+            bodyFont: {
+              family: "'Poppins', serif"
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Kwantyl rozkładu',
+              font: {
+                family: "'Poppins', serif",
+                size: 14
+              }
+            },
+            ticks: {
+              font: {
+                family: "'Poppins', serif"
+              }
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Wartość',
+              font: {
+                family: "'Poppins', serif",
+                size: 14
+              }
+            },
+            beginAtZero: true,
+            ticks: {
+              font: {
+                family: "'Poppins', serif"
+              }
+            }
+          }
+        }
+      }
+    };
+    
+    // Utworzenie wykresu
+    new Chart(ctx, config);
+  }
+</script>
+
+
+          
+          <!-- Kolumna 2 -->
+          <div style="flex: 1;">
+            <p style="margin-bottom: 15px;">W odniesieniu do poziomów nieoczekiwanych można powiedzieć, że wyznaczenie zabezpieczeń kapitałowych (wymogu kapitałowego) na poziomie odczytu kwantyla 99.9% rozkładu zagregowanych strat miało uchronić bank przed łączną kwotą rocznych strat, jaka zrealizuje się w tym niepomyślnym roku.
+              Integracja pojęcia poziomu kwantyla z horyzontem badania jest całkowicie zasadna. Takie rozumowanie prowadzi następnie do powszechnie przyjmowanego rozumowania dotyczącego interpretacji kwantyla 99.9%, jako poziomu rocznych strat występujących z prawdopodobieństwem 1 raz na 1000 lat. Rozumowanie to jest również wspierane przez nadzorcę:
+             <p><i>"Tylko w ograniczonych przypadkach, na przykład gdy największy punkt danych jest wykazany jako większy lub równy zdarzeniu występującemu <u>rzadziej niż raz na 1000 lat</u>, użycie krzywych empirycznych do oszacowania ogona może być zaakceptowane w modelach SBA." [1]</i></p>
+            <p>Takie podejście ma swoje konsekwencje metodologiczne. Nie jest to jednak w moim przekonaniu podejście poprawne.</p>
+          </div>
+        </div>
+
+
+
+
+
+
+
+        
+
+
 
 
 
