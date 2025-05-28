@@ -916,9 +916,6 @@
 
 
 
-
-
-
 <!-- CSS dla ramki - dodaj do swojego CSS -->
 <style>
 .photo-frame {
@@ -927,12 +924,13 @@
     position: relative;
     background: linear-gradient(145deg, #ffffff, #e6e6e6);
     border-radius: 20px;
-    padding: 15px;
+    padding: 0;
     box-shadow: 
         15px 15px 40px #bebebe,
         -15px -15px 40px #ffffff,
         inset 0 0 0 1px rgba(255,255,255,0.1);
     transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 .photo-frame:hover {
@@ -946,12 +944,12 @@
 .photo-container {
     width: 100%;
     height: 100%;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
     position: relative;
-    background: #f0f0f0;
-    border: 2px solid #ddd;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .photo {
@@ -994,6 +992,11 @@
     }
 }
 </style>
+
+
+
+
+
 
 
 
@@ -1203,10 +1206,6 @@
 
 
 
-
-
-
-
 <!-- Zmodyfikowany HTML -->
 <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
   <!-- Kolumna 1 z ramką na zdjęcie -->
@@ -1220,7 +1219,13 @@
     </div>
   </div>
 </div>
+
         
+
+
+
+
+
 
         
 
