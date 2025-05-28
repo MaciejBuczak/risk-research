@@ -871,33 +871,40 @@
   }
 
 
-  .hovernote2 {
-    position: relative;
-    cursor: help;
-    color: #D4AF37;
-    font-weight: bold;
-  }
+.hovernote2 {
+  position: relative;
+  cursor: help;
+  color: #D4AF37;
+  font-weight: bold;
+}
 
-  .hovernote2:hover::after {
-    content: attr(data-note);
-    position: absolute;
-    top: 1.5em;
-    left: 0;
-    z-index: 100;
-    background: #fff;
-    color: #333;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    white-space: normal;
-    font-family: Poppins, serif;
-    font-weight: normal;
+/* Klasa dla znaku ≡ */
+.equiv-big {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #FF6600; /* Można inny kolor dla wyróżnienia */
+}
+
+.hovernote2:hover::after {
+  content: attr(data-note);
+  position: absolute;
+  top: 1.5em;
+  left: 0;
+  z-index: 100;
+  background: #fff;
+  color: #333;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  white-space: normal;
+  font-family: Poppins, serif;
+  font-weight: normal;
   font-size: 14px;
   line-height: 1.5;
-    text-indent: 0;
-  }
+  text-indent: 0;
+}
 
   
 </style>
@@ -1036,7 +1043,7 @@
 
   <!-- Kolumna 2 -->
   <div style="flex: 1;">
-    <p style="margin-bottom: 15px;">W odniesieniu do poziomów nieoczekiwanych można powiedzieć, że wyznaczenie zabezpieczeń kapitałowych (wymogu kapitałowego) na poziomie odczytu <span class="hovernote2" data-note="kwantyl 99.9% - to pozycja na rozkładzie, która odnosi się do wartości znajdującej się na osi x. Występuje prawdopodobieństwo 99.9% wystąpienia wartości niższych niż na tej pozycji osi x i tylko 0.1% prawdopodobieństwa wartości wyższych.">&equiv;kwantyla 99.9%</span> rozkładu zagregowanych strat miało uchronić bank przed łączną kwotą rocznych strat, jaka zrealizuje się w tym niepomyślnym roku.
+    <p style="margin-bottom: 15px;">W odniesieniu do poziomów nieoczekiwanych można powiedzieć, że wyznaczenie zabezpieczeń kapitałowych (wymogu kapitałowego) na poziomie odczytu <span class="hovernote2" data-note="kwantyl 99.9% - to pozycja na rozkładzie, która odnosi się do wartości znajdującej się na osi x. Występuje prawdopodobieństwo 99.9% wystąpienia wartości niższych niż na tej pozycji osi x i tylko 0.1% prawdopodobieństwa wartości wyższych."><span class="equiv-big">&equiv;</span>kwantyla 99.9%</span> rozkładu zagregowanych strat miało uchronić bank przed łączną kwotą rocznych strat, jaka zrealizuje się w tym niepomyślnym roku.
       Integracja pojęcia poziomu kwantyla z horyzontem badania jest całkowicie zasadna. Takie <b style="font-weight: bold;">::: rozumowanie :::</b> prowadzi następnie do powszechnie przyjmowanego rozumowania dotyczącego interpretacji kwantyla 99.9%, jako poziomu rocznych strat występujących z prawdopodobieństwem 1 raz na 1000 lat. Rozumowanie to jest również wspierane przez nadzorcę:
     </p>
     <p>"Tylko w ograniczonych przypadkach, na przykład gdy największy punkt danych jest wykazany jako większy lub równy zdarzeniu występującemu <u>rzadziej niż raz na 1000 lat</u>, użycie krzywych empirycznych do oszacowania ogona może być zaakceptowane w modelach SBA." 
