@@ -916,7 +916,171 @@
 
 
 
+<style>
 
+  /* CSS dla bloczków Claude - dodaj to do swojego <style> */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.block {
+    border-radius: 8px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.block-claude4 {
+    background: linear-gradient(135deg, #e17b47 0%, #d4653a 100%);
+    color: white;
+}
+
+.block-api {
+    background: linear-gradient(135deg, #e8e4d9 0%, #ddd6c7 100%);
+    color: #333;
+}
+
+.block-code {
+    background: linear-gradient(135deg, #e8d4d9 0%, #dcc4cd 100%);
+    color: #333;
+}
+
+.block-title {
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    padding: 40px 30px 0;
+}
+
+.block-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    padding: 0 30px;
+}
+
+.block-link {
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: underline;
+    color: inherit;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+    padding: 0 30px 40px;
+}
+
+.block-link:hover {
+    opacity: 1;
+}
+
+.icon-container {
+    width: 120px;
+    height: 120px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.api-icon {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.api-icon::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: #333;
+    border-radius: 1px;
+}
+
+.api-icon::after {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: #333;
+    border-radius: 1px;
+}
+
+.graph-icon {
+    width: 40px;
+    height: 40px;
+    background: #333;
+    clip-path: polygon(0% 100%, 20% 60%, 40% 80%, 60% 40%, 80% 70%, 100% 20%, 100% 100%);
+}
+
+.brackets {
+    font-size: 60px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.hands-icon {
+    font-size: 60px;
+    text-align: center;
+    filter: invert(0.2);
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .block {
+        min-height: 250px;
+    }
+    
+    .block-title {
+        font-size: 36px;
+        padding-top: 30px;
+    }
+
+    .block-subtitle, .block-link {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .block-link {
+        padding-bottom: 30px;
+    }
+}
+
+</style>
 
 
 
@@ -1348,6 +1512,59 @@
 </div>
 
 
+
+
+
+
+
+
+
+<div class="container">
+    <!-- Claude 4 Block -->
+    <div class="block block-claude4">
+        <div>
+            <h2 class="block-title">Claude 4</h2>
+            <p class="block-subtitle">Introducing the next generation of Claude models: Opus 4 and Sonnet 4</p>
+        </div>
+        <a href="#" class="block-link">Read the announcement</a>
+    </div>
+
+    <!-- API Block -->
+    <div class="block block-api">
+        <div>
+            <h2 class="block-title">API capabilities</h2>
+            <div class="icon-container">
+                <div class="brackets">
+                    {
+                    <div class="api-icon">
+                        <div class="graph-icon"></div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <a href="#" class="block-link">Read the announcement</a>
+    </div>
+
+    <!-- Claude Code Block -->
+    <div class="block block-code">
+        <div>
+            <h2 class="block-title">Claude Code</h2>
+            <div class="icon-container">
+                <div class="hands-icon">🙌</div>
+            </div>
+        </div>
+        <a href="#" class="block-link">Learn more</a>
+    </div>
+</div>
+
+
+
+
+
+        
+
+        
 
 
 
