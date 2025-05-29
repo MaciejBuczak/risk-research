@@ -1016,14 +1016,39 @@
     color: #333;
 }
 
+
+
+
 .block-title {
     font-size: 34px;
     font-weight: 300;
     line-height: 1.1;
     margin-bottom: 20px;
     padding: 20px 20px 0;
+    
+    /* Usuwanie wszystkich możliwych linii: */
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    
+    /* Usuwanie pseudoelementów jeśli istnieją: */
+    position: relative;
 }
 
+.block-title::before,
+.block-title::after {
+    display: none !important;
+    content: none !important;
+}
+
+
+
+  
 .block-subtitle {
     font-size: 18px;
     font-weight: 400;
