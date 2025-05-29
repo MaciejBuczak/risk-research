@@ -1062,6 +1062,7 @@
     max-width: 250px;
 }
 
+/* POPRAWIONY KONTENER IKONY - bez białego tła */
 .icon-container {
     width: 120px;
     height: 120px;
@@ -1069,6 +1070,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent !important; /* Usunięte białe tło */
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .elegant2-icon {
@@ -1126,24 +1131,25 @@
     filter: invert(0.2);
 }
 
-
+/* POPRAWIONA IKONA CUSTOMOWA - bez ramek */
 .custom-icon {
     width: 250px;
     height: 250px;
     object-fit: contain;
     opacity: 0.8;
     transition: opacity 0.3s ease;
-    background: transparent;    /* Przezroczyste tło */
-    border: none;              /* Usuwa ramkę */
-    outline: none;             /* Usuwa outline */
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block;
 }
 
 .custom-icon:hover {
     opacity: 1;
 }
-
-
-
 
 @media (max-width: 768px) {
     .container {
@@ -1187,7 +1193,6 @@
 }
 
 </style>
-
 
 
 
