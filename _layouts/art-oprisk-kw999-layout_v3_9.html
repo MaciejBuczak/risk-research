@@ -1228,7 +1228,6 @@
 
 
 
-
 <style>
 
   /* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
@@ -1245,9 +1244,7 @@
     min-height: 500px; /* Zwiększone z 400px do 500px */
     position: relative;
     cursor: pointer;
-    perspective: 1000px;
-    overflow: hidden; /* DODAJ TĘ LINIĘ */
-    z-index: 1; /* DODAJ TĘ LINIĘ */
+    overflow: hidden; /* DODANE dla bezpieczeństwa */
 }
 
 /* Kontener dla flip efektu */
@@ -1257,24 +1254,16 @@
     height: 100%;
     min-height: 500px; /* Zwiększone z 400px do 500px */
     text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
 }
-
-
 
 /* Efekt hover - fade */
 .block10:hover .block-front10 {
     opacity: 0;
 }
+
 .block10:hover .block-back10 {
     opacity: 1;
 }
-.block10:hover {
-    z-index: 10;
-}
-
-  
 
 /* Wspólne style dla przodu i tyłu */
 .block-front10, .block-back10 {
@@ -1282,14 +1271,13 @@
     width: 100%;
     height: 100%;
     min-height: 500px; /* Zwiększone z 400px do 500px */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
+    transition: opacity 0.6s ease; /* DODANE */
 }
 
 /* Przód karty */
@@ -1297,19 +1285,15 @@
     z-index: 2;
 }
 
-
-
-
-/* Tył karty - obrócony */
+/* Tył karty - fade początkowe */
 .block-back10 {
-    opacity: 0;
+    opacity: 0; /* ZMIENIONE z transform: rotateY(180deg) */
     padding: 20px; /* Zwiększony padding */
     justify-content: flex-start; /* Zmienione z center na flex-start */
     align-items: stretch; /* Zmienione żeby zajmowało pełną szerokość */
     text-align: left; /* Zmienione z center na left */
     overflow-y: auto; /* Dodane przewijanie jeśli tekst się nie zmieści */
 }
-
 
 /* Kontener dla tyłu karty */
 .block-back-container10 {
@@ -1318,8 +1302,6 @@
     display: flex;
     flex-direction: column;
 }
-
-  
 
 .block-elegant10 .block-front10 {
     background: #ece0d0 0%;
@@ -1378,7 +1360,6 @@
     opacity: 1;
 }
 
-
 /* Style dla tyłu karty */
 .block-back-title10 {
     font-size: 24px;
@@ -1408,8 +1389,6 @@
     orphans: 3;
     widows: 3;
 }
-
-
 
 /* POPRAWIONY KONTENER IKONY */
 .icon-container10 {
@@ -1447,12 +1426,6 @@
     opacity: 1;
 }
 
-
-
-
-
-  
-
 @media (max-width: 768px) {
     .container10 {
         grid-template-columns: 1fr;
@@ -1488,7 +1461,7 @@
 
     .block-back-title10 {
         font-size: 20px;
-      margin-bottom: 15px;
+        margin-bottom: 15px;
     }
 
     .block-back-text10 {
@@ -1503,8 +1476,8 @@
     }
 }
 
-
 </style>
+
 
 
   
