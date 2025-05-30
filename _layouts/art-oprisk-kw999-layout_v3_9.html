@@ -1236,7 +1236,7 @@
 
 <style>
 
-  /* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
+/* ELEGANCKIE BLOKI - EFEKT PRZENIKANIA */
 .container10 {
     max-width: 1200px;
     margin: 0 auto;
@@ -1247,74 +1247,63 @@
 
 .block10 {
     border-radius: 30px;
-    min-height: 500px; /* Zwiększone z 400px do 500px */
+    min-height: 500px;
     position: relative;
     cursor: pointer;
-    perspective: 1000px;
+    overflow: hidden;
 }
 
-/* Kontener dla flip efektu */
+/* Kontener dla fade efektu */
 .block-inner10 {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 500px; /* Zwiększone z 400px do 500px */
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
+    min-height: 500px;
 }
-
-
-
-/* Efekt hover - scale & fade */
-.block10:hover .block-front10 {
-    transform: scale(1.1);
-    opacity: 0;
-}
-
-.block10:hover .block-back10 {
-    transform: scale(1);
-    opacity: 1;
-}
-
-  
 
 /* Wspólne style dla przodu i tyłu */
 .block-front10, .block-back10 {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    min-height: 500px; /* Zwiększone z 400px do 500px */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    min-height: 500px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    transition: all 0.6s ease; /* DODAJ TĘ LINIĘ */
+    transition: opacity 0.6s ease-in-out;
 }
 
-/* Przód karty */
+/* Przód karty - domyślnie widoczny */
 .block-front10 {
+    opacity: 1;
     z-index: 2;
 }
 
-
-
-
-/* Tył karty - obrócony */
+/* Tył karty - domyślnie ukryty */
 .block-back10 {
-    transform: scale(0.8); /* ZMIEŃ Z rotateY(180deg) */
-    opacity: 0; /* DODAJ TĘ LINIĘ */    
-    padding: 20px; /* Zwiększony padding */
-    justify-content: flex-start; /* Zmienione z center na flex-start */
-    align-items: stretch; /* Zmienione żeby zajmowało pełną szerokość */
-    text-align: left; /* Zmienione z center na left */
-    overflow-y: auto; /* Dodane przewijanie jeśli tekst się nie zmieści */
+    opacity: 0;
+    z-index: 1;
+    padding: 20px;
+    justify-content: flex-start;
+    align-items: stretch;
+    text-align: left;
+    overflow-y: auto;
 }
 
+/* Efekt hover - przenikanie */
+.block10:hover .block-front10 {
+    opacity: 0;
+}
+
+.block10:hover .block-back10 {
+    opacity: 1;
+    z-index: 3;
+}
 
 /* Kontener dla tyłu karty */
 .block-back-container10 {
@@ -1323,8 +1312,6 @@
     display: flex;
     flex-direction: column;
 }
-
-  
 
 .block-elegant10 .block-front10 {
     background: #ece0d0 0%;
@@ -1340,7 +1327,7 @@
     font-size: 34px;
     font-weight: 300;
     line-height: 1.1;
-    margin-bottom: 10px; /* Zmniejszone z 20px do 10px */
+    margin-bottom: 10px;
     padding: 20px 20px 0;
     border: none !important;
     border-bottom: none !important;
@@ -1383,27 +1370,26 @@
     opacity: 1;
 }
 
-
 /* Style dla tyłu karty */
 .block-back-title10 {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 20px;
     line-height: 1.3;
-    text-align: center; /* Tytuł wyśrodkowany */
+    text-align: center;
     color: #333;
 }
 
 .block-back-text10 {
-    font-size: 14px; /* Zmniejszona czcionka żeby zmieścić więcej tekstu */
-    line-height: 1.5; /* Zwiększona czytelność */
+    font-size: 14px;
+    line-height: 1.5;
     opacity: 0.9;
-    max-width: none; /* Usunięte ograniczenie szerokości */
+    max-width: none;
     
     /* Dwie kolumny */
     column-count: 2;
     column-gap: 20px;
-    column-rule: 1px solid rgba(68, 68, 68, 0.2); /* Cienka linia między kolumnami */
+    column-rule: 1px solid rgba(68, 68, 68, 0.2);
     
     /* Lepsze łamanie tekstu */
     text-align: justify;
@@ -1414,13 +1400,11 @@
     widows: 3;
 }
 
-
-
 /* POPRAWIONY KONTENER IKONY */
 .icon-container10 {
     max-width: 100%;
-    height: 350px; /* Zmienione z 650px na auto */
-    margin: 0; /* Zmniejszone marginesy */
+    height: 350px;
+    margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
@@ -1433,9 +1417,9 @@
 
 /* POPRAWIONA IKONA CUSTOMOWA */
 .custom-icon10 {
-    width: 100%; /* Zmienione z 550px na 100% */
-    max-width: none; /* Dodane ograniczenie maksymalnej szerokości */
-    height: 100%; /* Zmienione z 550px na auto */
+    width: 100%;
+    max-width: none;
+    height: 100%;
     object-fit: contain;
     opacity: 0.8;
     transition: opacity 0.3s ease;
@@ -1452,12 +1436,6 @@
     opacity: 1;
 }
 
-
-
-
-
-  
-
 @media (max-width: 768px) {
     .container10 {
         grid-template-columns: 1fr;
@@ -1465,15 +1443,15 @@
     }
     
     .block-inner10 {
-        min-height: 350px; /* Zwiększone z 250px */
+        min-height: 350px;
     }
     
     .block-front10, .block-back10 {
-        min-height: 350px; /* Zwiększone z 250px */
+        min-height: 350px;
     }
     
     .block-title10 {
-        font-size: 28px; /* Zmniejszone na mobile */
+        font-size: 28px;
         padding-top: 20px;
         margin-bottom: 5px;
     }
@@ -1493,21 +1471,20 @@
 
     .block-back-title10 {
         font-size: 20px;
-      margin-bottom: 15px;
+        margin-bottom: 15px;
     }
 
     .block-back-text10 {
         font-size: 13px;
-        column-count: 1; /* Na mobile jedna kolumna */
+        column-count: 1;
         column-gap: 0;
         column-rule: none;
     }
 
     .custom-icon10 {
-        max-width: 90%; /* Na mobile jeszcze mniejszy */
+        max-width: 90%;
     }
 }
-
 
 </style>
 
