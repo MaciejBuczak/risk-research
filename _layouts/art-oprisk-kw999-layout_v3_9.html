@@ -1224,10 +1224,6 @@
 
 
 
-
-
-
-
 <style>
 
   /* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
@@ -1242,6 +1238,7 @@
 .block10 {
     border-radius: 30px;
     min-height: 500px; /* Zwiększone z 400px do 500px */
+    max-height: 500px; /* DODANE - ogranicza wysokość */
     position: relative;
     cursor: pointer;
     overflow: hidden; /* DODANE dla bezpieczeństwa */
@@ -1251,9 +1248,10 @@
 .block-inner10 {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 500px; /* ZMIENIONE z height: 100% */
     min-height: 500px; /* Zwiększone z 400px do 500px */
     text-align: center;
+    z-index: 1; /* DODANE */
 }
 
 /* Efekt hover - fade */
@@ -1268,8 +1266,10 @@
 /* Wspólne style dla przodu i tyłu */
 .block-front10, .block-back10 {
     position: absolute;
+    top: 0; /* DODANE */
+    left: 0; /* DODANE */
     width: 100%;
-    height: 100%;
+    height: 500px; /* ZMIENIONE z height: 100% */
     min-height: 500px; /* Zwiększone z 400px do 500px */
     border-radius: 20px;
     display: flex;
@@ -1432,11 +1432,18 @@
         gap: 15px;
     }
     
+    .block10 {
+        min-height: 350px; /* DODANE dla mobile */
+        max-height: 350px; /* DODANE dla mobile */
+    }
+    
     .block-inner10 {
+        height: 350px; /* ZMIENIONE dla mobile */
         min-height: 350px; /* Zwiększone z 250px */
     }
     
     .block-front10, .block-back10 {
+        height: 350px; /* ZMIENIONE dla mobile */
         min-height: 350px; /* Zwiększone z 250px */
     }
     
@@ -1477,6 +1484,10 @@
 }
 
 </style>
+
+
+
+
 
 
 
