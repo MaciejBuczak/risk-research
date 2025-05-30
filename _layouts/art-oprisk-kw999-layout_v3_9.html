@@ -1224,263 +1224,266 @@
 
 
 
+<style>
+
+/* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
+.container10 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.block10 {
+    border-radius: 30px;
+    min-height: 500px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Kontener dla prostego fade efektu */
+.block-inner10 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    text-align: center;
+}
+
+/* Wspólne style dla przodu i tyłu */
+.block-front10, .block-back10 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: opacity 0.4s ease;
+}
+
+/* Przód karty - domyślnie widoczny */
+.block-front10 {
+    z-index: 2;
+    opacity: 1;
+    justify-content: flex-start; /* Zmienione na flex-start */
+    align-items: center;
+}
+
+/* Tył karty - domyślnie ukryty */
+.block-back10 {
+    z-index: 1;
+    opacity: 0;
+    padding: 20px;
+    justify-content: flex-start;
+    align-items: stretch;
+    text-align: left;
+    overflow-y: auto;
+}
+
+/* Efekt hover - fade przełączenie */
+.block10:hover .block-front10 {
+    opacity: 0;
+}
+
+.block10:hover .block-back10 {
+    opacity: 1;
+}
+
+/* Kontener dla tyłu karty */
+.block-back-container10 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.block-elegant10 .block-front10 {
+    background: #ece0d0 0%;
+    color: #333;
+}
+
+.block-elegant10 .block-back10 {
+    background: #ece0d0;
+    color: #333;
+}
+
+.block-title10 {
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    padding: 20px 20px 10px; /* Zmniejszony padding-bottom */
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    position: relative;
+    flex-shrink: 0; /* Dodane - tytuł nie będzie się kurczył */
+}
+
+.block-title10::before,
+.block-title10::after {
+    display: none !important;
+    content: none !important;
+}
+
+.block-subtitle10 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    padding: 0 30px;
+}
+
+.block-bottom-text10 {
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: underline;
+    color: #444;
+    text-align: center; /* Wyśrodkowany tekst */
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+    padding: 20px; /* Padding zamiast margin */
+    flex-shrink: 0; /* Dodane - tekst nie będzie się kurczył */
+    margin-top: auto; /* Przyciśnięty do dołu */
+}
+
+.block-link10:hover {
+    opacity: 1;
+}
+
+/* Style dla tyłu karty */
+.block-back-title10 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    text-align: center;
+    color: #333;
+}
+
+.block-back-text10 {
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.9;
+    max-width: none;
+    column-count: 2;
+    column-gap: 20px;
+    column-rule: 1px solid rgba(68, 68, 68, 0.2);
+    text-align: justify;
+    hyphens: auto;
+    orphans: 3;
+    widows: 3;
+}
+
+/* NAPRAWIONY KONTENER IKONY */
+.icon-container10 {
+    width: 100%;
+    flex: 1; /* Zajmuje dostępną przestrzeń między tytułem a tekstem */
+    max-height: 300px; /* Maksymalna wysokość */
+    min-height: 200px; /* Minimalna wysokość */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* NAPRAWIONA IKONA CUSTOMOWA */
+.custom-icon10 {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block;
+}
+
+.custom-icon10:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .container10 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .block-inner10 {
+        min-height: 350px;
+    }
+    
+    .block-front10, .block-back10 {
+        min-height: 350px;
+    }
+    
+    .block-title10 {
+        font-size: 28px;
+        padding: 15px 20px 5px;
+        margin-bottom: 5px;
+    }
+
+    .block-subtitle10, .block-link10 {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .block-bottom-text10 {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .block-back10 {
+        padding: 15px;
+    }
+
+    .block-back-title10 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .block-back-text10 {
+        font-size: 13px;
+        column-count: 1;
+        column-gap: 0;
+        column-rule: none;
+    }
+
+    .icon-container10 {
+        max-height: 200px;
+        min-height: 150px;
+        padding: 15px;
+    }
+}
 
 
-
+</style>
 
    
 
 
 
-    <style>
-        /* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
-        .container10 {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
 
-        .block10 {
-            border-radius: 30px;
-            min-height: 500px;
-            position: relative;
-            cursor: pointer;
-        }
-
-        /* Kontener dla prostego fade efektu */
-        .block-inner10 {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            min-height: 500px;
-            text-align: center;
-        }
-
-        /* Wspólne style dla przodu i tyłu */
-        .block-front10, .block-back10 {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            min-height: 500px;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            overflow: hidden;
-            transition: opacity 0.4s ease;
-        }
-
-        /* Przód karty - domyślnie widoczny */
-        .block-front10 {
-            z-index: 2;
-            opacity: 1;
-        }
-
-        /* Tył karty - domyślnie ukryty */
-        .block-back10 {
-            z-index: 1;
-            opacity: 0;
-            padding: 20px;
-            justify-content: flex-start;
-            align-items: stretch;
-            text-align: left;
-            overflow-y: auto;
-        }
-
-        /* Efekt hover - fade przełączenie */
-        .block10:hover .block-front10 {
-            opacity: 0;
-        }
-
-        .block10:hover .block-back10 {
-            opacity: 1;
-        }
-
-        /* Kontener dla tyłu karty */
-        .block-back-container10 {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .block-elegant10 .block-front10 {
-            background: #ece0d0 0%;
-            color: #333;
-        }
-
-        .block-elegant10 .block-back10 {
-            background: #ece0d0;
-            color: #333;
-        }
-
-        .block-title10 {
-            font-size: 34px;
-            font-weight: 300;
-            line-height: 1.1;
-            margin-bottom: 10px;
-            padding: 20px 20px 0;
-            border: none !important;
-            border-bottom: none !important;
-            border-top: none !important;
-            text-decoration: none !important;
-            text-decoration-line: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-            background-image: none !important;
-            position: relative;
-        }
-
-        .block-title10::before,
-        .block-title10::after {
-            display: none !important;
-            content: none !important;
-        }
-
-        .block-subtitle10 {
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 1.4;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            padding: 0 30px;
-        }
-
-        .block-bottom-text10 {
-            font-size: 16px;
-            font-weight: 500;
-            text-decoration: underline;
-            color: #444;
-            text-align: left;
-            opacity: 0.9;
-            transition: opacity 0.2s ease;
-            margin-bottom: 40px;
-        }
-
-        .block-link10:hover {
-            opacity: 1;
-        }
-
-        /* Style dla tyłu karty */
-        .block-back-title10 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            line-height: 1.3;
-            text-align: center;
-            color: #333;
-        }
-
-        .block-back-text10 {
-            font-size: 14px;
-            line-height: 1.5;
-            opacity: 0.9;
-            max-width: none;
-            column-count: 2;
-            column-gap: 20px;
-            column-rule: 1px solid rgba(68, 68, 68, 0.2);
-            text-align: justify;
-            hyphens: auto;
-            orphans: 3;
-            widows: 3;
-        }
-
-        /* NAPRAWIONY KONTENER IKONY */
-        .icon-container10 {
-            max-width: 100%
-            height: 250px; /* STAŁA WYSOKOŚĆ zamiast auto */
-            margin: 0; /* Dodane marginesy */
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent !important;
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-        }
-
-        /* NAPRAWIONA IKONA CUSTOMOWA */
-        .custom-icon10 {
-            max-width: none; /* STAŁA MAKSYMALNA SZEROKOŚĆ */
-            width: 100%; /* AUTO zamiast 100% */
-            height: 100%; /* AUTO zamiast 100% */
-            object-fit: contain;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-            background: transparent !important;
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            display: block;
-        }
-
-        .custom-icon10:hover {
-            opacity: 1;
-        }
-
-        @media (max-width: 768px) {
-            .container10 {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .block-inner10 {
-                min-height: 350px;
-            }
-            
-            .block-front10, .block-back10 {
-                min-height: 350px;
-            }
-            
-            .block-title10 {
-                font-size: 28px;
-                padding-top: 20px;
-                margin-bottom: 5px;
-            }
-
-            .block-subtitle10, .block-link10 {
-                padding-left: 25px;
-                padding-right: 25px;
-            }
-
-            .block-link10 {
-                padding-bottom: 30px;
-            }
-
-            .block-back10 {
-                padding: 15px;
-            }
-
-            .block-back-title10 {
-                font-size: 20px;
-                margin-bottom: 15px;
-            }
-
-            .block-back-text10 {
-                font-size: 13px;
-                column-count: 1;
-                column-gap: 0;
-                column-rule: none;
-            }
-
-            /* NAPRAWIONE USTAWIENIA MOBILE */
-            .icon-container10 {
-                height: 200px; /* Mniejsza wysokość na mobile */
-                padding: 15px;
-            }
-
-            .custom-icon10 {
-                max-width: 150px; /* Mniejszy na mobile */
-                max-height: 150px;
-            }
-        }
-    </style>
 
 
 
