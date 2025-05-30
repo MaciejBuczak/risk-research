@@ -1224,9 +1224,15 @@
 
 
 
+
+
+
+
+
+
 <style>
 
-  /* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
+/* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
 .container10 {
     max-width: 1200px;
     margin: 0 auto;
@@ -1237,10 +1243,10 @@
 
 .block10 {
     border-radius: 30px;
-    min-height: 500px; /* Zwiększone z 400px do 500px */
+    min-height: 400px;
     position: relative;
     cursor: pointer;
-    perspective: 1000px;
+    perspective: 1000px; /* Perspektywa 3D */
 }
 
 /* Kontener dla flip efektu */
@@ -1248,7 +1254,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 500px; /* Zwiększone z 400px do 500px */
+    min-height: 400px;
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
@@ -1264,14 +1270,14 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    min-height: 500px; /* Zwiększone z 400px do 500px */
+    min-height: 400px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* To wycentruje wszystko poziomo */
     overflow: hidden;
 }
 
@@ -1280,46 +1286,41 @@
     z-index: 2;
 }
 
-
-
-
 /* Tył karty - obrócony */
 .block-back10 {
     transform: rotateY(180deg);
-    padding: 20px; /* Zwiększony padding */
-    justify-content: flex-start; /* Zmienione z center na flex-start */
-    align-items: stretch; /* Zmienione żeby zajmowało pełną szerokość */
-    text-align: left; /* Zmienione z center na left */
-    overflow-y: auto; /* Dodane przewijanie jeśli tekst się nie zmieści */
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 
-/* Kontener dla tyłu karty */
-.block-back-container10 {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-  
 
 .block-elegant10 .block-front10 {
     background: #ece0d0 0%;
     color: #333;
 }
 
+/* Style dla różnych bloków - TYŁ */
+
+
 .block-elegant10 .block-back10 {
     background: #ece0d0;
     color: #333;
 }
 
+
+
+
 .block-title10 {
     font-size: 34px;
     font-weight: 300;
     line-height: 1.1;
-    margin-bottom: 10px; /* Zmniejszone z 20px do 10px */
+    margin-bottom: 20px;
     padding: 20px 20px 0;
+    
+    /* Usuwanie wszystkich możliwych linii: */
     border: none !important;
     border-bottom: none !important;
     border-top: none !important;
@@ -1328,6 +1329,8 @@
     outline: none !important;
     box-shadow: none !important;
     background-image: none !important;
+    
+    /* Usuwanie pseudoelementów jeśli istnieją: */
     position: relative;
 }
 
@@ -1337,6 +1340,9 @@
     content: none !important;
 }
 
+
+
+  
 .block-subtitle10 {
     font-size: 18px;
     font-weight: 400;
@@ -1361,59 +1367,44 @@
     opacity: 1;
 }
 
-
 /* Style dla tyłu karty */
 .block-back-title10 {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 20px;
     line-height: 1.3;
-    text-align: center; /* Tytuł wyśrodkowany */
-    color: #333;
 }
 
 .block-back-text10 {
-    font-size: 14px; /* Zmniejszona czcionka żeby zmieścić więcej tekstu */
-    line-height: 1.5; /* Zwiększona czytelność */
+    font-size: 16px;
+    line-height: 1.6;
     opacity: 0.9;
-    max-width: none; /* Usunięte ograniczenie szerokości */
-    
-    /* Dwie kolumny */
-    column-count: 2;
-    column-gap: 20px;
-    column-rule: 1px solid rgba(68, 68, 68, 0.2); /* Cienka linia między kolumnami */
-    
-    /* Lepsze łamanie tekstu */
-    text-align: justify;
-    hyphens: auto;
-    
-    /* Dla lepszego wyglądu kolumn */
-    orphans: 3;
-    widows: 3;
+    max-width: 250px;
 }
 
 
 
-/* POPRAWIONY KONTENER IKONY */
+
+  /* POPRAWIONY KONTENER IKONY - bez białego tła */
 .icon-container10 {
-    max-width: 100%;
-    height: 350px; /* Zmienione z 650px na auto */
-    margin: 0; /* Zmniejszone marginesy */
-    padding: 0;
+  max-width: 100%;
+  height: 650px;
+    margin: 20px auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent !important;
+    background: transparent !important; /* Usunięte białe tło */
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
 }
 
-/* POPRAWIONA IKONA CUSTOMOWA */
+
+
+  /* POPRAWIONA IKONA CUSTOMOWA - bez ramek */
 .custom-icon10 {
-    width: 100%; /* Zmienione z 550px na 100% */
-    max-width: none; /* Dodane ograniczenie maksymalnej szerokości */
-    height: 100%; /* Zmienione z 550px na auto */
+    width: 550px;
+    height: 550px;
     object-fit: contain;
     opacity: 0.8;
     transition: opacity 0.3s ease;
@@ -1431,9 +1422,9 @@
 }
 
 
+  
 
-
-
+  
   
 
 @media (max-width: 768px) {
@@ -1443,17 +1434,16 @@
     }
     
     .block-inner10 {
-        min-height: 350px; /* Zwiększone z 250px */
+        min-height: 250px;
     }
     
     .block-front10, .block-back10 {
-        min-height: 350px; /* Zwiększone z 250px */
+        min-height: 250px;
     }
     
     .block-title10 {
-        font-size: 28px; /* Zmniejszone na mobile */
-        padding-top: 20px;
-        margin-bottom: 5px;
+        font-size: 36px;
+        padding-top: 30px;
     }
 
     .block-subtitle10, .block-link10 {
@@ -1466,32 +1456,19 @@
     }
 
     .block-back10 {
-        padding: 15px;
+        padding: 20px;
     }
 
     .block-back-title10 {
         font-size: 20px;
-      margin-bottom: 15px;
     }
 
     .block-back-text10 {
-        font-size: 13px;
-        column-count: 1; /* Na mobile jedna kolumna */
-        column-gap: 0;
-        column-rule: none;
-    }
-
-    .custom-icon10 {
-        max-width: 90%; /* Na mobile jeszcze mniejszy */
+        font-size: 14px;
     }
 }
 
-
 </style>
-
-
-
-
 
   
 
