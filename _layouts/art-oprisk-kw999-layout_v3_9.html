@@ -1747,7 +1747,266 @@
 
 
 
-  
+  <style>
+
+
+/* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
+.container30 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.block30 {
+    border-radius: 30px;
+    min-height: 500px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Kontener dla rotate and slide efektu */
+.block-inner30 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Wspólne style dla przodu i tyłu */
+.block-front30, .block-back30 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Przód karty - domyślnie widoczny */
+.block-front30 {
+    z-index: 2;
+    justify-content: flex-start;
+    align-items: center;
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+}
+
+/* Tył karty - początkowo ukryty z prawej strony */
+.block-back30 {
+    z-index: 1;
+    padding: 20px;
+    justify-content: flex-start;
+    align-items: stretch;
+    text-align: left;
+    overflow-y: auto;
+    transform: translateX(100%) rotate(15deg);
+    opacity: 0;
+}
+
+/* Efekt hover - rotate and slide */
+.block30:hover .block-front30 {
+    transform: translateX(-100%) rotate(-15deg);
+    opacity: 0;
+}
+
+.block30:hover .block-back30 {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+}
+
+/* Kontener dla tyłu karty */
+.block-back-container30 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.block-elegant30 .block-front30 {
+    background: #ece0d0 0%;
+    color: #333;
+}
+
+.block-elegant30 .block-back30 {
+    background: #ece0d0;
+    color: #333;
+}
+
+.block-title30 {
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    padding: 10px 20px 5px;
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.block-title30::before,
+.block-title30::after {
+    display: none !important;
+    content: none !important;
+}
+
+.block-subtitle30 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    padding: 0 30px;
+}
+
+.block-bottom-text30 {
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: underline;
+    color: #444;
+    text-align: center;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+    padding: 0px 20px 30px 20px;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+.block-link30:hover {
+    opacity: 1;
+}
+
+/* Style dla tyłu karty */
+.block-back-title30 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    text-align: center;
+    color: #333;
+}
+
+.block-back-text30 {
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.9;
+    max-width: none;
+    column-count: 2;
+    column-gap: 20px;
+    column-rule: 1px solid rgba(68, 68, 68, 0.2);
+    text-align: justify;
+    hyphens: auto;
+    orphans: 3;
+    widows: 3;
+}
+
+/* NAPRAWIONY KONTENER IKONY */
+.icon-container30 {
+    width: 100%;
+    flex: 1;
+    max-height: 380px;
+    min-height: 280px;
+    margin: 0;
+    padding: 10px 20px 5px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* NAPRAWIONA IKONA CUSTOMOWA */
+.custom-icon30 {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block;
+}
+
+.custom-icon30:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .container30 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .block-inner30 {
+        min-height: 350px;
+    }
+    
+    .block-front30, .block-back30 {
+        min-height: 350px;
+    }
+    
+    .block-title30 {
+        font-size: 28px;
+        padding: 15px 20px 5px;
+        margin-bottom: 5px;
+    }
+
+    .block-subtitle30, .block-link30 {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .block-bottom-text30 {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .block-back30 {
+        padding: 15px;
+    }
+
+    .block-back-title30 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .block-back-text30 {
+        font-size: 13px;
+        column-count: 1;
+        column-gap: 0;
+        column-rule: none;
+    }
+
+    .icon-container30 {
+        max-height: 200px;
+        min-height: 150px;
+        padding: 15px;
+    }
+}
+
+    
+  </style>
 
 
 
@@ -2389,6 +2648,71 @@
         
 
 
+
+
+    <div class="container30" style="margin-top: 50px; margin-bottom: 50px;">
+        <!-- Claude Elegant3 Block z flip efektem -->
+        <div class="block30 block-elegant30">
+            <div class="block-inner30">
+                <!-- Przód karty -->
+                <div class="block-front30">
+                    <div style="flex: 1; display: flex; flex-direction: column;">
+                        <h2 class="block-title30" style="color: #444;">Kwantyle OpRisk</h2>
+                        <div class="icon-container30">
+                            <img src="/risk-research/assets/images/wykres4.svg" alt="Custom Icon" class="custom-icon30">
+                        </div>
+                    </div>
+                    <p class="block-bottom-text30">... to możliwe zastosowania</p>
+                </div>
+                <!-- Tył karty -->
+                <div class="block-back30">
+                    <div class="block-back-container30">
+                        <h3 class="block-back-title30" style='color: #D4AF37;'>Kwantyle OpRisk</h3>
+                        <p class="block-back-text30">Analiza kwantylowa ryzyka operacyjnego pozwala na lepsze zrozumienie rozkładu strat i zarządzanie ryzykiem. Poziom kwantyla odczytu (99.9%) zaproponowany przez nadzorcę, spójny z poziomami określonymi dla ryzyka kredytowego oraz rynkowego, budził od początku wiele kontrowersji. Ogniskowały się one wokół percepcji nadmiernego konserwatyzmu. Wskazywano skutki przyjęcia tak wysokiego poziomu: duże problemy z wiarygodnością wyniku na tak dalekim kwantylu, a także bardzo wysokie poziomy kapitałów korespondujące z poziomem 99.9%. Nadzorca nie wsłuchał się w ten głos. Poziom został utrzymany. Poziom kwantyla odczytu (99.9%) zaproponowany przez nadzorcę, spójny z poziomami określonymi dla ryzyka kredytowego oraz rynkowego, budził od początku wiele kontrowersji. Ogniskowały się one wokół percepcji nadmiernego konserwatyzmu. Wskazywano skutki przyjęcia tak wysokiego poziomu: duże problemy z wiarygodnością wyniku na tak dalekim kwantylu, a także bardzo wysokie poziomy kapitałów korespondujące z poziomem 99.9%. Nadzorca nie wsłuchał się w ten głos. Poziom został utrzymany.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+        
+
+
+
+        <!-- Sekcja "Czy warto to analizować?" część 2 -->
+
+        <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
+          <!-- Kolumna 1 -->
+          <div style="flex: 1;">
+            <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Źle ufundowana intuicja</h5>
+            <p style="margin-bottom: 15px;">Poziom kwantyla odczytu (99.9%) zaproponowany przez nadzorcę, spójny z poziomami określonymi dla ryzyka kredytowego oraz rynkowego, budził od początku wiele kontrowersji.
+              Ogniskowały się one wokół percepcji nadmiernego konserwatyzmu.
+              Wskazywano skutki przyjęcia tak wysokiego poziomu: duże problemy z wiarygodnością wyniku na tak dalekim kwantylu, a także bardzo wysokie poziomy kapitałów korespondujące z poziomem 99.9%.
+              Nadzorca nie wsłuchał się w ten głos. Poziom został utrzymany.</p>
+            <p>Za takim postrzeganiem w/w kwantyla jako nadmiernie konserwatywnego, stoi pewna zakorzeniona intuicja związana z jego interpretacją.
+              Intuicja ta wskazuje na zintegrowanie pojęcia kwantyla rozkładu z horyzontem czasu jaki jest domniemany w modelowaniu badanego zjawiska.
+              W naszym przypadku horyzont został wskazany explicite jako roczny.
+              Oznaczało to, że model zaawansowanego pomiaru AMA miał mieć zdolność do wyznaczania wartości oczekiwanej, którą była roczna wartość strat operacyjnych (czyli suma wszystkich rocznych strat), jak również do wyznaczenia poziomu strat nieoczekiwanych (99.9%) rozumianych również jako suma rocznych strat.</p>
+          </div>
+          
+          <!-- Kolumna 2 -->
+          <div style="flex: 1;">
+            <p style="margin-bottom: 15px;">W odniesieniu do poziomów nieoczekiwanych można powiedzieć, że wyznaczenie zabezpieczeń kapitałowych (wymogu kapitałowego) na poziomie odczytu kwantyla 99.9% rozkładu zagregowanych strat miało uchronić bank przed łączną kwotą rocznych strat, jaka zrealizuje się w tym niepomyślnym roku.
+              Integracja pojęcia poziomu kwantyla z horyzontem badania jest całkowicie zasadna. Takie rozumowanie prowadzi następnie do powszechnie przyjmowanego rozumowania dotyczącego interpretacji kwantyla 99.9%, jako poziomu rocznych strat występujących z prawdopodobieństwem 1 raz na 1000 lat. Rozumowanie to jest również wspierane przez nadzorcę:
+             <p>"Tylko w ograniczonych przypadkach, na przykład gdy największy punkt danych jest wykazany jako większy lub równy zdarzeniu występującemu <u>rzadziej niż raz na 1000 lat</u>, użycie krzywych empirycznych do oszacowania ogona może być zaakceptowane w modelach SBA." [1]</p>
+            <p>Takie podejście ma swoje konsekwencje metodologiczne. Nie jest to jednak w moim przekonaniu podejście poprawne.</p>
+          </div>
+        </div>
+        
+
+
+
+
+
+
+
+        
 
 
         
