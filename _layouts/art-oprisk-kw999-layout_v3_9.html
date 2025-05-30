@@ -1370,13 +1370,14 @@
     max-width: 250px;
 }
 
-/* POPRAWIONY KONTENER IKONY */
+
+
+
+
+/* POPRAWIONY KONTENER IKONY - bez flex: 1 */
 .icon-container10 {
-    max-width: 100%;
-    height: auto; /* Zmienione z 650px na auto */
-    flex: 1; /* Dodane - zajmie dostępną przestrzeń */
-    margin: 0; /* Zmniejszone marginesy */
-    padding: 0;
+    width: 100%;
+    height: 100%; /* Zajmie całą wysokość dostępną w swoim rodzicu */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1384,13 +1385,16 @@
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
+    margin: 0;
+    padding: 0;
 }
 
 /* POPRAWIONA IKONA CUSTOMOWA */
 .custom-icon10 {
-    width: 100%; /* Zmienione z 550px na 100% */
-    max-width: none; /* Dodane ograniczenie maksymalnej szerokości */
-    height: 100%; /* Zmienione z 550px na auto */
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
     object-fit: contain;
     opacity: 0.8;
     transition: opacity 0.3s ease;
@@ -1406,6 +1410,12 @@
 .custom-icon10:hover {
     opacity: 1;
 }
+
+
+
+
+
+  
 
 @media (max-width: 768px) {
     .container10 {
