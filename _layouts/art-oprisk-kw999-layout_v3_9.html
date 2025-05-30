@@ -1225,9 +1225,17 @@
 
 
 
+
+
+
+
+
+
+  
+
 <style>
 
-/* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
+  /* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
 .container10 {
     max-width: 1200px;
     margin: 0 auto;
@@ -1238,10 +1246,10 @@
 
 .block10 {
     border-radius: 30px;
-    min-height: 400px;
+    min-height: 500px; /* Zwiększone z 400px do 500px */
     position: relative;
     cursor: pointer;
-    perspective: 1000px; /* Perspektywa 3D */
+    perspective: 1000px;
 }
 
 /* Kontener dla flip efektu */
@@ -1249,7 +1257,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 400px;
+    min-height: 500px; /* Zwiększone z 400px do 500px */
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
@@ -1265,14 +1273,14 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    min-height: 400px;
+    min-height: 500px; /* Zwiększone z 400px do 500px */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center; /* To wycentruje wszystko poziomo */
+    align-items: center;
     overflow: hidden;
 }
 
@@ -1290,32 +1298,22 @@
     text-align: center;
 }
 
-
-
 .block-elegant10 .block-front10 {
     background: #ece0d0 0%;
     color: #333;
 }
-
-/* Style dla różnych bloków - TYŁ */
-
 
 .block-elegant10 .block-back10 {
     background: #ece0d0;
     color: #333;
 }
 
-
-
-
 .block-title10 {
     font-size: 34px;
     font-weight: 300;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Zmniejszone z 20px do 10px */
     padding: 20px 20px 0;
-    
-    /* Usuwanie wszystkich możliwych linii: */
     border: none !important;
     border-bottom: none !important;
     border-top: none !important;
@@ -1324,8 +1322,6 @@
     outline: none !important;
     box-shadow: none !important;
     background-image: none !important;
-    
-    /* Usuwanie pseudoelementów jeśli istnieją: */
     position: relative;
 }
 
@@ -1335,9 +1331,6 @@
     content: none !important;
 }
 
-
-
-  
 .block-subtitle10 {
     font-size: 18px;
     font-weight: 400;
@@ -1377,29 +1370,26 @@
     max-width: 250px;
 }
 
-
-
-
-  /* POPRAWIONY KONTENER IKONY - bez białego tła */
+/* POPRAWIONY KONTENER IKONY */
 .icon-container10 {
-  max-width: 100%;
-  height: 650px;
-    margin: 20px auto;
+    max-width: 100%;
+    height: auto; /* Zmienione z 650px na auto */
+    flex: 1; /* Dodane - zajmie dostępną przestrzeń */
+    margin: 10px auto 20px; /* Zmniejszone marginesy */
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent !important; /* Usunięte białe tło */
+    background: transparent !important;
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
 }
 
-
-
-  /* POPRAWIONA IKONA CUSTOMOWA - bez ramek */
+/* POPRAWIONA IKONA CUSTOMOWA */
 .custom-icon10 {
-    width: 550px;
-    height: 550px;
+    width: 100%; /* Zmienione z 550px na 100% */
+    max-width: 400px; /* Dodane ograniczenie maksymalnej szerokości */
+    height: auto; /* Zmienione z 550px na auto */
     object-fit: contain;
     opacity: 0.8;
     transition: opacity 0.3s ease;
@@ -1416,12 +1406,6 @@
     opacity: 1;
 }
 
-
-  
-
-  
-  
-
 @media (max-width: 768px) {
     .container10 {
         grid-template-columns: 1fr;
@@ -1429,16 +1413,17 @@
     }
     
     .block-inner10 {
-        min-height: 250px;
+        min-height: 350px; /* Zwiększone z 250px */
     }
     
     .block-front10, .block-back10 {
-        min-height: 250px;
+        min-height: 350px; /* Zwiększone z 250px */
     }
     
     .block-title10 {
-        font-size: 36px;
-        padding-top: 30px;
+        font-size: 28px; /* Zmniejszone na mobile */
+        padding-top: 20px;
+        margin-bottom: 5px;
     }
 
     .block-subtitle10, .block-link10 {
@@ -1461,14 +1446,14 @@
     .block-back-text10 {
         font-size: 14px;
     }
+
+    .custom-icon10 {
+        max-width: 90%; /* Na mobile jeszcze mniejszy */
+    }
 }
 
+
 </style>
-
-  
-
-
-
 
 
 
@@ -2017,33 +2002,31 @@
 
 
 
-
 <div class="container10" style="margin-top: 50px; margin-bottom: 50px;">
-
-<!-- Claude Elegant3 Block z flip efektem -->
-<div class="block10 block-elegant10">
-    <div class="block-inner10">
-        <!-- Przód karty -->
-        <div class="block-front10">
-            <div>
-                <h2 class="block-title10" style="color: #444;">Kwantyle OpRisk</h2>
-                <div class="icon-container10" style="margin-top: 80px;">
-                    <img src="/risk-research/assets/images/wykres1.svg" alt="Custom Icon10" class="custom-icon10">
+    <!-- Claude Elegant3 Block z flip efektem -->
+    <div class="block10 block-elegant10">
+        <div class="block-inner10">
+            <!-- Przód karty -->
+            <div class="block-front10">
+                <div style="flex: 1; display: flex; flex-direction: column;">
+                    <h2 class="block-title10" style="color: #444;">Kwantyle OpRisk</h2>
+                    <div class="icon-container10">
+                        <img src="/risk-research/assets/images/wykres1.svg" alt="Custom Icon10" class="custom-icon10">
+                    </div>
                 </div>
+                <p class="block-bottom-text10">... to możliwe zastosowania</p>
             </div>
-             <p class="block-bottom-text10">... to możliwe zastosowania</p>
-        </div>
-        <!-- Tył karty -->
-        <div class="block-back10">
-            <div>
-                <h3 class="block-back-title10">Agentic Command Line Tool</h3>
-                <p class="block-back-text10">Delegate coding tasks directly from your terminal. Available in research preview for developers who want AI assistance.</p>
+            <!-- Tył karty -->
+            <div class="block-back10">
+                <div>
+                    <h3 class="block-back-title10">Kwantyle OpRisk</h3>
+                    <p class="block-back-text10">Analiza kwantylowa ryzyka operacyjnego pozwala na lepsze zrozumienie rozkładu strat i zarządzanie ryzykiem.</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-</div>
 
 
 
