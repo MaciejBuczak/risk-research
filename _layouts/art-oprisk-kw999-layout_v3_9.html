@@ -1246,6 +1246,8 @@
     position: relative;
     cursor: pointer;
     perspective: 1000px;
+    overflow: hidden; /* DODAJ TĘ LINIĘ */
+    z-index: 1; /* DODAJ TĘ LINIĘ */
 }
 
 /* Kontener dla flip efektu */
@@ -1265,9 +1267,11 @@
 .block10:hover .block-front10 {
     opacity: 0;
 }
-
 .block10:hover .block-back10 {
     opacity: 1;
+}
+.block10:hover {
+    z-index: 10;
 }
 
   
