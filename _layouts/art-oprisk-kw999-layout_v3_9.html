@@ -1224,6 +1224,8 @@
 
 
 
+
+
 <style>
 
   /* ELEGANCKIE BLOKI - 1 W RZĘDZIE */
@@ -1242,6 +1244,7 @@
     position: relative;
     cursor: pointer;
     overflow: hidden; /* DODANE dla bezpieczeństwa */
+    z-index: 1; /* DODANE - podstawowy z-index */
 }
 
 /* Kontener dla flip efektu */
@@ -1255,6 +1258,10 @@
 }
 
 /* Efekt hover - fade */
+.block10:hover {
+    z-index: 999; /* DODANE - wysoki z-index podczas hover */
+}
+
 .block10:hover .block-front10 {
     opacity: 0;
 }
@@ -1293,6 +1300,7 @@
     align-items: stretch; /* Zmienione żeby zajmowało pełną szerokość */
     text-align: left; /* Zmienione z center na left */
     overflow-y: auto; /* Dodane przewijanie jeśli tekst się nie zmieści */
+    z-index: 1; /* DODANE - niższy z-index niż front */
 }
 
 /* Kontener dla tyłu karty */
@@ -1484,8 +1492,6 @@
 }
 
 </style>
-
-
 
 
 
