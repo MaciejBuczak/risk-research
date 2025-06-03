@@ -2539,28 +2539,34 @@
 
 
 
+
+
 <style>
 .image-container10 {
-    max-width: 1200px;
+    max-width: 1200px !important;
     margin: 0 auto;
-    width: 100%;
+    width: 100% !important;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .image-container10 img {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     height: auto;
     display: block;
     object-fit: cover;
     border: none;
     outline: none;
+    margin: 0;
+    padding: 0;
 }
 
 /* Responsywność */
 @media (max-width: 1200px) {
     .image-container10 {
-        max-width: 100%;
+        max-width: 100% !important;
         padding: 0 20px;
     }
 }
@@ -3194,14 +3200,18 @@
 
 
 
+
+
+
+
         
-
-
-
-        <!-- Kontener na zdjęcie -->
-<div class="image-container10" style="max-width: 1200px; margin: 0 auto; width: 100%; padding: 0;">
-    <img src="/risk-research/assets/images/wykres_zd2.jpg" alt="Opis zdjęcia" style="width: 100%; height: auto; display: block; object-fit: cover;">
+<!-- Kontener na zdjęcie -->
+<div class="image-container10" style="max-width: 1200px; margin: 0 auto; width: 100%; padding: 0; box-sizing: border-box;">
+    <img src="/risk-research/assets/images/wykres_zd2.jpg"" alt="Opis zdjęcia" style="width: 100% !important; max-width: 100% !important; height: auto; display: block; object-fit: cover; margin: 0; padding: 0; border: none;">
 </div>
+
+
+
 
 
 
