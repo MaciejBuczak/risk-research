@@ -3283,51 +3283,59 @@
 
   
 
-
-
     <style>
-      
-        /* BLOKI - PIONOWO JEDEN POD DRUGIM */
+        /* PERFORMANCE TIERS - WARSTWOWO NAŁOŻONE */
         .ai-tier-stack {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            align-items: flex-start;
+            justify-content: center;
             padding: 50px 20px;
+            position: relative;
+            height: 400px;
         }
 
         .tier-card {
             border-radius: 20px;
             min-height: 280px;
-            position: relative;
+            width: 320px;
+            position: absolute;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding: 40px 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         .tier-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            z-index: 10;
         }
 
-        /* Style dla różnych poziomów wydajności */
+        /* Pozycjonowanie warstwowe - nałożone jeden na drugim */
         .tier-speed {
             background: #f5f5f0;
             color: #333;
+            left: 0;
+            z-index: 3;
         }
 
         .tier-balanced {
             background: #f0f0f0;
             color: #333;
+            left: 200px;
+            z-index: 2;
         }
 
         .tier-premium {
             background: #ebebeb;
             color: #333;
+            left: 400px;
+            z-index: 1;
         }
 
         .tier-badge {
@@ -3372,11 +3380,16 @@
         /* Responsive design */
         @media (max-width: 768px) {
             .ai-tier-stack {
+                flex-direction: column;
+                height: auto;
                 gap: 15px;
                 padding: 30px 15px;
             }
             
             .tier-card {
+                position: relative;
+                left: 0 !important;
+                width: 100%;
                 min-height: 220px;
                 padding: 30px 25px;
             }
@@ -3408,6 +3421,20 @@
             }
         }
     </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
 
 
@@ -5028,7 +5055,7 @@
         <div class="tier-card tier-speed">
             <div>
                 <div class="tier-badge">LIGHT & FAST</div>
-                <h2 class="tier-heading">Ryzyko</h2>
+                <h2 class="tier-heading">Haiku</h2>
             </div>
             <p class="tier-summary">Our fastest model that can execute lightweight actions, with industry-leading speed.</p>
         </div>
@@ -5037,7 +5064,7 @@
         <div class="tier-card tier-balanced">
             <div>
                 <div class="tier-badge">HARD WORKING</div>
-                <h2 class="tier-heading">Operacyjne</h2>
+                <h2 class="tier-heading">Sonnet</h2>
             </div>
             <p class="tier-summary">Our best combination of performance and speed for efficient, high-throughput tasks.</p>
         </div>
@@ -5046,7 +5073,7 @@
         <div class="tier-card tier-premium">
             <div>
                 <div class="tier-badge">POWERFUL</div>
-                <h2 class="tier-heading">Rynkowe</h2>
+                <h2 class="tier-heading">Opus</h2>
             </div>
             <p class="tier-summary">Our highest-performing model, which can handle complex analysis, longer tasks with many steps, and higher-order math and coding tasks.</p>
         </div>
