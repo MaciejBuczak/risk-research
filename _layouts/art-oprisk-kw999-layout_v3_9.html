@@ -3284,9 +3284,9 @@
   
 
     <style>
-        /* PERFORMANCE TIERS - WARSTWOWO NAŁOŻONE */
+        /* AI PERFORMANCE TIERS - WARSTWOWO NAŁOŻONE */
         .ai-tier-stack {
-            max-width: 1000px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             align-items: flex-start;
@@ -3313,28 +3313,42 @@
         .tier-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-            z-index: 10;
+            z-index: 15;
         }
 
-        /* Pozycjonowanie warstwowe - nałożone jeden na drugim */
+        /* Pozycjonowanie warstwowe - 5 bloków nałożonych */
         .tier-speed {
             background: #f5f5f0;
             color: #333;
             left: 0;
-            z-index: 3;
+            z-index: 5;
         }
 
         .tier-balanced {
             background: #f0f0f0;
             color: #333;
             left: 200px;
-            z-index: 2;
+            z-index: 4;
         }
 
         .tier-premium {
             background: #ebebeb;
             color: #333;
             left: 400px;
+            z-index: 3;
+        }
+
+        .tier-enterprise {
+            background: #e6e6e6;
+            color: #333;
+            left: 600px;
+            z-index: 2;
+        }
+
+        .tier-ultimate {
+            background: #e1e1e1;
+            color: #333;
+            left: 800px;
             z-index: 1;
         }
 
@@ -3420,7 +3434,26 @@
                 font-size: 14px;
             }
         }
+
+        @media (max-width: 1200px) {
+            .ai-tier-stack {
+                max-width: 1000px;
+            }
+            
+            .tier-enterprise {
+                left: 500px;
+            }
+            
+            .tier-ultimate {
+                left: 650px;
+            }
+        }
     </style>
+
+
+
+
+
 
 
 
@@ -5049,6 +5082,7 @@
 
 
 
+  
     <div class="ai-tier-stack">
         
         <!-- Speed Tier -->
@@ -5078,7 +5112,26 @@
             <p class="tier-summary">Our highest-performing model, which can handle complex analysis, longer tasks with many steps, and higher-order math and coding tasks.</p>
         </div>
 
+        <!-- Enterprise Tier -->
+        <div class="tier-card tier-enterprise">
+            <div>
+                <div class="tier-badge">ENTERPRISE</div>
+                <h2 class="tier-heading">Advanced</h2>
+            </div>
+            <p class="tier-summary">Enterprise-grade AI solution with enhanced security, dedicated support, and advanced customization capabilities.</p>
+        </div>
+
+        <!-- Ultimate Tier -->
+        <div class="tier-card tier-ultimate">
+            <div>
+                <div class="tier-badge">ULTIMATE</div>
+                <h2 class="tier-heading">Elite</h2>
+            </div>
+            <p class="tier-summary">The ultimate AI experience with cutting-edge features, unlimited access, and priority processing for mission-critical applications.</p>
+        </div>
+
     </div>
+
 
         
 
