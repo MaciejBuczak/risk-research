@@ -1536,6 +1536,13 @@
 
 
 
+  
+
+
+
+
+
+
 
 
 
@@ -3278,6 +3285,137 @@
 
 
 
+    <style>
+      
+        /* BLOKI - PIONOWO JEDEN POD DRUGIM */
+        .ai-tier-stack {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 50px 20px;
+        }
+
+        .tier-card {
+            border-radius: 20px;
+            min-height: 280px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style dla różnych poziomów wydajności */
+        .tier-speed {
+            background: #f5f5f0;
+            color: #333;
+        }
+
+        .tier-balanced {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .tier-premium {
+            background: #ebebeb;
+            color: #333;
+        }
+
+        .tier-badge {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .tier-heading {
+            font-size: 48px;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            border: none !important;
+            border-bottom: none !important;
+            border-top: none !important;
+            text-decoration: none !important;
+            text-decoration-line: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            background-image: none !important;
+            position: relative;
+        }
+
+        .tier-heading::before,
+        .tier-heading::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        .tier-summary {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            opacity: 0.9;
+            max-width: 280px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .ai-tier-stack {
+                gap: 15px;
+                padding: 30px 15px;
+            }
+            
+            .tier-card {
+                min-height: 220px;
+                padding: 30px 25px;
+            }
+            
+            .tier-heading {
+                font-size: 36px;
+            }
+
+            .tier-summary {
+                font-size: 15px;
+            }
+
+            .tier-badge {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tier-card {
+                padding: 25px 20px;
+            }
+            
+            .tier-heading {
+                font-size: 32px;
+            }
+
+            .tier-summary {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+
+
+
+
+
+
+
 
 
 
@@ -4884,6 +5022,75 @@
 
 
 
+    <div class="ai-tier-stack">
+        
+        <!-- Speed Tier -->
+        <div class="tier-card tier-speed">
+            <div>
+                <div class="tier-badge">LIGHT & FAST</div>
+                <h2 class="tier-heading">Ryzyko</h2>
+            </div>
+            <p class="tier-summary">Our fastest model that can execute lightweight actions, with industry-leading speed.</p>
+        </div>
+
+        <!-- Balanced Tier -->
+        <div class="tier-card tier-balanced">
+            <div>
+                <div class="tier-badge">HARD WORKING</div>
+                <h2 class="tier-heading">Operacyjne</h2>
+            </div>
+            <p class="tier-summary">Our best combination of performance and speed for efficient, high-throughput tasks.</p>
+        </div>
+
+        <!-- Premium Tier -->
+        <div class="tier-card tier-premium">
+            <div>
+                <div class="tier-badge">POWERFUL</div>
+                <h2 class="tier-heading">Rynkowe</h2>
+            </div>
+            <p class="tier-summary">Our highest-performing model, which can handle complex analysis, longer tasks with many steps, and higher-order math and coding tasks.</p>
+        </div>
+
+    </div>
+
+        
+
+
+
+
+
+
+
+       <!-- Sekcja "Czy warto to analizować?" część 2 -->
+
+        <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
+          <!-- Kolumna 1 -->
+          <div style="flex: 1;">
+            <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Źle ufundowana intuicja</h5>
+            <p style="margin-bottom: 15px;">Poziom kwantyla odczytu (99.9%) zaproponowany przez nadzorcę, spójny z poziomami określonymi dla ryzyka kredytowego oraz rynkowego, budził od początku wiele kontrowersji.
+              Ogniskowały się one wokół percepcji nadmiernego konserwatyzmu.
+              Wskazywano skutki przyjęcia tak wysokiego poziomu: duże problemy z wiarygodnością wyniku na tak dalekim kwantylu, a także bardzo wysokie poziomy kapitałów korespondujące z poziomem 99.9%.
+              Nadzorca nie wsłuchał się w ten głos. Poziom został utrzymany.</p>
+            <p>Za takim postrzeganiem w/w kwantyla jako nadmiernie konserwatywnego, stoi pewna zakorzeniona intuicja związana z jego interpretacją.
+              Intuicja ta wskazuje na zintegrowanie pojęcia kwantyla rozkładu z horyzontem czasu jaki jest domniemany w modelowaniu badanego zjawiska.
+              W naszym przypadku horyzont został wskazany explicite jako roczny.
+              Oznaczało to, że model zaawansowanego pomiaru AMA miał mieć zdolność do wyznaczania wartości oczekiwanej, którą była roczna wartość strat operacyjnych (czyli suma wszystkich rocznych strat), jak również do wyznaczenia poziomu strat nieoczekiwanych (99.9%) rozumianych również jako suma rocznych strat.</p>
+          </div>
+          
+          <!-- Kolumna 2 -->
+          <div style="flex: 1;">
+            <p style="margin-bottom: 15px;">W odniesieniu do poziomów nieoczekiwanych można powiedzieć, że wyznaczenie zabezpieczeń kapitałowych (wymogu kapitałowego) na poziomie odczytu kwantyla 99.9% rozkładu zagregowanych strat miało uchronić bank przed łączną kwotą rocznych strat, jaka zrealizuje się w tym niepomyślnym roku.
+              Integracja pojęcia poziomu kwantyla z horyzontem badania jest całkowicie zasadna. Takie rozumowanie prowadzi następnie do powszechnie przyjmowanego rozumowania dotyczącego interpretacji kwantyla 99.9%, jako poziomu rocznych strat występujących z prawdopodobieństwem 1 raz na 1000 lat. Rozumowanie to jest również wspierane przez nadzorcę:
+             <p>"Tylko w ograniczonych przypadkach, na przykład gdy największy punkt danych jest wykazany jako większy lub równy zdarzeniu występującemu <u>rzadziej niż raz na 1000 lat</u>, użycie krzywych empirycznych do oszacowania ogona może być zaakceptowane w modelach SBA." [1]</p>
+            <p>Takie podejście ma swoje konsekwencje metodologiczne. Nie jest to jednak w moim przekonaniu podejście poprawne.</p>
+          </div>
+        </div>
+
+
+
+
+
+
 
         
 
@@ -5435,218 +5642,7 @@
 
 
 
-
-
-
-
-
-<div class="container_min" style="margin-top: 50px; margin-bottom: 50px;">
-   
-   <!-- Elegant Block z flip efektem -->
-   <div class="block_min block-elegant_min">
-       <div class="block-inner_min">
-           <!-- Przód karty -->
-           <div class="block-front_min">
-               <div>
-                   <h2 class="block-title_min" style="color: #444;">Rzadkość czasu</h2>
-                   <div class="icon-container_min" style="margin-top: 80px;margin-bottom: 10px;">
-                   <img src="/risk-research/assets/images/wykres3.svg" alt="Custom Icon" class="custom-icon1_min">
-                   </div>
-               </div>
-           </div>
-           <!-- Tył karty -->
-           <div class="block-back_min">
-               <div>
-                   <h3 class="block-back-title_min">Next Generation AI Models</h3>
-                   <p>... to jedno z podejść do rzadkości.</p>
-               </div>
-           </div>
-       </div>
-   </div>
-   <!-- Elegant2 Block z flip efektem -->
-   <div class="block_min block-elegant2_min">
-       <div class="block-inner_min">
-           <!-- Przód karty -->
-           <div class="block-front_min">
-               <div>
-                   <h2 class="block-title_min" style="color: #444; margin-bottom: 80px;">Punkty rzadkości</h2>
-                   <div class="icon-container_min">
-                   <img src="/risk-research/assets/images/wykres2.svg" alt="Custom Icon" class="custom-icon2_min">
-                   </div>
-               </div>
-           </div>
-           <!-- Tył karty -->
-           <div class="block-back_min">
-               <div>
-                   <h3 class="block-back-title_min">Four new capabilities to help developers build AI agents</h3>
-                   <p class="block-back-text_min">Enhanced tools for computer use, analysis capabilities, and improved function calling to build powerful AI applications.</p>
-               </div>
-           </div>
-       </div>
-   </div>
-<!-- Claude Elegant3 Block z flip efektem -->
-<div class="block_min block-elegant3_min">
-   <div class="block-inner_min">
-       <!-- Przód karty -->
-       <div class="block-front_min">
-           <div>
-               <h2 class="block-title_min" style="color: #444;">Kwantyle OpRisk</h2>
-               <div class="icon-container_min" style="margin-top: 80px;">
-                   <img src="/risk-research/assets/images/wykres1.svg" alt="Custom Icon" class="custom-icon3_min">
-               </div>
-           </div>
-       </div>
-       <!-- Tył karty -->
-       <div class="block-back_min">
-           <div>
-               <h3 class="block-back-title_min">Agentic Command Line Tool</h3>
-               <p class="block-back-text_min">Delegate coding tasks directly from your terminal. Available in research preview for developers who want AI assistance.</p>
-           </div>
-       </div>
-   </div>
-</div>
-
-   <!-- Elegant2 Block z flip efektem -->
-   <div class="block_min block-elegant2_min">
-       <div class="block-inner_min">
-           <!-- Przód karty -->
-           <div class="block-front_min">
-               <div>
-                   <h2 class="block-title_min" style="color: #444; margin-bottom: 80px;">Punkty rzadkości</h2>
-                   <div class="icon-container_min">
-                   <img src="/risk-research/assets/images/wykres2.svg" alt="Custom Icon" class="custom-icon2_min">
-                   </div>
-               </div>
-           </div>
-           <!-- Tył karty -->
-           <div class="block-back_min">
-               <div>
-                   <h3 class="block-back-title_min">Four new capabilities to help developers build AI agents</h3>
-                   <p class="block-back-text_min">Enhanced tools for computer use, analysis capabilities, and improved function calling to build powerful AI applications.</p>
-               </div>
-           </div>
-       </div>
-   </div>
-
-<!-- Claude Elegant3 Block z flip efektem -->
-<div class="block_min block-elegant3_min">
-   <div class="block-inner_min">
-       <!-- Przód karty -->
-       <div class="block-front_min">
-           <div>
-               <h2 class="block-title_min" style="color: #444;">Kwantyle OpRisk</h2>
-               <div class="icon-container_min" style="margin-top: 80px;">
-                   <img src="/risk-research/assets/images/wykres1.svg" alt="Custom Icon" class="custom-icon3_min">
-               </div>
-           </div>
-       </div>
-       <!-- Tył karty -->
-       <div class="block-back_min">
-           <div>
-               <h3 class="block-back-title_min">Agentic Command Line Tool</h3>
-               <p class="block-back-text_min">Delegate coding tasks directly from your terminal. Available in research preview for developers who want AI assistance.</p>
-           </div>
-       </div>
-   </div>
-</div>
   
-     <!-- Elegant Block z flip efektem -->
-   <div class="block_min block-elegant_min">
-       <div class="block-inner_min">
-           <!-- Przód karty -->
-           <div class="block-front_min">
-               <div>
-                   <h2 class="block-title_min" style="color: #444;">Rzadkość czasu</h2>
-                   <div class="icon-container_min" style="margin-top: 80px;margin-bottom: 10px;">
-                   <img src="/risk-research/assets/images/wykres3.svg" alt="Custom Icon" class="custom-icon1_min">
-                   </div>
-               </div>
-           </div>
-           <!-- Tył karty -->
-           <div class="block-back_min">
-               <div>
-                   <h3 class="block-back-title_min">Next Generation AI Models</h3>
-                   <p>... to jedno z podejść do rzadkości.</p>
-               </div>
-           </div>
-       </div>
-   </div>
-
-<!-- Claude Elegant3 Block z flip efektem -->
-<div class="block_min block-elegant3_min">
-   <div class="block-inner_min">
-       <!-- Przód karty -->
-       <div class="block-front_min">
-           <div>
-               <h2 class="block-title_min" style="color: #444;">Kwantyle OpRisk</h2>
-               <div class="icon-container_min" style="margin-top: 80px;">
-                   <img src="/risk-research/assets/images/wykres1.svg" alt="Custom Icon" class="custom-icon3_min">
-               </div>
-           </div>
-       </div>
-       <!-- Tył karty -->
-       <div class="block-back_min">
-           <div>
-               <h3 class="block-back-title_min">Agentic Command Line Tool</h3>
-               <p class="block-back-text_min">Delegate coding tasks directly from your terminal. Available in research preview for developers who want AI assistance.</p>
-           </div>
-       </div>
-   </div>
-</div>
-
-
-     <!-- Elegant Block z flip efektem -->
-   <div class="block_min block-elegant_min">
-       <div class="block-inner_min">
-           <!-- Przód karty -->
-           <div class="block-front_min">
-               <div>
-                   <h2 class="block-title_min" style="color: #444;">Rzadkość czasu</h2>
-                   <div class="icon-container_min" style="margin-top: 80px;margin-bottom: 10px;">
-                   <img src="/risk-research/assets/images/wykres3.svg" alt="Custom Icon" class="custom-icon1_min">
-                   </div>
-               </div>
-           </div>
-           <!-- Tył karty -->
-           <div class="block-back_min">
-               <div>
-                   <h3 class="block-back-title_min">Next Generation AI Models</h3>
-                   <p>... to jedno z podejść do rzadkości.</p>
-               </div>
-           </div>
-       </div>
-   </div>
-
-     <!-- Elegant2 Block z flip efektem -->
-   <div class="block_min block-elegant2_min">
-       <div class="block-inner_min">
-           <!-- Przód karty -->
-           <div class="block-front_min">
-               <div>
-                   <h2 class="block-title_min" style="color: #444; margin-bottom: 80px;">Punkty rzadkości</h2>
-                   <div class="icon-container_min">
-                   <img src="/risk-research/assets/images/wykres2.svg" alt="Custom Icon" class="custom-icon2_min">
-                   </div>
-               </div>
-           </div>
-           <!-- Tył karty -->
-           <div class="block-back_min">
-               <div>
-                   <h3 class="block-back-title_min">Four new capabilities to help developers build AI agents</h3>
-                   <p class="block-back-text_min">Enhanced tools for computer use, analysis capabilities, and improved function calling to build powerful AI applications.</p>
-               </div>
-           </div>
-       </div>
-   </div>
-  
-</div>
-
-
-
-
-
-
-        
 
 
 
@@ -5678,6 +5674,9 @@
 
 
 
+
+
+        
 
     <div class="container30" style="margin-top: 50px; margin-bottom: 50px;">
         <!-- Claude Elegant3 Block z flip efektem -->
