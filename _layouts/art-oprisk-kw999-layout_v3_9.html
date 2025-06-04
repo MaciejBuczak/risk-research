@@ -2955,10 +2955,14 @@
 
   
 
+
+
+
+
 <style>
   
 /* UKŁAD PIRAMIDOWY */
-.layout-pyramid {
+.layout-pyramid-modern {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -2966,26 +2970,26 @@
     margin: 50px auto;
 }
 
-.pyramid-row-1 {
+.pyramid-row-1-modern {
     display: grid;
     grid-template-columns: 1fr;
     gap: 15px;
 }
 
-.pyramid-row-2 {
+.pyramid-row-2-modern {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
 
-.pyramid-row-3 {
+.pyramid-row-3-modern {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 15px;
 }
 
 /* Style bloków */
-.modern-block {
+.modern-block-pyramid {
     background: #ece0d0;
     border-radius: 25px;
     height: 200px;
@@ -3000,88 +3004,78 @@
 }
 
 /* Efekt hover z glow */
-.modern-block:hover {
+.modern-block-pyramid:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
     border-color: #D4AF37;
 }
 
 /* Gradient backgrounds */
-.gradient-gold {
+.gradient-gold-pyramid {
     background: linear-gradient(135deg, #E8D496 0%, #D4AF37 100%);
 }
 
-.gradient-neutral {
+.gradient-neutral-pyramid {
     background: linear-gradient(135deg, #e8e4d9 0%, #ece0d0 100%);
 }
 
-.gradient-warm {
+.gradient-warm-pyramid {
     background: linear-gradient(135deg, #f4f1e8 0%, #e8e4d9 100%);
 }
 
 /* Blok z efektem szkła */
-.glass-block {
+.glass-block-pyramid {
     background: rgba(236, 224, 208, 0.25);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
-/* Pulsujący efekt */
-.pulse-block {
-    animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
+/* Pulsujący efekt - USUNIĘTY */
 
 /* Efekt skew */
-.skew-block {
+.skew-block-pyramid {
     transform: skew(-5deg);
     transition: transform 0.3s ease;
 }
 
-.skew-block:hover {
+.skew-block-pyramid:hover {
     transform: skew(0deg) translateY(-5px);
 }
 
 /* Tekst w blokach */
-.block-content {
+.block-content-pyramid {
     text-align: center;
     color: #444;
     padding: 20px;
 }
 
-.block-title {
+.block-title-pyramid {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
     color: #333;
 }
 
-.block-subtitle {
+.block-subtitle-pyramid {
     font-size: 14px;
     opacity: 0.8;
 }
 
 /* Responsywność */
 @media (max-width: 768px) {
-    .pyramid-row-3 {
+    .pyramid-row-3-modern {
         grid-template-columns: 1fr 1fr;
     }
     
-    .layout-pyramid {
+    .layout-pyramid-modern {
         margin: 30px auto;
     }
     
-    .modern-block {
+    .modern-block-pyramid {
         height: 150px;
     }
 }
 </style>
-
-
 
 
 
@@ -4331,57 +4325,58 @@
 
 
 <!-- HTML do wklejenia na stronę -->
-<div class="layout-pyramid">
+<div class="layout-pyramid-modern">
     <!-- Rząd 1: 1 blok -->
-    <div class="pyramid-row-1">
-        <div class="modern-block gradient-gold pulse-block">
-            <div class="block-content">
-                <div class="block-title">Kwantyle OpRisk</div>
-                <div class="block-subtitle">Główna analiza ryzyka</div>
+    <div class="pyramid-row-1-modern">
+        <div class="modern-block-pyramid gradient-gold-pyramid">
+            <div class="block-content-pyramid">
+                <div class="block-title-pyramid">Kwantyle OpRisk</div>
+                <div class="block-subtitle-pyramid">Główna analiza ryzyka</div>
             </div>
         </div>
     </div>
     
     <!-- Rząd 2: 2 bloki -->
-    <div class="pyramid-row-2">
-        <div class="modern-block glass-block">
-            <div class="block-content">
-                <div class="block-title">Modelowanie</div>
-                <div class="block-subtitle">AMA & Basel</div>
+    <div class="pyramid-row-2-modern">
+        <div class="modern-block-pyramid glass-block-pyramid">
+            <div class="block-content-pyramid">
+                <div class="block-title-pyramid">Modelowanie</div>
+                <div class="block-subtitle-pyramid">AMA & Basel</div>
             </div>
         </div>
-        <div class="modern-block glass-block">
-            <div class="block-content">
-                <div class="block-title">Interpretacja</div>
-                <div class="block-subtitle">99.9% kwantyl</div>
+        <div class="modern-block-pyramid glass-block-pyramid">
+            <div class="block-content-pyramid">
+                <div class="block-title-pyramid">Interpretacja</div>
+                <div class="block-subtitle-pyramid">99.9% kwantyl</div>
             </div>
         </div>
     </div>
     
     <!-- Rząd 3: 4 bloki -->
-    <div class="pyramid-row-3">
-        <div class="modern-block gradient-neutral skew-block">
-            <div class="block-content">
-                <div class="block-title">Rzadkość</div>
+    <div class="pyramid-row-3-modern">
+        <div class="modern-block-pyramid gradient-neutral-pyramid skew-block-pyramid">
+            <div class="block-content-pyramid">
+                <div class="block-title-pyramid">Rzadkość</div>
             </div>
         </div>
-        <div class="modern-block gradient-warm skew-block">
-            <div class="block-content">
-                <div class="block-title">Scenariusze</div>
+        <div class="modern-block-pyramid gradient-warm-pyramid skew-block-pyramid">
+            <div class="block-content-pyramid">
+                <div class="block-title-pyramid">Scenariusze</div>
             </div>
         </div>
-        <div class="modern-block gradient-neutral skew-block">
-            <div class="block-content">
-                <div class="block-title">Kapitał</div>
+        <div class="modern-block-pyramid gradient-neutral-pyramid skew-block-pyramid">
+            <div class="block-content-pyramid">
+                <div class="block-title-pyramid">Kapitał</div>
             </div>
         </div>
-        <div class="modern-block gradient-warm skew-block">
-            <div class="block-content">
-                <div class="block-title">Nadzór</div>
+        <div class="modern-block-pyramid gradient-warm-pyramid skew-block-pyramid">
+            <div class="block-content-pyramid">
+                <div class="block-title-pyramid">Nadzór</div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 
