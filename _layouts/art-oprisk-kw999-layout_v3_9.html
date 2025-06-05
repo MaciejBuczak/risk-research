@@ -3631,6 +3631,210 @@
 
 
 
+  
+    <style>
+        /* NOWE BLOKI POZIOME - UNIKALNE NAZWY */
+        .feature-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            background: #f8f6f2;
+            border-radius: 25px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 180px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* IKONA SEKCJA - LEWA STRONA */
+        .feature-icon-section {
+            flex: 0 0 220px;
+            height: 180px;
+            background: #e8e4d9;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .feature-card:hover .feature-icon-section::before {
+            transform: translateX(100%);
+        }
+
+        .feature-visual {
+            width: 160px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* OBRAZEK WYKRESU */
+        .feature-chart-image {
+            width: 160px;
+            height: 140px;
+            object-fit: contain;
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+            background: transparent !important;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .feature-chart-image:hover {
+            opacity: 1;
+        }
+
+        /* CONTENT SEKCJA - PRAWA STRONA */
+        .feature-content-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feature-main-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .feature-description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+
+        .feature-action-link {
+            font-size: 16px;
+            font-weight: 500;
+            color: #8B4513;
+            text-decoration: underline;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .feature-action-link:hover {
+            color: #A0522D;
+            text-decoration-thickness: 2px;
+        }
+
+        /* RÓŻNE WARIANTY KOLORÓW */
+        .feature-card.variant-cream .feature-icon-section {
+            background: #E8D496;
+        }
+
+        .feature-card.variant-beige .feature-icon-section {
+            background: #e8e4d9;
+        }
+
+        .feature-card.variant-light .feature-icon-section {
+            background: #ece0d0;
+        }
+
+        /* RESPONSYWNOŚĆ */
+        @media (max-width: 768px) {
+            .feature-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .feature-icon-section {
+                flex: none;
+                width: 100%;
+                height: 140px;
+                margin-right: 0;
+                margin-bottom: 25px;
+            }
+
+            .feature-main-title {
+                font-size: 28px;
+            }
+
+            .feature-description {
+                font-size: 16px;
+                max-width: 100%;
+            }
+
+            .feature-wrapper {
+                gap: 20px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feature-card {
+                padding: 25px 15px;
+            }
+
+            .feature-main-title {
+                font-size: 24px;
+            }
+
+            .feature-description {
+                font-size: 15px;
+            }
+
+            .feature-icon-section {
+                height: 120px;
+            }
+
+            .feature-visual {
+                width: 140px;
+                height: 120px;
+            }
+
+            .feature-chart-image {
+                width: 140px;
+                height: 120px;
+            }
+        }
+    </style>
+
+
+
+
+
+  
+
+
+
 
 
 
@@ -6049,6 +6253,96 @@
 
 
 
+    <div class="feature-wrapper">
+        
+        <!-- CODING BLOCK -->
+        <div class="feature-card variant-cream">
+            <div class="feature-icon-section">
+                <div class="feature-visual">
+                    <img src="/risk-research/assets/images/wykres2.svg" alt="Chart Icon" class="feature-chart-image">
+                </div>
+            </div>
+            <div class="feature-content-section">
+                <h2 class="feature-main-title">Coding</h2>
+                <p class="feature-description">
+                    Claude models are constantly improving on coding, math, and reasoning. Our latest model, Claude Opus 4, can complete complex engineering tasks to solve problems that would typically take a full day of engineering work.
+                </p>
+                <span class="feature-action-link">Learn more</span>
+            </div>
+        </div>
+
+        <!-- AGENTS BLOCK -->
+        <div class="feature-card variant-beige">
+            <div class="feature-icon-section">
+                <div class="feature-visual">
+                    <img src="/risk-research/assets/images/wykres2.svg" alt="Chart Icon" class="feature-chart-image">
+                </div>
+            </div>
+            <div class="feature-content-section">
+                <h2 class="feature-main-title">Agents</h2>
+                <p class="feature-description">
+                    Claude offers superior instruction following, tool selection, error correction, and advanced reasoning for customer-facing agents and complex AI workflows.
+                </p>
+                <span class="feature-action-link">Learn more</span>
+            </div>
+        </div>
+
+        <!-- PRODUCTIVITY BLOCK -->
+        <div class="feature-card variant-light">
+            <div class="feature-icon-section">
+                <div class="feature-visual">
+                    <img src="/risk-research/assets/images/wykres2.svg" alt="Chart Icon" class="feature-chart-image">
+                </div>
+            </div>
+            <div class="feature-content-section">
+                <h2 class="feature-main-title">Productivity</h2>
+                <p class="feature-description">
+                    Claude can extract relevant information from business emails and documents, categorize and summarize survey responses, and wrangle reams of text with high speed and accuracy.
+                </p>
+                <span class="feature-action-link">Learn more</span>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+  
+
+
+        <!-- Sekcja "Czy warto to analizować?" część 2 -->
+
+        <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
+          <!-- Kolumna 1 -->
+          <div style="flex: 1;">
+            <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Źle ufundowana intuicja</h5>
+            <p style="margin-bottom: 15px;">Poziom kwantyla odczytu (99.9%) zaproponowany przez nadzorcę, spójny z poziomami określonymi dla ryzyka kredytowego oraz rynkowego, budził od początku wiele kontrowersji.
+              Ogniskowały się one wokół percepcji nadmiernego konserwatyzmu.
+              Wskazywano skutki przyjęcia tak wysokiego poziomu: duże problemy z wiarygodnością wyniku na tak dalekim kwantylu, a także bardzo wysokie poziomy kapitałów korespondujące z poziomem 99.9%.
+              Nadzorca nie wsłuchał się w ten głos. Poziom został utrzymany.</p>
+            <p>Za takim postrzeganiem w/w kwantyla jako nadmiernie konserwatywnego, stoi pewna zakorzeniona intuicja związana z jego interpretacją.
+              Intuicja ta wskazuje na zintegrowanie pojęcia kwantyla rozkładu z horyzontem czasu jaki jest domniemany w modelowaniu badanego zjawiska.
+              W naszym przypadku horyzont został wskazany explicite jako roczny.
+              Oznaczało to, że model zaawansowanego pomiaru AMA miał mieć zdolność do wyznaczania wartości oczekiwanej, którą była roczna wartość strat operacyjnych (czyli suma wszystkich rocznych strat), jak również do wyznaczenia poziomu strat nieoczekiwanych (99.9%) rozumianych również jako suma rocznych strat.</p>
+          </div>
+          
+          <!-- Kolumna 2 -->
+          <div style="flex: 1;">
+            <p style="margin-bottom: 15px;">W odniesieniu do poziomów nieoczekiwanych można powiedzieć, że wyznaczenie zabezpieczeń kapitałowych (wymogu kapitałowego) na poziomie odczytu kwantyla 99.9% rozkładu zagregowanych strat miało uchronić bank przed łączną kwotą rocznych strat, jaka zrealizuje się w tym niepomyślnym roku.
+              Integracja pojęcia poziomu kwantyla z horyzontem badania jest całkowicie zasadna. Takie rozumowanie prowadzi następnie do powszechnie przyjmowanego rozumowania dotyczącego interpretacji kwantyla 99.9%, jako poziomu rocznych strat występujących z prawdopodobieństwem 1 raz na 1000 lat. Rozumowanie to jest również wspierane przez nadzorcę:
+             <p>"Tylko w ograniczonych przypadkach, na przykład gdy największy punkt danych jest wykazany jako większy lub równy zdarzeniu występującemu <u>rzadziej niż raz na 1000 lat</u>, użycie krzywych empirycznych do oszacowania ogona może być zaakceptowane w modelach SBA." [1]</p>
+            <p>Takie podejście ma swoje konsekwencje metodologiczne. Nie jest to jednak w moim przekonaniu podejście poprawne.</p>
+          </div>
+        </div>
+
+
+
+
+  
         
 
 
