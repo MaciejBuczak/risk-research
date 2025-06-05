@@ -1,0 +1,25 @@
+{
+  "name": "Kwantyl 99.9% - Przewodnik po błędach interpretacji",
+  "short_name": "Kwantyl 99.9%",
+  "description": "Przewodnik po częstych błędach w interpretacji kwantyla 99.9% w modelowaniu ryzyka operacyjnego",
+  "start_url": "/risk-research/onepager-kwantyl999.html",
+  "display": "standalone",
+  "background_color": "#f8f6f2",
+  "theme_color": "#E8D496",
+  "orientation": "portrait",
+  "scope": "/risk-research/",
+  "icons": [
+    {
+      "src": "assets/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-512x512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}
