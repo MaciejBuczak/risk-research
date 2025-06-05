@@ -3824,6 +3824,196 @@
 
 
 
+    <style>
+        /* KONTENER GŁÓWNY */
+        .tabs-wrapper {
+            max-width: 800px;
+            margin: 50px auto;
+            font-family: Arial, sans-serif;
+        }
+
+        /* NAGŁÓWEK Z ZAKŁADKAMI */
+        .tabs-header {
+            display: flex;
+            margin-bottom: 5px;
+        }
+
+        .tab-button {
+            padding: 15px 25px;
+            border: 2px solid #ddd;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            color: #666;
+            margin-right: 2px;
+            border-radius: 10px;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        /* AKTYWNA ZAKŁADKA */
+        .tab-button.active {
+            color: #333;
+            transform: translateY(-2px);
+        }
+
+        /* ZAKŁADKA POMARAŃCZOWA */
+        .tab-button.orange.active {
+            background: #E8D496;
+            border-color: #E8D496;
+        }
+
+        /* ZAKŁADKA ZIELONA */
+        .tab-button.green.active {
+            background: #e8e4d9;
+            border-color: #e8e4d9;
+        }
+
+        /* ZAKŁADKA NIEBIESKA */
+        .tab-button.blue.active {
+            background: #ece0d0;
+            border-color: #ece0d0;
+        }
+
+        .tab-button:hover:not(.active) {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+        }
+
+        /* OBSZAR TREŚCI */
+        .tabs-content {
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            min-height: 300px;
+            padding: 30px;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            gap: 30px;
+        }
+
+        /* SEKCJA OBRAZKA - LEWA STRONA */
+        .content-image-section {
+            flex: 0 0 25%;
+            height: 70%;
+            background: #f0f0f0;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            color: #999;
+            font-size: 14px;
+            text-align: center;
+            align-self: center;
+        }start;
+            margin-top: 10px;
+        }
+
+        .content-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        /* SEKCJA TEKSTU - PRAWA STRONA */
+        .content-text-section {
+            flex: 1;
+        }
+
+        /* AKTYWNA TREŚĆ KOLOROWA */
+        .tabs-content.orange {
+            border-color: #E8D496;
+        }
+
+        .tabs-content.green {
+            border-color: #e8e4d9;
+        }
+
+        .tabs-content.blue {
+            border-color: #ece0d0;
+        }
+
+        /* POJEDYNCZA ZAWARTOŚĆ ZAKŁADKI */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content h2 {
+            margin-top: 0;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .tab-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .tab-content ul {
+            margin-left: 20px;
+        }
+
+        .tab-content li {
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        /* RESPONSYWNOŚĆ */
+        @media (max-width: 768px) {
+            .tabs-header {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                margin-right: 0;
+                margin-bottom: 2px;
+                border-radius: 0;
+            }
+            
+            .tab-button:first-child {
+                border-radius: 10px 10px 0 0;
+            }
+            
+            .tabs-content {
+                border-radius: 0 0 10px 10px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tabs-wrapper {
+                margin: 20px;
+            }
+            
+            .tab-button {
+                padding: 12px 15px;
+                font-size: 14px;
+                min-width: 80px;
+            }
+            
+            .tab-content h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+
 
 
 
@@ -4762,6 +4952,161 @@
         
 
 
+
+
+
+
+
+
+
+  
+    <div class="tabs-wrapper">
+        
+        <!-- NAGŁÓWEK Z ZAKŁADKAMI -->
+        <div class="tabs-header">
+            <div class="tab-button orange active" onclick="showTab('tab1', this, 'orange')">
+                Analiza ryzyka
+            </div>
+            <div class="tab-button green" onclick="showTab('tab2', this, 'green')">
+                Modelowanie
+            </div>
+            <div class="tab-button blue" onclick="showTab('tab3', this, 'blue')">
+                Raportowanie
+            </div>
+        </div>
+
+        <!-- OBSZAR TREŚCI -->
+        <div class="tabs-content orange" id="content-area">
+            
+            <!-- ZAKŁADKA 1 - ANALIZA RYZYKA -->
+            <div class="tab-content active" id="tab1">
+                <!-- Sekcja "Czy warto to analizować?" część 2 -->
+                <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
+                    <!-- Kolumna 2 - 35% -->
+                    <div style="flex: 0 0 calc(35% - 14px); display: flex; align-items: center;">
+                        <!-- Kontener na zdjęcie -->
+                        <div class="image-container10" style="max-width: none; margin: 0; width: 100%; padding: 0; box-sizing: border-box;">
+                            <img src="/risk-research/assets/images/mapa4.png" alt="Opis zdjęcia" style="width: 100% !important; max-width: 100% !important; height: auto; display: block; object-fit: cover; margin: 0; padding: 0; border: none;">
+                        </div>
+                    </div>      
+                  
+                    <!-- Kolumna 1 - 65% -->
+                    <div style="flex: 0 0 calc(65% - 26px);">
+                        <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Analiza ryzyka operacyjnego</h5>
+                        <p style="margin-bottom: 15px;">Kompleksowe podejście do identyfikacji, pomiaru i zarządzania ryzykiem operacyjnym w instytucjach finansowych.</p>
+                        <p>Nasze narzędzia umożliwiają:</p>
+                        <ul>
+                            <li>Kwantyfikację ryzyka przy użyciu metod statystycznych</li>
+                            <li>Modelowanie rzadkich zdarzeń i strat ekstremalnych</li>
+                            <li>Analizę scenariuszy stresowych</li>
+                            <li>Optymalizację alokacji kapitału</li>
+                        </ul>
+                        <p>Wykorzystujemy zaawansowane algorytmy uczenia maszynowego do przewidywania i minimalizowania potencjalnych strat.</p>
+                    </div>
+                      
+                </div>
+            </div>
+
+            <!-- ZAKŁADKA 2 - MODELOWANIE -->
+            <div class="tab-content" id="tab2">
+                <!-- Sekcja "Modelowanie" -->
+                <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
+                    <!-- Kolumna 2 - 35% -->
+                    <div style="flex: 0 0 calc(35% - 14px); display: flex; align-items: center;">
+                        <!-- Kontener na zdjęcie -->
+                        <div class="image-container10" style="max-width: none; margin: 0; width: 100%; padding: 0; box-sizing: border-box;">
+                            <img src="/risk-research/assets/images/wykres2.svg" alt="Modelowanie" style="width: 100% !important; max-width: 100% !important; height: auto; display: block; object-fit: cover; margin: 0; padding: 0; border: none;">
+                        </div>
+                    </div>      
+                  
+                    <!-- Kolumna 1 - 65% -->
+                    <div style="flex: 0 0 calc(65% - 26px);">
+                        <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Modelowanie statystyczne</h5>
+                        <p style="margin-bottom: 15px;">Zaawansowane modele matematyczne i statystyczne dla precyzyjnej oceny ryzyka finansowego.</p>
+                        <p>Nasze możliwości obejmują:</p>
+                        <ul>
+                            <li>Modele VaR (Value at Risk) i ES (Expected Shortfall)</li>
+                            <li>Bayesowskie sieci neuronowe</li>
+                            <li>Modele GARCH dla zmienności</li>
+                            <li>Monte Carlo i bootstrapping</li>
+                            <li>Teoria wartości ekstremalnych (EVT)</li>
+                        </ul>
+                        <p>Wszystkie modele są walidowane zgodnie z najlepszymi praktykami rynkowymi i wymogami regulacyjnymi.</p>
+                    </div>
+                      
+                </div>
+            </div>
+
+            <!-- ZAKŁADKA 3 - RAPORTOWANIE -->
+            <div class="tab-content" id="tab3">
+                <!-- Sekcja "Raportowanie" -->
+                <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
+                    <!-- Kolumna 2 - 35% -->
+                    <div style="flex: 0 0 calc(35% - 14px); display: flex; align-items: center;">
+                        <!-- Kontener na zdjęcie -->
+                        <div class="image-container10" style="max-width: none; margin: 0; width: 100%; padding: 0; box-sizing: border-box;">
+                            <img src="/risk-research/assets/images/wykres3.svg" alt="Raportowanie" style="width: 100% !important; max-width: 100% !important; height: auto; display: block; object-fit: cover; margin: 0; padding: 0; border: none;">
+                        </div>
+                    </div>      
+                  
+                    <!-- Kolumna 1 - 65% -->
+                    <div style="flex: 0 0 calc(65% - 26px);">
+                        <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Raportowanie i dashboard</h5>
+                        <p style="margin-bottom: 15px;">Interaktywne dashboardy i automatyczne raporty dla zarządu i organów nadzorczych.</p>
+                        <p>Funkcjonalności systemu:</p>
+                        <ul>
+                            <li>Real-time monitoring kluczowych wskaźników ryzyka</li>
+                            <li>Automatyczne generowanie raportów regulacyjnych</li>
+                            <li>Personalizowane dashboardy dla różnych ról</li>
+                            <li>Alerty i powiadomienia o przekroczeniu limitów</li>
+                            <li>Eksport danych w różnych formatach</li>
+                        </ul>
+                        <p>Intuicyjny interfejs zapewnia łatwy dostęp do kluczowych informacji na wszystkich poziomach organizacji.</p>
+                    </div>
+                      
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId, buttonElement, colorClass) {
+            // Ukryj wszystkie zakładki
+            const allContents = document.querySelectorAll('.tab-content');
+            allContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Usuń aktywną klasę z wszystkich przycisków
+            const allButtons = document.querySelectorAll('.tab-button');
+            allButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Pokaż wybraną zakładkę
+            document.getElementById(tabId).classList.add('active');
+            
+            // Dodaj aktywną klasę do klikniętego przycisku
+            buttonElement.classList.add('active');
+
+            // Zmień kolor obszaru treści
+            const contentArea = document.getElementById('content-area');
+            contentArea.className = 'tabs-content ' + colorClass;
+        }
+    </script>
+
+
+
+
+
+
+
+        
+
+
+
+        
         
         
         
