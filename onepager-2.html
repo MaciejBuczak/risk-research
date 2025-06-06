@@ -742,6 +742,14 @@ const appCurrentArticleData = {
 
 function appAddCurrentArticleToLibrary() {
     console.log('Adding article to library:', appCurrentArticleData.title);
+
+
+
+// AUTOMATYCZNIE OZNACZ JAKO ZAINSTALOWANE  
+localStorage.setItem('appRiskResearchLibraryInstalled', 'true');
+localStorage.setItem('riskResearchLibraryInstalled', 'true');
+
+    
     
     try {
         // Sprawdź różne sposoby wykrycia zainstalowanej aplikacji
