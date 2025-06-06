@@ -1,0 +1,60 @@
+{
+  "name": "Risk Research - Biblioteka Artykułów",
+  "short_name": "Risk Research",
+  "description": "Twoja osobista biblioteka artykułów o modelowaniu ryzyka operacyjnego, dostępna offline",
+  "start_url": "/risk-research/app-library.html",
+  "display": "standalone",
+  "background_color": "#1a365d",
+  "theme_color": "#1a365d",
+  "orientation": "portrait",
+  "scope": "/risk-research/",
+  "categories": ["business", "education", "finance"],
+  "lang": "pl",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiBmaWxsPSIjMWEzNjVkIiByeD0iMjQiLz4KPHN2ZyB4PSI0OCIgeT0iNDgiIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNNCAzaDE2YTEgMSAwIDAgMSAxIDFWN2ExIDEgMCAwIDEtMSAxSDVhMSAxIDAgMCAxLTEtMVYzeiIgZmlsbD0iI2U4ZDQ5NiIvPgogIDxwYXRoIGQ9Ik00IDEwaDEwYTEgMSAwIDAgMSAxIDFWMTJhMSAxIDAgMCAxLTEgMUg0YTEgMSAwIDAgMS0xLTFWMTBhMSAxIDAgMCAxIDEweiIgZmlsbD0iI2U4ZDQ5NiIvPgogIDxwYXRoIGQ9Ik00IDE1aDEyYTEgMSAwIDAgMSAxIDFWMTdhMSAxIDAgMCAxLTEgMUg0YTEgMSAwIDAgMS0xLTFWMTVhMSAxIDAgMCAxIDEweiIgZmlsbD0iI2U4ZDQ5NiIvPgogIDxwYXRoIGQ9Ik0xOCAxMGgzYTEgMSAwIDAgMSAxIDFWMjBhMSAxIDAgMCAxLTEgMUgxOGExIDEgMCAwIDEtMS0xVjEwYTEgMSAwIDAgMSAxMHoiIGZpbGw9IiNkNGFmMzciLz4KICA8Y2lyY2xlIGN4PSIxOS41IiBjeT0iMTUuNSIgcj0iMC41IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPgo8L3N2Zz4K",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSIjMWEzNjVkIiByeD0iNjQiLz4KPHN2ZyB4PSIxMjgiIHk9IjEyOCIgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CiAgPHBhdGggZD0iTTQgM2gxNmExIDEgMCAwIDEgMSAxVjdhMSAxIDAgMCAxLTEgMUg1YTEgMSAwIDAgMS0xLTFWM3oiIGZpbGw9IiNlOGQ0OTYiLz4KICA8cGF0aCBkPSJNNCAxMGgxMGExIDEgMCAwIDEgMSAxVjEyYTEgMSAwIDAgMS0xIDFINGExIDEgMCAwIDEtMS0xVjEwYTEgMSAwIDAgMSAxMHoiIGZpbGw9IiNlOGQ0OTYiLz4KICA8cGF0aCBkPSJNNCAxNWgxMmExIDEgMCAwIDEgMSAxVjE3YTEgMSAwIDAgMS0xIDFINGExIDEgMCAwIDEtMS0xVjE1YTEgMSAwIDAgMSAxMHoiIGZpbGw9IiNlOGQ0OTYiLz4KICA8cGF0aCBkPSJNMTggMTBoM2ExIDEgMCAwIDEgMSAxVjIwYTEgMSAwIDAgMS0xIDFIMThhMSAxIDAgMCAxLTEtMVYxMGExIDEgMCAwIDEgMTB6IiBmaWxsPSIjZDRhZjM3Ii8+CiAgPGNpcmNsZSBjeD0iMTkuNSIgY3k9IjE1LjUiIHI9IjAuNSIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4KPC9zdmc+Cg==",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dodaj artykuł",
+      "short_name": "Dodaj",
+      "description": "Szybko dodaj nowy artykuł do biblioteki",
+      "url": "/risk-research/app-library.html?action=add",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjNDhiYjc4IiByeD0iMTIiLz4KPHN2ZyB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMTIgNXY2bTAtNnY2bTAtNmg2bS02IDBoNm0tNiAwaDZNNSAxMmg2bS02IDBoNm0tNiAwaDZNMTIgMTl2LTZtMCA2di02bTAgNmgtNm02IDBoLTZtNiAwaDZtLTYgMGg2IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo8L3N2Zz4K",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Szukaj artykułów",
+      "short_name": "Szukaj",
+      "description": "Przeszukaj bibliotekę artykułów",
+      "url": "/risk-research/app-library.html?action=search",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiBmaWxsPSIjMmQ1YTg3IiByeD0iMTIiLz4KPHN2ZyB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KICA8Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxwYXRoIGQ9Im0yMSAyMS00LjM1LTQuMzUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cjwvc3ZnPgo=",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "/risk-research/"
+    }
+  ]
+}
