@@ -4025,6 +4025,94 @@
 
 
 
+<style>
+/* Style dla sekcji instalacji biblioteki Risk Research */
+.app-library-install-section {
+    background-color: #a85903;
+    color: white;
+    padding: 30px;
+    border: 2px solid #D4AF37;
+    text-align: center;
+    margin: 40px auto;
+    max-width: 700px;
+}
+
+.app-library-install-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #E8D496;
+}
+
+.app-library-install-description {
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.app-library-install-button {
+    background-color: #E8D496;
+    color: #333;
+    border: 2px solid #D4AF37;
+    padding: 15px 30px;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.app-library-install-note {
+    font-family: Georgia, serif;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    color: white;
+    font-style: italic;
+}
+
+.app-library-success {
+    background-color: #48bb78;
+}
+
+.app-library-success .app-library-install-title {
+    color: #fff;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .app-library-install-section {
+        margin: 30px 20px;
+        padding: 25px 20px;
+    }
+    
+    .app-library-install-title {
+        font-size: 1.5rem;
+    }
+    
+    .app-library-install-description {
+        font-size: 0.9rem;
+    }
+    
+    .app-library-install-button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+}
+</style>
+
+
+
+
+
+  
+
+
+
   
 
 
@@ -4528,6 +4616,155 @@ wydarzeń względem całego spektrum innych scenariuszy, gdzie wskazany explicit
 
 
 
+
+
+
+
+
+
+<!-- Sekcja instalacji biblioteki -->
+<div id="appLibraryInstallSection" class="app-library-install-section">
+    <h3 class="app-library-install-title">
+        Twoja osobista biblioteka artykułów o ryzyku
+    </h3>
+    <p class="app-library-install-description">
+        Zainstaluj aplikację Risk Research na swoim telefonie i zbieraj artykuły do osobistej biblioteki. 
+        Dostęp offline, szybkie wyszukiwanie, wszystkie one-pagery w jednym miejscu.
+    </p>
+    
+    <button id="appLibraryInstallButton" class="app-library-install-button" onclick="appInstallRiskResearchLibrary()">
+        Zainstaluj aplikację Risk Research
+    </button>
+    
+    <div class="app-library-install-note">
+        Po instalacji będziesz mógł dodawać one-pagery z każdego artykułu do swojej prywatnej kolekcji
+    </div>
+</div>
+
+<script>
+// ========================================= 
+// JAVASCRIPT DO INSTALACJI BIBLIOTEKI RISK RESEARCH
+// ========================================= 
+
+function appInstallRiskResearchLibrary() {
+    console.log('Risk Research library install button clicked');
+    
+    // Otwórz bibliotekę w nowej karcie/oknie
+    const appLibraryWindow = window.open('/risk-research/app-library.html', '_blank', 'width=1200,height=800');
+    
+    // Sprawdź czy okno się otworzyło
+    if (appLibraryWindow) {
+        // Zmień sekcję na potwierdzenie
+        const appSection = document.getElementById('appLibraryInstallSection');
+        const appButton = document.getElementById('appLibraryInstallButton');
+        
+        if (appSection && appButton) {
+            appSection.classList.add('app-library-success');
+            appSection.innerHTML = `
+                <h3 class="app-library-install-title">
+                    Biblioteka Risk Research otwarta!
+                </h3>
+                <p class="app-library-install-description">
+                    Świetnie! Nowe okno z biblioteką zostało otwarte. 
+                    Tam znajdziesz przycisk instalacji aplikacji na telefonie.
+                </p>
+                <button class="app-library-install-button" onclick="window.open('/risk-research/app-library.html', '_blank')">
+                    Otwórz ponownie bibliotekę
+                </button>
+                <div class="app-library-install-note">
+                    Pamiętaj: po instalacji aplikacji będziesz mógł dodawać one-pagery bezpośrednio z artykułów
+                </div>
+            `;
+        }
+        
+        // Przywróć oryginalny wygląd po 8 sekundach
+        setTimeout(() => {
+            if (appSection) {
+                appSection.classList.remove('app-library-success');
+                appSection.innerHTML = `
+                    <h3 class="app-library-install-title">
+                        Twoja osobista biblioteka artykułów o ryzyku
+                    </h3>
+                    <p class="app-library-install-description">
+                        Zainstaluj aplikację Risk Research na swoim telefonie i zbieraj artykuły do osobistej biblioteki. 
+                        Dostęp offline, szybkie wyszukiwanie, wszystkie one-pagery w jednym miejscu.
+                    </p>
+                    <button id="appLibraryInstallButton" class="app-library-install-button" onclick="appInstallRiskResearchLibrary()">
+                        Zainstaluj aplikację Risk Research
+                    </button>
+                    <div class="app-library-install-note">
+                        Po instalacji będziesz mógł dodawać one-pagery z każdego artykułu do swojej prywatnej kolekcji
+                    </div>
+                `;
+            }
+        }, 8000);
+        
+        // Opcjonalnie: focus na nowym oknie
+        try {
+            appLibraryWindow.focus();
+        } catch (e) {
+            console.log('Cannot focus library window:', e);
+        }
+    } else {
+        // Okno zostało zablokowane przez popup blocker
+        alert('Proszę pozwolić na otwieranie okien popup dla tej strony, aby zainstalować aplikację Risk Research.');
+    }
+}
+
+// Sprawdź czy biblioteka już jest zainstalowana
+function appCheckRiskLibraryInstallationStatus() {
+    try {
+        const appHasLibraryData = localStorage.getItem('appRiskResearchLibraryInstalled');
+        if (appHasLibraryData === 'true') {
+            const appSection = document.getElementById('appLibraryInstallSection');
+            if (appSection) {
+                appSection.innerHTML = `
+                    <h3 class="app-library-install-title">
+                        Masz już aplikację Risk Research!
+                    </h3>
+                    <p class="app-library-install-description">
+                        Doskonale! Aplikacja jest zainstalowana na Twoim urządzeniu. 
+                        Możesz teraz dodawać one-pagery do swojej biblioteki.
+                    </p>
+                    <button class="app-library-install-button" onclick="window.open('/risk-research/app-library.html', '_blank')">
+                        Otwórz moją bibliotekę
+                    </button>
+                    <div class="app-library-install-note">
+                        Twoja biblioteka jest dostępna offline na telefonie i komputerze
+                    </div>
+                `;
+            }
+        }
+    } catch (e) {
+        console.log('Cannot check Risk Research library installation status:', e);
+    }
+}
+
+// Nasłuchuj wiadomości z biblioteki (gdy się zainstaluje)
+window.addEventListener('message', function(appEvent) {
+    if (appEvent.data && appEvent.data.type === 'APP_RISK_LIBRARY_INSTALLED') {
+        localStorage.setItem('appRiskResearchLibraryInstalled', 'true');
+        appCheckRiskLibraryInstallationStatus();
+    }
+});
+
+// Sprawdź status po załadowaniu strony
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(appCheckRiskLibraryInstallationStatus, 1500);
+});
+</script>
+
+
+
+        
+
+
+
+
+
+
+        
+
         
       
  </div> <!-- zamknięcie głównego kontenera przed obiektami na pełną szerokość -->
@@ -4546,6 +4783,10 @@ wydarzeń względem całego spektrum innych scenariuszy, gdzie wskazany explicit
 
 
 
+
+
+
+  
 
 
 
