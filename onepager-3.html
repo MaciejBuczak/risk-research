@@ -670,8 +670,8 @@
     </div>
 
     <script>
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
+        // Service Worker registration (only if supported and not sandboxed)
+        if ('serviceWorker' in navigator && !window.location.protocol.startsWith('file:')) {
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/risk-research/sw.js')
                 .then(function(registration) {
@@ -681,6 +681,29 @@
                     console.log('ServiceWorker registration failed: ', err);
                 });
             });
+        }
+
+        // ========================================= 
+        // BEZPIECZNE OPERACJE LOCALSTORAGE
+        // ========================================= 
+
+        function safeLocalStorageGet(key) {
+            try {
+                return localStorage.getItem(key);
+            } catch (e) {
+                console.warn('LocalStorage not available:', e);
+                return null;
+            }
+        }
+
+        function safeLocalStorageSet(key, value) {
+            try {
+                localStorage.setItem(key, value);
+                return true;
+            } catch (e) {
+                console.warn('LocalStorage not available:', e);
+                return false;
+            }
         }
 
         // ========================================= 
@@ -755,4 +778,309 @@
                     <p style="font-size: 1rem; line-height: 1.6;">
                         Poziom kwantyla odczytu (99.9%) zaproponowany przez nadzorcę budził od początku wiele kontrowersji 
                         wokół percepcji nadmiernego konserwatyzmu. Za takim postrzeganiem stoi pewna zakorzeniona intuicja 
-                        związana z integracją pojęcia kwantyla rozkładu z horyzontem czasu
+                        związana z integracją pojęcia kwantyla rozkładu z horyzontem czasu badanego zjawiska.
+                    </p>
+                </section>
+
+                <footer style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #f0f0f0; text-align: center;">
+                    <div style="font-size: 0.9rem; color: #666;">
+                        <div style="font-weight: 600; color: #333; margin-bottom: 8px;">Więcej o modelowaniu ryzyka:</div>
+                        <div>🌐 www.risk-research.pl</div>
+                        <div>📧 kontakt@risk-research.pl</div>
+                        <div style="margin-top: 10px; font-size: 0.8rem; color: #999;">
+                            © 2024 Risk Research - Specjaliści od ryzyka operacyjnego
+                        </div>
+                    </div>
+                </footer>
+            </div>`
+        };
+
+        // ========================================= 
+        // GENEROWANIE QR KODU
+        // ========================================= 
+
+        function appGenerateQRCode() {
+            // URL który automatycznie doda artykuł do biblioteki
+            const currentURL = window.location.href;
+            const qrURL = currentURL + (currentURL.includes('?') ? '&' : '?') + 'autoAdd=true';
+            
+            // Użyj darmowego API do generowania QR kodów
+            const qrCodeURL = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrURL)}`;
+            
+            document.getElementById('appQRCode').src = qrCodeURL;
+            console.log('QR Code generated for:', qrURL);
+        }
+
+        // ========================================= 
+        // AUTO-DODAWANIE PRZEZ QR KOD
+        // ========================================= 
+
+        function appCheckAutoAdd() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('autoAdd') === 'true') {
+                    console.log('Auto-adding article via QR code');
+                    
+                    // Automatycznie oznacz jako zainstalowane i dodaj artykuł
+                    safeLocalStorageSet('appRiskResearchLibraryInstalled', 'true');
+                    safeLocalStorageSet('riskResearchLibraryInstalled', 'true');
+                    
+                    // Małe opóźnienie żeby strona się załadowała
+                    setTimeout(() => {
+                        appAddCurrentArticleToLibrary();
+                        
+                        // Usuń parametr z URL żeby nie dodawało ponownie przy odświeżeniu
+                        if (window.history && window.history.replaceState) {
+                            const newURL = window.location.href.split('?')[0];
+                            window.history.replaceState({}, document.title, newURL);
+                        }
+                    }, 1000);
+                }
+            } catch (e) {
+                console.warn('Auto-add check failed:', e);
+            }
+        }
+
+        // ========================================= 
+        // DODAWANIE ARTYKUŁU DO BIBLIOTEKI
+        // ========================================= 
+
+        function appAddCurrentArticleToLibrary() {
+            console.log('Adding article to library:', appCurrentArticleData.title);
+
+            // AUTOMATYCZNIE OZNACZ JAKO ZAINSTALOWANE  
+            safeLocalStorageSet('appRiskResearchLibraryInstalled', 'true');
+            safeLocalStorageSet('riskResearchLibraryInstalled', 'true');
+
+            try {
+                // Sprawdź różne sposoby wykrycia zainstalowanej aplikacji
+                const appLibraryInstalled = safeLocalStorageGet('appRiskResearchLibraryInstalled');
+                const oldAppInstalled = safeLocalStorageGet('riskResearchLibraryInstalled');
+                const hasAnyLibraryData = safeLocalStorageGet('riskResearchArticles');
+                
+                const isLibraryAvailable = (
+                    appLibraryInstalled === 'true' || 
+                    oldAppInstalled === 'true' || 
+                    hasAnyLibraryData ||
+                    (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+                    window.navigator.standalone === true
+                );
+                
+                if (!isLibraryAvailable) {
+                    appShowInstallLibraryFirst();
+                    return;
+                }
+                
+                // Oznacz bibliotekę jako zainstalowaną
+                safeLocalStorageSet('appRiskResearchLibraryInstalled', 'true');
+                safeLocalStorageSet('riskResearchLibraryInstalled', 'true');
+                
+                let appExistingArticles = [];
+                const appStoredArticles = safeLocalStorageGet('riskResearchArticles');
+                if (appStoredArticles) {
+                    try {
+                        appExistingArticles = JSON.parse(appStoredArticles);
+                    } catch (e) {
+                        console.warn('Failed to parse stored articles:', e);
+                        appExistingArticles = [];
+                    }
+                }
+                
+                const appExistingIndex = appExistingArticles.findIndex(article => article.id === appCurrentArticleData.id);
+                
+                if (appExistingIndex >= 0) {
+                    appExistingArticles[appExistingIndex] = appCurrentArticleData;
+                    appShowSuccessMessage('Artykuł został zaktualizowany w bibliotece!');
+                } else {
+                    appExistingArticles.push(appCurrentArticleData);
+                    appShowSuccessMessage('Artykuł dodany do biblioteki!');
+                }
+                
+                const saved = safeLocalStorageSet('riskResearchArticles', JSON.stringify(appExistingArticles));
+                
+                if (!saved) {
+                    alert('Nie udało się zapisać artykułu. Spróbuj ponownie lub sprawdź ustawienia przeglądarki.');
+                    return;
+                }
+                
+                try {
+                    if (window.postMessage) {
+                        window.postMessage({
+                            type: 'ARTICLE_ADDED_TO_LIBRARY',
+                            article: appCurrentArticleData
+                        }, '*');
+                    }
+                } catch (e) {
+                    console.log('Could not notify library window:', e);
+                }
+                
+            } catch (error) {
+                console.error('Error adding article to library:', error);
+                alert('Wystąpił błąd podczas dodawania artykułu do biblioteki. Spróbuj ponownie.');
+            }
+        }
+
+        function appShowInstallLibraryFirst() {
+            const appSection = document.getElementById('appAddToLibrarySection');
+            if (appSection) {
+                appSection.innerHTML = `
+                    <h3 class="app-add-to-library-title">
+                        Najpierw zainstaluj aplikację Risk Research
+                    </h3>
+                    <p class="app-add-to-library-description">
+                        Aby dodać artykuły do biblioteki, musisz najpierw zainstalować aplikację Risk Research.
+                    </p>
+                    <button class="app-add-to-library-button" onclick="window.open('/risk-research/app-library.html', '_blank')">
+                        Przejdź do instalacji
+                    </button>
+                    <div style="font-size: 0.8rem; margin-top: 15px; color: #333; font-style: italic;">
+                        Po instalacji wróć tutaj i spróbuj ponownie
+                    </div>
+                `;
+            }
+        }
+
+        function appShowSuccessMessage(message) {
+            const appSection = document.getElementById('appAddToLibrarySection');
+            if (appSection) {
+                appSection.classList.add('app-add-success');
+                appSection.innerHTML = `
+                    <h3 class="app-add-to-library-title">
+                        ${message}
+                    </h3>
+                    <p class="app-add-to-library-description">
+                        Artykuł "${appCurrentArticleData.title}" jest teraz dostępny w Twojej bibliotece offline.
+                    </p>
+                    <button class="app-add-to-library-button" onclick="window.open('/risk-research/app-library.html', '_blank')" style="background-color: white; color: #333;">
+                        Otwórz moją bibliotekę
+                    </button>
+                    <div style="font-size: 0.8rem; margin-top: 15px; color: white; font-style: italic;">
+                        Możesz teraz czytać ten artykuł offline na telefonie
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    appSection.classList.remove('app-add-success');
+                    appSection.innerHTML = `
+                        <!-- Desktop: QR kod + tekst -->
+                        <div class="app-qr-desktop-section">
+                            <div class="app-text-container">
+                                <h3 class="app-add-to-library-title">
+                                    Dodaj do biblioteki na telefonie
+                                </h3>
+                                <p class="app-add-to-library-description">
+                                    Zeskanuj kod QR telefonem, aby automatycznie dodać ten artykuł do swojej aplikacji Risk Research.
+                                </p>
+                                <button class="app-add-to-library-button" onclick="appAddCurrentArticleToLibrary()">
+                                    Lub kliknij tutaj (komputer)
+                                </button>
+                            </div>
+                            
+                            <div class="app-qr-container">
+                                <img id="appQRCode" class="app-qr-code" src="" alt="QR Code" />
+                                <div class="app-qr-instructions">
+                                    Skanuj telefonem
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mobile: tylko przycisk -->
+                        <div class="app-qr-mobile-section">
+                            <h3 class="app-add-to-library-title">
+                                Dodaj ten one-pager do swojej biblioteki
+                            </h3>
+                            <p class="app-add-to-library-description">
+                                Zapisz ten artykuł w swojej aplikacji Risk Research i miej do niego dostęp offline na telefonie.
+                            </p>
+                            
+                            <button id="appAddToLibraryButton" class="app-add-to-library-button" onclick="appAddCurrentArticleToLibrary()">
+                                Dodaj do mojej biblioteki
+                            </button>
+                        </div>
+                    `;
+                    // Ponownie wygeneruj QR kod po przywróceniu oryginalnej treści
+                    appGenerateQRCode();
+                }, 6000);
+            }
+        }
+
+        // ========================================= 
+        // INICJALIZACJA
+        // ========================================= 
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wygeneruj QR kod
+            appGenerateQRCode();
+            
+            // Sprawdź czy auto-dodawanie przez QR
+            appCheckAutoAdd();
+            
+            // Sprawdź czy artykuł już istnieje w bibliotece
+            setTimeout(() => {
+                const appLibraryInstalled = safeLocalStorageGet('appRiskResearchLibraryInstalled');
+                if (appLibraryInstalled === 'true') {
+                    const appStoredArticles = safeLocalStorageGet('riskResearchArticles');
+                    if (appStoredArticles) {
+                        try {
+                            const appArticles = JSON.parse(appStoredArticles);
+                            const appArticleExists = appArticles.some(article => article.id === appCurrentArticleData.id);
+                            
+                            if (appArticleExists) {
+                                const appSection = document.getElementById('appAddToLibrarySection');
+                                if (appSection) {
+                                    appSection.innerHTML = `
+                                        <!-- Desktop: QR kod + tekst (już w bibliotece) -->
+                                        <div class="app-qr-desktop-section">
+                                            <div class="app-text-container">
+                                                <h3 class="app-add-to-library-title">
+                                                    Ten artykuł jest już w Twojej bibliotece
+                                                </h3>
+                                                <p class="app-add-to-library-description">
+                                                    Możesz go czytać offline w aplikacji Risk Research lub zaktualizować wersję.
+                                                </p>
+                                                <button class="app-add-to-library-button" onclick="appAddCurrentArticleToLibrary()">
+                                                    Zaktualizuj w bibliotece
+                                                </button>
+                                                <button class="app-add-to-library-button" onclick="window.open('/risk-research/app-library.html', '_blank')" style="background-color: #E8D496; color: #333;">
+                                                    Otwórz bibliotekę
+                                                </button>
+                                            </div>
+                                            
+                                            <div class="app-qr-container">
+                                                <img id="appQRCode" class="app-qr-code" src="" alt="QR Code" />
+                                                <div class="app-qr-instructions">
+                                                    Skanuj aby zaktualizować
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Mobile: przyciski (już w bibliotece) -->
+                                        <div class="app-qr-mobile-section">
+                                            <h3 class="app-add-to-library-title">
+                                                Ten artykuł jest już w Twojej bibliotece
+                                            </h3>
+                                            <p class="app-add-to-library-description">
+                                                Możesz go czytać offline w aplikacji Risk Research lub zaktualizować wersję.
+                                            </p>
+                                            <button class="app-add-to-library-button" onclick="appAddCurrentArticleToLibrary()">
+                                                Zaktualizuj w bibliotece
+                                            </button>
+                                            <button class="app-add-to-library-button" onclick="window.open('/risk-research/app-library.html', '_blank')" style="background-color: #E8D496; color: #333;">
+                                                Otwórz bibliotekę
+                                            </button>
+                                        </div>
+                                    `;
+                                    // Wygeneruj QR kod dla zaktualizowanej sekcji
+                                    appGenerateQRCode();
+                                }
+                            }
+                        } catch (e) {
+                            console.warn('Failed to check existing articles:', e);
+                        }
+                    }
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
