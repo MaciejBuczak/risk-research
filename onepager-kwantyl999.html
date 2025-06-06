@@ -538,6 +538,10 @@ if ('serviceWorker' in navigator) {
 
 
 
+
+
+
+
 <!-- ========================================= -->
 <!-- KOD DO WKLEJENIA NA ONEPAGER-KWANTYL999.HTML -->
 <!-- Dodaj na końcu <body>, przed </body> -->
@@ -662,124 +666,75 @@ const appCurrentArticleData = {
     excerpt: 'Przewodnik po częstych błędach w modelowaniu ryzyka operacyjnego',
     category: 'Ryzyko Operacyjne',
     dateAdded: new Date().toISOString(),
-    content: `
-        <div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-            <header style="text-align: center; margin-bottom: 30px; border-bottom: 3px solid #E8D496; padding-bottom: 20px;">
-                <h1 style="font-size: 2.2rem; font-weight: 700; color: #333; margin-bottom: 10px;">
-                    Kwantyl 99.9% i jego <span style="color: #D4AF37;">misinterpretacje</span>
-                </h1>
-                <p style="font-size: 1.1rem; color: #666; font-style: italic;">
-                    Przewodnik po częstych błędach w modelowaniu ryzyka operacyjnego
-                </p>
-            </header>
-
-            <section style="background: linear-gradient(135deg, #f8f6f2 0%, #f0ebe3 100%); padding: 20px; border-radius: 15px; margin-bottom: 30px; border-left: 5px solid #D4AF37;">
-                <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: 15px;">
-                    Nieprecyzyjna lub błędna interpretacja kwantyla może w sposób znaczący zmienić wyniki modeli, 
-                    które do wyznaczania takich pozycji rozkładu zostały stworzone. Ma to szczególne znaczenie 
-                    w przypadku modelowania wartości skrajnych położonych w ogonach rozkładu.
-                </p>
-                <span style="background: #E8D496; color: #333; padding: 12px 20px; border-radius: 25px; display: inline-block; font-weight: 600; font-size: 0.9rem;">
-                    💡 Kluczowy problem: Integracja pojęcia kwantyla z horyzontem czasowym
-                </span>
-            </section>
-
-            <section style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 30px;">
-                <div style="background: linear-gradient(135deg, #fefdfb 0%, #f9f7f2 100%); border: 2px solid #E8D496; border-radius: 20px; padding: 20px; text-align: center;">
-                    <h3 style="font-size: 1.2rem; font-weight: 600; color: #333; margin-bottom: 15px;">Rzadkość czasu</h3>
-                    <p style="font-size: 0.85rem; color: #666; line-height: 1.4;">
-                        Analiza częstotliwości wystąpienia zdarzeń ekstremalnych w czasie. 
-                        Kluczowe dla zrozumienia rzeczywistego ryzyka.
-                    </p>
+    content: `<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <header style="text-align: center; margin-bottom: 30px; border-bottom: 3px solid #E8D496; padding-bottom: 20px;">
+            <h1 style="font-size: 2.2rem; font-weight: 700; color: #333; margin-bottom: 10px;">
+                Kwantyl 99.9% i jego <span style="color: #D4AF37;">misinterpretacje</span>
+            </h1>
+            <p style="font-size: 1.1rem; color: #666; font-style: italic;">
+                Przewodnik po częstych błędach w modelowaniu ryzyka operacyjnego
+            </p>
+        </header>
+        <section style="background: linear-gradient(135deg, #f8f6f2 0%, #f0ebe3 100%); padding: 20px; border-radius: 15px; margin-bottom: 30px; border-left: 5px solid #D4AF37;">
+            <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: 15px;">
+                Nieprecyzyjna lub błędna interpretacja kwantyla może w sposób znaczący zmienić wyniki modeli, 
+                które do wyznaczania takich pozycji rozkładu zostały stworzone. Ma to szczególne znaczenie 
+                w przypadku modelowania wartości skrajnych położonych w ogonach rozkładu.
+            </p>
+            <span style="background: #E8D496; color: #333; padding: 12px 20px; border-radius: 25px; display: inline-block; font-weight: 600; font-size: 0.9rem;">
+                Kluczowy problem: Integracja pojęcia kwantyla z horyzontem czasowym
+            </span>
+        </section>
+        <section style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; padding: 25px; border-radius: 20px; margin-bottom: 30px;">
+            <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; color: #E8D496;">Źle ufundowana intuicja</h3>
+            <p style="font-size: 1rem; line-height: 1.6;">
+                Poziom kwantyla odczytu (99.9%) zaproponowany przez nadzorcę budził od początku wiele kontrowersji 
+                wokół percepcji nadmiernego konserwatyzmu. Za takim postrzeganiem stoi pewna zakorzeniona intuicja 
+                związana z integracją pojęcia kwantyla rozkładu z horyzontem czasu badanego zjawiska.
+            </p>
+        </section>
+        <footer style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #f0f0f0; text-align: center;">
+            <div style="font-size: 0.9rem; color: #666;">
+                <div style="font-weight: 600; color: #333; margin-bottom: 8px;">Więcej o modelowaniu ryzyka:</div>
+                <div>🌐 www.risk-research.pl</div>
+                <div>📧 kontakt@risk-research.pl</div>
+                <div style="margin-top: 10px; font-size: 0.8rem; color: #999;">
+                    © 2024 Risk Research - Specjaliści od ryzyka operacyjnego
                 </div>
-
-                <div style="background: linear-gradient(135deg, #fefefe 0%, #f8f6f3 100%); border: 2px solid #e8e4d9; border-radius: 20px; padding: 20px; text-align: center;">
-                    <h3 style="font-size: 1.2rem; font-weight: 600; color: #333; margin-bottom: 15px;">Punkty rzadkości</h3>
-                    <p style="font-size: 0.85rem; color: #666; line-height: 1.4;">
-                        Identyfikacja krytycznych punktów w rozkładzie strat, 
-                        gdzie prawdopodobieństwo drastycznie się zmienia.
-                    </p>
-                </div>
-
-                <div style="background: linear-gradient(135deg, #fefefe 0%, #f9f5f0 100%); border: 2px solid #ece0d0; border-radius: 20px; padding: 20px; text-align: center;">
-                    <h3 style="font-size: 1.2rem; font-weight: 600; color: #333; margin-bottom: 15px;">Kwantyle OpRisk</h3>
-                    <p style="font-size: 0.85rem; color: #666; line-height: 1.4;">
-                        Praktyczne zastosowanie kwantyli 99.9% w modelach 
-                        ryzyka operacyjnego według standardów bazylejskich.
-                    </p>
-                </div>
-            </section>
-
-            <section style="background: linear-gradient(135deg, #E8D496 0%, #F0E2A6 100%); padding: 25px; border-radius: 20px; text-align: center; margin-bottom: 30px;">
-                <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 15px;">Kluczowa formuła Expected Credit Loss</h3>
-                <div style="font-size: 1.5rem; font-weight: 700; color: #333; font-family: 'Courier New', monospace; letter-spacing: 2px; margin-bottom: 10px;">
-                    ECL = PD × LGD × EAD
-                </div>
-                <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">
-                    Gdzie: PD - Probability of Default, LGD - Loss Given Default, EAD - Exposure at Default
-                </p>
-            </section>
-
-            <section style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; padding: 25px; border-radius: 20px; margin-bottom: 30px; position: relative;">
-                <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; color: #E8D496;">Źle ufundowana intuicja</h3>
-                <p style="font-size: 1rem; line-height: 1.6;">
-                    Poziom kwantyla odczytu (99.9%) zaproponowany przez nadzorcę budził od początku wiele kontrowersji 
-                    wokół percepcji nadmiernego konserwatyzmu. Za takim postrzeganiem stoi pewna zakorzeniona intuicja 
-                    związana z integracją pojęcia kwantyla rozkładu z horyzontem czasu badanego zjawiska.
-                </p>
-            </section>
-
-            <footer style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #f0f0f0; text-align: center;">
-                <div style="font-size: 0.9rem; color: #666;">
-                    <div style="font-weight: 600; color: #333; margin-bottom: 8px;">Więcej o modelowaniu ryzyka:</div>
-                    <div>🌐 www.risk-research.pl</div>
-                    <div>📧 kontakt@risk-research.pl</div>
-                    <div style="margin-top: 10px; font-size: 0.8rem; color: #999;">
-                        © 2024 Risk Research - Specjaliści od ryzyka operacyjnego
-                    </div>
-                </div>
-            </footer>
-        </div>
-    `
+            </div>
+        </footer>
+    </div>`
 };
 
 function appAddCurrentArticleToLibrary() {
     console.log('Adding article to library:', appCurrentArticleData.title);
     
     try {
-        // Sprawdź czy biblioteka jest zainstalowana
         const appLibraryInstalled = localStorage.getItem('appRiskResearchLibraryInstalled');
         
         if (appLibraryInstalled !== 'true') {
-            // Biblioteka nie jest zainstalowana - przekieruj do instalacji
             appShowInstallLibraryFirst();
             return;
         }
         
-        // Pobierz istniejące artykuły z localStorage
         let appExistingArticles = [];
         const appStoredArticles = localStorage.getItem('riskResearchArticles');
         if (appStoredArticles) {
             appExistingArticles = JSON.parse(appStoredArticles);
         }
         
-        // Sprawdź czy artykuł już istnieje
         const appExistingIndex = appExistingArticles.findIndex(article => article.id === appCurrentArticleData.id);
         
         if (appExistingIndex >= 0) {
-            // Aktualizuj istniejący artykuł
             appExistingArticles[appExistingIndex] = appCurrentArticleData;
             appShowSuccessMessage('Artykuł został zaktualizowany w bibliotece!');
         } else {
-            // Dodaj nowy artykuł
             appExistingArticles.push(appCurrentArticleData);
             appShowSuccessMessage('Artykuł dodany do biblioteki!');
         }
         
-        // Zapisz zaktualizowaną listę
         localStorage.setItem('riskResearchArticles', JSON.stringify(appExistingArticles));
         
-        // Wyślij wiadomość do biblioteki (jeśli jest otwarta)
         try {
             window.postMessage({
                 type: 'ARTICLE_ADDED_TO_LIBRARY',
@@ -834,7 +789,6 @@ function appShowSuccessMessage(message) {
             </div>
         `;
         
-        // Przywróć oryginalny wygląd po 6 sekundach
         setTimeout(() => {
             appSection.classList.remove('app-add-success');
             appSection.innerHTML = `
@@ -855,12 +809,10 @@ function appShowSuccessMessage(message) {
     }
 }
 
-// Sprawdź status biblioteki po załadowaniu strony
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         const appLibraryInstalled = localStorage.getItem('appRiskResearchLibraryInstalled');
         if (appLibraryInstalled === 'true') {
-            // Sprawdź czy artykuł już jest w bibliotece
             const appStoredArticles = localStorage.getItem('riskResearchArticles');
             if (appStoredArticles) {
                 const appArticles = JSON.parse(appStoredArticles);
@@ -890,42 +842,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
 });
 </script>
-
-<!-- ========================================= -->
-<!-- KONIEC KODU DO WKLEJENIA -->
-<!-- ========================================= -->dArticles = localStorage.getItem('riskResearchArticles');
-            if (appStoredArticles) {
-                const appArticles = JSON.parse(appStoredArticles);
-                const appArticleExists = appArticles.some(article => article.id === appCurrentArticleData.id);
-                
-                if (appArticleExists) {
-                    const appSection = document.getElementById('appAddToLibrarySection');
-                    if (appSection) {
-                        appSection.innerHTML = `
-                            <h3 class="app-add-to-library-title">
-                                Ten artykuł jest już w Twojej bibliotece
-                            </h3>
-                            <p class="app-add-to-library-description">
-                                Możesz go czytać offline w aplikacji Risk Research lub zaktualizować wersję.
-                            </p>
-                            <button class="app-add-to-library-button" onclick="appAddCurrentArticleToLibrary()">
-                                Zaktualizuj w bibliotece
-                            </button>
-                            <button class="app-add-to-library-button" onclick="window.open('/risk-research/app-library.html', '_blank')" style="background-color: #E8D496; color: #333;">
-                                Otwórz bibliotekę
-                            </button>
-                        `;
-                    }
-                }
-            }
-        }
-    }, 1000);
-});
-</script>
-
-<!-- ========================================= -->
-<!-- KONIEC KODU DO WKLEJENIA -->
-<!-- ========================================= -->
+    
 
 
 
