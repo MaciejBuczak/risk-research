@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Research - Biblioteka Artykułów</title>
+    <link rel="manifest" href="/risk-research/app-manifest.json">
+    <meta name="theme-color" content="#1a365d">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 30px 0;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .header .description {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .install-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .install-button {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            margin-top: 15px;
+        }
+        
+        .install-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .install-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .search-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #1a365d;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1a365d, #2d5a87);
+        }
+        
+        .article-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .article-excerpt {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+        }
+        
+        .article-category {
+            background: #1a365d;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .article-date {
+            color: #999;
+        }
+        
+        .article-content {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .article-content.active {
+            display: block;
+        }
+        
+        .article-content h2 {
+            color: #1a365d;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .article-content h3 {
+            color: #333;
+            margin: 25px 0 15px 0;
+            font-size: 1.3rem;
+        }
+        
+        .article-content p {
+            line-height: 1.7;
+            margin-bottom: 18px;
+            text-align: justify;
+            color: #444;
+        }
+        
+        .back-button {
+            background: #1a365d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #2d5a87;
+            transform: translateY(-1px);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #e8d496 0%, #f0e2a6 100%);
+            color: #333;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: center;
+            border-left: 5px solid #d4af37;
+        }
+        
+        .highlight-box h3 {
+            margin-bottom: 15px;
+            color: #1a365d;
+        }
+        
+        .stats-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            color: #e8d496;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .empty-state p {
+            font-size: 1rem;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        @media (max-width: 768px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .app-container {
+                padding: 15px;
+            }
+            
+            .article-card {
+                padding: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>📚 Risk Research</h1>
+            <p class="subtitle">Biblioteka Artykułów o Ryzyku</p>
+            <p class="description">Twoja osobista kolekcja artykułów o modelowaniu ryzyka operacyjnego, dostępna offline na telefonie</p>
+        </div>
+        
+        <!-- Sekcja instalacji -->
+        <div id="installPrompt" class="install-section">
+            <h3>📱 Zainstaluj bibliotekę na swoim telefonie</h3>
+            <p>Pobierz aplikację i miej dostęp do wszystkich artykułów offline, kiedy tylko ich potrzebujesz!</p>
+            <button id="installButton" class="install-button">
+                🚀 Zainstaluj aplikację Risk Research
+            </button>
+        </div>
+        
+        <!-- Sekcja wyszukiwania -->
+        <div class="search-section">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Szukaj w bibliotece artykułów..." />
+        </div>
+        
+        <!-- Lista artykułów -->
+        <div id="articlesView">
+            <div class="articles-grid" id="articlesGrid">
+                <!-- Artykuły będą dodawane dynamicznie -->
+            </div>
+            
+            <!-- Stan pusty -->
+            <div id="emptyState" class="empty-state">
+                <h3>🤔 Biblioteka jest pusta</h3>
+                <p>Jeszcze nie dodałeś żadnych artykułów do swojej biblioteki.<br>
+                Przejdź do artykułu na stronie risk-research.pl i kliknij "Dodaj do biblioteki".</p>
+            </div>
+        </div>
+        
+        <!-- Widok pojedynczego artykułu -->
+        <div id="articleView" class="article-content">
+            <button id="backButton" class="back-button">← Powrót do biblioteki</button>
+            <div id="articleContent"></div>
+        </div>
+        
+        <!-- Statystyki -->
+        <div class="stats-section">
+            <h3>📊 Statystyki biblioteki</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalArticles">0</span>
+                    <span class="stat-label">Artykułów</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalCategories">0</span>
+                    <span class="stat-label">Kategorii</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="readArticles">0</span>
+                    <span class="stat-label">Przeczytane</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="offlineSize">0</span>
+                    <span class="stat-label">MB offline</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Globalne zmienne
+        let currentView = 'list';
+        let articles = [];
+        let filteredArticles = [];
+
+        // Elementy DOM
+        const articlesGrid = document.getElementById('articlesGrid');
+        const articleView = document.getElementById('articleView');
+        const articlesView = document.getElementById('articlesView');
+        const articleContent = document.getElementById('articleContent');
+        const backButton = document.getElementById('backButton');
+        const searchInput = document.getElementById('searchInput');
+        const installButton = document.getElementById('installButton');
+        const installPrompt = document.getElementById('installPrompt');
+        const emptyState = document.getElementById('emptyState');
+
+        // Funkcja ładowania artykułów z localStorage
+        function loadArticles() {
+            const savedArticles = localStorage.getItem('riskResearchArticles');
+            if (savedArticles) {
+                articles = JSON.parse(savedArticles);
+                filteredArticles = articles;
+            } else {
+                articles = [];
+                filteredArticles = [];
+            }
+        }
+
+        // Funkcja zapisywania artykułów do localStorage
+        function saveArticles() {
+            localStorage.setItem('riskResearchArticles', JSON.stringify(articles));
+        }
+
+        // Funkcja dodawania artykułu do biblioteki (wywoływana z zewnątrz)
+        window.addToLibrary = function(articleData) {
+            // Sprawdź czy artykuł już istnieje
+            const existingIndex = articles.findIndex(a => a.id === articleData.id);
+            
+            if (existingIndex >= 0) {
+                // Aktualizuj istniejący artykuł
+                articles[existingIndex] = articleData;
+                showNotification('Artykuł został zaktualizowany!', 'success');
+            } else {
+                // Dodaj nowy artykuł
+                articles.push(articleData);
+                showNotification('Artykuł dodany do biblioteki!', 'success');
+            }
+            
+            saveArticles();
+            filteredArticles = articles;
+            renderArticles();
+            updateStats();
+        };
+
+        // Funkcja renderowania listy artykułów
+        function renderArticles() {
+            articlesGrid.innerHTML = '';
+            
+            if (filteredArticles.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            } else {
+                emptyState.style.display = 'none';
+            }
+            
+            filteredArticles.forEach(article => {
+                const articleCard = document.createElement('div');
+                articleCard.className = 'article-card';
+                articleCard.innerHTML = `
+                    <div class="article-title">${article.title}</div>
+                    <div class="article-excerpt">${article.excerpt}</div>
+                    <div class="article-meta">
+                        <span class="article-category">${article.category}</span>
+                        <span class="article-date">${formatDate(article.dateAdded)}</span>
+                    </div>
+                `;
+                
+                articleCard.addEventListener('click', () => showArticle(article));
+                articlesGrid.appendChild(articleCard);
+            });
+        }
+
+        // Funkcja pokazywania pojedynczego artykułu
+        function showArticle(article) {
+            articleContent.innerHTML = article.content;
+            articlesView.style.display = 'none';
+            articleView.classList.add('active');
+            currentView = 'article';
+            
+            // Oznacz jako przeczytany
+            markAsRead(article.id);
+        }
+
+        // Funkcja powrotu do listy
+        function showArticlesList() {
+            articlesView.style.display = 'block';
+            articleView.classList.remove('active');
+            currentView = 'list';
+        }
+
+        // Funkcja wyszukiwania
+        function filterArticles(query) {
+            const lowercaseQuery = query.toLowerCase();
+            filteredArticles = articles.filter(article => 
+                article.title.toLowerCase().includes(lowercaseQuery) ||
+                article.excerpt.toLowerCase().includes(lowercaseQuery) ||
+                article.category.toLowerCase().includes(lowercaseQuery)
+            );
+            renderArticles();
+        }
+
+        // Funkcja formatowania daty
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('pl-PL');
+        }
+
+        // Funkcja oznaczania jako przeczytane
+        function markAsRead(articleId) {
+            let readArticles = JSON.parse(localStorage.getItem('readRiskArticles') || '[]');
+            if (!readArticles.includes(articleId)) {
+                readArticles.push(articleId);
+                localStorage.setItem('readRiskArticles', JSON.stringify(readArticles));
+                updateStats();
+            }
+        }
+
+        // Funkcja aktualizacji statystyk
+        function updateStats() {
+            const totalArticles = articles.length;
+            const categories = [...new Set(articles.map(a => a.category))].length;
+            const readArticles = JSON.parse(localStorage.getItem('readRiskArticles') || '[]').length;
+            const offlineSize = (JSON.stringify(articles).length / 1024 / 1024).toFixed(1);
+            
+            document.getElementById('totalArticles').textContent = totalArticles;
+            document.getElementById('totalCategories').textContent = categories;
+            document.getElementById('readArticles').textContent = readArticles;
+            document.getElementById('offlineSize').textContent = offlineSize;
+        }
+
+        // Funkcja pokazywania notyfikacji
+        function showNotification(message, type = 'info') {
+            // Prosta notyfikacja - można rozbudować
+            console.log(`${type.toUpperCase()}: ${message}`);
+        }
+
+        // Event listenery
+        backButton.addEventListener('click', showArticlesList);
+        
+        searchInput.addEventListener('input', (e) => {
+            filterArticles(e.target.value);
+        });
+
+        // PWA Installation
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('beforeinstallprompt event fired');
+            e.preventDefault();
+            deferredPrompt = e;
+            installPrompt.style.display = 'block';
+        });
+
+        installButton.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                console.log('Using deferredPrompt for installation');
+                try {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    console.log('User choice:', outcome);
+                    
+                    if (outcome === 'accepted') {
+                        installPrompt.innerHTML = `
+                            <h3>✅ Aplikacja zainstalowana!</h3>
+                            <p>Risk Research jest teraz dostępna na Twoim ekranie głównym.</p>
+                        `;
+                    }
+                    deferredPrompt = null;
+                } catch (error) {
+                    console.error('Error during installation:', error);
+                    showManualInstructions();
+                }
+            } else {
+                console.log('No deferredPrompt available');
+                showManualInstructions();
+            }
+        });
+
+        // Funkcja pokazywania instrukcji manualnych
+        function showManualInstructions() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            let instructions = '';
+            
+            if (userAgent.includes('chrome') && !userAgent.includes('edg')) {
+                instructions = 'W Chrome: kliknij ikonę <strong>"⊕ Zainstaluj"</strong> w pasku adresu (po prawej stronie)';
+            } else if (userAgent.includes('firefox')) {
+                instructions = 'W Firefox: kliknij ikonę <strong>"Zainstaluj"</strong> w pasku adresu';
+            } else if (userAgent.includes('safari')) {
+                instructions = 'W Safari: kliknij <strong>"Udostępnij"</strong> (⬆️) → <strong>"Dodaj do ekranu głównego"</strong>';
+            } else if (userAgent.includes('edg')) {
+                instructions = 'W Edge: kliknij ikonę <strong>"Zainstaluj aplikację"</strong> w pasku adresu';
+            } else {
+                instructions = 'Sprawdź czy Twoja przeglądarka obsługuje PWA. Szukaj ikony instalacji w pasku adresu.';
+            }
+            
+            installPrompt.innerHTML = `
+                <h3>📱 Instrukcje instalacji</h3>
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                    ${instructions}
+                </div>
+            `;
+        }
+
+        // Sprawdź czy PWA już jest zainstalowana
+        window.addEventListener('appinstalled', (e) => {
+            console.log('PWA installed successfully');
+            installPrompt.innerHTML = `
+                <h3>✅ Aplikacja zainstalowana!</h3>
+                <p>Risk Research jest teraz dostępna na Twoim ekranie głównym.</p>
+            `;
+        });
+
+        // Sprawdź czy strona jest uruchomiona jako PWA
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            installPrompt.style.display = 'none';
+        }
+
+        // Nasłuchuj wiadomości od innych stron (dodawanie artykułów)
+        window.addEventListener('message', function(event) {
+            if (event.data.action === 'addToLibrary') {
+                addToLibrary(event.data.article);
+            }
+        });
+
+        // Inicjalizacja aplikacji
+        document.addEventListener('DOMContentLoaded', function() {
+            loadArticles();
+            renderArticles();
+            updateStats();
+            
+            console.log('Risk Research Library loaded');
+            console.log('Articles in library:', articles.length);
+        });
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/risk-research/app-sw.js')
+                .then(function(registration) {
+                    console.log('Library ServiceWorker registration successful: ', registration.scope);
+                })
+                .catch(function(err) {
+                    console.log('Library ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
