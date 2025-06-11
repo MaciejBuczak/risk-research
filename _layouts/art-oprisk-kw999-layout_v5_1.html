@@ -791,188 +791,118 @@
 
 
 
+/* SEKCJA METADANYCH ARTYKUŁU */
+.article-meta {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid 
+#e0e0e0;
+  margin-bottom: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+.meta-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.rating-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.rating-text {
+  font-size: 16px;
+  color: 
+#a85903;
+  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+}
+.rating-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+.rating-btn {
+  background: none;
+  border: 1px solid 
+#d17a1b;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  position: relative;
+  color: 
+#a85903;
+  font-family: 'Poppins', sans-serif;
+}
+.rating-btn:hover {
+  background: 
+#fdf3e9;
+  border-color: 
+#a85903;
+  transform: translateY(-1px);
+}
+.rating-btn.active {
+  background: 
+#a85903;
+  color: white;
+  border-color: 
+#a85903;
+}
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: 
+#a85903;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-bottom: 0.3rem;
+  font-family: 'Poppins', sans-serif;
+}
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: 
+#a85903;
+}
+.rating-btn:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+@media (max-width: 600px) {
+  .meta-info {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-            /* SEKCJA METADANYCH ARTYKUŁU */
-        .article-meta {
-          padding: 1.5rem 0;
-          border-bottom: 1px solid #e0e0e0;
-          margin-bottom: 2rem;
-          font-family: 'Poppins', sans-serif;
-        }
-        .meta-info {
-          display: flex;
-          gap: 1rem;
-          align-items: center;
-          font-size: 0.9rem;
-          color: #666;
-          margin-bottom: 1rem;
-        }
-        .meta-item {
-          display: flex;
-          align-items: center;
-          gap: 0.3rem;
-        }
-        .rating-section {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-        }
-        .rating-buttons {
-          display: flex;
-          gap: 0.5rem;
-        }
-        .rating-btn {
-          background: none;
-          border: none;
-          padding: 0.4rem 0.8rem;
-          border-radius: 8px;
-          cursor: pointer;
-          font-size: 0.9rem;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          gap: 0.3rem;
-          position: relative;
-          color: #D4AF37;
-          font-family: 'Poppins', sans-serif;
-        }
-        .rating-btn:hover {
-          color: #a85903;
-        }
-        .rating-btn.active {
-          color: #a85903;
-        }
-        .tooltip {
-          position: absolute;
-          bottom: 100%;
-          left: 50%;
-          transform: translateX(-50%);
-          background: #a85903;
-          color: white;
-          padding: 0.4rem 0.6rem;
-          border-radius: 4px;
-          font-size: 0.75rem;
-          white-space: nowrap;
-          opacity: 0;
-          visibility: hidden;
-          transition: all 0.2s ease;
-          margin-bottom: 0.3rem;
-          font-family: 'Poppins', sans-serif;
-        }
-        .tooltip::after {
-          content: '';
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          transform: translateX(-50%);
-          border: 4px solid transparent;
-          border-top-color: #a85903;
-        }
-        .rating-btn:hover .tooltip {
-          opacity: 1;
-          visibility: visible;
-        }
-        
-        /* STYLE DLA TAGÓW */
-        .article-tags {
-          margin-top: 2rem;
-          padding: 1.5rem 0;
-        }
-
-        .tags-container {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.8rem;
-        }
-
-        .tag {
-          background: linear-gradient(135deg, #fdf3e9 0%, #f9e8d1 100%);
-          border: 1px solid #d17a1b;
-          color: #a85903;
-          padding: 0.6rem 1.2rem;
-          border-radius: 25px;
-          font-size: 0.85rem;
-          font-weight: 500;
-          font-family: 'Poppins', sans-serif;
-          text-decoration: none;
-          transition: all 0.3s ease;
-          cursor: pointer;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .tag::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(168, 89, 3, 0.1), transparent);
-          transition: left 0.5s ease;
-        }
-
-        .tag:hover {
-          background: linear-gradient(135deg, #a85903 0%, #d17a1b 100%);
-          color: white;
-          border-color: #a85903;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(168, 89, 3, 0.3);
-        }
-
-        .tag:hover::before {
-          left: 100%;
-        }
-
-        .tag.primary {
-          background: linear-gradient(135deg, #a85903 0%, #d17a1b 100%);
-          color: white;
-          border-color: #a85903;
-          font-weight: 600;
-        }
-
-        .tag.primary:hover {
-          background: linear-gradient(135deg, #8b4a02 0%, #b86518 100%);
-          transform: translateY(-2px) scale(1.05);
-        }
-        
-        @media (max-width: 600px) {
-          .meta-info {
-            flex-wrap: wrap;
-            gap: 0.5rem;
-          }
-          
-          .rating-section {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-          }
-
-          .tags-container {
-            gap: 0.5rem;
-          }
-
-          .tag {
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-          }
-        }
-
-        /* Style dla przykładu */
-        body {
-          font-family: 'Poppins', sans-serif;
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 2rem;
-          background: #fafafa;
-        }
-        
-        .main_content_wrap {
-          background: white;
-          padding: 2rem;
-          border-radius: 8px;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+  .rating-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}  
 
 
 
@@ -1198,95 +1128,52 @@
         
 
 
-        <!-- ZAKTUALIZOWANA SEKCJA METADANYCH ARTYKUŁU -->
-        <div class="article-meta">
-          <div class="meta-info">
-            <div class="meta-item">10 czerwca 2025</div>
-            <div class="meta-item">•</div>
-            <div class="meta-item">8 min czytania</div>
-            <div class="meta-item">•</div>
-            <div class="meta-item">2,847 wyświetleń</div>
-            <div class="meta-item">•</div>
-            <div class="meta-item">23 komentarzy</div>
-          </div>
-          
-          <div class="rating-section">
-            <div class="rating-buttons">
-              <button class="rating-btn" onclick="rate('like')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
-                </svg>
-                <span id="like-count">12</span>
-              </button>      
-              <button class="rating-btn" onclick="rate('useful')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.2 3-3.3 3-5.7 0-3.9-3.1-7-7-7z"/>
-                </svg>
-                <span id="useful-count">8</span>
-                <div class="tooltip">Przydatne</div>
-              </button>
-              <button class="rating-btn" onclick="rate('discuss')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8.25 4.5a3.75 3.75 0 117.5 0v8.25a3.75 3.75 0 11-7.5 0V4.5zM6 10.5a.75.75 0 01.75.75v1.5a5.25 5.25 0 1010.5 0v-1.5a.75.75 0 011.5 0v1.5a6.751 6.751 0 01-6 6.709v2.291h3a.75.75 0 010 1.5h-7.5a.75.75 0 010-1.5h3v-2.291a6.751 6.751 0 01-6-6.709v-1.5A.75.75 0 016 10.5z"/>
-                </svg>
-                <span id="discuss-count">5</span>
-                <div class="tooltip">Temat do dyskusji</div>
-              </button>
-              <button class="rating-btn" onclick="rate('complex')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
-                  <path d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                </svg>
-                <span id="complex-count">3</span>
-                <div class="tooltip">Wymaga rozwinięcia</div>
-              </button>
-            </div>
-          </div>
-        </div>
 
-        <!-- NOWA SEKCJA Z TAGAMI -->
-        <div class="article-tags">
-          <div class="tags-container">
-            <a href="#" class="tag primary">
-              #Kwantyl 99.9
-            </a>
-            <a href="#" class="tag">
-              #Zarządzanie ryzykiem
-            </a>
-            <a href="#" class="tag">
-              #Modelowanie finansowe
-            </a>
-            <a href="#" class="tag">
-              #Rozłożenie ogona
-            </a>
-            <a href="#" class="tag">
-              #Interpretacja danych
-            </a>
-            <a href="#" class="tag">
-              #Analiza statystyczna
-            </a>
-            <a href="#" class="tag">
-              #Ocena ryzyka
-            </a>
-          </div>
-        </div>
-
-    <script>
-        // Funkcja oceniania
-        function rate(type) {
-            console.log('Oceniono jako:', type);
-            // Tutaj możesz dodać logikę zapisywania ocen
-        }
-
-        // Funkcja dla tagów
-        document.querySelectorAll('.tag').forEach(tag => {
-            tag.addEventListener('click', function(e) {
-                e.preventDefault();
-                console.log('Kliknięto tag:', this.textContent.trim());
-                // Tutaj możesz dodać logikę nawigacji do strony z tagiem
-            });
-        });
-    </script>
-
+<!-- SEKCJA METADANYCH ARTYKUŁU - DODANA TUTAJ -->
+<div class="article-meta">
+  <div class="meta-info">
+    <div class="meta-item">10 czerwca 2025</div>
+    <div class="meta-item">•</div>
+    <div class="meta-item">8 min czytania</div>
+    <div class="meta-item">•</div>
+    <div class="meta-item">2,847 wyświetleń</div>
+    <div class="meta-item">•</div>
+    <div class="meta-item">23 komentarzy</div>
+  </div>
+  
+  <div class="rating-section">
+    <span class="rating-text">Oceń artykuł</span>
+    <div class="rating-buttons">
+<button class="rating-btn" onclick="rate('like')">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+    </svg>
+    <span id="like-count">12</span>
+</button>      
+      <button class="rating-btn" onclick="rate('useful')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.2 3-3.3 3-5.7 0-3.9-3.1-7-7-7z"/>
+        </svg>
+        <span id="useful-count">8</span>
+        <div class="tooltip">Przydatne</div>
+      </button>
+      <button class="rating-btn" onclick="rate('discuss')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8.25 4.5a3.75 3.75 0 117.5 0v8.25a3.75 3.75 0 11-7.5 0V4.5zM6 10.5a.75.75 0 01.75.75v1.5a5.25 5.25 0 1010.5 0v-1.5a.75.75 0 011.5 0v1.5a6.751 6.751 0 01-6 6.709v2.291h3a.75.75 0 010 1.5h-7.5a.75.75 0 010-1.5h3v-2.291a6.751 6.751 0 01-6-6.709v-1.5A.75.75 0 016 10.5z"/>
+        </svg>
+        <span id="discuss-count">5</span>
+        <div class="tooltip">Temat do dyskusji</div>
+      </button>
+      <button class="rating-btn" onclick="rate('complex')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+          <path d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <span id="complex-count">3</span>
+        <div class="tooltip">Wymaga rozwinięcia</div>
+      </button>
+    </div>
+  </div>
+</div>
 
 
 
