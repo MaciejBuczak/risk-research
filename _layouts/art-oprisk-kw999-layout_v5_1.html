@@ -959,14 +959,12 @@
 
 
 
-
-
 <!-- DODAJ TO DO SEKCJI <head> TWOJEJ STRONY -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 // Konfiguracja Supabase
-const supabaseUrl = 'https://vjgbyyivxirfrfiatizh.supabase.co';
+const supabaseUrl = 'https://vjgbyyivxirfrfiatizh.supabase.com';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqZ2J5eWl2eGlyZnJmaWF0aXpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MTMyNTQsImV4cCI6MjA2NTI4OTI1NH0.qui7vdNdfzB1WxDwroPdPKjSZyIg_ENzcqXAxDbbzIM';
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
@@ -1112,7 +1110,8 @@ async function saveReaction(reactionType) {
                     {
                         article_id: articleId,
                         user_id: sessionId,
-                        reaction_type: reactionType
+                        reaction_type: reactionType,
+                        created_at: new Date().toISOString()
                     }
                 ]);
                 
@@ -1220,6 +1219,8 @@ if (document.readyState === 'loading') {
     updateReactionCounts();
 }
 </script>
+
+
 
 
 
