@@ -946,13 +946,291 @@
 
 
 
-    
-
-
-
-
+  
     
   </style>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- DODAJ TO DO SEKCJI <head> TWOJEJ STRONY -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// Konfiguracja Supabase
+const supabaseUrl = 'https://vjgbyyivxirfrfiatizh.supabase.com';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqZ2J5eWl2eGlyZnJmaWF0aXpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MTMyNTQsImV4cCI6MjA2NTI4OTI1NH0.qui7vdNdfzB1WxDwroPdPKjSZyIg_ENzcqXAxDbbzIM';
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+// Funkcja do generowania session ID
+function generateSessionId() {
+    return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+// Funkcja do pobierania lub tworzenia session ID
+function getSessionId() {
+    let sessionId = sessionStorage.getItem('session_id');
+    if (!sessionId) {
+        sessionId = generateSessionId();
+        sessionStorage.setItem('session_id', sessionId);
+    }
+    return sessionId;
+}
+
+// Funkcja do pobierania article_id z URL lub nazwy strony
+function getArticleId() {
+    // Możesz dostosować to do swojej struktury URL
+    return window.location.pathname || 'main-page';
+}
+
+// Funkcja do zliczania wyświetleń strony
+async function trackPageView() {
+    try {
+        const articleId = getArticleId();
+        const sessionId = getSessionId();
+        
+        // Sprawdź czy już zapisano wyświetlenie dla tej sesji i artykułu
+        const { data: existingView } = await supabase
+            .from('page_views')
+            .select('*')
+            .eq('article_id', articleId)
+            .eq('session_id', sessionId)
+            .single();
+            
+        if (!existingView) {
+            // Zapisz nowe wyświetlenie
+            const { error } = await supabase
+                .from('page_views')
+                .insert([
+                    {
+                        article_id: articleId,
+                        user_id: null, // Można dodać identyfikację użytkownika później
+                        session_id: sessionId
+                    }
+                ]);
+                
+            if (error) {
+                console.error('Błąd przy zapisywaniu wyświetlenia:', error);
+            } else {
+                console.log('Wyświetlenie zostało zapisane');
+                updateViewCount();
+            }
+        }
+    } catch (error) {
+        console.error('Błąd w trackPageView:', error);
+    }
+}
+
+// Funkcja do pobierania i wyświetlania liczby wyświetleń
+async function updateViewCount() {
+    try {
+        const articleId = getArticleId();
+        
+        const { data, error } = await supabase
+            .from('page_views')
+            .select('*')
+            .eq('article_id', articleId);
+            
+        if (error) {
+            console.error('Błąd przy pobieraniu wyświetleń:', error);
+            return;
+        }
+        
+        const viewCount = data.length;
+        
+        // Znajdź element z liczbą wyświetleń i zaktualizuj go
+        const viewElement = document.querySelector('.meta-item');
+        if (viewElement && viewElement.textContent.includes('wyświetleń')) {
+            // Znajdź konkretny element z wyświetleniami
+            const metaItems = document.querySelectorAll('.meta-item');
+            metaItems.forEach(item => {
+                if (item.textContent.includes('wyświetleń')) {
+                    item.textContent = `${viewCount.toLocaleString()} wyświetleń`;
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Błąd w updateViewCount:', error);
+    }
+}
+
+// Funkcja do zapisywania reakcji
+async function saveReaction(reactionType) {
+    try {
+        const articleId = getArticleId();
+        const sessionId = getSessionId();
+        
+        // Sprawdź czy użytkownik już zagłosował na ten artykuł w tej sesji
+        const { data: existingReaction } = await supabase
+            .from('article_reactions')
+            .select('*')
+            .eq('article_id', articleId)
+            .eq('user_id', sessionId) // Używamy session_id jako user_id dla anonimowych użytkowników
+            .single();
+            
+        if (existingReaction) {
+            // Jeśli użytkownik kliknął tę samą reakcję - usuń ją
+            if (existingReaction.reaction_type === reactionType) {
+                const { error } = await supabase
+                    .from('article_reactions')
+                    .delete()
+                    .eq('article_id', articleId)
+                    .eq('user_id', sessionId);
+                    
+                if (error) {
+                    console.error('Błąd przy usuwaniu reakcji:', error);
+                } else {
+                    console.log('Reakcja została usunięta');
+                }
+            } else {
+                // Zmień reakcję na nową
+                const { error } = await supabase
+                    .from('article_reactions')
+                    .update({ reaction_type: reactionType })
+                    .eq('article_id', articleId)
+                    .eq('user_id', sessionId);
+                    
+                if (error) {
+                    console.error('Błąd przy zmianie reakcji:', error);
+                } else {
+                    console.log('Reakcja została zmieniona');
+                }
+            }
+        } else {
+            // Dodaj nową reakcję
+            const { error } = await supabase
+                .from('article_reactions')
+                .insert([
+                    {
+                        article_id: articleId,
+                        user_id: sessionId,
+                        reaction_type: reactionType
+                    }
+                ]);
+                
+            if (error) {
+                console.error('Błąd przy zapisywaniu reakcji:', error);
+            } else {
+                console.log('Reakcja została zapisana');
+            }
+        }
+        
+        // Zaktualizuj liczniki reakcji
+        updateReactionCounts();
+        
+    } catch (error) {
+        console.error('Błąd w saveReaction:', error);
+    }
+}
+
+// Funkcja do pobierania i wyświetlania liczników reakcji
+async function updateReactionCounts() {
+    try {
+        const articleId = getArticleId();
+        
+        const { data, error } = await supabase
+            .from('article_reactions')
+            .select('reaction_type')
+            .eq('article_id', articleId);
+            
+        if (error) {
+            console.error('Błąd przy pobieraniu reakcji:', error);
+            return;
+        }
+        
+        // Policz reakcje według typu
+        const counts = {
+            'like': 0,
+            'useful': 0,
+            'discuss': 0,
+            'complex': 0
+        };
+        
+        data.forEach(reaction => {
+            if (counts.hasOwnProperty(reaction.reaction_type)) {
+                counts[reaction.reaction_type]++;
+            }
+        });
+        
+        // Zaktualizuj liczniki w interfejsie
+        Object.keys(counts).forEach(type => {
+            const countElement = document.getElementById(`${type}-count`);
+            if (countElement) {
+                countElement.textContent = counts[type];
+            }
+        });
+        
+        // Sprawdź czy użytkownik już zagłosował i oznacz aktywny przycisk
+        const sessionId = getSessionId();
+        const { data: userReaction } = await supabase
+            .from('article_reactions')
+            .select('reaction_type')
+            .eq('article_id', articleId)
+            .eq('user_id', sessionId)
+            .single();
+            
+        // Reset wszystkich przycisków
+        document.querySelectorAll('.rating-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Oznacz aktywny przycisk jeśli użytkownik zagłosował
+        if (userReaction) {
+            const activeButton = document.querySelector(`[onclick="rate('${userReaction.reaction_type}')"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+        
+    } catch (error) {
+        console.error('Błąd w updateReactionCounts:', error);
+    }
+}
+
+// Zmodyfikowana funkcja rate() - zastąpi istniejącą
+function rate(type) {
+    saveReaction(type);
+}
+
+// Inicjalizacja po załadowaniu strony
+document.addEventListener('DOMContentLoaded', function() {
+    // Zapisz wyświetlenie strony
+    trackPageView();
+    
+    // Pobierz aktualne liczniki reakcji
+    updateReactionCounts();
+});
+
+// Alternatywnie, jeśli DOMContentLoaded już się wykonał
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        trackPageView();
+        updateReactionCounts();
+    });
+} else {
+    trackPageView();
+    updateReactionCounts();
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+  
 </head>
 
 
