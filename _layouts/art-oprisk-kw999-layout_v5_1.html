@@ -962,9 +962,6 @@
 
 
   
-
-
-
 <!-- DODAJ TO DO SEKCJI <head> TWOJEJ STRONY -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -974,12 +971,108 @@ const supabaseUrl = 'https://vjgbyyivxirfrfiatizh.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqZ2J5eWl2eGlyZnJmaWF0aXpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MTMyNTQsImV4cCI6MjA2NTI4OTI1NH0.qui7vdNdfzB1WxDwroPdPKjSZyIg_ENzcqXAxDbbzIM';
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-// Funkcja do generowania session ID
+// NOWE FUNKCJE ANALITYCZNE
+// =========================
+
+// Funkcja do wykrywania urządzenia i przeglądarki
+function getDeviceInfo() {
+    const userAgent = navigator.userAgent;
+    
+    // Wykrywanie typu urządzenia
+    let deviceType = 'desktop';
+    if (/Mobi|Android/i.test(userAgent)) {
+        deviceType = 'mobile';
+    } else if (/Tablet|iPad/i.test(userAgent)) {
+        deviceType = 'tablet';
+    }
+    
+    // Wykrywanie przeglądarki
+    let browserName = 'Unknown';
+    if (userAgent.indexOf('Firefox') > -1) {
+        browserName = 'Firefox';
+    } else if (userAgent.indexOf('Chrome') > -1) {
+        browserName = 'Chrome';
+    } else if (userAgent.indexOf('Safari') > -1) {
+        browserName = 'Safari';
+    } else if (userAgent.indexOf('Edge') > -1) {
+        browserName = 'Edge';
+    }
+    
+    return { deviceType, browserName };
+}
+
+// Funkcja do analizy źródła ruchu
+function getTrafficSource() {
+    const referrer = document.referrer;
+    
+    if (!referrer || referrer === '') {
+        return {
+            trafficSource: 'Direct',
+            referrerUrl: null
+        };
+    }
+    
+    const hostname = new URL(referrer).hostname.toLowerCase();
+    let trafficSource = 'Referral';
+    
+    // Wyszukiwarki
+    if (hostname.includes('google')) {
+        trafficSource = 'Google';
+    } else if (hostname.includes('bing')) {
+        trafficSource = 'Bing';
+    } else if (hostname.includes('duckduckgo')) {
+        trafficSource = 'DuckDuckGo';
+    } else if (hostname.includes('yahoo')) {
+        trafficSource = 'Yahoo';
+    }
+    // Social Media
+    else if (hostname.includes('facebook')) {
+        trafficSource = 'Facebook';
+    } else if (hostname.includes('twitter') || hostname.includes('t.co')) {
+        trafficSource = 'Twitter';
+    } else if (hostname.includes('linkedin')) {
+        trafficSource = 'LinkedIn';
+    } else if (hostname.includes('instagram')) {
+        trafficSource = 'Instagram';
+    } else if (hostname.includes('youtube')) {
+        trafficSource = 'YouTube';
+    } else if (hostname.includes('tiktok')) {
+        trafficSource = 'TikTok';
+    }
+    
+    return {
+        trafficSource,
+        referrerUrl: referrer
+    };
+}
+
+// Funkcja do geolokalizacji (używa darmowego API)
+async function getLocationInfo() {
+    try {
+        // Używamy bezpłatnego API ipapi.co (30,000 requestów/miesiąc)
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        
+        return {
+            country: data.country_name || 'Unknown',
+            city: data.city || 'Unknown'
+        };
+    } catch (error) {
+        console.log('Nie udało się pobrać lokalizacji:', error);
+        return {
+            country: 'Unknown',
+            city: 'Unknown'
+        };
+    }
+}
+
+// ISTNIEJĄCE FUNKCJE - BEZ ZMIAN
+// ===============================
+
 function generateSessionId() {
     return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 }
 
-// Funkcja do pobierania lub tworzenia session ID
 function getSessionId() {
     let sessionId = sessionStorage.getItem('session_id');
     if (!sessionId) {
@@ -989,13 +1082,13 @@ function getSessionId() {
     return sessionId;
 }
 
-// Funkcja do pobierania article_id z URL lub nazwy strony
 function getArticleId() {
-    // Możesz dostosować to do swojej struktury URL
     return window.location.pathname || 'main-page';
 }
 
-// Funkcja do zliczania wyświetleń strony
+// ZAKTUALIZOWANA FUNKCJA - Z NOWYMI DANYMI ANALITYCZNYMI
+// ======================================================
+
 async function trackPageView() {
     try {
         const articleId = getArticleId();
@@ -1010,21 +1103,43 @@ async function trackPageView() {
             .single();
             
         if (!existingView) {
-            // Zapisz nowe wyświetlenie
+            console.log('Zbieranie danych analitycznych...');
+            
+            // Pobierz wszystkie dane analityczne
+            const deviceInfo = getDeviceInfo();
+            const trafficInfo = getTrafficSource();
+            const locationInfo = await getLocationInfo();
+            
+            console.log('Dane do zapisania:', {
+                articleId,
+                sessionId,
+                ...deviceInfo,
+                ...trafficInfo,
+                ...locationInfo
+            });
+            
+            // Zapisz nowe wyświetlenie z rozszerzonymi danymi
             const { error } = await supabase
                 .from('page_views')
                 .insert([
                     {
                         article_id: articleId,
-                        user_id: null, // Można dodać identyfikację użytkownika później
-                        session_id: sessionId
+                        user_id: null,
+                        session_id: sessionId,
+                        // Nowe dane analityczne
+                        country: locationInfo.country,
+                        city: locationInfo.city,
+                        device_type: deviceInfo.deviceType,
+                        browser_name: deviceInfo.browserName,
+                        traffic_source: trafficInfo.trafficSource,
+                        referrer_url: trafficInfo.referrerUrl
                     }
                 ]);
                 
             if (error) {
                 console.error('Błąd przy zapisywaniu wyświetlenia:', error);
             } else {
-                console.log('Wyświetlenie zostało zapisane');
+                console.log('Wyświetlenie zostało zapisane z danymi analitycznymi');
                 updateViewCount();
             }
         }
@@ -1033,7 +1148,103 @@ async function trackPageView() {
     }
 }
 
-// Funkcja do pobierania i wyświetlania liczby wyświetleń
+// ZAKTUALIZOWANA FUNKCJA - Z NOWYMI DANYMI ANALITYCZNYMI DLA REAKCJI
+// ==================================================================
+
+async function saveReaction(reactionType) {
+    console.log('=== DEBUG SAVE REACTION ===');
+    console.log('Reaction type:', reactionType);
+    
+    try {
+        const articleId = getArticleId();
+        const sessionId = getSessionId();
+        
+        console.log('Will insert:', {
+            article_id: articleId,
+            user_id: sessionId,
+            reaction_type: reactionType
+        });
+
+        // Sprawdź czy użytkownik już zagłosował na ten artykuł w tej sesji
+        const { data: existingReaction, error: selectError } = await supabase
+            .from('article_reactions')
+            .select('*')
+            .eq('article_id', articleId)
+            .eq('user_id', sessionId)
+            .single();
+
+        console.log('Select error:', selectError);
+
+        if (existingReaction) {
+            // Jeśli użytkownik kliknął tę samą reakcję - usuń ją
+            if (existingReaction.reaction_type === reactionType) {
+                const { error } = await supabase
+                    .from('article_reactions')
+                    .delete()
+                    .eq('article_id', articleId)
+                    .eq('user_id', sessionId);
+                    
+                if (error) {
+                    console.error('Błąd przy usuwaniu reakcji:', error);
+                } else {
+                    console.log('Reakcja została usunięta');
+                }
+            } else {
+                // Zmień reakcję na nową (UPDATE - bez nowych danych analitycznych)
+                const { error } = await supabase
+                    .from('article_reactions')
+                    .update({ reaction_type: reactionType })
+                    .eq('article_id', articleId)
+                    .eq('user_id', sessionId);
+                    
+                if (error) {
+                    console.error('Błąd przy zmianie reakcji:', error);
+                } else {
+                    console.log('Reakcja została zmieniona');
+                }
+            }
+        } else {
+            // Pobierz dane analityczne dla nowej reakcji
+            const deviceInfo = getDeviceInfo();
+            const trafficInfo = getTrafficSource();
+            const locationInfo = await getLocationInfo();
+            
+            // Dodaj nową reakcję z danymi analitycznymi
+            const { error } = await supabase
+                .from('article_reactions')
+                .insert([
+                    {
+                        article_id: articleId,
+                        user_id: sessionId,
+                        reaction_type: reactionType,
+                        // Nowe dane analityczne
+                        country: locationInfo.country,
+                        city: locationInfo.city,
+                        device_type: deviceInfo.deviceType,
+                        browser_name: deviceInfo.browserName,
+                        traffic_source: trafficInfo.trafficSource,
+                        referrer_url: trafficInfo.referrerUrl
+                    }
+                ]);
+                
+            if (error) {
+                console.error('Błąd przy zapisywaniu reakcji:', error);
+            } else {
+                console.log('Reakcja została zapisana z danymi analitycznymi');
+            }
+        }
+        
+        // Zaktualizuj liczniki reakcji
+        updateReactionCounts();
+        
+    } catch (error) {
+        console.error('Błąd w saveReaction:', error);
+    }
+}
+
+// POZOSTAŁE FUNKCJE - BEZ ZMIAN
+// ==============================
+
 async function updateViewCount() {
     try {
         const articleId = getArticleId();
@@ -1066,96 +1277,6 @@ async function updateViewCount() {
     }
 }
 
-
-
-
-async function saveReaction(reactionType) {
-    console.log('=== DEBUG SAVE REACTION ===');
-    console.log('Reaction type:', reactionType);
-    
-    try {
-        const articleId = getArticleId();
-        const sessionId = getSessionId();
-        
-        console.log('Will insert:', {
-            article_id: articleId,
-            user_id: sessionId,
-            reaction_type: reactionType
-        });
-
-
-
-  
-        
-// Sprawdź czy użytkownik już zagłosował na ten artykuł w tej sesji
-const { data: existingReaction, error: selectError } = await supabase
-    .from('article_reactions')
-    .select('*')
-    .eq('article_id', articleId)
-    .eq('user_id', sessionId)
-    .single();
-
-console.log('Select error:', selectError);
-
-
-      
-            
-        if (existingReaction) {
-            // Jeśli użytkownik kliknął tę samą reakcję - usuń ją
-            if (existingReaction.reaction_type === reactionType) {
-                const { error } = await supabase
-                    .from('article_reactions')
-                    .delete()
-                    .eq('article_id', articleId)
-                    .eq('user_id', sessionId);
-                    
-                if (error) {
-                    console.error('Błąd przy usuwaniu reakcji:', error);
-                } else {
-                    console.log('Reakcja została usunięta');
-                }
-            } else {
-                // Zmień reakcję na nową
-                const { error } = await supabase
-                    .from('article_reactions')
-                    .update({ reaction_type: reactionType })
-                    .eq('article_id', articleId)
-                    .eq('user_id', sessionId);
-                    
-                if (error) {
-                    console.error('Błąd przy zmianie reakcji:', error);
-                } else {
-                    console.log('Reakcja została zmieniona');
-                }
-            }
-        } else {
-            // Dodaj nową reakcję
-            const { error } = await supabase
-                .from('article_reactions')
-                .insert([
-                    {
-                        article_id: articleId,
-                        user_id: sessionId,
-                        reaction_type: reactionType
-                    }
-                ]);
-                
-            if (error) {
-                console.error('Błąd przy zapisywaniu reakcji:', error);
-            } else {
-                console.log('Reakcja została zapisana');
-            }
-        }
-        
-        // Zaktualizuj liczniki reakcji
-        updateReactionCounts();
-        
-    } catch (error) {
-        console.error('Błąd w saveReaction:', error);
-    }
-}
-
-// Funkcja do pobierania i wyświetlania liczników reakcji
 async function updateReactionCounts() {
     try {
         const articleId = getArticleId();
@@ -1219,22 +1340,20 @@ async function updateReactionCounts() {
     }
 }
 
-// Zmodyfikowana funkcja rate() - zastąpi istniejącą
 function rate(type) {
     saveReaction(type);
 }
 
-
-
-  // Inicjalizacja po załadowaniu strony - tylko raz
+// Inicjalizacja po załadowaniu strony - tylko raz
 window.addEventListener('load', function() {
     trackPageView();
     updateReactionCounts();
 });
 
-
-  
 </script>
+
+
+
 
 
 
