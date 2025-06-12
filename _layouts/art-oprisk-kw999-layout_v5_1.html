@@ -1224,25 +1224,16 @@ function rate(type) {
     saveReaction(type);
 }
 
-// Inicjalizacja po załadowaniu strony
-document.addEventListener('DOMContentLoaded', function() {
-    // Zapisz wyświetlenie strony
+
+
+  // Inicjalizacja po załadowaniu strony - tylko raz
+window.addEventListener('load', function() {
     trackPageView();
-    
-    // Pobierz aktualne liczniki reakcji
     updateReactionCounts();
 });
 
-// Alternatywnie, jeśli DOMContentLoaded już się wykonał
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-        trackPageView();
-        updateReactionCounts();
-    });
-} else {
-    trackPageView();
-    updateReactionCounts();
-}
+
+  
 </script>
 
 
