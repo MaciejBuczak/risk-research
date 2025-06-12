@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona Testowa - Test Referrer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .test-link {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .test-link:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        .info {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 0.9em;
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Strona Testowa Analytics</h1>
+        
+        <p>
+            <span class="emoji">🔬</span>
+            Ta strona służy do testowania systemu analityki referrer.
+            <span class="emoji">📊</span>
+        </p>
+        
+        <p>
+            Kliknij poniższy link, aby przejść na stronę z artykułem o kwartylu 99.9%:
+        </p>
+        
+        <a href="https://maciejbuczak.github.io/risk-research/art-oprisk-kw999_v5_1/" 
+           class="test-link" 
+           target="_blank">
+            📈 Przejdź do artykułu o ryzyku
+        </a>
+        
+        <div class="info">
+            <p><strong>Co testujemy:</strong></p>
+            <p>🔍 Po kliknięciu w link, sprawdź w konsoli przeglądarki na docelowej stronie</p>
+            <p>📋 W bazie danych powinna pojawić się wartość "Referral" w kolumnie traffic_source</p>
+            <p>🌐 Pole referrer_url powinno zawierać adres tej strony testowej</p>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <p style="font-size: 0.8em; opacity: 0.8;">
+                🎯 Strona testowa stworzona przez Claude AI
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Dodaj info do konsoli
+        console.log('🧪 Strona testowa załadowana!');
+        console.log('📋 Referrer z tej strony powinien być:', window.location.href);
+        
+        // Dodaj event listener do linka
+        document.querySelector('.test-link').addEventListener('click', function() {
+            console.log('🔗 Kliknięto link testowy!');
+            console.log('🎯 Docelowa strona powinna otrzymać referrer:', window.location.href);
+        });
+    </script>
+</body>
+</html>
