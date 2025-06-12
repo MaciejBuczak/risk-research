@@ -1798,42 +1798,11 @@ function rate(type) {
     // I ponownie po pełnym załadowaniu strony (na wszelki wypadek)
     window.addEventListener('load', detectBrowser);
 
-    // JAVASCRIPT DLA SYSTEMU OCENIANIA
-    let userRating = null;
 
-    function rate(type) {
-      const buttons = document.querySelectorAll('.rating-btn');
-      const countSpan = document.getElementById(type + '-count');
 
-      // Sprawdź czy użytkownik już zagłosował na tę opcję
-      const isActive = buttons[getButtonIndex(type)].classList.contains('active');
 
-      // Reset wszystkich przycisków
-      buttons.forEach(btn => btn.classList.remove('active'));
 
-      // Jeśli to nowy głos (nie reset)
-      if (!isActive) {
-        // Usuń poprzedni głos
-        if (userRating) {
-          const prevCount = document.getElementById(userRating + '-count');
-          prevCount.textContent = parseInt(prevCount.textContent) - 1;
-        }
-
-        // Dodaj nowy głos
-        buttons[getButtonIndex(type)].classList.add('active');
-        countSpan.textContent = parseInt(countSpan.textContent) + 1;
-        userRating = type;
-      } else {
-        // Reset głosu
-        countSpan.textContent = parseInt(countSpan.textContent) - 1;
-        userRating = null;
-      }
-    }
-
-    function getButtonIndex(type) {
-      const mapping = { 'like': 0, 'useful': 1, 'discuss': 2, 'complex': 3 };
-      return mapping[type];
-    }
+    
   </script>
 </body>
 </html>
