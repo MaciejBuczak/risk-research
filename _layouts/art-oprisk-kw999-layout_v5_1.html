@@ -1060,11 +1060,26 @@ async function updateViewCount() {
     }
 }
 
-// Funkcja do zapisywania reakcji
+
+
+
 async function saveReaction(reactionType) {
+    console.log('=== DEBUG SAVE REACTION ===');
+    console.log('Reaction type:', reactionType);
+    
     try {
         const articleId = getArticleId();
         const sessionId = getSessionId();
+        
+        console.log('Will insert:', {
+            article_id: articleId,
+            user_id: sessionId,
+            reaction_type: reactionType
+        });
+
+
+
+  
         
         // Sprawdź czy użytkownik już zagłosował na ten artykuł w tej sesji
         const { data: existingReaction } = await supabase
