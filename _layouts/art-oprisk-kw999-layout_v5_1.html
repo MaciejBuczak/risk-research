@@ -974,22 +974,37 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 // NOWE FUNKCJE ANALITYCZNE
 // =========================
 
-// Wykrywanie przeglądarki
-let browserName = 'Unknown';
-if (userAgent.indexOf('SamsungBrowser') > -1) {
-    browserName = 'Samsung';
-} else if (userAgent.indexOf('Edg') > -1) {
-    browserName = 'Edge';
-} else if (userAgent.indexOf('OPR') > -1) {
-    browserName = 'Opera';
-} else if (userAgent.indexOf('Firefox') > -1) {
-    browserName = 'Firefox';
-} else if (userAgent.indexOf('Chrome') > -1) {
-    browserName = 'Chrome';
-} else if (userAgent.indexOf('Safari') > -1) {
-    browserName = 'Safari';
-}
 
+// Funkcja do wykrywania urządzenia i przeglądarki
+function getDeviceInfo() {
+    const userAgent = navigator.userAgent;
+    
+    // Wykrywanie typu urządzenia
+    let deviceType = 'desktop';
+    if (/Mobi|Android/i.test(userAgent)) {
+        deviceType = 'mobile';
+    } else if (/Tablet|iPad/i.test(userAgent)) {
+        deviceType = 'tablet';
+    }
+    
+    // Wykrywanie przeglądarki
+    let browserName = 'Unknown';
+    if (userAgent.indexOf('SamsungBrowser') > -1) {
+        browserName = 'Samsung';
+    } else if (userAgent.indexOf('Edg') > -1) {
+        browserName = 'Edge';
+    } else if (userAgent.indexOf('OPR') > -1) {
+        browserName = 'Opera';
+    } else if (userAgent.indexOf('Firefox') > -1) {
+        browserName = 'Firefox';
+    } else if (userAgent.indexOf('Chrome') > -1) {
+        browserName = 'Chrome';
+    } else if (userAgent.indexOf('Safari') > -1) {
+        browserName = 'Safari';
+    }
+    
+    return { deviceType, browserName };
+}
 
   
 // Funkcja do analizy źródła ruchu
