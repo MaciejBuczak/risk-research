@@ -1081,13 +1081,18 @@ async function saveReaction(reactionType) {
 
   
         
-        // Sprawdź czy użytkownik już zagłosował na ten artykuł w tej sesji
-        const { data: existingReaction } = await supabase
-            .from('article_reactions')
-            .select('*')
-            .eq('article_id', articleId)
-            .eq('user_id', sessionId) // Używamy session_id jako user_id dla anonimowych użytkowników
-            .single();
+// Sprawdź czy użytkownik już zagłosował na ten artykuł w tej sesji
+const { data: existingReaction, error: selectError } = await supabase
+    .from('article_reactions')
+    .select('*')
+    .eq('article_id', articleId)
+    .eq('user_id', sessionId)
+    .single();
+
+console.log('Select error:', selectError);
+
+
+      
             
         if (existingReaction) {
             // Jeśli użytkownik kliknął tę samą reakcję - usuń ją
