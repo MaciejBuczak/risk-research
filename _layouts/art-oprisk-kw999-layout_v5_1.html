@@ -1759,10 +1759,10 @@ function displayComments(comments) {
 async function likeComment(commentId) {
     try {
         // Sprawdź czy użytkownik już polubił ten komentarz
-        const sessionId = getSessionId();
-        const likeKey = `liked_comment_${commentId}_${sessionId}`;
+const sessionId = getSessionId();
+        const likeKey = `${commentId}_${sessionId}`;
         
-        if (localStorage.getItem(likeKey)) {
+        if (window.likedCommentsSet && window.likedCommentsSet.has(likeKey)) {
             alert('Już polubiłeś ten komentarz!');
             return;
         }
@@ -1790,8 +1790,9 @@ async function likeComment(commentId) {
         if (error) {
             console.error('Błąd przy polubíaniu komentarza:', error);
         } else {
-            // Zapisz że użytkownik polubił
-            localStorage.setItem(likeKey, 'true');
+// Zapisz że użytkownik polubił
+            if (!window.likedCommentsSet) window.likedCommentsSet = new Set();
+            window.likedCommentsSet.add(likeKey);
             
             // Zaktualizuj wyświetlanie
             const likeCountElement = document.querySelector(`[data-comment-id="${commentId}"] .like-count`);
