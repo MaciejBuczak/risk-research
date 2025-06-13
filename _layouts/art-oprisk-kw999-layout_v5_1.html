@@ -1080,18 +1080,12 @@
             font-size: 14px;
         }
         
-        .like-btn {
-            background: none;
-            border: 1px solid #ddd;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 14px;
-            margin-left: auto;
-        }
-        
-        .like-btn:hover {
-            background: #f8f9fa;
-        }
+.like-btn {
+    color: #D4AF37;
+}
+.like-btn:hover svg {
+    color: #737373;
+}
         
         .comment-text {
             line-height: 1.5;
@@ -1751,8 +1745,11 @@ function displayComments(comments) {
                     ${categoryDisplay}
                     <span class="comment-author">${escapeHtml(comment.author_name)}</span>
                     <span class="comment-time">${timeAgo}</span>
-                    <button class="like-btn" onclick="likeComment(${comment.id})">
-                        ❤️ <span class="like-count">${comment.likes_count || 0}</span>
+<button class="like-btn" onclick="likeComment(${comment.id})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                        </svg>
+                        <span class="like-count">${comment.likes_count || 0}</span>
                     </button>
                 </div>
                 <div class="comment-text">${linkedText}</div>
