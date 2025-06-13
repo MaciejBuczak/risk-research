@@ -1143,13 +1143,16 @@ async function trackPageView() {
                     }
                 ]);
                 
-            if (error) {
+if (error) {
                 console.error('Błąd przy zapisywaniu wyświetlenia:', error);
             } else {
                 console.log('Wyświetlenie zostało zapisane z danymi analitycznymi');
-                updateViewCount();
             }
         }
+        
+        // ZAWSZE aktualizuj licznik - niezależnie od tego czy to nowa sesja czy odświeżenie
+        updateViewCount();
+        
     } catch (error) {
         console.error('Błąd w trackPageView:', error);
     }
