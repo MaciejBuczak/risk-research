@@ -1268,17 +1268,14 @@ async function updateViewCount() {
         
         const viewCount = data.length;
         
-        // Znajdź element z liczbą wyświetleń i zaktualizuj go
-        const viewElement = document.querySelector('.meta-item');
-        if (viewElement && viewElement.textContent.includes('wyświetleń')) {
-            // Znajdź konkretny element z wyświetleniami
-            const metaItems = document.querySelectorAll('.meta-item');
-            metaItems.forEach(item => {
-                if (item.textContent.includes('wyświetleń')) {
-                    item.textContent = `${viewCount.toLocaleString()} wyświetleń`;
-                }
-            });
-        }
+// Zaktualizuj licznik wyświetleń
+const viewCounterElement = document.getElementById('view-counter');
+if (viewCounterElement) {
+    viewCounterElement.textContent = `${viewCount.toLocaleString()} wyświetleń`;
+    console.log('Licznik zaktualizowany na:', viewCount);
+}
+
+      
     } catch (error) {
         console.error('Błąd w updateViewCount:', error);
     }
@@ -1639,6 +1636,10 @@ window.addEventListener('load', function() {
       </button>
     </div>
   </div>
+
+
+
+
   
   <!-- SEKCJA TAGÓW -->
   <div class="tags-section">
