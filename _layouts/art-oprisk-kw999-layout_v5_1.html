@@ -1531,6 +1531,10 @@ window.addEventListener('load', function() {
 // SYSTEM KOMENTARZY Z KATEGORIAMI
 // ================================
 
+// Zmienna do przechowywania polubionych komentarzy w pamięci
+let likedComments = new Set();
+
+  
 // Definicja kategorii (możesz edytować)
 const categories = [
     { name: 'kwantyl', color: '#F59E0B', displayName: 'kwantyl' },
@@ -1753,17 +1757,26 @@ function displayComments(comments) {
     }).join('');
 }
 
-// Funkcja do polubienia komentarza
+// POPRAWIONA FUNKCJA POLUBIEŃ - BEZ LOCALSTORAGE
+// =================================================
+
+// Zmienna do przechowywania polubionych komentarzy w pamięci
+let likedComments = new Set();
+
+// Funkcja do polubienia komentarza (ZASTĄP STARĄ)
 async function likeComment(commentId) {
     try {
-        // Sprawdź czy użytkownik już polubił ten komentarz
-        const sessionId = getSessionId();
-        const likeKey = `liked_comment_${commentId}_${sessionId}`;
+        console.log('Próba polubienia komentarza:', commentId);
         
-        if (localStorage.getItem(likeKey)) {
+        // Sprawdź czy użytkownik już polubił ten komentarz (w pamięci)
+        const likeKey = `${commentId}_${getSessionId()}`;
+        
+        if (likedComments.has(likeKey)) {
             alert('Już polubiłeś ten komentarz!');
             return;
         }
+        
+        console.log('Pobieranie aktualnej liczby polubień...');
         
         // Pobierz aktualną liczbę polubień
         const { data: comment, error: selectError } = await supabase
@@ -1774,11 +1787,16 @@ async function likeComment(commentId) {
             
         if (selectError) {
             console.error('Błąd przy pobieraniu komentarza:', selectError);
+            alert('Błąd przy pobieraniu komentarza');
             return;
         }
         
+        console.log('Aktualna liczba polubień:', comment.likes_count);
+        
         // Zwiększ liczbę polubień
         const newLikesCount = (comment.likes_count || 0) + 1;
+        
+        console.log('Zapisywanie nowej liczby polubień:', newLikesCount);
         
         const { error } = await supabase
             .from('comments')
@@ -1787,20 +1805,31 @@ async function likeComment(commentId) {
             
         if (error) {
             console.error('Błąd przy polubíaniu komentarza:', error);
+            alert('Błąd przy polubíaniu komentarza');
         } else {
-            // Zapisz że użytkownik polubił
-            localStorage.setItem(likeKey, 'true');
+            console.log('Komentarz polubiony pomyślnie');
+            
+            // Zapisz że użytkownik polubił (w pamięci zamiast localStorage)
+            likedComments.add(likeKey);
             
             // Zaktualizuj wyświetlanie
             const likeCountElement = document.querySelector(`[data-comment-id="${commentId}"] .like-count`);
             if (likeCountElement) {
                 likeCountElement.textContent = newLikesCount;
+                console.log('Licznik zaktualizowany do:', newLikesCount);
             }
             
-            console.log('Komentarz polubiony');
+            // Zmień przycisk żeby pokazać że został polubiony
+            const likeButton = document.querySelector(`[data-comment-id="${commentId}"] .like-btn`);
+            if (likeButton) {
+                likeButton.style.backgroundColor = '#ff6b6b';
+                likeButton.style.color = 'white';
+                likeButton.disabled = true;
+            }
         }
     } catch (error) {
         console.error('Błąd w likeComment:', error);
+        alert('Wystąpił nieoczekiwany błąd');
     }
 }
 
