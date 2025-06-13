@@ -962,6 +962,161 @@
 
 
 
+
+/* SEKCJA KOMENTARZY ARTYKUŁU */
+
+    <style>
+        .comments-section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .add-comment-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .add-comment-form h3 {
+            margin-top: 0;
+        }
+        
+        #comment-category, #author-name, #comment-text {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        #comment-text {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        button {
+            background: #007cba;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #005a8b;
+        }
+        
+        .comments-filters {
+            margin-bottom: 20px;
+        }
+        
+        .filter-btn {
+            background: #e9ecef;
+            border: 1px solid #ced4da;
+            padding: 8px 16px;
+            margin: 5px 5px 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            border-left: 4px solid #e9ecef;
+        }
+        
+        .filter-btn:hover {
+            background: #dee2e6;
+        }
+        
+        .filter-btn.active {
+            background: #007cba;
+            color: white;
+            border-color: #007cba;
+        }
+        
+        #comments-counter {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .comment-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .comment-category {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .comment-author {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .comment-time {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .like-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-left: auto;
+        }
+        
+        .like-btn:hover {
+            background: #f8f9fa;
+        }
+        
+        .comment-text {
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        .comment-text a {
+            color: #007cba;
+            text-decoration: underline;
+        }
+        
+        .no-comments {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px 20px;
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
   
 <!-- DODAJ TO DO SEKCJI <head> TWOJEJ STRONY -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1357,15 +1512,358 @@ window.addEventListener('load', function() {
     updateReactionCounts();
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// SYSTEM KOMENTARZY Z KATEGORIAMI
+// ================================
+
+// Definicja kategorii (możesz edytować)
+const categories = [
+    { name: 'kwantyl', color: '#F59E0B', displayName: 'kwantyl' },
+    { name: 'ryzyko-operacyjne', color: '#8B7355', displayName: 'ryzyko operacyjne' },
+    { name: 'metoda-evt', color: '#6B7280', displayName: 'metoda EVT' },
+    { name: 'statystyka', color: '#10B981', displayName: 'statystyka' },
+    { name: 'modelowanie', color: '#3B82F6', displayName: 'modelowanie' },
+    { name: 'ogolne', color: '#E5E7EB', displayName: 'ogólne' }
+];
+
+// Zmienna do przechowywania aktualnego filtru
+let currentCategoryFilter = 'all';
+
+// Funkcja do automatycznego linkowania URL-i
+function linkifyText(text) {
+    const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|[^\s]+\.[a-z]{2,}(?:\/[^\s]*)?)/gi;
+    return text.replace(urlRegex, function(url) {
+        let href = url;
+        if (!url.match(/^https?:\/\//)) {
+            href = 'http://' + url;
+        }
+        return `<a href="${href}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    });
+}
+
+// Funkcja do inicjalizacji kategorii w dropdown
+function initializeCategoryDropdown() {
+    const categorySelect = document.getElementById('comment-category');
+    if (!categorySelect) return;
+    
+    // Wyczyść istniejące opcje
+    categorySelect.innerHTML = '';
+    
+    // Dodaj opcję "bez kategorii"
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Wybierz kategorię (opcjonalnie)';
+    categorySelect.appendChild(defaultOption);
+    
+    // Dodaj kategorie
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.name;
+        option.textContent = category.displayName;
+        categorySelect.appendChild(option);
+    });
+}
+
+// Funkcja do tworzenia przycisków filtrowania
+function createCategoryFilters() {
+    const filtersContainer = document.getElementById('category-filters');
+    if (!filtersContainer) return;
+    
+    filtersContainer.innerHTML = '';
+    
+    // Przycisk "Wszystkie"
+    const allButton = document.createElement('button');
+    allButton.textContent = 'Wszystkie';
+    allButton.className = 'filter-btn active';
+    allButton.onclick = () => filterComments('all');
+    filtersContainer.appendChild(allButton);
+    
+    // Przyciski dla każdej kategorii
+    categories.forEach(category => {
+        const button = document.createElement('button');
+        button.textContent = category.displayName;
+        button.className = 'filter-btn';
+        button.style.borderLeftColor = category.color;
+        button.onclick = () => filterComments(category.name);
+        filtersContainer.appendChild(button);
+    });
+}
+
+// Funkcja do filtrowania komentarzy
+function filterComments(categoryFilter) {
+    currentCategoryFilter = categoryFilter;
+    
+    // Aktualizuj aktywny przycisk
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    if (categoryFilter === 'all') {
+        document.querySelector('.filter-btn').classList.add('active');
+    } else {
+        const activeBtn = Array.from(document.querySelectorAll('.filter-btn'))
+            .find(btn => btn.textContent === categories.find(c => c.name === categoryFilter)?.displayName);
+        if (activeBtn) activeBtn.classList.add('active');
+    }
+    
+    // Przeładuj komentarze z filtrem
+    loadComments();
+}
+
+// Funkcja do dodawania komentarza
+async function addComment() {
+    const authorName = document.getElementById('author-name')?.value?.trim();
+    const commentText = document.getElementById('comment-text')?.value?.trim();
+    const category = document.getElementById('comment-category')?.value || null;
+    
+    // Walidacja
+    if (!authorName || authorName.length < 2 || authorName.length > 50) {
+        alert('Imię musi mieć od 2 do 50 znaków');
+        return;
+    }
+    
+    if (!commentText || commentText.length < 10 || commentText.length > 1000) {
+        alert('Komentarz musi mieć od 10 do 1000 znaków');
+        return;
+    }
+    
+    // Sprawdź czy użytkownik nie spamuje (max 1 komentarz na 30 sekund)
+    const lastCommentTime = localStorage.getItem('lastCommentTime');
+    const now = Date.now();
+    if (lastCommentTime && (now - parseInt(lastCommentTime)) < 30000) {
+        alert('Możesz dodać kolejny komentarz za ' + Math.ceil((30000 - (now - parseInt(lastCommentTime))) / 1000) + ' sekund');
+        return;
+    }
+    
+    try {
+        const articleId = getArticleId();
+        
+        const { error } = await supabase
+            .from('comments')
+            .insert([
+                {
+                    article_id: articleId,
+                    author_name: authorName,
+                    comment_text: commentText,
+                    category: category,
+                    likes_count: 0
+                }
+            ]);
+            
+        if (error) {
+            console.error('Błąd przy dodawaniu komentarza:', error);
+            alert('Wystąpił błąd podczas dodawania komentarza');
+        } else {
+            // Zapisz czas ostatniego komentarza
+            localStorage.setItem('lastCommentTime', now.toString());
+            
+            // Wyczyść formularz
+            document.getElementById('author-name').value = '';
+            document.getElementById('comment-text').value = '';
+            document.getElementById('comment-category').value = '';
+            
+            // Przeładuj komentarze
+            loadComments();
+            
+            console.log('Komentarz dodany pomyślnie');
+        }
+    } catch (error) {
+        console.error('Błąd w addComment:', error);
+        alert('Wystąpił błąd podczas dodawania komentarza');
+    }
+}
+
+// Funkcja do pobierania i wyświetlania komentarzy
+async function loadComments() {
+    try {
+        const articleId = getArticleId();
+        
+        let query = supabase
+            .from('comments')
+            .select('*')
+            .eq('article_id', articleId)
+            .order('created_at', { ascending: false });
+            
+        // Zastosuj filtr kategorii jeśli jest aktywny
+        if (currentCategoryFilter !== 'all') {
+            query = query.eq('category', currentCategoryFilter);
+        }
+        
+        const { data: comments, error } = await query;
+        
+        if (error) {
+            console.error('Błąd przy pobieraniu komentarzy:', error);
+            return;
+        }
+        
+        displayComments(comments || []);
+        updateCommentsCount(comments?.length || 0);
+        
+    } catch (error) {
+        console.error('Błąd w loadComments:', error);
+    }
+}
+
+// Funkcja do wyświetlania komentarzy
+function displayComments(comments) {
+    const commentsContainer = document.getElementById('comments-list');
+    if (!commentsContainer) return;
+    
+    if (comments.length === 0) {
+        commentsContainer.innerHTML = '<p class="no-comments">Brak komentarzy w tej kategorii. Bądź pierwszy!</p>';
+        return;
+    }
+    
+    commentsContainer.innerHTML = comments.map(comment => {
+        const category = categories.find(c => c.name === comment.category);
+        const categoryDisplay = category ? 
+            `<span class="comment-category" style="background-color: ${category.color}; color: ${category.color === '#E5E7EB' ? '#374151' : '#FFFFFF'};">${category.displayName}</span>` : '';
+        
+        const timeAgo = getTimeAgo(comment.created_at);
+        const linkedText = linkifyText(comment.comment_text);
+        
+        return `
+            <div class="comment-item" data-comment-id="${comment.id}">
+                <div class="comment-header">
+                    ${categoryDisplay}
+                    <span class="comment-author">${escapeHtml(comment.author_name)}</span>
+                    <span class="comment-time">${timeAgo}</span>
+                    <button class="like-btn" onclick="likeComment(${comment.id})">
+                        ❤️ <span class="like-count">${comment.likes_count || 0}</span>
+                    </button>
+                </div>
+                <div class="comment-text">${linkedText}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Funkcja do polubienia komentarza
+async function likeComment(commentId) {
+    try {
+        // Sprawdź czy użytkownik już polubił ten komentarz
+        const sessionId = getSessionId();
+        const likeKey = `liked_comment_${commentId}_${sessionId}`;
+        
+        if (localStorage.getItem(likeKey)) {
+            alert('Już polubiłeś ten komentarz!');
+            return;
+        }
+        
+        // Pobierz aktualną liczbę polubień
+        const { data: comment, error: selectError } = await supabase
+            .from('comments')
+            .select('likes_count')
+            .eq('id', commentId)
+            .single();
+            
+        if (selectError) {
+            console.error('Błąd przy pobieraniu komentarza:', selectError);
+            return;
+        }
+        
+        // Zwiększ liczbę polubień
+        const newLikesCount = (comment.likes_count || 0) + 1;
+        
+        const { error } = await supabase
+            .from('comments')
+            .update({ likes_count: newLikesCount })
+            .eq('id', commentId);
+            
+        if (error) {
+            console.error('Błąd przy polubíaniu komentarza:', error);
+        } else {
+            // Zapisz że użytkownik polubił
+            localStorage.setItem(likeKey, 'true');
+            
+            // Zaktualizuj wyświetlanie
+            const likeCountElement = document.querySelector(`[data-comment-id="${commentId}"] .like-count`);
+            if (likeCountElement) {
+                likeCountElement.textContent = newLikesCount;
+            }
+            
+            console.log('Komentarz polubiony');
+        }
+    } catch (error) {
+        console.error('Błąd w likeComment:', error);
+    }
+}
+
+// Funkcja do aktualizacji licznika komentarzy
+function updateCommentsCount(count) {
+    const counterElement = document.getElementById('comments-counter');
+    if (counterElement) {
+        const categoryText = currentCategoryFilter === 'all' ? '' : 
+            ` w kategorii "${categories.find(c => c.name === currentCategoryFilter)?.displayName}"`;
+        counterElement.textContent = `${count} komentarz${count === 1 ? '' : count < 5 ? 'e' : 'y'}${categoryText}`;
+    }
+}
+
+// Funkcje pomocnicze
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function getTimeAgo(dateString) {
+    const now = new Date();
+    const commentDate = new Date(dateString);
+    const diffInSeconds = Math.floor((now - commentDate) / 1000);
+    
+    if (diffInSeconds < 60) return 'przed chwilą';
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} min temu`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} godz. temu`;
+    if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} dni temu`;
+    
+    return commentDate.toLocaleDateString('pl-PL');
+}
+
+// Funkcja inicjalizacyjna dla komentarzy
+function initializeComments() {
+    initializeCategoryDropdown();
+    createCategoryFilters();
+    loadComments();
+}
+
+// Funkcja dla przycisku submit (do wywołania w HTML)
+function submitComment() {
+    addComment();
+}
+
+// Dodaj inicjalizację komentarzy do istniejącego load event
+const originalLoadHandler = window.onload;
+window.addEventListener('load', function() {
+    // Wywołaj oryginalny handler jeśli istnieje
+    if (originalLoadHandler) {
+        originalLoadHandler();
+    }
+    
+    // Inicjalizuj komentarze
+    initializeComments();
+});
+
+
+
+
+
+
+
+
+  
 </script>
-
-
-
-
-
-
-
-
 
 
 
@@ -1802,6 +2300,61 @@ window.addEventListener('load', function() {
 
 
 
+
+
+
+
+
+
+
+
+
+        
+/* KOMENTARZE */
+        
+<div class="comments-section">
+    
+    <!-- Formularz dodawania komentarza -->
+    <div class="add-comment-form">
+        <h3>Dodaj komentarz</h3>
+        
+        <select id="comment-category">
+            <!-- Opcje się wygenerują automatycznie -->
+        </select>
+        
+        <input id="author-name" type="text" placeholder="Twoje imię" maxlength="50">
+        
+        <textarea id="comment-text" placeholder="Twój komentarz (10-1000 znaków)" maxlength="1000" rows="4"></textarea>
+        
+        <button onclick="submitComment()">Dodaj komentarz</button>
+    </div>
+    
+    <!-- Filtry kategorii -->
+    <div class="comments-filters">
+        <h4>Filtruj komentarze:</h4>
+        <div id="category-filters">
+            <!-- Przyciski się wygenerują automatycznie -->
+        </div>
+    </div>
+    
+    <!-- Licznik i lista komentarzy -->
+    <div class="comments-display">
+        <div id="comments-counter"></div>
+        <div id="comments-list">
+            <!-- Komentarze się wczytają automatycznie -->
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+        
+        
 
 
 
