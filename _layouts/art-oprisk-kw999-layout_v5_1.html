@@ -1722,8 +1722,9 @@ async function loadComments() {
             return;
         }
         
-        displayComments(comments || []);
+displayComments(comments || []);
         updateCommentsCount(comments?.length || 0);
+        updateTopCommentsCount(); // ← DODAJ TĘ LINIĘ
         
     } catch (error) {
         console.error('Błąd w loadComments:', error);
@@ -1828,6 +1829,29 @@ function updateCommentsCount(count) {
     }
 }
 
+
+
+
+// Funkcja do aktualizacji licznika komentarzy na górze strony
+function updateTopCommentsCount() {
+    const articleId = getArticleId();
+    
+    supabase
+        .from('comments')
+        .select('*', { count: 'exact' })
+        .eq('article_id', articleId)
+        .then(({ count, error }) => {
+            if (!error) {
+                const counterElement = document.getElementById('comments-counter-top');
+                if (counterElement) {
+                    counterElement.textContent = `${count} komentarz${count === 1 ? '' : count < 5 ? 'e' : 'y'}`;
+                }
+            }
+        });
+}
+
+
+  
 // Funkcje pomocnicze
 function escapeHtml(text) {
     const div = document.createElement('div');
@@ -2119,7 +2143,7 @@ window.addEventListener('load', function() {
     <div class="meta-item">•</div>
     <div class="meta-item" id="view-counter">  wyświetleń</div>
     <div class="meta-item">•</div>
-    <div class="meta-item">23 komentarzy</div>
+    <div class="meta-item" id="comments-counter-top"> komentarzy</div>
   </div>
   
   <div class="rating-section">
