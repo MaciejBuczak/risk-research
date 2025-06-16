@@ -971,148 +971,7 @@
 
 
 
-    <style>
 
-    /* SEKCJA KOMENTARZY ARTYKUŁU */
-      
-        .comments-section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
-        
-        .add-comment-form {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-        
-        .add-comment-form h3 {
-            margin-top: 0;
-        }
-        
-        #comment-category, #author-name, #comment-text {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        
-        #comment-text {
-            resize: vertical;
-            min-height: 100px;
-        }
-        
-        button {
-            background: #007cba;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        button:hover {
-            background: #005a8b;
-        }
-        
-        .comments-filters {
-            margin-bottom: 20px;
-        }
-        
-        .filter-btn {
-            background: #e9ecef;
-            border: 1px solid #ced4da;
-            padding: 8px 16px;
-            margin: 5px 5px 5px 0;
-            border-radius: 4px;
-            cursor: pointer;
-            border-left: 4px solid #e9ecef;
-        }
-        
-        .filter-btn:hover {
-            background: #dee2e6;
-        }
-        
-        .filter-btn.active {
-            background: #007cba;
-            color: white;
-            border-color: #007cba;
-        }
-        
-        #comments-counter {
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #666;
-        }
-        
-        .comment-item {
-            border-bottom: 1px solid #eee;
-            padding: 15px 0;
-        }
-        
-        .comment-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .comment-category {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        .comment-author {
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .comment-time {
-            color: #666;
-            font-size: 14px;
-        }
-        
-.like-btn {
-    color: #D4AF37;
-      background: none !important;
-    background-color: transparent !important;
-}
-.like-btn:hover svg {
-    color: #737373;
-}
-
-.like-btn:hover {
-    background: none !important;
-    background-color: transparent !important;
-}
-
-      
-        
-        .comment-text {
-            line-height: 1.5;
-            color: #333;
-        }
-        
-        .comment-text a {
-            color: #007cba;
-            text-decoration: underline;
-        }
-        
-        .no-comments {
-            text-align: center;
-            color: #666;
-            font-style: italic;
-            padding: 40px 20px;
-        }
-    </style>
 
 
 
@@ -3053,7 +2912,7 @@ window.addEventListener('load', function() {
         Dodaj komentarz
       </button>
       
-<p style="font-size: 12px; color: #737373; margin-top: 15px; line-height: 1.4; text-align: left;">
+<p style="font-size: 12px; color: #737373; margin-top: 15px; line-height: 1.4; text-align: left !important;">
   <strong>Wskazówka:</strong> Wybierz kategorię, która najlepiej opisuje Twój komentarz. 
   To pomoże innym czytelnikom znaleźć dyskusje na interesujące ich tematy.
 </p>
