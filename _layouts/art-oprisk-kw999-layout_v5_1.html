@@ -1382,6 +1382,107 @@
     margin: 20px 0;
 }
 
+
+    
+
+/* PAGINACJA */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.pagination-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #e5e7eb;
+    color: #4a5568;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #D4AF37;
+    border-color: #D4AF37;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+.pagination-btn:disabled {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: #e5e7eb;
+    color: #a0aec0;
+    cursor: not-allowed;
+}
+
+.pagination-numbers {
+    display: flex;
+    gap: 8px;
+}
+
+.page-number {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #e5e7eb;
+    color: #4a5568;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 14px;
+    min-width: 40px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.page-number:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: #D4AF37;
+    color: #D4AF37;
+}
+
+.page-number.active {
+    background: #D4AF37;
+    border-color: #D4AF37;
+    color: white;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.page-ellipsis {
+    color: #a0aec0;
+    padding: 8px 4px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .pagination-container {
+        gap: 8px;
+        margin-top: 30px;
+    }
+    
+    .pagination-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .page-number {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-width: 32px;
+    }
+}
+
+
+
+    
 /* RESPONSIVE */
 @media (max-width: 1024px) {
     .comments-masonry-container {
@@ -1861,6 +1962,12 @@ let currentCategoryFilter = 'all';
 
 
 
+// PAGINACJA - USTAWIENIA
+const COMMENTS_PER_PAGE = 12; // Ile komentarzy na stronie
+let currentPage = 1;
+let totalPages = 1;
+let allLoadedComments = []; // Przechowuje wszystkie komentarze
+  
 
 
 // Funkcja do generowania losowego koloru dla awatara - NOWA
@@ -2047,7 +2154,6 @@ async function loadComments() {
             .eq('article_id', articleId)
             .order('created_at', { ascending: false });
             
-        // Zastosuj filtr kategorii jeśli jest aktywny
         if (currentCategoryFilter !== 'all') {
             query = query.eq('category', currentCategoryFilter);
         }
@@ -2058,6 +2164,24 @@ async function loadComments() {
             console.error('Błąd przy pobieraniu komentarzy:', error);
             return;
         }
+        
+        // Zapisz wszystkie komentarze
+        allLoadedComments = comments || [];
+        
+        // Resetuj paginację do pierwszej strony
+        currentPage = 1;
+        totalPages = Math.ceil(allLoadedComments.length / COMMENTS_PER_PAGE);
+        
+        // Wyświetl pierwszą stronę
+        displayCurrentPage();
+        updatePagination();
+        updateCommentsCount(allLoadedComments.length);
+        updateTopCommentsCount();
+        
+    } catch (error) {
+        console.error('Błąd w loadComments:', error);
+    }
+}
         
 displayComments(comments || []);
         updateCommentsCount(comments?.length || 0);
@@ -2116,6 +2240,101 @@ function displayComments(comments) {
     }).join('');
 }
 
+
+
+
+// Wyświetl komentarze dla aktualnej strony
+function displayCurrentPage() {
+    const start = (currentPage - 1) * COMMENTS_PER_PAGE;
+    const end = start + COMMENTS_PER_PAGE;
+    const pageComments = allLoadedComments.slice(start, end);
+    displayComments(pageComments);
+}
+
+// Przejdź do konkretnej strony
+function goToPage(pageNumber) {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    
+    currentPage = pageNumber;
+    displayCurrentPage();
+    updatePagination();
+    updateCommentsCount(allLoadedComments.length);
+    
+    // Smooth scroll do góry komentarzy
+    document.getElementById('comments-list').scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+    });
+}
+
+// Aktualizuj paginację
+function updatePagination() {
+    const paginationContainer = document.getElementById('pagination-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const numbersContainer = document.getElementById('pagination-numbers');
+    
+    // Ukryj paginację jeśli tylko jedna strona lub brak komentarzy
+    if (totalPages <= 1) {
+        paginationContainer.style.display = 'none';
+        return;
+    } else {
+        paginationContainer.style.display = 'flex';
+    }
+    
+    // Aktualizuj przyciski poprzednia/następna
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+    
+    // Generuj numery stron
+    numbersContainer.innerHTML = '';
+    
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, currentPage + 2);
+    
+    // Pierwsza strona + ...
+    if (startPage > 1) {
+        addPageNumber(1);
+        if (startPage > 2) {
+            addEllipsis();
+        }
+    }
+    
+    // Numery stron wokół aktualnej
+    for (let i = startPage; i <= endPage; i++) {
+        addPageNumber(i);
+    }
+    
+    // ... + ostatnia strona
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            addEllipsis();
+        }
+        addPageNumber(totalPages);
+    }
+}
+
+function addPageNumber(pageNum) {
+    const numbersContainer = document.getElementById('pagination-numbers');
+    const pageBtn = document.createElement('button');
+    pageBtn.className = `page-number ${pageNum === currentPage ? 'active' : ''}`;
+    pageBtn.textContent = pageNum;
+    pageBtn.onclick = () => goToPage(pageNum);
+    numbersContainer.appendChild(pageBtn);
+}
+
+function addEllipsis() {
+    const numbersContainer = document.getElementById('pagination-numbers');
+    const ellipsis = document.createElement('span');
+    ellipsis.className = 'page-ellipsis';
+    ellipsis.textContent = '...';
+    numbersContainer.appendChild(ellipsis);
+}
+
+
+
+
+  
 // Funkcja do polubienia komentarza
 async function likeComment(commentId) {
     try {
@@ -2173,7 +2392,14 @@ function updateCommentsCount(count) {
     if (counterElement) {
         const categoryText = currentCategoryFilter === 'all' ? '' : 
             ` w kategorii "${categories.find(c => c.name === currentCategoryFilter)?.displayName}"`;
-        counterElement.textContent = `${count} komentarz${count === 1 ? '' : count < 5 ? 'e' : 'y'}${categoryText}`;
+        
+        if (totalPages > 1) {
+            const start = (currentPage - 1) * COMMENTS_PER_PAGE + 1;
+            const end = Math.min(currentPage * COMMENTS_PER_PAGE, count);
+            counterElement.textContent = `Komentarze ${start}-${end} z ${count}${categoryText} • Strona ${currentPage}/${totalPages}`;
+        } else {
+            counterElement.textContent = `${count} komentarz${count === 1 ? '' : count < 5 ? 'e' : 'y'}${categoryText}`;
+        }
     }
 }
 
@@ -2699,40 +2925,55 @@ window.addEventListener('load', function() {
 
 
         
-<!-- KOMENTARZE -->
+<!-- KOMENTARZE Z PAGINACJĄ -->
 <div class="comments-section">
-    
-    <!-- Formularz dodawania komentarza - ZACHOWANY Z TWOIMI FUNKCJAMI -->
-    <div class="add-comment-form">
-        <h3>Dodaj komentarz</h3>
-        
-        <select id="comment-category">
-            <!-- Opcje się wygenerują automatycznie przez Twoją funkcję -->
-        </select>
-        
-        <input id="author-name" type="text" placeholder="Twoje imię (2-50 znaków)" maxlength="50">
-        
-        <textarea id="comment-text" placeholder="Twój komentarz (10-1000 znaków)" maxlength="1000" rows="4"></textarea>
-        
-        <button class="submit-comment-btn" onclick="submitComment()">Dodaj komentarz</button>
-    </div>
-    
-    <!-- Filtry kategorii - ZACHOWANE Z TWOIMI FUNKCJAMI -->
-    <div class="comments-filters">
-        <h4>Filtruj komentarze:</h4>
-        <div id="category-filters">
-            <!-- Przyciski się wygenerują automatycznie przez Twoją funkcję -->
-        </div>
-    </div>
-    
-    <!-- Licznik i masonry layout komentarzy -->
-    <div class="comments-display">
-        <div id="comments-counter"></div>
-        <div class="comments-masonry-container" id="comments-list">
-            <!-- Komentarze w masonry layout będą wczytywane tutaj -->
-        </div>
-    </div>
-    
+   
+   <!-- Formularz dodawania komentarza - ZACHOWANY Z TWOIMI FUNKCJAMI -->
+   <div class="add-comment-form">
+       <h3>Dodaj komentarz</h3>
+       
+       <select id="comment-category">
+           <!-- Opcje się wygenerują automatycznie przez Twoją funkcję -->
+       </select>
+       
+       <input id="author-name" type="text" placeholder="Twoje imię (2-50 znaków)" maxlength="50">
+       
+       <textarea id="comment-text" placeholder="Twój komentarz (10-1000 znaków)" maxlength="1000" rows="4"></textarea>
+       
+       <button class="submit-comment-btn" onclick="submitComment()">Dodaj komentarz</button>
+   </div>
+   
+   <!-- Filtry kategorii - ZACHOWANE Z TWOIMI FUNKCJAMI -->
+   <div class="comments-filters">
+       <h4>Filtruj komentarze:</h4>
+       <div id="category-filters">
+           <!-- Przyciski się wygenerują automatycznie przez Twoją funkcję -->
+       </div>
+   </div>
+   
+   <!-- Licznik i masonry layout komentarzy -->
+   <div class="comments-display">
+       <div id="comments-counter"></div>
+       <div class="comments-masonry-container" id="comments-list">
+           <!-- Komentarze w masonry layout będą wczytywane tutaj -->
+       </div>
+       
+       <!-- PAGINACJA -->
+       <div class="pagination-container" id="pagination-container">
+           <button class="pagination-btn prev-btn" id="prev-btn" onclick="goToPage(currentPage - 1)">
+               ◀ Poprzednia
+           </button>
+           
+           <div class="pagination-numbers" id="pagination-numbers">
+               <!-- Numery stron będą wygenerowane przez JavaScript -->
+           </div>
+           
+           <button class="pagination-btn next-btn" id="next-btn" onclick="goToPage(currentPage + 1)">
+               Następna ▶
+           </button>
+       </div>
+   </div>
+   
 </div>
 
 
