@@ -1528,6 +1528,95 @@
 
 
 
+<style>
+
+/* SEPARATOR SEKCJI KOMENTARZY - OPCJA 3 */
+.comments-separator {
+    text-align: center;
+    margin: 60px 0 40px 0;
+    position: relative;
+}
+
+.comments-separator::before,
+.comments-separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+}
+
+.comments-separator::before { 
+    left: 0; 
+}
+
+.comments-separator::after { 
+    right: 0; 
+}
+
+.separator-text {
+    background: white;
+    padding: 10px 30px;
+    color: #D4AF37;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media (max-width: 768px) {
+    .comments-separator::before,
+    .comments-separator::after {
+        width: 25%;
+    }
+    
+    .separator-text {
+        font-size: 16px;
+        letter-spacing: 1px;
+        padding: 8px 20px;
+    }
+}
+
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
   
 
 
@@ -2910,16 +2999,27 @@ window.addEventListener('load', function() {
 
 
 
+
+<!-- SEPARATOR SEKCJI KOMENTARZY - OPCJA 3 -->
+<div class="comments-separator">
+    <div class="separator-text">💬 Dyskusja Czytelników</div>
+</div>
+
+
+        
+
+
+
         <!-- SEKCJA Z FORMULARZEM KOMENTARZA -->
 <div class="ryzmod-o51-container" style="gap: 20px;">
   <!-- Lewy element - bez zmian -->
-  <div class="ryzmod-o51-box" style="width: 35%; background-color: #D4AF37; padding-left: 40px; padding-right: 35px; padding-top: 35px; padding-bottom: 35px; position: relative; border-left: 0; border-radius: 15px;">
+  <div class="ryzmod-o51-box" style="width: 35%; background-color: transparent; border-right: 2px solid #D4AF37; padding-left: 40px; padding-right: 35px; padding-top: 35px; padding-bottom: 35px; position: relative; border-left: 0; border-radius: 15px;">
     <p style="color: white; font-family: 'Poppins', Arial, sans-serif; font-weight: bold; margin: 0; line-height: 1.5; font-size: 24px; text-align: left; text-indent: 0;">
       <br>
       <br>
-      Rozdział 1
+      Podziel się
       <br>
-      Kwantyle rozkładu
+      swoją opinią
     </p>
   </div>
   
