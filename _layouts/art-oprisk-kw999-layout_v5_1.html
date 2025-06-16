@@ -1123,6 +1123,310 @@
 
 
 
+  <style>
+
+/* MASONRY KOMENTARZE - NOWE STYLE */
+.comments-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.add-comment-form {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.add-comment-form h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#comment-category, #author-name, #comment-text {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+#comment-category:focus, #author-name:focus, #comment-text:focus {
+    outline: none;
+    border-color: #D4AF37;
+}
+
+#comment-text {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.submit-comment-btn {
+    background: #D4AF37;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.submit-comment-btn:hover {
+    background: #B8952A;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.comments-filters {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.comments-filters h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 16px;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #e5e7eb;
+    padding: 8px 16px;
+    margin: 5px 5px 5px 0;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: #4a5568;
+}
+
+.filter-btn:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: #D4AF37;
+    color: #D4AF37;
+}
+
+.filter-btn.active {
+    background: #D4AF37;
+    color: white;
+    border-color: #D4AF37;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+#comments-counter {
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 16px;
+}
+
+/* MASONRY LAYOUT DLA KOMENTARZY */
+.comments-masonry-container {
+    columns: 3;
+    column-gap: 25px;
+    column-fill: balance;
+}
+
+.masonry-comment-card {
+    break-inside: avoid;
+    margin-bottom: 25px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-left: 4px solid #e5e7eb;
+    position: relative;
+    overflow: hidden;
+}
+
+.masonry-comment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* KOLORY KATEGORII - DOPASOWANE DO TWOICH */
+.masonry-comment-card.kwantyl { border-left-color: #F59E0B; }
+.masonry-comment-card.statystyka { border-left-color: #10B981; }
+.masonry-comment-card.ryzyko-operacyjne { border-left-color: #8B7355; }
+.masonry-comment-card.metoda-evt { border-left-color: #6B7280; }
+.masonry-comment-card.modelowanie { border-left-color: #3B82F6; }
+.masonry-comment-card.ogolne { border-left-color: #E5E7EB; }
+
+.masonry-comment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.masonry-comment-author-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.masonry-comment-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.masonry-comment-author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.masonry-comment-author {
+    font-weight: 600;
+    color: #1a202c;
+    font-size: 14px;
+}
+
+.masonry-comment-time {
+    color: #a0aec0;
+    font-size: 11px;
+}
+
+.masonry-comment-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.masonry-comment-like-btn {
+    background: none;
+    border: none;
+    color: #D4AF37;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.masonry-comment-like-btn:hover {
+    color: #737373;
+    background: #f7fafc;
+    transform: translateY(-1px);
+}
+
+.masonry-comment-text {
+    color: #4a5568;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.masonry-comment-text a {
+    color: #D4AF37;
+    text-decoration: underline;
+}
+
+.masonry-comment-category-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 8px;
+    color: white;
+}
+
+.masonry-comment-category-tag.kwantyl { background-color: #F59E0B; }
+.masonry-comment-category-tag.statystyka { background-color: #10B981; }
+.masonry-comment-category-tag.ryzyko-operacyjne { background-color: #8B7355; }
+.masonry-comment-category-tag.metoda-evt { background-color: #6B7280; }
+.masonry-comment-category-tag.modelowanie { background-color: #3B82F6; }
+.masonry-comment-category-tag.ogolne { 
+    background-color: #9CA3AF; 
+    color: #374151; 
+}
+
+.no-comments {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 60px 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .comments-masonry-container {
+        columns: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .comments-masonry-container {
+        columns: 1;
+        column-gap: 20px;
+    }
+    
+    .comments-section {
+        padding: 15px;
+    }
+    
+    .add-comment-form {
+        padding: 20px;
+    }
+}
+
+/* ANIMACJE */
+.masonry-comment-card {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    </style>
+
+
+
+
+
   
 
 
@@ -1555,6 +1859,39 @@ const categories = [
 // Zmienna do przechowywania aktualnego filtru
 let currentCategoryFilter = 'all';
 
+
+
+
+
+// Funkcja do generowania losowego koloru dla awatara - NOWA
+function generateAvatarColor(name) {
+    const colors = [
+        '#F59E0B', '#10B981', '#8B7355', '#6B7280', '#3B82F6', '#E5E7EB',
+        '#D4AF37', '#B8952A', '#9C9170', '#8B7355', '#A0956B', '#C2B280'
+    ];
+    
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+        hash += name.charCodeAt(i);
+    }
+    
+    return colors[hash % colors.length];
+}
+
+// Funkcja do generowania inicjałów - NOWA
+function generateInitials(name) {
+    const words = name.trim().split(' ');
+    if (words.length >= 2) {
+        return (words[0][0] + words[1][0]).toUpperCase();
+    } else {
+        return name.substring(0, 2).toUpperCase();
+    }
+}
+
+
+
+
+  
 // Funkcja do automatycznego linkowania URL-i
 function linkifyText(text) {
     const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|[^\s]+\.[a-z]{2,}(?:\/[^\s]*)?)/gi;
@@ -1731,7 +2068,7 @@ displayComments(comments || []);
     }
 }
 
-// Funkcja do wyświetlania komentarzy
+// NOWA FUNKCJA displayComments() Z MASONRY LAYOUT
 function displayComments(comments) {
     const commentsContainer = document.getElementById('comments-list');
     if (!commentsContainer) return;
@@ -1741,28 +2078,39 @@ function displayComments(comments) {
         return;
     }
     
-    commentsContainer.innerHTML = comments.map(comment => {
+    commentsContainer.innerHTML = comments.map((comment, index) => {
         const category = categories.find(c => c.name === comment.category);
         const categoryDisplay = category ? 
-            `<span class="comment-category" style="background-color: ${category.color}; color: ${category.color === '#E5E7EB' ? '#374151' : '#FFFFFF'};">${category.displayName}</span>` : '';
+            `<span class="masonry-comment-category-tag ${category.name}">${category.displayName}</span>` : '';
         
         const timeAgo = getTimeAgo(comment.created_at);
         const linkedText = linkifyText(comment.comment_text);
+        const avatarColor = generateAvatarColor(comment.author_name);
+        const initials = generateInitials(comment.author_name);
         
         return `
-            <div class="comment-item" data-comment-id="${comment.id}">
-                <div class="comment-header">
-                    ${categoryDisplay}
-                    <span class="comment-author">${escapeHtml(comment.author_name)}</span>
-                    <span class="comment-time">${timeAgo}</span>
-<button class="like-btn" onclick="likeComment(${comment.id})">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
-                        </svg>
-                        <span class="like-count">${comment.likes_count || 0}</span>
-                    </button>
+            <div class="masonry-comment-card ${comment.category || 'ogolne'}" 
+                 style="animation-delay: ${index * 0.05}s;" 
+                 data-comment-id="${comment.id}">
+                <div class="masonry-comment-header">
+                    <div class="masonry-comment-author-section">
+                        <div class="masonry-comment-avatar" style="background: ${avatarColor};">${initials}</div>
+                        <div class="masonry-comment-author-info">
+                            <div class="masonry-comment-author">${escapeHtml(comment.author_name)}</div>
+                            <div class="masonry-comment-time">${timeAgo}</div>
+                        </div>
+                    </div>
+                    <div class="masonry-comment-meta">
+                        <button class="masonry-comment-like-btn" onclick="likeComment(${comment.id})">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                            </svg>
+                            <span class="like-count">${comment.likes_count || 0}</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="comment-text">${linkedText}</div>
+                <div class="masonry-comment-text">${linkedText}</div>
+                ${categoryDisplay}
             </div>
         `;
     }).join('');
@@ -2352,42 +2700,40 @@ window.addEventListener('load', function() {
 
         
 <!-- KOMENTARZE -->
-        
 <div class="comments-section">
     
-    <!-- Formularz dodawania komentarza -->
+    <!-- Formularz dodawania komentarza - ZACHOWANY Z TWOIMI FUNKCJAMI -->
     <div class="add-comment-form">
         <h3>Dodaj komentarz</h3>
         
         <select id="comment-category">
-            <!-- Opcje się wygenerują automatycznie -->
+            <!-- Opcje się wygenerują automatycznie przez Twoją funkcję -->
         </select>
         
-        <input id="author-name" type="text" placeholder="Twoje imię" maxlength="50">
+        <input id="author-name" type="text" placeholder="Twoje imię (2-50 znaków)" maxlength="50">
         
         <textarea id="comment-text" placeholder="Twój komentarz (10-1000 znaków)" maxlength="1000" rows="4"></textarea>
         
-        <button onclick="submitComment()">Dodaj komentarz</button>
+        <button class="submit-comment-btn" onclick="submitComment()">Dodaj komentarz</button>
     </div>
     
-    <!-- Filtry kategorii -->
+    <!-- Filtry kategorii - ZACHOWANE Z TWOIMI FUNKCJAMI -->
     <div class="comments-filters">
         <h4>Filtruj komentarze:</h4>
         <div id="category-filters">
-            <!-- Przyciski się wygenerują automatycznie -->
+            <!-- Przyciski się wygenerują automatycznie przez Twoją funkcję -->
         </div>
     </div>
     
-    <!-- Licznik i lista komentarzy -->
+    <!-- Licznik i masonry layout komentarzy -->
     <div class="comments-display">
         <div id="comments-counter"></div>
-        <div id="comments-list">
-            <!-- Komentarze się wczytają automatycznie -->
+        <div class="comments-masonry-container" id="comments-list">
+            <!-- Komentarze w masonry layout będą wczytywane tutaj -->
         </div>
     </div>
     
 </div>
-
 
 
 
