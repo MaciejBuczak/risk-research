@@ -2182,15 +2182,6 @@ async function loadComments() {
         console.error('Błąd w loadComments:', error);
     }
 }
-        
-displayComments(comments || []);
-        updateCommentsCount(comments?.length || 0);
-        updateTopCommentsCount(); // ← DODAJ TĘ LINIĘ
-        
-    } catch (error) {
-        console.error('Błąd w loadComments:', error);
-    }
-}
 
 // NOWA FUNKCJA displayComments() Z MASONRY LAYOUT
 function displayComments(comments) {
