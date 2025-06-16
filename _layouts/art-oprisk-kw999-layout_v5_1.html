@@ -1164,6 +1164,11 @@
     border-color: #D4AF37;
 }
 
+
+    #comment-category {
+    color: #737373;
+}
+
 #comment-text {
     resize: vertical;
     min-height: 100px;
@@ -3024,12 +3029,12 @@ window.addEventListener('load', function() {
   <div class="ryzmod-t52-text" style="width: 70%; padding: 0;">
     <div class="add-comment-form" style="background: transparent; padding: 0; border-radius: 0; margin-bottom: 0; box-shadow: none;">
       
-      <select id="comment-category" style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #D4AF37; border-radius: 8px; font-size: 14px; background: white;">
+      <select id="comment-category" style="width: 100%; padding: 12px; margin: 10px 0; border: 0.5px solid #D4AF37; border-radius: 8px; font-size: 14px; background: white;">
         <!-- Opcje się wygenerują automatycznie -->
       </select>
       
       <input id="author-name" type="text" placeholder="Twoje imię (2-50 znaków)" maxlength="50" 
-             style="width: 100%; padding: 12px; margin: 10px 0; border: 0.8px solid #D4AF37; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
+             style="width: 100%; padding: 12px; margin: 10px 0; border: 0.5px solid #D4AF37; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
       
       <textarea id="comment-text" placeholder="Twój komentarz (10-1000 znaków)" maxlength="1000" rows="4" 
                 style="width: 100%; padding: 12px; margin: 10px 0; border: 0.5px solid #D4AF37; border-radius: 8px; font-size: 14px; resize: vertical; min-height: 100px; font-family: inherit; box-sizing: border-box;"></textarea>
@@ -3039,7 +3044,7 @@ window.addEventListener('load', function() {
         Dodaj komentarz
       </button>
       
-      <p style="font-size: 12px; color: #666; margin-top: 15px; line-height: 1.4;">
+      <p style="font-size: 12px; color: #737373; margin-top: 15px; line-height: 1.4; text-align: left">
         <strong>Wskazówka:</strong> Wybierz kategorię, która najlepiej opisuje Twój komentarz. 
         To pomoże innym czytelnikom znaleźć dyskusje na interesujące ich tematy.
       </p>
