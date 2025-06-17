@@ -2508,7 +2508,210 @@ function submitComment() {
     addComment();
 }
 
-// Dodaj inicjalizację komentarzy do istniejącego load event
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+// ===============================
+// FUNKCJONALNOŚĆ NEWSLETTERA
+// ===============================
+
+// Funkcja do zapisywania subskrypcji newslettera
+async function subscribeToNewsletter() {
+    const emailInput = document.getElementById('newsletter-email');
+    const submitButton = document.getElementById('newsletter-submit');
+    const email = emailInput?.value?.trim();
+    
+    // Walidacja emaila
+    if (!email) {
+        showNewsletterMessage('Wprowadź adres email', 'error');
+        return;
+    }
+    
+    // Prosta walidacja formatu email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showNewsletterMessage('Wprowadź prawidłowy adres email', 'error');
+        return;
+    }
+    
+    // Sprawdź czy email nie jest już w bazie (zapobiega duplikatom)
+    try {
+        const { data: existingSubscriber, error: checkError } = await supabase
+            .from('newsletter_subscribers')
+            .select('email')
+            .eq('email', email)
+            .single();
+            
+        if (existingSubscriber) {
+            showNewsletterMessage('Ten email jest już zapisany do newslettera', 'info');
+            return;
+        }
+    } catch (error) {
+        // Ignoruj błąd jeśli email nie istnieje (to jest pożądane)
+    }
+    
+    // Wyłącz przycisk podczas zapisywania
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Zapisywanie...';
+    }
+    
+    try {
+        // Pobierz dodatkowe dane dla analityki (używa Twoich istniejących funkcji)
+        const deviceInfo = getDeviceInfo();
+        const trafficInfo = getTrafficSource();
+        const locationInfo = await getLocationInfo();
+        const articleId = getArticleId();
+        
+        // Zapisz subskrypcję do bazy
+        const { error } = await supabase
+            .from('newsletter_subscribers')
+            .insert([
+                {
+                    email: email,
+                    source_page: articleId,
+                    is_active: true,
+                    // Dodatkowe dane analityczne (opcjonalne)
+                    country: locationInfo.country,
+                    city: locationInfo.city,
+                    device_type: deviceInfo.deviceType,
+                    browser_name: deviceInfo.browserName,
+                    traffic_source: trafficInfo.trafficSource,
+                    referrer_url: trafficInfo.referrerUrl
+                }
+            ]);
+            
+        if (error) {
+            console.error('Błąd przy zapisywaniu do newslettera:', error);
+            showNewsletterMessage('Wystąpił błąd. Spróbuj ponownie.', 'error');
+        } else {
+            // Sukces
+            showNewsletterMessage('Dziękujemy! Zostałeś zapisany do newslettera.', 'success');
+            emailInput.value = ''; // Wyczyść pole
+            
+            // Opcjonalnie zapisz w localStorage, żeby nie pokazywać formularza ponownie
+            localStorage.setItem('newsletter_subscribed', 'true');
+            
+            console.log('Newsletter subscription saved successfully');
+        }
+        
+    } catch (error) {
+        console.error('Błąd w subscribeToNewsletter:', error);
+        showNewsletterMessage('Wystąpił błąd. Spróbuj ponownie.', 'error');
+    } finally {
+        // Przywróć przycisk
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Zapisz się';
+        }
+    }
+}
+
+// Funkcja do pokazywania komunikatów
+function showNewsletterMessage(message, type) {
+    // Usuń poprzedni komunikat jeśli istnieje
+    const existingMessage = document.getElementById('newsletter-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Stwórz nowy komunikat
+    const messageDiv = document.createElement('div');
+    messageDiv.id = 'newsletter-message';
+    messageDiv.textContent = message;
+    
+    // Style w zależności od typu
+    let bgColor, textColor;
+    switch(type) {
+        case 'success':
+            bgColor = '#d4edda';
+            textColor = '#155724';
+            break;
+        case 'error':
+            bgColor = '#f8d7da';
+            textColor = '#721c24';
+            break;
+        case 'info':
+            bgColor = '#d1ecf1';
+            textColor = '#0c5460';
+            break;
+        default:
+            bgColor = '#f8f9fa';
+            textColor = '#333';
+    }
+    
+    messageDiv.style.cssText = `
+        background-color: ${bgColor};
+        color: ${textColor};
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+        border: 1px solid ${textColor}33;
+    `;
+    
+    // Znajdź kontener newslettera i dodaj komunikat
+    const newsletterContainer = document.querySelector('.ryzmod-orange-box');
+    if (newsletterContainer) {
+        newsletterContainer.appendChild(messageDiv);
+        
+        // Usuń komunikat po 5 sekundach
+        setTimeout(() => {
+            if (messageDiv && messageDiv.parentNode) {
+                messageDiv.remove();
+            }
+        }, 5000);
+    }
+}
+
+// Funkcja do obsługi Enter w polu email
+function handleNewsletterKeyPress(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        subscribeToNewsletter();
+    }
+}
+
+// Opcjonalna funkcja do sprawdzenia czy użytkownik już się zapisał
+function checkNewsletterStatus() {
+    const isSubscribed = localStorage.getItem('newsletter_subscribed');
+    if (isSubscribed === 'true') {
+        const newsletterContainer = document.querySelector('.ryzmod-orange-box');
+        if (newsletterContainer) {
+            // Można pokazać inną wiadomość dla już zapisanych użytkowników
+            // lub ukryć formularz - na razie zostawiamy bez zmian
+        }
+    }
+}
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+  
+// load event
 const originalLoadHandler = window.onload;
 window.addEventListener('load', function() {
     // Wywołaj oryginalny handler jeśli istnieje
@@ -2518,6 +2721,10 @@ window.addEventListener('load', function() {
     
     // Inicjalizuj komentarze
     initializeComments();
+
+    // Sprawdź status newslettera  ← DODAJ TĘ LINIĘ
+    checkNewsletterStatus();
+  
 });
 
 
@@ -2986,10 +3193,18 @@ window.addEventListener('load', function() {
     <p style="color: #737373; font-size: 14px; font-family: Arial, serif; line-height: 1.4; margin-bottom: 20px; text-indent: 0;">Otrzymuj powiadomienia o nowych artykułach</p>
     
     <div style="margin-bottom: 15px;">
-      <input type="email" placeholder="Twój email" style="width: 100%; padding: 10px; border: 1px solid #D4AF37; border-radius: 8px; font-size: 14px; font-family: Arial, serif; box-sizing: border-box;">
+      <input 
+        type="email" 
+        id="newsletter-email"
+        placeholder="Twój email" 
+        onkeypress="handleNewsletterKeyPress(event)"
+        style="width: 100%; padding: 10px; border: 1px solid #D4AF37; border-radius: 8px; font-size: 14px; font-family: Arial, serif; box-sizing: border-box;">
     </div>
     
-    <button style="width: 100%; background-color: #D4AF37; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-family: Arial, serif; font-weight: bold; cursor: pointer; transition: background-color 0.3s;">
+    <button 
+      id="newsletter-submit"
+      onclick="subscribeToNewsletter()"
+      style="width: 100%; background-color: #D4AF37; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-family: Arial, serif; font-weight: bold; cursor: pointer; transition: background-color 0.3s;">
       Zapisz się
     </button>
     
