@@ -2230,10 +2230,10 @@ function displayComments(comments) {
     const commentsContainer = document.getElementById('comments-list');
     if (!commentsContainer) return;
     
-    if (comments.length === 0) {
-        commentsContainer.innerHTML = '<p class="no-comments">Brak komentarzy w tej kategorii. Bądź pierwszy!</p>';
-        return;
-    }
+if (comments.length === 0) {
+    commentsContainer.innerHTML = ''; // Pusty kontener
+    return;
+}
     
     commentsContainer.innerHTML = comments.map((comment, index) => {
 const category = categories.find(c => c.name === comment.category);
