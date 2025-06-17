@@ -2519,10 +2519,6 @@ function submitComment() {
 
 
   
-
-
-
-
 // ===============================
 // FUNKCJONALNOŚĆ NEWSLETTERA
 // ===============================
@@ -2546,25 +2542,67 @@ async function subscribeToNewsletter() {
         return;
     }
     
-// Sprawdź czy email nie jest już w bazie lub nie został wypisany
-try {
-    const { data: existingSubscriber, error: checkError } = await supabase
-        .from('newsletter_subscribers')
-        .select('email, unsubscribed_at')
-        .eq('email', email)
-        .single();
-        
-    if (existingSubscriber && !existingSubscriber.unsubscribed_at) {
-        showNewsletterMessage('Ten email jest już zapisany do newslettera', 'info');
-        return;
-    }
-} catch (error) {
-    // Ignoruj błąd jeśli email nie istnieje (to jest pożądane)
-}
-    
-    // Wyłącz przycisk podczas zapisywania
+    // Wyłącz przycisk podczas sprawdzania/zapisywania
     if (submitButton) {
         submitButton.disabled = true;
+        submitButton.textContent = 'Sprawdzanie...';
+    }
+    
+    // Sprawdź czy email nie jest już w bazie lub nie został wypisany
+    try {
+        const { data: existingSubscriber, error: checkError } = await supabase
+            .from('newsletter_subscribers')
+            .select('email, unsubscribed_at')
+            .eq('email', email)
+            .single();
+            
+        if (existingSubscriber) {
+            if (!existingSubscriber.unsubscribed_at) {
+                // Email aktywny - nie może się zapisać ponownie
+                showNewsletterMessage('Ten email jest już zapisany do newslettera', 'info');
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Zapisz się';
+                }
+                return;
+            } else {
+                // Email był wypisany - reaktywuj go zamiast dodawać nowy
+                if (submitButton) {
+                    submitButton.textContent = 'Reaktywuję...';
+                }
+                
+                const { error: reactivateError } = await supabase
+                    .from('newsletter_subscribers')
+                    .update({ 
+                        unsubscribed_at: null,
+                        is_active: true
+                    })
+                    .eq('email', email);
+                    
+                if (reactivateError) {
+                    console.error('Błąd przy reaktywacji:', reactivateError);
+                    showNewsletterMessage('Wystąpił błąd. Spróbuj ponownie.', 'error');
+                } else {
+                    showNewsletterMessage('Zostałeś ponownie zapisany do newslettera!', 'success');
+                    emailInput.value = '';
+                    localStorage.setItem('newsletter_subscribed', 'true');
+                    console.log('Newsletter reactivated successfully');
+                }
+                
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Zapisz się';
+                }
+                return; // WAŻNE: zakończ tutaj, nie dodawaj nowego rekordu
+            }
+        }
+    } catch (error) {
+        // Ignoruj błąd jeśli email nie istnieje (to jest pożądane)
+        console.log('Email nie istnieje w bazie - można dodać nowy rekord');
+    }
+    
+    // Jeśli doszliśmy tutaj, email nie istnieje lub wystąpił błąd - dodaj nowy rekord
+    if (submitButton) {
         submitButton.textContent = 'Zapisywanie...';
     }
     
@@ -2696,6 +2734,8 @@ function checkNewsletterStatus() {
         }
     }
 }
+
+
 
 
   
