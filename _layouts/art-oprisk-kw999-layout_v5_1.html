@@ -402,7 +402,29 @@
 
 
     
-
+:root {
+  /* Kolory awatarów - 20 kolorów w ciepłej palecie */
+  --awat-color1: #a85903;    /* Ciemny brąz */
+  --awat-color2: #d17a1b;    /* Pomarańczowy */
+  --awat-color3: #e6cd94;    /* Jasny beż */
+  --awat-color4: #b4a988;    /* Oliwkowy beż */
+  --awat-color5: #c79452;    /* Złoto-brązowy */
+  --awat-color6: #be9170;    /* Ciepły beż */
+  --awat-color7: #a6824c;    /* Ciemny złoty */
+  --awat-color8: #f6ba92;    /* Brzoskwiniowy */
+  --awat-color9: #8b4513;    /* Bardzo ciemny brąz */
+  --awat-color10: #D4AF37;   /* Złoty */
+  --awat-color11: #d0b38c;   /* Jasny beż */
+  --awat-color12: #b8952a;   /* Miodowy */
+  --awat-color13: #cd853f;   /* Peru */
+  --awat-color14: #daa520;   /* Ciemno-złoty */
+  --awat-color15: #bc9a6a;   /* Piaskowy brąz */
+  --awat-color16: #cc8c3c;   /* Karmelowy */
+  --awat-color17: #a0855b;   /* Orzechowy */
+  --awat-color18: #e4c087;   /* Słomkowy */
+  --awat-color19: #996633;   /* Czekoladowy */
+  --awat-color20: #deb887;   /* Burlywood */
+}
 
 
 
@@ -1973,8 +1995,13 @@ let allLoadedComments = []; // Przechowuje wszystkie komentarze
 // Funkcja do generowania losowego koloru dla awatara - NOWA
 function generateAvatarColor(name) {
     const colors = [
-        '#F59E0B', '#10B981', '#8B7355', '#6B7280', '#3B82F6', '#E5E7EB',
-        '#D4AF37', '#B8952A', '#9C9170', '#8B7355', '#A0956B', '#C2B280'
+        'var(--awat-color1)', 'var(--awat-color2)', 'var(--awat-color3)', 
+        'var(--awat-color4)', 'var(--awat-color5)', 'var(--awat-color6)',
+        'var(--awat-color7)', 'var(--awat-color8)', 'var(--awat-color9)',
+        'var(--awat-color10)', 'var(--awat-color11)', 'var(--awat-color12)',
+        'var(--awat-color13)', 'var(--awat-color14)', 'var(--awat-color15)',
+        'var(--awat-color16)', 'var(--awat-color17)', 'var(--awat-color18)',
+        'var(--awat-color19)', 'var(--awat-color20)'
     ];
     
     let hash = 0;
