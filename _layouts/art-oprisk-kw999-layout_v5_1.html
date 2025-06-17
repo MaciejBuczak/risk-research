@@ -1142,8 +1142,8 @@
 }
 
 .filter-btn {
-    background: rgba(255, 255, 255, 0.9);
-    border: 2px solid #e5e7eb;
+    background: transparent;
+    border: 2px solid var(--category-color);
     padding: 8px 16px;
     margin: 5px 5px 5px 0;
     border-radius: 20px;
@@ -1151,19 +1151,18 @@
     font-size: 13px;
     font-weight: 500;
     transition: all 0.3s ease;
-    color: #4a5568;
+    color: var(--category-color);
+    --category-color: var(--cat-color1);
 }
 
 .filter-btn:hover {
-    background: rgba(212, 175, 55, 0.1);
-    border-color: #D4AF37;
-    color: #D4AF37;
+    background: var(--category-color);
+    color: white;
 }
 
 .filter-btn.active {
-    background: #D4AF37;
+    background: var(--category-color);
     color: white;
-    border-color: #D4AF37;
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
@@ -1989,7 +1988,7 @@ const CATEGORIES_CONFIG = {
     color: 'var(--cat-color2)' 
   },
   modelowanie: { 
-    displayName: 'model i estym', 
+    displayName: 'modelowanie i estymacja', 
     color: 'var(--cat-color5)' 
   },
 
@@ -2099,15 +2098,19 @@ function createCategoryFilters() {
     allButton.onclick = () => filterComments('all');
     filtersContainer.appendChild(allButton);
     
-    // Przyciski dla każdej kategorii
-    categories.forEach(category => {
-        const button = document.createElement('button');
-        button.textContent = category.displayName;
-        button.className = 'filter-btn';
-        button.style.borderLeftColor = category.color;
-        button.onclick = () => filterComments(category.name);
-        filtersContainer.appendChild(button);
-    });
+// Przyciski dla każdej kategorii
+categories.forEach((category, index) => {
+    const button = document.createElement('button');
+    button.textContent = category.displayName;
+    button.className = 'filter-btn';
+    
+    // DYNAMICZNE USTAWIENIE KOLORU KATEGORII
+    const colorVar = `--cat-color${index + 1}`;
+    button.style.setProperty('--category-color', `var(${colorVar})`);
+    
+    button.onclick = () => filterComments(category.name);
+    filtersContainer.appendChild(button);
+});
 }
 
 // Funkcja do filtrowania komentarzy
