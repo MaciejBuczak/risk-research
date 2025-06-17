@@ -2557,9 +2557,11 @@ async function subscribeToNewsletter() {
             .single();
             
         if (existingSubscriber) {
-            if (!existingSubscriber.unsubscribed_at) {
-                // Email aktywny - nie może się zapisać ponownie
-                showNewsletterMessage('Ten email jest już zapisany do newslettera', 'info');
+if (!existingSubscriber.unsubscribed_at) {
+    // Email aktywny - nie może się zapisać ponownie
+    console.log('DEBUG: Pokazuję komunikat o duplikacie');
+    alert('TYMCZASOWE: Ten email jest już zapisany!'); // TYMCZASOWE DEBUG
+    showNewsletterMessage('Ten email jest już zapisany do newslettera', 'info');
                 if (submitButton) {
                     submitButton.disabled = false;
                     submitButton.textContent = 'Zapisz się';
