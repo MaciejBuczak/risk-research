@@ -390,7 +390,8 @@
 /* KOLORY ROOT DLA KATEGORII KOMENTARZY */
 
 :root {
-  
+
+  --cat-color0: #D4AF37;
   --cat-color1: #e4c087;
   --cat-color2: #b4a988;
   --cat-color3: #d0b38c;
@@ -1152,7 +1153,7 @@
     font-weight: 500;
     transition: all 0.3s ease;
     color: var(--category-color);
-    --category-color: var(--cat-color1);
+    --category-color: var(--cat-color0);
 }
 
 .filter-btn:hover {
@@ -2085,6 +2086,7 @@ function createCategoryFilters() {
     const allButton = document.createElement('button');
     allButton.textContent = 'Wszystkie';
     allButton.className = 'filter-btn active';
+    allButton.style.setProperty('--category-color', 'var(--cat-color0)'); // DODANE
     allButton.onclick = () => filterComments('all');
     filtersContainer.appendChild(allButton);
     
