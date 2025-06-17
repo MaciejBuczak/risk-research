@@ -60,7 +60,121 @@
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqZ2J5eWl2eGlyZnJmaWF0aXpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MTMyNTQsImV4cCI6MjA2NTI4OTI1NH0.qui7vdNdfzB1WxDwroPdPKjSZyIg_ENzcqXAxDbbzIM';
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
     
-    // FUNKCJE UNSUBSCRIBE - DODAJ W NASTĘPNYM KROKU
+
+
+
+
+
+
+    
+
+// FUNKCJE WYPISYWANIA Z NEWSLETTERA
+async function unsubscribeFromNewsletter() {
+    const emailInput = document.getElementById('unsubscribe-email');
+    const submitButton = document.getElementById('unsubscribe-btn');
+    const email = emailInput?.value?.trim();
+    
+    // Walidacja emaila
+    if (!email) {
+        showUnsubscribeMessage('Wprowadź adres email', 'error');
+        return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showUnsubscribeMessage('Wprowadź prawidłowy adres email', 'error');
+        return;
+    }
+    
+    // Wyłącz przycisk podczas wypisywania
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Wypisywanie...';
+    }
+    
+    try {
+        // Sprawdź czy email istnieje i nie jest już wypisany
+        const { data: subscriber, error: checkError } = await supabase
+            .from('newsletter_subscribers')
+            .select('email, unsubscribed_at')
+            .eq('email', email)
+            .single();
+        
+        if (checkError || !subscriber) {
+            showUnsubscribeMessage('Ten email nie jest zapisany do newslettera', 'error');
+            return;
+        }
+        
+        if (subscriber.unsubscribed_at) {
+            showUnsubscribeMessage('Ten email był już wcześniej wypisany z newslettera', 'error');
+            return;
+        }
+        
+        // Wypisz z newslettera (ustaw datę wypisania)
+        const { error } = await supabase
+            .from('newsletter_subscribers')
+            .update({ 
+                unsubscribed_at: new Date().toISOString(),
+                is_active: false
+            })
+            .eq('email', email);
+        
+        if (error) {
+            console.error('Błąd przy wypisywaniu:', error);
+            showUnsubscribeMessage('Wystąpił błąd. Spróbuj ponownie.', 'error');
+        } else {
+            // Sukces
+            showUnsubscribeMessage(
+                'Zostałeś pomyślnie wypisany z newslettera. Nie będziesz już otrzymywać wiadomości email.', 
+                'success'
+            );
+            emailInput.value = ''; // Wyczyść pole
+            
+            console.log('Successfully unsubscribed:', email);
+        }
+        
+    } catch (error) {
+        console.error('Błąd w unsubscribeFromNewsletter:', error);
+        showUnsubscribeMessage('Wystąpił błąd. Spróbuj ponownie.', 'error');
+    } finally {
+        // Przywróć przycisk
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Wypisz się';
+        }
+    }
+}
+
+// Funkcja do pokazywania komunikatów na stronie unsubscribe
+function showUnsubscribeMessage(message, type) {
+    const messageContainer = document.getElementById('unsubscribe-message');
+    if (!messageContainer) return;
+    
+    messageContainer.innerHTML = '';
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}`;
+    messageDiv.textContent = message;
+    
+    messageContainer.appendChild(messageDiv);
+    
+    // Usuń komunikat po 10 sekundach (dłużej niż na głównej stronie)
+    setTimeout(() => {
+        if (messageDiv && messageDiv.parentNode) {
+            messageDiv.remove();
+        }
+    }, 10000);
+}
+
+// Obsługa Enter w polu email
+function handleUnsubscribeKeyPress(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        unsubscribeFromNewsletter();
+    }
+}
+
+    
   </script>
 </body>
 </html>
