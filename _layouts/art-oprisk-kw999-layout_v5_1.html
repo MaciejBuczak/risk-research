@@ -2546,21 +2546,21 @@ async function subscribeToNewsletter() {
         return;
     }
     
-    // Sprawdź czy email nie jest już w bazie (zapobiega duplikatom)
-    try {
-        const { data: existingSubscriber, error: checkError } = await supabase
-            .from('newsletter_subscribers')
-            .select('email')
-            .eq('email', email)
-            .single();
-            
-        if (existingSubscriber) {
-            showNewsletterMessage('Ten email jest już zapisany do newslettera', 'info');
-            return;
-        }
-    } catch (error) {
-        // Ignoruj błąd jeśli email nie istnieje (to jest pożądane)
+// Sprawdź czy email nie jest już w bazie lub nie został wypisany
+try {
+    const { data: existingSubscriber, error: checkError } = await supabase
+        .from('newsletter_subscribers')
+        .select('email, unsubscribed_at')
+        .eq('email', email)
+        .single();
+        
+    if (existingSubscriber && !existingSubscriber.unsubscribed_at) {
+        showNewsletterMessage('Ten email jest już zapisany do newslettera', 'info');
+        return;
     }
+} catch (error) {
+    // Ignoruj błąd jeśli email nie istnieje (to jest pożądane)
+}
     
     // Wyłącz przycisk podczas zapisywania
     if (submitButton) {
