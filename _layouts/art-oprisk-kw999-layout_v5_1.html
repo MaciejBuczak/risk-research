@@ -2704,8 +2704,10 @@ function showNewsletterMessage(message, type) {
     `;
     
     // Znajdź kontener newslettera i dodaj komunikat
-    const newsletterContainer = document.querySelector('.ryzmod-orange-box');
-    if (newsletterContainer) {
+// Znajdź kontener newslettera i dodaj komunikat
+const newsletterContainer = document.querySelector('.ryzmod-orange-box');
+console.log('🔍 Newsletter container:', newsletterContainer); // DEBUG
+if (newsletterContainer) {
         newsletterContainer.appendChild(messageDiv);
         
         // Usuń komunikat po 5 sekundach
