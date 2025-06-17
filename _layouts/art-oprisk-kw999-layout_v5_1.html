@@ -1968,16 +1968,43 @@ window.addEventListener('load', function() {
 // ================================
 
 
-  
-// Definicja kategorii (możesz edytować)
-const categories = [
-    { name: 'kwantyl', color: '#F59E0B', displayName: 'kwantyl' },
-    { name: 'ryzyko-operacyjne', color: '#8B7355', displayName: 'ryzyko operacyjne' },
-    { name: 'metoda-evt', color: '#6B7280', displayName: 'metoda EVT' },
-    { name: 'statystyka', color: '#10B981', displayName: 'statystyka' },
-    { name: 'modelowanie', color: '#3B82F6', displayName: 'modelowanie' },
-    { name: 'ogolne', color: '#E5E7EB', displayName: 'ogólne' }
-];
+// =========================================
+// KONFIGURACJA KATEGORII - ŁATWE DO EDYCJI
+// =========================================
+const CATEGORIES_CONFIG = {
+  kwantyl: { 
+    displayName: 'kwantyl', 
+    color: 'var(--cat-color1)' 
+  },
+  'ryzyko-operacyjne': { 
+    displayName: 'ryzyko operacyjne', 
+    color: 'var(--cat-color3)' 
+  },
+  'metoda-evt': { 
+    displayName: 'metoda EVT', 
+    color: 'var(--cat-color4)' 
+  },
+  statystyka: { 
+    displayName: 'statystyka', 
+    color: 'var(--cat-color2)' 
+  },
+  modelowanie: { 
+    displayName: 'modelowanie', 
+    color: 'var(--cat-color5)' 
+  },
+  ogolne: { 
+    displayName: 'ogólne', 
+    color: 'var(--cat-color6)' 
+  }
+};
+
+// Automatyczne tworzenie tablicy kategorii (nie zmieniaj tego)
+const categories = Object.keys(CATEGORIES_CONFIG).map(name => ({
+  name: name,
+  color: CATEGORIES_CONFIG[name].color,
+  displayName: CATEGORIES_CONFIG[name].displayName
+}));  
+
 
 // Zmienna do przechowywania aktualnego filtru
 let currentCategoryFilter = 'all';
