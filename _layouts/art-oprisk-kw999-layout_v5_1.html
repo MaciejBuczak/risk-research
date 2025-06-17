@@ -2557,11 +2557,9 @@ async function subscribeToNewsletter() {
             .single();
             
         if (existingSubscriber) {
-if (!existingSubscriber.unsubscribed_at) {
-    // Email aktywny - nie może się zapisać ponownie
-    console.log('DEBUG: Pokazuję komunikat o duplikacie');
-    alert('TYMCZASOWE: Ten email jest już zapisany!'); // TYMCZASOWE DEBUG
-    showNewsletterMessage('Ten email jest już zapisany do newslettera', 'info');
+            if (!existingSubscriber.unsubscribed_at) {
+                // Email aktywny - nie może się zapisać ponownie
+                showNewsletterMessage('Ten email jest już zapisany do newslettera', 'info');
                 if (submitButton) {
                     submitButton.disabled = false;
                     submitButton.textContent = 'Zapisz się';
@@ -2659,7 +2657,7 @@ if (!existingSubscriber.unsubscribed_at) {
     }
 }
 
-// Funkcja do pokazywania komunikatów
+// Funkcja do pokazywania komunikatów - NAPRAWIONA
 function showNewsletterMessage(message, type) {
     // Usuń poprzedni komunikat jeśli istnieje
     const existingMessage = document.getElementById('newsletter-message');
@@ -2703,11 +2701,16 @@ function showNewsletterMessage(message, type) {
         border: 1px solid ${textColor}33;
     `;
     
-    // Znajdź kontener newslettera i dodaj komunikat
-// Znajdź kontener newslettera i dodaj komunikat
-const newsletterContainer = document.querySelector('.ryzmod-orange-box');
-console.log('🔍 Newsletter container:', newsletterContainer); // DEBUG
-if (newsletterContainer) {
+    // NAPRAWIONE ZNAJDOWANIE KONTENERA NEWSLETTERA
+    const newsletterInput = document.getElementById('newsletter-email');
+    let newsletterContainer = null;
+    
+    if (newsletterInput) {
+        // Znajdź kontener newslettera - parent element formularza
+        newsletterContainer = newsletterInput.parentElement.parentElement;
+    }
+    
+    if (newsletterContainer) {
         newsletterContainer.appendChild(messageDiv);
         
         // Usuń komunikat po 5 sekundach
