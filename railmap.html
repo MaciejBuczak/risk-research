@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Kolejowa Wiedzy</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: transparent;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .railway-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .map-title {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            text-align: center;
+        }
+
+        .map-title h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #444;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+        }
+
+        .map-title h1 .highlight {
+            color: #D4AF37;
+        }
+
+        .map-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .railway-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .station {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .station-circle {
+            transition: all 0.3s ease;
+        }
+
+        .station:hover .station-circle {
+            r: 25;
+            filter: drop-shadow(0 8px 16px rgba(168, 89, 3, 0.4));
+        }
+
+        .station:hover .station-label {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .track {
+            stroke-width: 4;
+            stroke: #a85903;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .track:hover {
+            stroke-width: 6;
+            opacity: 1;
+            filter: drop-shadow(0 4px 8px rgba(168, 89, 3, 0.3));
+        }
+
+        .track-secondary {
+            stroke-width: 3;
+            stroke: #d17a1b;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.7;
+        }
+
+        .track-dashed {
+            stroke-dasharray: 12,8;
+            stroke: #D4AF37;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.6;
+            stroke-width: 2;
+        }
+
+        .station-main {
+            fill: #a85903;
+        }
+
+        .station-secondary {
+            fill: #D4AF37;
+        }
+
+        .station-intersection {
+            fill: #d17a1b;
+        }
+
+        .station-city {
+            fill: #a85903;
+            stroke: #D4AF37;
+            stroke-width: 3;
+        }
+
+        .station-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            fill: #444;
+        }
+
+        .city-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            fill: #a85903;
+            opacity: 0.9;
+        }
+
+        .junction {
+            fill: #666;
+            stroke: #a85903;
+            stroke-width: 2;
+        }
+
+        .legend {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(168, 89, 3, 0.2);
+        }
+
+        .legend h3 {
+            font-family: 'Playfair Display', serif;
+            color: #a85903;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .legend-circle {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .legend-line {
+            width: 20px;
+            height: 3px;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        .compass {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 2px solid #D4AF37;
+        }
+
+        .compass-needle {
+            width: 2px;
+            height: 30px;
+            background: linear-gradient(to top, #a85903, #D4AF37);
+            border-radius: 1px;
+            position: relative;
+        }
+
+        .compass-needle::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -3px;
+            width: 8px;
+            height: 8px;
+            background: #D4AF37;
+            border-radius: 50%;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            font-size: 12px;
+            color: #444;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border: 1px solid rgba(168, 89, 3, 0.2);
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .map-title h1 {
+                font-size: 2.5rem;
+            }
+            
+            .legend {
+                bottom: 20px;
+                right: 20px;
+                padding: 15px;
+            }
+            
+            .compass {
+                top: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="railway-container">
+        <!-- Title -->
+        <div class="map-title">
+            <h1>Mapa <span class="highlight">Kolejowa</span> Wiedzy</h1>
+            <div class="map-subtitle">Połączenia między domenami</div>
+        </div>
+
+        <!-- Compass -->
+        <div class="compass">
+            <div class="compass-needle"></div>
+        </div>
+
+        <!-- Main Railway Map SVG -->
+        <svg class="railway-svg" viewBox="0 0 1400 900">
+            <!-- Main railway network with branching -->
+            
+            <!-- Central hub to northern cities -->
+            <path d="M 700 450 Q 650 350 600 250" class="track"/>
+            <path d="M 700 450 Q 750 350 800 250" class="track"/>
+            <path d="M 700 450 Q 600 400 500 350" class="track"/>
+            <path d="M 700 450 Q 800 400 900 350" class="track"/>
+            
+            <!-- Western network -->
+            <path d="M 200 400 Q 300 380 400 400" class="track"/>
+            <path d="M 400 400 Q 500 420 500 350" class="track"/>
+            <path d="M 400 400 Q 450 450 500 500" class="track"/>
+            <path d="M 200 400 Q 250 300 300 200" class="track"/>
+            <path d="M 300 200 Q 450 180 600 250" class="track"/>
+            
+            <!-- Eastern network -->
+            <path d="M 900 350 Q 1000 330 1100 350" class="track"/>
+            <path d="M 1100 350 Q 1150 300 1200 250" class="track"/>
+            <path d="M 1100 350 Q 1150 400 1200 450" class="track"/>
+            <path d="M 900 350 Q 950 400 1000 450" class="track"/>
+            
+            <!-- Southern connections -->
+            <path d="M 700 450 Q 650 550 600 650" class="track"/>
+            <path d="M 700 450 Q 750 550 800 650" class="track"/>
+            <path d="M 500 500 Q 550 575 600 650" class="track"/>
+            <path d="M 800 650 Q 900 650 1000 650" class="track"/>
+            <path d="M 600 650 Q 500 650 400 650" class="track"/>
+            
+            <!-- Branch lines and secondary connections -->
+            <path d="M 300 200 Q 200 150 100 200" class="track-secondary"/>
+            <path d="M 800 250 Q 900 200 1000 150" class="track-secondary"/>
+            <path d="M 1200 250 Q 1300 200 1350 150" class="track-secondary"/>
+            <path d="M 200 400 Q 150 500 100 600" class="track-secondary"/>
+            <path d="M 400 650 Q 300 700 200 750" class="track-secondary"/>
+            <path d="M 1000 650 Q 1100 700 1200 750" class="track-secondary"/>
+            
+            <!-- Future planned routes (dashed) -->
+            <path d="M 500 350 Q 700 300 900 350" class="track-dashed"/>
+            <path d="M 600 250 Q 700 200 800 250" class="track-dashed"/>
+            <path d="M 600 650 Q 700 600 800 650" class="track-dashed"/>
+            <path d="M 300 200 Q 500 100 800 250" class="track-dashed"/>
+            
+            <!-- Railway junctions -->
+            <circle cx="700" cy="450" r="8" class="junction"/>
+            <circle cx="500" cy="350" r="6" class="junction"/>
+            <circle cx="900" cy="350" r="6" class="junction"/>
+            <circle cx="400" cy="400" r="6" class="junction"/>
+            <circle cx="1100" cy="350" r="6" class="junction"/>
+
+            <!-- Major Cities (Domain Centers) -->
+            <g class="station" data-topic="Centrum Ryzyko">
+                <circle cx="700" cy="450" r="25" class="station-circle station-city"/>
+                <text x="700" y="490" class="city-label">RYZYKO</text>
+            </g>
+
+            <g class="station" data-topic="Centrum Statystyka">
+                <circle cx="300" cy="200" r="22" class="station-circle station-city"/>
+                <text x="300" y="170" class="city-label">STATYSTYKA</text>
+            </g>
+
+            <g class="station" data-topic="Centrum Ekonomia">
+                <circle cx="1100" cy="350" r="22" class="station-circle station-city"/>
+                <text x="1100" y="320" class="city-label">EKONOMIA</text>
+            </g>
+
+            <g class="station" data-topic="Centrum Socjologia">
+                <circle cx="200" cy="400" r="20" class="station-circle station-city"/>
+                <text x="200" y="440" class="city-label">SOCJOLOGIA</text>
+            </g>
+
+            <g class="station" data-topic="Centrum Historia">
+                <circle cx="800" cy="650" r="20" class="station-circle station-city"/>
+                <text x="800" y="690" class="city-label">HISTORIA</text>
+            </g>
+
+            <!-- Published Articles (Main Stations) -->
+            <g class="station" data-topic="Kwantyl 99.9% i jego misinterpretacje">
+                <circle cx="600" cy="250" r="18" class="station-circle station-main"/>
+                <text x="600" y="220" class="station-label">Kwantyl 99.9%</text>
+            </g>
+
+            <g class="station" data-topic="Model VaR w praktyce">
+                <circle cx="800" cy="250" r="16" class="station-circle station-secondary"/>
+                <text x="800" y="220" class="station-label">Model VaR</text>
+            </g>
+
+            <g class="station" data-topic="Stress Testing metodologia">
+                <circle cx="500" cy="350" r="16" class="station-circle station-secondary"/>
+                <text x="500" y="320" class="station-label">Stress Testing</text>
+            </g>
+
+            <!-- Smaller towns (Specific Topics) -->
+            <g class="station" data-topic="Rozkłady prawdopodobieństwa">
+                <circle cx="400" cy="400" r="14" class="station-circle station-secondary"/>
+                <text x="400" y="430" class="station-label">Rozkłady</text>
+            </g>
+
+            <g class="station" data-topic="Testowanie hipotez">
+                <circle cx="100" cy="200" r="12" class="station-circle station-secondary"/>
+                <text x="100" y="180" class="station-label">Hipotezy</text>
+            </g>
+
+            <g class="station" data-topic="Analiza regresji">
+                <circle cx="1000" cy="150" r="12" class="station-circle station-secondary"/>
+                <text x="1000" y="130" class="station-label">Regresja</text>
+            </g>
+
+            <g class="station" data-topic="Teoria portfela">
+                <circle cx="1200" cy="250" r="14" class="station-circle station-secondary"/>
+                <text x="1200" y="230" class="station-label">Portfel</text>
+            </g>
+
+            <g class="station" data-topic="Cykle ekonomiczne">
+                <circle cx="1200" cy="450" r="14" class="station-circle station-secondary"/>
+                <text x="1200" y="480" class="station-label">Cykle</text>
+            </g>
+
+            <g class="station" data-topic="Polityka monetarna">
+                <circle cx="1350" cy="150" r="12" class="station-circle station-secondary"/>
+                <text x="1350" y="130" class="station-label">Monetarna</text>
+            </g>
+
+            <!-- Intersection stations (interdisciplinary) -->
+            <g class="station" data-topic="Behawioralne aspekty ryzyka">
+                <circle cx="500" cy="500" r="14" class="station-circle station-intersection"/>
+                <text x="500" y="530" class="station-label">Psychologia ryzyka</text>
+            </g>
+
+            <g class="station" data-topic="Ekonometryczne modelowanie">
+                <circle cx="900" cy="350" r="14" class="station-circle station-intersection"/>
+                <text x="900" y="320" class="station-label">Ekonometria</text>
+            </g>
+
+            <g class="station" data-topic="Społeczne aspekty kryzysu">
+                <circle cx="100" cy="600" r="12" class="station-circle station-intersection"/>
+                <text x="100" y="630" class="station-label">Kryzys społeczny</text>
+            </g>
+
+            <g class="station" data-topic="Zaufanie instytucjonalne">
+                <circle cx="600" cy="650" r="12" class="station-circle station-intersection"/>
+                <text x="600" y="680" class="station-label">Zaufanie</text>
+            </g>
+
+            <g class="station" data-topic="Historia kryzysów finansowych">
+                <circle cx="1000" cy="650" r="14" class="station-circle station-secondary"/>
+                <text x="1000" y="680" class="station-label">Kryzysy w historii</text>
+            </g>
+
+            <g class="station" data-topic="Ewolucja regulacji bankowych">
+                <circle cx="1200" cy="750" r="12" class="station-circle station-secondary"/>
+                <text x="1200" y="780" class="station-label">Regulacje</text>
+            </g>
+
+            <!-- Future planned stations -->
+            <g class="station" data-topic="Przyszły artykuł o Black Swan" opacity="0.5">
+                <circle cx="1000" cy="450" r="12" class="station-circle" fill="#e6cd94" stroke="#D4AF37" stroke-width="2" stroke-dasharray="4,2"/>
+                <text x="1000" y="480" class="station-label" fill="#999" font-style="italic">Black Swan</text>
+            </g>
+
+            <g class="station" data-topic="Planowany artykuł o Machine Learning" opacity="0.5">
+                <circle cx="200" cy="750" r="12" class="station-circle" fill="#e6cd94" stroke="#D4AF37" stroke-width="2" stroke-dasharray="4,2"/>
+                <text x="200" y="780" class="station-label" fill="#999" font-style="italic">ML w finansach</text>
+            </g>
+
+            <!-- Remote outposts -->
+            <g class="station" data-topic="Filozofia niepewności">
+                <circle cx="50" cy="50" r="10" class="station-circle station-secondary"/>
+                <text x="50" y="30" class="station-label" font-size="11">Filozofia</text>
+            </g>
+
+            <g class="station" data-topic="Matematyka chaosu">
+                <circle cx="1350" cy="50" r="10" class="station-circle station-secondary"/>
+                <text x="1350" y="30" class="station-label" font-size="11">Chaos</text>
+            </g>
+
+        </svg>
+
+        <!-- Legend -->
+        <div class="legend">
+            <h3>Legenda</h3>
+            <div class="legend-item">
+                <div class="legend-circle" style="background: #a85903; border: 3px solid #D4AF37;"></div>
+                <span>Centrum domenowe</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle" style="background: #a85903;"></div>
+                <span>Artykuł główny</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle" style="background: #D4AF37;"></div>
+                <span>Artykuł tematyczny</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle" style="background: #d17a1b;"></div>
+                <span>Temat międzydomenowy</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle" style="background: #666; border: 2px solid #a85903;"></div>
+                <span>Węzeł kolejowy</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line" style="background: #a85903;"></div>
+                <span>Linia główna</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line" style="background: #d17a1b;"></div>
+                <span>Linia regionalna</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line" style="background: #D4AF37; background-image: repeating-linear-gradient(90deg, transparent, transparent 6px, white 6px, white 8px);"></div>
+                <span>Planowana trasa</span>
+            </div>
+        </div>
+
+        <!-- Tooltip -->
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <script>
+        // Interactive functionality
+        const stations = document.querySelectorAll('.station');
+        const tooltip = document.getElementById('tooltip');
+
+        stations.forEach(station => {
+            station.addEventListener('mouseenter', (e) => {
+                const topic = station.getAttribute('data-topic');
+                tooltip.innerHTML = `<strong>${topic}</strong><br>Kliknij aby przejść do artykułu`;
+                tooltip.style.opacity = '1';
+            });
+
+            station.addEventListener('mousemove', (e) => {
+                tooltip.style.left = e.pageX + 15 + 'px';
+                tooltip.style.top = e.pageY - 10 + 'px';
+            });
+
+            station.addEventListener('mouseleave', () => {
+                tooltip.style.opacity = '0';
+            });
+
+            station.addEventListener('click', () => {
+                const topic = station.getAttribute('data-topic');
+                console.log(`Navigating to: ${topic}`);
+                // Here you would implement navigation to the actual article
+                alert(`Przechodzenie do artykułu: ${topic}`);
+            });
+        });
+
+        // Animate railway tracks on load
+        const tracks = document.querySelectorAll('.track, .track-secondary');
+        tracks.forEach((track, index) => {
+            const length = track.getTotalLength();
+            track.style.strokeDasharray = length;
+            track.style.strokeDashoffset = length;
+            track.style.animation = `drawTrack 4s ease-in-out ${index * 0.1}s forwards`;
+        });
+
+        // Add CSS animation for track drawing
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes drawTrack {
+                to {
+                    stroke-dashoffset: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
