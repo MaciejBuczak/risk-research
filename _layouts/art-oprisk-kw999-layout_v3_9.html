@@ -5657,6 +5657,223 @@
 
 
 
+
+
+
+
+
+
+<!-- ZMIENIONE: T.3.1 i O 3.2 w jednym wierszu - WARIANT 3 -->
+<div class="ryzmod-t31-o32-container" style="display: flex; margin-bottom: 40px;">
+  <!-- Element T.3.1 - ZMNIEJSZONY Z 65% NA 60% - TERAZ Z GRAFEM -->
+  <div class="ryzmod-text-t31" style="width: 61.9%; background-color: transparent; position: relative; border: 2px solid #D4AF37; border-radius: 15px; padding: 20px; overflow: hidden;">
+    
+    <!-- LOKALNY GRAF WIEDZY -->
+    <div class="local-network-mini">
+      <div class="network-header-mini">
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: #a85903; margin-bottom: 8px; text-align: center;">
+          📍 Powiązane tematy
+        </h3>
+        <p style="font-size: 0.85rem; color: #666; text-align: center; margin-bottom: 20px;">
+          Kliknij aby przejść do artykułu
+        </p>
+      </div>
+
+      <svg width="100%" height="280" viewBox="0 0 500 280" style="background: transparent;">
+        
+        <!-- Główne tory z obecnej stacji -->
+        <path d="M 250 140 Q 200 110 150 90" stroke="#a85903" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+        <path d="M 250 140 Q 300 110 350 90" stroke="#a85903" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+        <path d="M 250 140 Q 200 170 150 190" stroke="#a85903" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+        <path d="M 250 140 Q 300 170 350 190" stroke="#a85903" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+        
+        <!-- Połączenia drugorzędne -->
+        <path d="M 150 90 Q 120 70 90 50" stroke="#d17a1b" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M 350 90 Q 380 70 410 50" stroke="#d17a1b" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M 150 190 Q 120 210 90 230" stroke="#d17a1b" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M 350 190 Q 380 210 410 230" stroke="#d17a1b" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+        
+        <!-- Planowane połączenie -->
+        <path d="M 250 140 Q 250 100 250 60" stroke="#D4AF37" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6,4" opacity="0.6"/>
+
+        <!-- Czasy przejścia -->
+        <text x="200" y="105" font-family="Poppins" font-size="9" fill="#a85903" text-anchor="middle" opacity="0.8">2 min</text>
+        <text x="300" y="105" font-family="Poppins" font-size="9" fill="#a85903" text-anchor="middle" opacity="0.8">3 min</text>
+        <text x="200" y="175" font-family="Poppins" font-size="9" fill="#a85903" text-anchor="middle" opacity="0.8">4 min</text>
+        <text x="300" y="175" font-family="Poppins" font-size="9" fill="#a85903" text-anchor="middle" opacity="0.8">5 min</text>
+
+        <!-- Obecna stacja (centrum) -->
+        <g class="station-current-mini">
+          <circle cx="250" cy="140" r="16" fill="#a85903" stroke="#ffffff" stroke-width="3" style="filter: drop-shadow(0 4px 8px rgba(168, 89, 3, 0.3)); animation: pulse 2s infinite;">
+            <animate attributeName="r" values="16;18;16" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <text x="250" y="165" font-family="Poppins" font-size="11" font-weight="600" fill="#a85903" text-anchor="middle">Tu jesteś</text>
+        </g>
+
+        <!-- Bezpośrednio połączone stacje -->
+        <g class="station-mini" onclick="navigateToArticle('rozklady')" style="cursor: pointer;">
+          <circle cx="150" cy="90" r="12" fill="#D4AF37" stroke="#a85903" stroke-width="2" style="transition: all 0.3s ease;"/>
+          <text x="150" y="75" font-family="Poppins" font-size="10" font-weight="500" fill="#444" text-anchor="middle">Rozkłady</text>
+          <text x="150" y="110" font-family="Poppins" font-size="8" fill="#666" text-anchor="middle">prawdopodobieństwa</text>
+        </g>
+
+        <g class="station-mini" onclick="navigateToArticle('var')" style="cursor: pointer;">
+          <circle cx="350" cy="90" r="12" fill="#D4AF37" stroke="#a85903" stroke-width="2" style="transition: all 0.3s ease;"/>
+          <text x="350" y="75" font-family="Poppins" font-size="10" font-weight="500" fill="#444" text-anchor="middle">Model VaR</text>
+          <text x="350" y="110" font-family="Poppins" font-size="8" fill="#666" text-anchor="middle">w praktyce</text>
+        </g>
+
+        <g class="station-mini" onclick="navigateToArticle('psychologia')" style="cursor: pointer;">
+          <circle cx="150" cy="190" r="12" fill="#D4AF37" stroke="#a85903" stroke-width="2" style="transition: all 0.3s ease;"/>
+          <text x="150" y="210" font-family="Poppins" font-size="10" font-weight="500" fill="#444" text-anchor="middle">Psychologia</text>
+          <text x="150" y="222" font-family="Poppins" font-size="8" fill="#666" text-anchor="middle">ryzyka</text>
+        </g>
+
+        <g class="station-mini" onclick="navigateToArticle('stress')" style="cursor: pointer;">
+          <circle cx="350" cy="190" r="12" fill="#D4AF37" stroke="#a85903" stroke-width="2" style="transition: all 0.3s ease;"/>
+          <text x="350" y="210" font-family="Poppins" font-size="10" font-weight="500" fill="#444" text-anchor="middle">Stress Testing</text>
+          <text x="350" y="222" font-family="Poppins" font-size="8" fill="#666" text-anchor="middle">metodologia</text>
+        </g>
+
+        <!-- Dalsze stacje -->
+        <g class="station-mini" onclick="navigateToArticle('hipotezy')" style="cursor: pointer;">
+          <circle cx="90" cy="50" r="9" fill="#d17a1b" opacity="0.8" style="transition: all 0.3s ease;"/>
+          <text x="90" y="35" font-family="Poppins" font-size="9" fill="#666" text-anchor="middle">Hipotezy</text>
+        </g>
+
+        <g class="station-mini" onclick="navigateToArticle('ekonometria')" style="cursor: pointer;">
+          <circle cx="410" cy="50" r="9" fill="#d17a1b" opacity="0.8" style="transition: all 0.3s ease;"/>
+          <text x="410" y="35" font-family="Poppins" font-size="9" fill="#666" text-anchor="middle">Ekonometria</text>
+        </g>
+
+        <g class="station-mini" onclick="navigateToArticle('spoleczne')" style="cursor: pointer;">
+          <circle cx="90" cy="230" r="9" fill="#d17a1b" opacity="0.8" style="transition: all 0.3s ease;"/>
+          <text x="90" y="250" font-family="Poppins" font-size="9" fill="#666" text-anchor="middle">Aspekty</text>
+          <text x="90" y="260" font-family="Poppins" font-size="8" fill="#666" text-anchor="middle">społeczne</text>
+        </g>
+
+        <g class="station-mini" onclick="navigateToArticle('historia')" style="cursor: pointer;">
+          <circle cx="410" cy="230" r="9" fill="#d17a1b" opacity="0.8" style="transition: all 0.3s ease;"/>
+          <text x="410" y="250" font-family="Poppins" font-size="9" fill="#666" text-anchor="middle">Historia</text>
+          <text x="410" y="260" font-family="Poppins" font-size="8" fill="#666" text-anchor="middle">kryzysów</text>
+        </g>
+
+        <!-- Przyszła stacja -->
+        <g class="station-mini">
+          <circle cx="250" cy="60" r="10" fill="#e6cd94" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="2,1" opacity="0.7"/>
+          <text x="250" y="45" font-family="Poppins" font-size="9" fill="#999" text-anchor="middle" font-style="italic">Rzadkość</text>
+          <text x="250" y="80" font-family="Poppins" font-size="7" fill="#999" text-anchor="middle" font-style="italic">(wkrótce)</text>
+        </g>
+
+      </svg>
+
+      <!-- Status połączeń -->
+      <div style="margin-top: 15px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 5px; font-size: 10px; color: #666;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: #D4AF37;"></div>
+          <span>Bezpośrednie</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px; font-size: 10px; color: #666;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: #d17a1b;"></div>
+          <span>Powiązane</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 5px; font-size: 10px; color: #666;">
+          <div style="width: 8px; height: 8px; border-radius: 50%; background: #e6cd94; border: 1px solid #D4AF37;"></div>
+          <span>W planach</span>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+      
+      .station-mini:hover circle {
+        r: 14;
+        filter: drop-shadow(0 3px 6px rgba(168, 89, 3, 0.3));
+      }
+      
+      .station-mini:hover text {
+        font-weight: 600;
+        fill: #a85903;
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+    </style>
+
+    <script>
+      function navigateToArticle(articleId) {
+        const articles = {
+          'rozklady': 'Rozkłady prawdopodobieństwa',
+          'var': 'Model VaR w praktyce',
+          'psychologia': 'Psychologia ryzyka',
+          'stress': 'Stress Testing - metodologia',
+          'hipotezy': 'Testowanie hipotez',
+          'ekonometria': 'Ekonometria w finansach',
+          'spoleczne': 'Społeczne aspekty kryzysów',
+          'historia': 'Historia kryzysów finansowych'
+        };
+        
+        console.log(`Navigating to: ${articles[articleId]}`);
+        alert(`Przechodzenie do artykułu: ${articles[articleId]}`);
+        // Tu byłaby rzeczywista nawigacja: window.location.href = `/artykul-${articleId}`;
+      }
+    </script>
+
+  </div>
+  
+  <!-- SPACER - PRZESTRZEŃ MIĘDZY ELEMENTAMI -->
+  <div style="width: 3.6%;"></div>
+  
+  <!-- Element O 3.2 - Newsletter - BEZ ZMIAN -->
+  <div class="ryzmod-orange-box" style="width: 34.5%; background-color: transparent; border: 2px solid #D4AF37; margin-top: 0px; margin-bottom: 0px; padding-left: 40px; padding-right: 35px; padding-top: 35px; padding-bottom: 35px; position: relative; border-radius: 15px; text-align: center;">
+    
+    <h4 style="font-family: Arial Black, Arial, sans-serif; font-size: 17px; font-weight: bold; color: #D4AF37; margin-top: 0; margin-bottom: 18px;">Newsletter</h4>
+    
+    <p style="color: #737373; font-size: 14px; font-family: Arial, serif; line-height: 1.4; margin-bottom: 20px; text-indent: 0;">Otrzymuj powiadomienia o nowych artykułach</p>
+    
+    <div style="margin-bottom: 15px;">
+      <input 
+        type="email" 
+        id="newsletter-email"
+        placeholder="Twój email" 
+        onkeypress="handleNewsletterKeyPress(event)"
+        style="width: 100%; padding: 10px; border: 1px solid #D4AF37; border-radius: 8px; font-size: 14px; font-family: Arial, serif; box-sizing: border-box;">
+    </div>
+    
+    <button 
+      id="newsletter-submit"
+      onclick="subscribeToNewsletter()"
+      style="width: 100%; background-color: #D4AF37; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 14px; font-family: Arial, serif; font-weight: bold; cursor: pointer; transition: background-color 0.3s;">
+      Zapisz się
+    </button>
+    
+    <p style="font-size: 12px; margin-top: 35px; color: #737373; line-height: 1.4; text-intend: 0; text-align: center;">
+      Chcesz anulować? <a href="https://maciejbuczak.github.io/risk-research/unsubscribe.html" style="color: #D4AF37; text-decoration: underline;">Wypisz się</a>
+    </p>
+    
+  </div>
+</div>
+
+
+
+        
+
+
+
+        
+
+
+
+
+
+
+        
+
+
+
 <!-- HTML do wklejenia na stronę -->
 <div class="layout-pyramid-modern">
     <!-- Rząd 1: 1 blok -->
