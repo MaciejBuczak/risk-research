@@ -1578,7 +1578,7 @@
     align-items: center;
     gap: 6px;
     padding: 8px 12px;
-    border: none;
+    border: 2px solid;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
@@ -1586,6 +1586,7 @@
     transition: all 0.3s ease;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
+    background: white;
 }
 
 .share-btn:hover {
@@ -1594,36 +1595,70 @@
 }
 
 .share-btn.linkedin {
+    border-color: #0077B5;
+    color: #0077B5;
+    background: white;
+}
+
+.share-btn.linkedin svg {
+    fill: #0077B5;
+}
+
+.share-btn.linkedin:hover {
     background: #0077B5;
     color: white;
 }
 
-.share-btn.linkedin:hover {
-    background: #005885;
+.share-btn.linkedin:hover svg {
+    fill: white;
 }
 
 .share-btn.x {
+    border-color: #000000;
+    color: #000000;
+    background: white;
+}
+
+.share-btn.x svg {
+    fill: #000000;
+}
+
+.share-btn.x:hover {
     background: #000000;
     color: white;
 }
 
-.share-btn.x:hover {
-    background: #333333;
+.share-btn.x:hover svg {
+    fill: white;
 }
 
 .share-btn.email {
+    border-color: #D4AF37;
+    color: #D4AF37;
+    background: white;
+}
+
+.share-btn.email svg {
+    fill: #D4AF37;
+}
+
+.share-btn.email:hover {
     background: #D4AF37;
     color: white;
 }
 
-.share-btn.email:hover {
-    background: #B8952A;
+.share-btn.email:hover svg {
+    fill: white;
 }
 
 .share-btn.copy {
-    background: transparent;
+    border-color: #737373;
     color: #737373;
-    border: 2px solid #737373;
+    background: white;
+}
+
+.share-btn.copy svg {
+    fill: #737373;
 }
 
 .share-btn.copy:hover {
@@ -1631,6 +1666,12 @@
     color: white;
 }
 
+.share-btn.copy:hover svg {
+    fill: white;
+}
+
+
+  
 /* Komunikat o skopiowaniu linku */
 .copy-success {
     position: fixed;
