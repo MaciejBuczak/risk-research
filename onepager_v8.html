@@ -84,46 +84,34 @@
             padding-top: 16px;
         }
 
-        .section {
+        .card {
             background: white;
-            margin-bottom: 16px;
-            border-radius: 12px;
+            border-radius: 16px;
+            margin-bottom: 20px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(180, 169, 136, 0.1);
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+            border-left: 4px solid var(--olive);
         }
 
-        .section-header {
-            background: var(--beige);
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .card.highlight {
+            border-left-color: var(--gold);
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.15);
         }
 
-        .section-number {
-            width: 28px;
-            height: 28px;
-            background: var(--gold);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .card-body {
+            padding: 24px;
+        }
+
+        .card-title {
             font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .section-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--text-dark);
+            margin-bottom: 16px;
         }
 
-        .section-content {
-            padding: 16px;
-            font-size: 14px;
+        .card-text {
+            font-size: 15px;
             line-height: 1.6;
         }
 
@@ -272,8 +260,8 @@
                 font-size: 30px;
             }
             
-            .section-content {
-                font-size: 15px;
+            .card-body {
+                padding: 28px;
             }
         }
 
@@ -302,42 +290,36 @@
         </div>
     </div>
 
-    <div class="section">
-        <div class="section-header">
-            <div class="section-number">💡</div>
-            <div class="section-title">Problem główny</div>
-        </div>
-        <div class="section-content">
-            <p><strong>Nieprecyzyjna interpretacja kwantyla 99.9%</strong> może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego, szczególnie przy modelowaniu wartości skrajnych w ogonach rozkładu.</p>
+    <div class="card highlight">
+        <div class="card-body">
+            <h2 class="card-title">Esencja problemu</h2>
+            <p class="card-text"><strong>Nieprecyzyjna interpretacja kwantyla 99.9%</strong> może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego. Ma to szczególne znaczenie w przypadku modelowania wartości skrajnych położonych w ogonach rozkładu, gdzie dotykamy katastroficznych skutków lub ich skali finansowej.</p>
         </div>
     </div>
 
-    <div class="section">
-        <div class="section-header">
-            <div class="section-number">⚠️</div>
-            <div class="section-title">Źródło błędu</div>
-        </div>
-        <div class="section-content">
-            <p>Poziom kwantyla 99.9% budził kontrowersje wokół percepcji nadmiernego konserwatyzmu. Problem leży w <strong>zakorzenionej intuicji</strong> integrującej pojęcie kwantyla z horyzontem czasowym modelowania.</p>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Źródło błędnego myślenia</h2>
+            <p class="card-text">Za postrzeganiem kwantyla 99.9% jako nadmiernie konserwatywnego stoi zakorzeniona intuicja związana z jego interpretacją. Intuicja ta wskazuje na zintegrowanie pojęcia kwantyla rozkładu z horyzontem czasu modelowania badanego zjawiska.</p>
         </div>
     </div>
 
-    <div class="section">
-        <div class="section-header">
-            <div class="section-number">🔄</div>
-            <div class="section-title">Porównanie interpretacji</div>
-        </div>
-        <div class="section-content">
-            <div class="problem-card">
-                <div class="card-title">❌ Błędna interpretacja</div>
-                <div class="quote">"1 raz na 1000 lat"</div>
-                <p>Zjawisko występujące z częstotliwością raz na tysiąc lat - niemożliwe do przewidzenia i zamodelowania.</p>
-            </div>
-            
-            <div class="solution-card">
-                <div class="card-title">✅ Poprawna interpretacja</div>
-                <div class="quote">"1 raz na 1000 scenariuszy"</div>
-                <p>Przedostatni z 1000 najgorszych możliwych dzisiejszych scenariuszy, realnych w ciągu roku.</p>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Porównanie interpretacji</h2>
+            <div class="comparison-grid">
+                <div class="wrong-interpretation">
+                    <div class="comparison-icon">❌</div>
+                    <h3 class="comparison-title">Błędna interpretacja</h3>
+                    <div class="quote">"1 raz na 1000 lat"</div>
+                    <p>Zjawisko występujące z częstotliwością raz na tysiąc lat - niemożliwe do przewidzenia i zamodelowania.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="card-title">✅ Poprawna interpretacja</div>
+                    <div class="quote">"1 raz na 1000 scenariuszy"</div>
+                    <p>Przedostatni z 1000 najgorszych możliwych dzisiejszych scenariuszy, realnych w ciągu roku.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -357,13 +339,17 @@
         </div>
     </div>
 
-    <div class="section">
-        <div class="section-header">
-            <div class="section-number">🎯</div>
-            <div class="section-title">Rzeczywiste znaczenie</div>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Rzeczywiste znaczenie rozkładu</h2>
+            <p class="card-text">Rozkład zagregowanych strat reprezentuje <strong>potencjał możliwości</strong> dla rocznych zagregowanych strat - skalę (dyspersję) możliwych wystąpień agregatów rocznych strat. Odległości czasowe nie są w żaden sposób wpisane w konstrukcję rozkładu zagregowanych strat.</p>
         </div>
-        <div class="section-content">
-            <p>Rozkład zagregowanych strat reprezentuje <strong>potencjał możliwości</strong> dla rocznych strat - skalę możliwych wystąpień agregatów, nie odległości czasowe na historycznej osi.</p>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Nowa definicja rzadkości</h2>
+            <p class="card-text">Rzadkość powinna być interpretowana jako <strong>wyjątkowość scenariusza</strong> względem całego spektrum innych scenariuszy, gdzie okres roczny stanowi jedynie formułę agregującą dla zjawiska ryzyka operacyjnego - nie jako odległość na linearnej, historycznej osi czasu.</p>
         </div>
     </div>
 
