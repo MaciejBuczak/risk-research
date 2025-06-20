@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwantyl 99.9 - Mobile PWA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --beige: #e6cd94;
+            --olive: #b4a988;
+            --text-dark: #444;
+            --text-light: #737373;
+            --bg-light: #fdfbf7;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg-light);
+            color: #737373;
+            line-height: 1.5;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        .report-header {
+            background: white;
+            padding: 28px 24px;
+            border-radius: 16px;
+            border-top: 6px solid var(--gold);
+            margin-bottom: 28px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.1);
+        }
+
+        .report-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .report-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .highlight-word {
+            color: var(--gold);
+        }
+
+        .report-subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .report-meta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            color: var(--text-light);
+            border-top: 1px solid var(--beige);
+            padding-top: 16px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+        }
+
+        .card.highlight {
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.15);
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+        }
+
+        .section-number {
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-left: 8px;
+        }
+
+        .card-text {
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            color: #737373;
+            margin-top: 0;
+        }
+
+        .problem-card {
+            background: #fdf5f0;
+            border-left: 3px solid #e74c3c;
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 8px;
+        }
+
+        .solution-card {
+            background: var(--bg-light);
+            border-left: 3px solid var(--gold);
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 8px;
+        }
+
+        .comparison-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quote {
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            margin: 8px 0;
+        }
+
+        .problem-card .quote {
+            color: #c0392b;
+        }
+
+        .solution-card .quote {
+            color: var(--gold);
+        }
+
+        .insights-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .insights-list li {
+            padding: 12px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 14px;
+            border-bottom: 1px solid var(--beige);
+        }
+
+        .insights-list li:last-child {
+            border-bottom: none;
+        }
+
+        .insights-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stats-card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 28px;
+            padding-bottom: 8px;
+            margin-left: 8px;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 16px 0;
+            padding: 16px;
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--gold);
+            display: block;
+        }
+
+        .stat-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 10px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight-box {
+            background: white;
+            border: 3px solid var(--olive);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .highlight-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--olive);
+            margin-bottom: 12px;
+        }
+
+        .highlight-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+        }
+
+        .highlight-card-header {
+            background: var(--gold);
+            padding: 16px 24px;
+            text-align: center;
+        }
+
+        .highlight-card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .highlight-card-body {
+            padding: 24px;
+        }
+
+        .highlight-card-text {
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            color: #737373;
+            margin: 0;
+        }
+
+        .card-with-image-and-header {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+            display: flex;
+            align-items: stretch;
+        }
+
+        .card-with-image-and-header .card-image-section {
+            width: 35%;
+            background: var(--beige);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-with-image-and-header .card-image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-with-image-and-header .card-image-placeholder {
+            color: var(--gold);
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card-content-section-with-header {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content-header {
+            background: var(--gold);
+            padding: 16px 24px;
+            text-align: center;
+        }
+
+        .card-content-header-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .card-content-body {
+            padding: 24px;
+            flex: 1;
+        }
+
+        .card-content-body-text {
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            color: #737373;
+            margin: 0;
+        }
+
+        .card-with-image-and-header.olive .card-content-header {
+            background: var(--olive);
+        }
+
+        .card-with-image-and-header.gray .card-content-header {
+            background: #888;
+        }
+
+        .card-with-image {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+            display: flex;
+            align-items: stretch;
+        }
+
+        .card-image-section {
+            width: 35%;
+            background: var(--beige);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-image-placeholder {
+            color: var(--gold);
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card-content-section {
+            width: 65%;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .card-content-text {
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            color: #737373;
+        }
+
+        .conclusion {
+            background: var(--text-dark);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .conclusion-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .conclusion p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 480px) {
+            body {
+                max-width: 480px;
+                padding: 24px 20px;
+            }
+            
+            .report-title {
+                font-size: 30px;
+            }
+            
+            .card-body {
+                padding: 28px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            body {
+                max-width: 600px;
+                padding: 32px 24px;
+            }
+            
+            .stats-row {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-header">
+        <div class="report-label">Research Summary</div>
+        <h1 class="report-title">Kwantyl 99.9<br>i jego <span class="highlight-word">misinterpretacje</span></h1>
+        <p class="report-subtitle">Analiza błędnych interpretacji poziomów kwantyli w modelowaniu ryzyka operacyjnego w kontekście frameworku AMA</p>
+        <div class="report-meta">
+            <span>Autor: Maciej Buczak</span>
+            <span>Data: 10.06.2025</span>
+            <span>Czas: 8 min</span>
+            <span>Kategoria: Ryzyko Operacyjne</span>
+        </div>
+    </div>
+
+    <div class="card highlight">
+        <div class="card-body">
+            <h2 class="card-title">
+                <div class="section-number">1</div>
+                <div class="section-title">Esencja problemu</div>
+            </h2>
+            <p class="card-text">Nieprecyzyjna interpretacja kwantyla 99.9% może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego. Ma to szczególne znaczenie w przypadku modelowania wartości skrajnych położonych w ogonach rozkładu, gdzie dotykamy katastroficznych skutków lub ich skali finansowej.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">
+                <div class="section-number">2</div>
+                <div class="section-title">Źródło błędnego myślenia</div>
+            </h2>
+            <p class="card-text">Za postrzeganiem kwantyla 99.9% jako nadmiernie konserwatywnego stoi zakorzeniona intuicja związana z jego interpretacją. Intuicja ta wskazuje na zintegrowanie pojęcia kwantyla rozkładu z horyzontem czasu modelowania badanego zjawiska.</p>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <div class="section-number">3a</div>
+                    <div class="section-title">Błędna interpretacja</div>
+                </h2>
+                <p class="card-text">"1 raz na 1000 lat" - zjawisko występujące z częstotliwością raz na tysiąc lat, niemożliwe do przewidzenia i zamodelowania w praktyce.</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <div class="section-number">3b</div>
+                    <div class="section-title">Poprawna interpretacja</div>
+                </h2>
+                <p class="card-text">"1 raz na 1000 scenariuszy" - przedostatni z 1000 najgorszych możliwych dzisiejszych scenariuszy, realnych w ciągu roku.</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <div class="section-number">A</div>
+                    <div class="section-title">TEST 1</div>
+                </h2>
+                <p class="card-text">To jest test pierwszego bloku</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <div class="section-number">B</div>
+                    <div class="section-title">TEST 2</div>
+                </h2>
+                <p class="card-text">To jest test drugiego bloku</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <div class="section-number">C</div>
+                    <div class="section-title">TEST 3</div>
+                </h2>
+                <p class="card-text">To jest test trzeciego bloku</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-card">
+        <h2 class="stats-card-title">Kluczowe parametry</h2>
+        <div class="stats-row">
+            <div class="stat">
+                <span class="stat-number">99.9%</span>
+                <span class="stat-label">Poziom kwantyla</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">0.1%</span>
+                <span class="stat-label">Prawdop. przekr.</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">1000</span>
+                <span class="stat-label">Scenariuszy</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">
+                <div class="section-number">4</div>
+                <div class="section-title">Rzeczywiste znaczenie rozkładu</div>
+            </h2>
+            <p class="card-text">Rozkład zagregowanych strat reprezentuje <strong>potencjał możliwości</strong> dla rocznych zagregowanych strat - skalę (dyspersję) możliwych wystąpień agregatów rocznych strat. Odległości czasowe nie są w żaden sposób wpisane w konstrukcję rozkładu zagregowanych strat.</p>
+        </div>
+    </div>
+
+    <div class="card-with-image">
+        <div class="card-image-section">
+            <img src="https://raw.githubusercontent.com/MaciejBuczak/risk-research/main/assets/images/grafika1.svg" alt="Wykres 1">
+        </div>
+        <div class="card-content-section">
+            <h2 class="card-content-title">Nowa definicja rzadkości</h2>
+            <p class="card-content-text">Rzadkość powinna być interpretowana jako <strong>wyjątkowość scenariusza</strong> względem całego spektrum innych scenariuszy, gdzie okres roczny stanowi jedynie formułę agregującą dla zjawiska ryzyka operacyjnego - nie jako odległość na linearnej, historycznej osi czasu.</p>
+        </div>
+    </div>
+
+    <div class="card-with-image-and-header">
+        <div class="card-image-section">
+            <img src="https://raw.githubusercontent.com/MaciejBuczak/risk-research/main/assets/images/wykres1.svg" alt="Wykres 1">
+        </div>
+        <div class="card-content-section-with-header">
+            <div class="card-content-header">
+                <h2 class="card-content-header-title">Problem główny</h2>
+            </div>
+            <div class="card-content-body">
+                <p class="card-content-body-text">Nieprecyzyjna interpretacja kwantyla 99.9% może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego, szczególnie przy modelowaniu wartości skrajnych w ogonach rozkładu.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-with-image-and-header olive">
+        <div class="card-image-section">
+            <img src="https://raw.githubusercontent.com/MaciejBuczak/risk-research/main/assets/images/wykres2.svg" alt="Wykres 2">
+        </div>
+        <div class="card-content-section-with-header">
+            <div class="card-content-header">
+                <h2 class="card-content-header-title">Oliwkowa belka</h2>
+            </div>
+            <div class="card-content-body">
+                <p class="card-content-body-text">To jest przykład bloczka z oliwkową belką tytułową. Tekst zachowuje standardowe style jak w innych blokach dokumentu.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-with-image-and-header gray">
+        <div class="card-image-section">
+            <img src="https://raw.githubusercontent.com/MaciejBuczak/risk-research/main/assets/images/wykres3.svg" alt="Wykres 3">
+        </div>
+        <div class="card-content-section-with-header">
+            <div class="card-content-header">
+                <h2 class="card-content-header-title">Szara belka</h2>
+            </div>
+            <div class="card-content-body">
+                <p class="card-content-body-text">To jest przykład bloczka z szarą belką tytułową. Wszystkie inne style pozostają takie same jak w poprzednich blokach.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">
+                <div class="section-number">5</div>
+                <div class="section-title">Nowa definicja rzadkości</div>
+            </h2>
+            <p class="card-text">Rzadkość powinna być interpretowana jako <strong>wyjątkowość scenariusza</strong> względem całego spektrum innych scenariuszy, gdzie okres roczny stanowi jedynie formułę agregującą dla zjawiska ryzyka operacyjnego - nie jako odległość na linearnej, historycznej osi czasu.</p>
+        </div>
+    </div>
+
+    <div class="highlight-card">
+        <div class="highlight-card-header">
+            <h2 class="highlight-card-title">Problem główny</h2>
+        </div>
+        <div class="highlight-card-body">
+            <p class="highlight-card-text">Nieprecyzyjna interpretacja kwantyla 99.9% może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego, szczególnie przy modelowaniu wartości skrajnych w ogonach rozkładu.</p>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <div class="highlight-title">Nowa definicja rzadkości</div>
+        <p style="font-size: 15px; line-height: 1.6; font-family: Arial, sans-serif; color: #737373; margin: 0;">Rzadkość to <strong>wyjątkowość scenariusza</strong> względem spektrum innych scenariuszy, nie odległość czasowa na linearnej osi historycznej.</p>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">
+                <div class="section-number">6</div>
+                <div class="section-title">Kluczowe wnioski praktyczne</div>
+            </h2>
+            <ul class="insights-list">
+                <li>Kwantyl 99.9% odnosi się do dzisiejszych, realnych możliwości</li>
+                <li>Okres roczny to tylko formuła agregująca dla ryzyka operacyjnego</li>
+                <li>Poprawna interpretacja usprawiedliwia racjonalność AMA</li>
+                <li>Należy zasilić przestrzeń wiedzy o nieobserwowane scenariusze</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <div class="conclusion-title">Praktyczne implikacje</div>
+        <p>Należy uważać na interpretację zbytnio redukującą przestrzeń możliwości. Trzeba zasilić wiedzę o scenariusze możliwe tu i teraz, ale nieobserwowane dotąd.</p>
+    </div>
+</body>
+</html>
