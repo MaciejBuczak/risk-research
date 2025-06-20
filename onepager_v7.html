@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwantyl 99.9 - Structured Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --beige: #e6cd94;
+            --olive: #b4a988;
+            --text-dark: #444;
+            --text-light: #737373;
+            --bg-subtle: #fdfbf7;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background: white;
+            color: var(--text-dark);
+            line-height: 1.6;
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        .report-header {
+            background: var(--bg-subtle);
+            padding: 28px 24px;
+            border-radius: 16px;
+            border-top: 6px solid var(--gold);
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .report-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .report-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .highlight-word {
+            color: var(--gold);
+        }
+
+        .report-subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .report-meta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            color: var(--text-light);
+            border-top: 1px solid var(--beige);
+            padding-top: 16px;
+        }
+
+        .section {
+            background: white;
+            border: 1px solid var(--beige);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: var(--beige);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-number {
+            width: 28px;
+            height: 28px;
+            background: var(--gold);
+            color: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .section-content {
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .key-finding {
+            background: var(--bg-subtle);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .finding-header {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .interpretations-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .interpretation {
+            padding: 18px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid;
+        }
+
+        .wrong-interpretation {
+            background: #fdf5f3;
+            border-color: #d7a3a0;
+        }
+
+        .correct-interpretation {
+            background: var(--bg-subtle);
+            border-color: var(--beige);
+        }
+
+        .interpretation-icon {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .interpretation-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .wrong-interpretation .interpretation-label {
+            color: #c0392b;
+        }
+
+        .correct-interpretation .interpretation-label {
+            color: var(--gold);
+        }
+
+        .interpretation-quote {
+            font-size: 15px;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .interpretation-desc {
+            font-size: 12px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .data-section {
+            background: var(--olive);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .data-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .data-point {
+            text-align: center;
+            padding: 12px 8px;
+        }
+
+        .data-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: white;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .data-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 10px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .recommendations {
+            background: white;
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .recommendations-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .recommendation-list {
+            list-style: none;
+        }
+
+        .recommendation-list li {
+            padding: 10px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 13px;
+            line-height: 1.5;
+            border-bottom: 1px solid var(--beige);
+        }
+
+        .recommendation-list li:last-child {
+            border-bottom: none;
+        }
+
+        .recommendation-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .bottom-line {
+            background: var(--text-dark);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 28px;
+            text-align: center;
+        }
+
+        .bottom-line-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .bottom-line-text {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 600px) {
+            body {
+                max-width: 600px;
+                padding: 24px 20px;
+            }
+            
+            .report-title {
+                font-size: 30px;
+            }
+            
+            .interpretations-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            
+            .section-content {
+                font-size: 15px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            body {
+                max-width: 680px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-header">
+        <div class="report-label">Research Summary</div>
+        <h1 class="report-title">Kwantyl 99.9<br>i jego <span class="highlight-word">misinterpretacje</span></h1>
+        <p class="report-subtitle">Analiza błędnych interpretacji poziomów kwantyli w modelowaniu ryzyka operacyjnego w kontekście frameworku AMA</p>
+        <div class="report-meta">
+            <span>Autor: Maciej Buczak</span>
+            <span>Data: 10.06.2025</span>
+            <span>Czas: 8 min</span>
+            <span>Kategoria: Ryzyko Operacyjne</span>
+        </div>
+    </div>
+
+    <div class="key-finding">
+        <div class="finding-header">
+            🎯 Kluczowe ustalenie
+        </div>
+        <p><strong>Nieprecyzyjna interpretacja kwantyla 99.9%</strong> może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego. Problem dotyczy szczególnie modelowania wartości skrajnych położonych w ogonach rozkładu, gdzie dotykamy katastroficznych skutków finansowych.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <h2 class="section-title">Identyfikacja problemu</h2>
+        </div>
+        <div class="section-content">
+            <p>Poziom kwantyla 99.9% zaproponowany przez nadzorcę budził kontrowersje wokół percepcji nadmiernego konserwatyzmu. Za tym postrzeganiem stoi zakorzeniona intuicja związana z integracją pojęcia kwantyla rozkładu z horyzontem czasowym modelowania.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">2</div>
+            <h2 class="section-title">Porównanie interpretacji</h2>
+        </div>
+        <div class="section-content">
+            <div class="interpretations-grid">
+                <div class="interpretation wrong-interpretation">
+                    <div class="interpretation-icon">❌</div>
+                    <div class="interpretation-label">Błędna interpretacja</div>
+                    <div class="interpretation-quote">"1 raz na 1000 lat"</div>
+                    <div class="interpretation-desc">Zjawisko występujące z częstotliwością raz na tysiąc lat</div>
+                </div>
+                
+                <div class="interpretation correct-interpretation">
+                    <div class="interpretation-icon">✅</div>
+                    <div class="interpretation-label">Poprawna interpretacja</div>
+                    <div class="interpretation-quote">"1 raz na 1000 scenariuszy"</div>
+                    <div class="interpretation-desc">Przedostatni z 1000 najgorszych możliwych scenariuszy</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="data-section">
+        <div class="data-title">Kluczowe parametry</div>
+        <div class="data-grid">
+            <div class="data-point">
+                <span class="data-number">99.9%</span>
+                <span class="data-label">Poziom kwantyla</span>
+            </div>
+            <div class="data-point">
+                <span class="data-number">0.1%</span>
+                <span class="data-label">Prawdop. przekr.</span>
+            </div>
+            <div class="data-point">
+                <span class="data-number">1000</span>
+                <span class="data-label">Scenariuszy</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">3</div>
+            <h2 class="section-title">Rzeczywiste znaczenie</h2>
+        </div>
+        <div class="section-content">
+            <p>Rozkład zagregowanych strat reprezentuje <strong>potencjał możliwości</strong> dla rocznych zagregowanych strat - skalę (dyspersję) możliwych wystąpień agregatów rocznych strat. Odległości czasowe nie są wpisane w konstrukcję tego rozkładu.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">4</div>
+            <h2 class="section-title">Nowa definicja rzadkości</h2>
+        </div>
+        <div class="section-content">
+            <p>Rzadkość powinna być interpretowana jako <strong>wyjątkowość scenariusza</strong> względem całego spektrum innych scenariuszy, gdzie okres roczny stanowi jedynie formułę agregującą dla zjawiska ryzyka operacyjnego.</p>
+        </div>
+    </div>
+
+    <div class="recommendations">
+        <div class="recommendations-title">Rekomendacje praktyczne</div>
+        <ul class="recommendation-list">
+            <li>Porzucić interpretację kwantyla jako zjawiska występującego raz na 1000 lat</li>
+            <li>Traktować kwantyl 99.9% jako jeden z 1000 możliwych dzisiejszych scenariuszy</li>
+            <li>Zasilić przestrzeń wiedzy o nieobserwowane, ale możliwe scenariusze</li>
+            <li>Wykorzystać poprawną interpretację do usprawiedliwienia AMA</li>
+            <li>Unikać nadmiernej redukcji przestrzeni możliwych scenariuszy</li>
+        </ul>
+    </div>
+
+    <div class="bottom-line">
+        <div class="bottom-line-title">Bottom Line</div>
+        <p class="bottom-line-text">Poprawna interpretacja kwantyla 99.9% jako "1 raz na 1000 scenariuszy" zamiast "1 raz na 1000 lat" usprawiedliwia racjonalność wysiłku modelarskiego w ramach AMA i eliminuje percepcję nadmiernego konserwatyzmu nadzorczego.</p>
+    </div>
+</body>
+</html>
