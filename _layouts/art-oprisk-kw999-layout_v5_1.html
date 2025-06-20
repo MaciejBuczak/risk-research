@@ -2957,12 +2957,35 @@ function shareTwitter() {
     trackShare('twitter');
 }
 
-// Funkcja udostępniania przez email
+// Funkcja udostępniania przez email - NOWA WERSJA
 function shareEmail() {
-    const subject = encodeURIComponent(document.title);
-    const body = encodeURIComponent(
-        `Cześć!\n\nZnalazłem bardzo ciekawy artykuł o analizie ryzyka, który może Cię zainteresować:\n\n"${document.title}"\n\n${window.location.href}\n\nArtykuł omawia problematykę interpretacji kwantyli w modelowaniu ryzyka operacyjnego. Polecam lekturę!\n\nPozdrawiam`
-    );
+    const subject = encodeURIComponent('Kwantyl 99.9 i jego misinterpretacje');
+    const body = encodeURIComponent(`
+        <html>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                <img src="https://maciejbuczak.github.io/risk-research/assets/images/ECL-rys1.jpg" 
+                     style="width: 100%; max-width: 400px; border-radius: 8px; margin-bottom: 20px;">
+                
+                <h2 style="color: #a85903; margin-bottom: 15px;">Kwantyl 99.9 i jego misinterpretacje</h2>
+                
+                <p>Cześć!</p>
+                <p>Znalazłem bardzo ciekawy artykuł o analizie ryzyka, który może Cię zainteresować.</p>
+                <p>Artykuł omawia problematykę interpretacji kwantyli w modelowaniu ryzyka operacyjnego. Czy poziom 99.9% rzeczywiście oznacza "raz na 1000 lat"?</p>
+                
+                <div style="margin: 30px 0;">
+                    <a href="${window.location.href}" 
+                       style="background: #a85903; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block;">
+                       📖 Czytaj pełny artykuł
+                    </a>
+                </div>
+                
+                <p style="color: #666; font-size: 14px;">Polecam lekturę!</p>
+                <p style="color: #666; font-size: 14px;">Pozdrawiam</p>
+            </div>
+        </body>
+        </html>
+    `);
     
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
     
