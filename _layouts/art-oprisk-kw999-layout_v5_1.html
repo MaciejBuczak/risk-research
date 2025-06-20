@@ -2957,22 +2957,16 @@ function shareTwitter() {
     trackShare('twitter');
 }
 
+// Funkcja udostępniania przez email
 function shareEmail() {
-    const subject = encodeURIComponent('Kwantyl 99.9 i jego misinterpretacje');
-    const body = encodeURIComponent(`Cześć!
-
-Znalazłem bardzo ciekawy artykuł o analizie ryzyka, który może Cię zainteresować:
-
-"Kwantyl 99.9 i jego misinterpretacje"
-
-${window.location.href}
-
-Artykuł omawia problematykę interpretacji kwantyli w modelowaniu ryzyka operacyjnego. Czy poziom 99.9% rzeczywiście oznacza "raz na 1000 lat"?
-
-Polecam lekturę!
-Pozdrawiam`);
+    const subject = encodeURIComponent(document.title);
+    const body = encodeURIComponent(
+        `Cześć!\n\nZnalazłem bardzo ciekawy artykuł o analizie ryzyka, który może Cię zainteresować:\n\n"${document.title}"\n\n${window.location.href}\n\nArtykuł omawia problematykę interpretacji kwantyli w modelowaniu ryzyka operacyjnego. Polecam lekturę!\n\nPozdrawiam`
+    );
     
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    
+    // Tracking udostępnienia
     trackShare('email');
 }
 
