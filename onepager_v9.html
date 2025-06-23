@@ -848,10 +848,18 @@
         print-color-adjust: exact !important;
     }
     
-    /* Ustawienia strony - usuń marginesy i zrób ciągły dokument */
+    /* Ustawienia strony - usuń marginesy i wizualne granice */
     @page {
         size: A4;
         margin: 0 !important;
+        
+        /* Usuń wizualne granice stron */
+        @top-left { content: none; }
+        @top-center { content: none; }
+        @top-right { content: none; }
+        @bottom-left { content: none; }
+        @bottom-center { content: none; }
+        @bottom-right { content: none; }
     }
     
     /* UKRYJ tło strony */
@@ -859,17 +867,21 @@
         background: white !important;
     }
     
-    /* Kartka wypełnia całą stronę bez marginesów */
+    /* Kartka wypełnia całą stronę z płynnym przejściem */
     body {
         background: var(--col-kartka) !important;
         box-shadow: none !important;
         border-radius: 0 !important;
         margin: 0 !important;
-        padding: 30px 40px !important;
+        padding: 20px !important;
         max-width: none !important;
         width: 100% !important;
         min-height: 100vh !important;
         position: relative !important;
+        
+        /* Ciągły flow */
+        orphans: 0 !important;
+        widows: 0 !important;
     }
     
     /* Usuń efekt przed kartką */
@@ -920,7 +932,6 @@
         page-break-before: auto !important;
     }
 }
-
 
 
         
