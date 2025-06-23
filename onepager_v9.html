@@ -766,6 +766,74 @@
 
 
 
+
+
+
+
+
+.save-elegant {
+    background: white;
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    margin: 32px 0;
+}
+
+.save-elegant::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--olive), var(--gold));
+    border-radius: 16px;
+    z-index: -1;
+}
+
+.save-elegant .save-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 4px;
+}
+
+.save-elegant .save-subtitle {
+    color: var(--text-light);
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.save-elegant .save-btn {
+    display: inline-block;
+    background: transparent;
+    color: var(--gold);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    margin: 4px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-elegant .save-btn:hover {
+    background: var(--gold);
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+
+
+
+        
         
 
 
@@ -774,6 +842,33 @@
 
         
     </style>
+
+
+
+
+
+
+
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'kwantyl-99-onepager.html';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+</script>
+
+
+
+
+
+
+    
 </head>
 
 
@@ -988,6 +1083,18 @@
     
 
 
+
+
+<div class="save-elegant">
+    <div class="save-title">Zapisz onepager</div>
+    <div class="save-subtitle">Pobierz kopię lub wydrukuj dla przyszłego użytku</div>
+    <button onclick="window.print()" class="save-btn">📄 Drukuj/PDF</button>
+    <button onclick="downloadHTML()" class="save-btn">💾 Pobierz HTML</button>
+</div>
+
+
+
+    
 
 
 
