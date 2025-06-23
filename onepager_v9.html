@@ -593,6 +593,29 @@
 }
 
 
+/* Subtelne odróżnienie bloczków na kartce papierowej - tylko komputer */
+@media (min-width: 768px) {
+    .card,
+    .card-no-number,
+    .header-only-card,
+    .stats-card,
+    .card-with-image,
+    .card-with-image-and-header,
+    .highlight-card,
+    .conclusion {
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    
+    .report-header {
+        box-shadow: 0 2px 8px rgba(212, 175, 55, 0.12);
+        border: 1px solid rgba(212, 175, 55, 0.1);
+    }
+}
+
+
+
+        
         
 @media (max-width: 479px) {
     .card-with-image, 
