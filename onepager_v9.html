@@ -839,7 +839,7 @@
 
 
 
-/* Style dla druku - zachowaj dokładny wygląd jak na ekranie */
+/* Style dla druku - bez tła na górze i ciągły dokument */
 @media print {
     /* Zachowaj wszystkie kolory i tła */
     * {
@@ -848,39 +848,33 @@
         print-color-adjust: exact !important;
     }
     
-    /* Ustawienia strony */
+    /* Ustawienia strony - usuń marginesy i zrób ciągły dokument */
     @page {
         size: A4;
-        margin: 0;
+        margin: 0 !important;
     }
     
-    /* Zachowaj tło kartki i strony */
+    /* UKRYJ tło strony */
     html {
-        background: var(--col-tlo) !important;
+        background: white !important;
     }
     
+    /* Kartka wypełnia całą stronę bez marginesów */
     body {
         background: var(--col-kartka) !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
-        border-radius: 16px !important;
-        margin: 40px auto !important;
-        padding: 60px 50px !important;
-        max-width: 900px !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 30px 40px !important;
+        max-width: none !important;
+        width: 100% !important;
+        min-height: 100vh !important;
         position: relative !important;
     }
     
-    /* Zachowaj efekt przed kartką */
+    /* Usuń efekt przed kartką */
     body::before {
-        content: '' !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        background: inherit !important;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
-        border-radius: inherit !important;
-        z-index: -1 !important;
+        display: none !important;
     }
     
     /* Zachowaj wszystkie style bloczków */
@@ -904,7 +898,7 @@
         background: linear-gradient(45deg, var(--gold), var(--olive)) !important;
     }
     
-    /* Ukryj tylko przyciski zapisu (żeby nie było rekurencji) */
+    /* Ukryj przyciski zapisu */
     .save-elegant {
         display: none !important;
     }
@@ -914,20 +908,18 @@
         -webkit-print-color-adjust: exact !important;
     }
     
-    /* Zapobiegnij łamaniu ważnych elementów */
-    .report-header,
-    .header-only-card,
-    .conclusion {
-        break-inside: avoid !important;
-        page-break-inside: avoid !important;
+    /* CIĄGŁY DOKUMENT - usuń łamanie stron */
+    * {
+        page-break-before: auto !important;
+        page-break-after: auto !important;
+        page-break-inside: auto !important;
     }
     
-    /* Kontroluj łamanie między sekcjami */
+    /* Zezwól na łamanie tylko w przypadkach koniecznych */
     .header-only-card {
         page-break-before: auto !important;
     }
 }
-
 
 
 
