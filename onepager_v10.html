@@ -925,6 +925,73 @@
         
 
 
+
+
+
+.library-elegant {
+    background: white;
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    margin: 32px 0;
+}
+
+.library-elegant::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--olive), var(--gold));
+    border-radius: 16px;
+    z-index: -1;
+}
+
+.library-elegant .library-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 4px;
+}
+
+.library-elegant .library-subtitle {
+    color: var(--text-light);
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.library-elegant .library-btn {
+    display: inline-block;
+    background: transparent;
+    color: var(--gold);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    margin: 4px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.library-elegant .library-btn:hover {
+    background: var(--gold);
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+
+
+
+        
+
         
 
 
@@ -949,6 +1016,82 @@ function downloadHTML() {
     a.click();
     URL.revokeObjectURL(url);
 }
+
+
+
+
+
+
+function addToLibrary() {
+    // Ekstraktuj dane z onepager'a
+    const articleData = {
+        id: 'kwantyl-999-misinterpretacje-' + Date.now(),
+        title: document.querySelector('.report-title').innerText.replace(/\n/g, ' '),
+        excerpt: document.querySelector('.report-subtitle').innerText,
+        content: document.documentElement.outerHTML,
+        category: 'Ryzyko Operacyjne',
+        dateAdded: new Date().toISOString(),
+        author: 'Maciej Buczak',
+        readTime: '8 min'
+    };
+    
+    // Spróbuj otworzyć bibliotekę w nowym oknie/karcie
+    const libraryWindow = window.open('/risk-research/app-library.html', '_blank');
+    
+    // Wyślij dane do biblioteki
+    setTimeout(() => {
+        if (libraryWindow) {
+            libraryWindow.postMessage({
+                action: 'addToLibrary',
+                article: articleData
+            }, '*');
+        }
+    }, 1000);
+    
+    // Pokaż notyfikację
+    showLibraryNotification();
+}
+
+function showLibraryNotification() {
+    // Stwórz element notyfikacji
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--gold);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        z-index: 1000;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        transform: translateX(300px);
+        transition: transform 0.3s ease;
+    `;
+    notification.innerHTML = '✅ Artykuł dodany do biblioteki!';
+    
+    document.body.appendChild(notification);
+    
+    // Animacja pojawiania się
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Usuń po 3 sekundach
+    setTimeout(() => {
+        notification.style.transform = 'translateX(300px)';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
+
+
+
+
+    
 </script>
 
 
@@ -1170,6 +1313,16 @@ function downloadHTML() {
     
     
 
+
+
+<div class="library-elegant">
+    <div class="library-title">Dodaj do biblioteki</div>
+    <div class="library-subtitle">Zapisz artykuł w swojej osobistej kolekcji offline</div>
+    <button onclick="addToLibrary()" class="library-btn">📚 Dodaj do biblioteki Risk Research</button>
+</div>
+
+
+    
 
 
 
