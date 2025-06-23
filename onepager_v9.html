@@ -705,67 +705,61 @@
 
 
 
-.read-article-card {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--olive) 100%);
-    color: white;
-    padding: 24px;
+.links-elegant {
+    background: white;
+    border: 2px solid var(--olive);
     border-radius: 16px;
-    margin: 32px 0;
+    padding: 32px;
     text-align: center;
-    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+    position: relative;
+    margin: 32px 0;
 }
 
-.read-article-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+.links-elegant::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--gold), var(--olive));
+    border-radius: 16px;
+    z-index: -1;
 }
 
-.read-article-title {
+.links-elegant .links-title {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     font-weight: 700;
-    margin-bottom: 8px;
-    color: white;
-}
-
-.read-article-subtitle {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-bottom: 16px;
-    line-height: 1.4;
-}
-
-.read-article-link {
-    display: inline-block;
-    background: white;
     color: var(--text-dark);
-    padding: 12px 24px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
+    margin-bottom: 6px;
 }
 
-.read-article-link:hover {
+.links-elegant .links-subtitle {
+    color: var(--text-light);
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.links-elegant .elegant-link {
+    display: inline-block;
     background: transparent;
+    color: var(--olive);
+    text-decoration: none;
+    padding: 12px 24px;
+    border: 2px solid var(--olive);
+    border-radius: 25px;
+    margin: 8px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.links-elegant .elegant-link:hover {
+    background: var(--olive);
     color: white;
-    border-color: white;
+    transform: translateY(-2px);
 }
-
-.read-article-arrow {
-    margin-left: 8px;
-    transition: transform 0.3s ease;
-}
-
-.read-article-card:hover .read-article-arrow {
-    transform: translateX(4px);
-}
-
 
 
 
@@ -993,25 +987,16 @@
     
 
 
-    <div class="conclusion" style="background: var(--olive);">
-        <div class="conclusion-title">Praktyczne implikacje</div>
-        <p>Należy uważać na interpretację zbytnio redukującą przestrzeń możliwości. Trzeba zasilić wiedzę o scenariusze możliwe tu i teraz, ale nieobserwowane dotąd.</p>
-    </div>
 
 
 
 
 
-
-
-<div class="read-article-card">
-    <h3 class="read-article-title">Przeczytaj pełny artykuł</h3>
-    <p class="read-article-subtitle">
-        Pogłęb swoją wiedzę o interpretacji kwantyli w modelowaniu ryzyka operacyjnego
-    </p>
-    <a href="https://maciejbuczak.github.io/risk-research/artykul-kwantyl" class="read-article-link">
-        Czytaj dalej<span class="read-article-arrow">→</span>
-    </a>
+<div class="links-elegant">
+    <div class="links-title">Kontynuuj eksplorację</div>
+    <div class="links-subtitle">Dowiedz się więcej o zarządzaniu ryzykiem operacyjnym</div>
+    <a href="https://maciejbuczak.github.io/risk-research/artykul-kwantyl" class="elegant-link">Pełny artykuł</a>
+    <a href="https://maciejbuczak.github.io" class="elegant-link">Moja strona</a>
 </div>
 
 
@@ -1223,6 +1208,11 @@
 
 
 
+
+    <div class="conclusion" style="background: var(--olive);">
+        <div class="conclusion-title">Praktyczne implikacje</div>
+        <p>Należy uważać na interpretację zbytnio redukującą przestrzeń możliwości. Trzeba zasilić wiedzę o scenariusze możliwe tu i teraz, ale nieobserwowane dotąd.</p>
+    </div>
 
 
 
