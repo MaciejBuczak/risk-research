@@ -483,8 +483,55 @@
                 padding: 20px;
             }
         }
+
+
+
+
+
+@media (max-width: 479px) {
+    .card-with-image, 
+    .card-with-image-and-header {
+        flex-direction: column;
+    }
+    
+    .card-image-section, 
+    .card-content-section,
+    .card-content-section-with-header,
+    .card-with-image-and-header .card-image-section {
+        width: 100%;
+    }
+    
+    .card-image-section {
+        min-height: 200px;
+    }
+    
+    .card-with-image-and-header .card-image-section {
+        min-height: 200px;
+    }
+}
+
+
+
+        
     </style>
 </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 <body>
     <div class="report-header">
         <div class="report-label">Research Summary</div>
