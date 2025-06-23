@@ -839,7 +839,7 @@
 
 
 
-/* Style dla druku - bez tła na górze i ciągły dokument */
+/* Style dla druku - z małymi marginesami stron */
 @media print {
     /* Zachowaj wszystkie kolory i tła */
     * {
@@ -848,18 +848,10 @@
         print-color-adjust: exact !important;
     }
     
-    /* Ustawienia strony - usuń marginesy i wizualne granice */
+    /* Ustawienia strony - małe marginesy */
     @page {
         size: A4;
-        margin: 0 !important;
-        
-        /* Usuń wizualne granice stron */
-        @top-left { content: none; }
-        @top-center { content: none; }
-        @top-right { content: none; }
-        @bottom-left { content: none; }
-        @bottom-center { content: none; }
-        @bottom-right { content: none; }
+        margin: 15mm 10mm !important;
     }
     
     /* UKRYJ tło strony */
@@ -867,21 +859,16 @@
         background: white !important;
     }
     
-    /* Kartka wypełnia całą stronę z płynnym przejściem */
+    /* Kartka z normalnym układem */
     body {
         background: var(--col-kartka) !important;
         box-shadow: none !important;
         border-radius: 0 !important;
         margin: 0 !important;
-        padding: 20px !important;
+        padding: 0 !important;
         max-width: none !important;
         width: 100% !important;
-        min-height: 100vh !important;
         position: relative !important;
-        
-        /* Ciągły flow */
-        orphans: 0 !important;
-        widows: 0 !important;
     }
     
     /* Usuń efekt przed kartką */
@@ -920,14 +907,7 @@
         -webkit-print-color-adjust: exact !important;
     }
     
-    /* CIĄGŁY DOKUMENT - usuń łamanie stron */
-    * {
-        page-break-before: auto !important;
-        page-break-after: auto !important;
-        page-break-inside: auto !important;
-    }
-    
-    /* Zezwól na łamanie tylko w przypadkach koniecznych */
+    /* Kontroluj łamanie stron */
     .header-only-card {
         page-break-before: auto !important;
     }
