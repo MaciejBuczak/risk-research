@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwantyl 99.9 - Mobile PWA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --beige: #e6cd94;
+            --olive: #b4a988;
+            --text-dark: #444;
+            --text-light: #737373;
+            --bg-light: #fdfbf7;
+            --col1: #E8D9B8;
+            --col2: #a6824c;
+            --col3: #E3DDD1;
+            --col4: #D2C9B6;
+            --col-tlo: #D4C4A8;
+            --col-kartka: #FAF6EE;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--col-kartka);
+            color: #737373;
+            line-height: 1.5;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        .report-header {
+            background: white;
+            padding: 28px 24px;
+            border-radius: 16px;
+            border-top: 6px solid var(--gold);
+            margin-bottom: 28px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.1);
+        }
+
+        .report-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .report-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .highlight-word {
+            color: var(--gold);
+        }
+
+        .report-subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .report-meta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-family: 'Poppins', sans-serif;
+            font-size: 11px;
+            color: var(--text-light);
+            border-top: 1px solid var(--beige);
+            padding-top: 16px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+        }
+
+        .card.highlight {
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.15);
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+        }
+
+        .section-number {
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-left: 8px;
+        }
+
+        .card-text {
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            color: #737373;
+            margin-top: 0;
+        }
+
+        .problem-card {
+            background: #fdf5f0;
+            border-left: 3px solid #e74c3c;
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 8px;
+        }
+
+        .solution-card {
+            background: var(--bg-light);
+            border-left: 3px solid var(--gold);
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 8px;
+        }
+
+        .comparison-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quote {
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            margin: 8px 0;
+        }
+
+        .problem-card .quote {
+            color: #c0392b;
+        }
+
+        .solution-card .quote {
+            color: var(--gold);
+        }
+
+        .insights-list {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .insights-list li {
+            padding: 12px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 14px;
+            border-bottom: 1px solid var(--beige);
+        }
+
+        .insights-list li:last-child {
+            border-bottom: none;
+        }
+
+        .insights-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stats-card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 28px;
+            padding-bottom: 8px;
+            margin-left: 8px;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 16px 0;
+            padding: 16px;
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--gold);
+            display: block;
+        }
+
+        .stat-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 10px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight-box {
+            background: white;
+            border: 3px solid var(--olive);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .highlight-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--olive);
+            margin-bottom: 12px;
+        }
+
+        .highlight-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+        }
+
+        .highlight-card-header {
+            background: var(--gold);
+            padding: 16px 24px;
+            text-align: center;
+        }
+
+        .highlight-card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .highlight-card-body {
+            padding: 24px;
+        }
+
+        .highlight-card-text {
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            color: #737373;
+            margin: 0;
+        }
+
+        .card-with-image-and-header {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+            display: flex;
+            align-items: stretch;
+        }
+
+        .card-with-image-and-header .card-image-section {
+            width: 35%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-with-image-and-header .card-image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .card-with-image-and-header .card-image-placeholder {
+            color: var(--gold);
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card-content-section-with-header {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content-header {
+            background: var(--gold);
+            padding: 16px 24px;
+            text-align: center;
+        }
+
+        .card-content-header-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .card-content-body {
+            padding: 24px;
+            flex: 1;
+        }
+
+        .card-content-body-text {
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            color: #737373;
+            margin: 0;
+        }
+
+        .card-with-image-and-header.olive .card-content-header {
+            background: var(--olive);
+        }
+
+        .card-with-image-and-header.gray .card-content-header {
+            background: #888;
+        }
+
+        .card-with-image {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+            display: flex;
+            align-items: stretch;
+        }
+
+        .card-image-section {
+            width: 35%;
+            background: var(--col1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 15px;
+        }
+
+        .card-image-placeholder {
+            color: var(--gold);
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card-content-section {
+            width: 65%;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .card-content-text {
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            color: #737373;
+        }
+
+        .conclusion {
+            background: var(--text-dark);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .conclusion-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .conclusion p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+
+
+
+
+
+.header-only-card {
+    background: white;
+    border-radius: 12px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+}
+
+.header-only-card-header {
+    background: var(--gold);
+    padding: 10px 24px;
+    text-align: center;
+}
+
+.header-only-card-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.header-only-card.olive .header-only-card-header {
+    background: var(--olive);
+}
+
+.header-only-card.gray .header-only-card-header {
+    background: #888;
+}
+
+
+
+
+
+
+
+
+    .card-no-number {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1);
+}
+
+.card-no-number-body {
+    padding: 24px;
+}
+
+.card-no-number-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+}
+
+.card-no-number-text {
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: Arial, sans-serif;
+    color: #737373;
+    margin-top: 0;
+}
+
+
+
+        
+
+
+
+        
+
+@media (min-width: 480px) {
+            body {
+                max-width: 480px;
+                padding: 24px 20px;
+            }
+            
+            .report-title {
+                font-size: 30px;
+            }
+            
+            .card-body {
+                padding: 28px;
+            }
+        }
+
+
+        
+@media (min-width: 768px) {
+    html {
+        background: white;
+    }
+    
+    body {
+        max-width: 900px;
+        padding: 60px 50px;
+        background: var(--col-kartka);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        border-radius: 20px;
+        margin: 40px auto;
+        position: relative;
+    }
+    
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+        border-radius: inherit;
+        z-index: -1;
+    }
+    
+    .stats-row {
+        padding: 20px;
+    }
+}
+
+
+
+
+
+
+        
+        
+@media (max-width: 479px) {
+    .card-with-image, 
+    .card-with-image-and-header {
+        flex-direction: column;
+    }
+    
+    .card-image-section, 
+    .card-content-section,
+    .card-content-section-with-header,
+    .card-with-image-and-header .card-image-section {
+        width: 100%;
+    }
+    
+    .card-image-section {
+        min-height: 200px;
+    }
+    
+    .card-with-image-and-header .card-image-section {
+        min-height: 200px;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    body {
+        max-width: 90%;
+        padding: 16px 20px;
+    }
+}
+        
+
+
+
+
+
+
+        
+
+
+
+
+.footer-logo {
+    background: var(--olive);
+    color: white;
+    padding: 20px 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo .logo {
+    width: 50px;
+    height: 50px;
+    background: white;
+    color: var(--olive);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-logo .info {
+    text-align: center;
+}
+
+.footer-logo .author {
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 4px;
+}
+
+.footer-logo .details {
+    font-size: 12px;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+@media (max-width: 479px) {
+    .footer-logo {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.links-elegant {
+    background: white;
+    border: 2px solid var(--olive);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    margin: 32px 0;
+}
+
+.links-elegant::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--gold), var(--olive));
+    border-radius: 16px;
+    z-index: -1;
+}
+
+.links-elegant .links-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--olive);
+    margin-bottom: 4px;
+}
+
+.links-elegant .links-subtitle {
+    color: var(--text-light);
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.links-elegant .elegant-link {
+    display: inline-block;
+    background: transparent;
+    color: var(--olive);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid var(--olive);
+    border-radius: 20px;
+    margin: 4px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.links-elegant .elegant-link:hover {
+    background: var(--olive);
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+
+
+
+
+
+
+
+.save-elegant {
+    background: white;
+    border: 2px solid var(--gold);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    margin: 32px 0;
+}
+
+.save-elegant::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--olive), var(--gold));
+    border-radius: 16px;
+    z-index: -1;
+}
+
+.save-elegant .save-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 4px;
+}
+
+.save-elegant .save-subtitle {
+    color: var(--text-light);
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.save-elegant .save-btn {
+    display: inline-block;
+    background: transparent;
+    color: var(--gold);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    margin: 4px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-elegant .save-btn:hover {
+    background: var(--gold);
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+
+
+
+        
+
+
+
+
+
+/* Style dla druku - bez tła na górze i ciągły dokument */
+@media print {
+    /* Zachowaj wszystkie kolory i tła */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* Ustawienia strony - usuń marginesy i zrób ciągły dokument */
+    @page {
+        size: A4;
+        margin: 0 !important;
+    }
+    
+    /* UKRYJ tło strony */
+    html {
+        background: white !important;
+    }
+    
+    /* Kartka wypełnia całą stronę bez marginesów */
+    body {
+        background: var(--col-kartka) !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 30px 40px !important;
+        max-width: none !important;
+        width: 100% !important;
+        min-height: 100vh !important;
+        position: relative !important;
+    }
+    
+    /* Usuń efekt przed kartką */
+    body::before {
+        display: none !important;
+    }
+    
+    /* Zachowaj wszystkie style bloczków */
+    .card,
+    .card-no-number,
+    .header-only-card,
+    .stats-card,
+    .card-with-image,
+    .card-with-image-and-header,
+    .highlight-card,
+    .links-elegant,
+    .save-elegant {
+        box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1) !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+    
+    /* Zachowaj gradienty */
+    .links-elegant::before,
+    .save-elegant::before {
+        background: linear-gradient(45deg, var(--gold), var(--olive)) !important;
+    }
+    
+    /* Ukryj przyciski zapisu */
+    .save-elegant {
+        display: none !important;
+    }
+    
+    /* Zachowaj wszystkie obrazki */
+    img {
+        -webkit-print-color-adjust: exact !important;
+    }
+    
+    /* CIĄGŁY DOKUMENT - usuń łamanie stron */
+    * {
+        page-break-before: auto !important;
+        page-break-after: auto !important;
+        page-break-inside: auto !important;
+    }
+    
+    /* Zezwól na łamanie tylko w przypadkach koniecznych */
+    .header-only-card {
+        page-break-before: auto !important;
+    }
+}
+
+
+
+        
+
+
+        
+
+
+        
+    </style>
+
+
+
+
+
+
+
+
+<script>
+function downloadHTML() {
+    const htmlContent = document.documentElement.outerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'kwantyl-99-onepager.html';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+</script>
+
+
+
+
+
+
+    
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<body>
+    <div class="report-header">
+        <div class="report-label">Research Summary</div>
+        <h1 class="report-title">Kwantyl 99.9<br>i jego <span class="highlight-word">misinterpretacje</span></h1>
+        <p class="report-subtitle">Analiza błędnych interpretacji poziomów kwantyli w modelowaniu ryzyka operacyjnego w kontekście frameworku AMA</p>
+        <div class="report-meta">
+            <span>Autor: Maciej Buczak</span>
+            <span>Data: 10.06.2025</span>
+            <span>Czas: 8 min</span>
+            <span>Kategoria: Ryzyko Operacyjne</span>
+        </div>
+
+<!-- Kontenery na etykiety ryzyka -->
+<div style="text-align: right; margin-top: 30px; margin-bottom: 0;">
+  <!-- Etykieta ryzyko.OPERACYJNE -->
+  <span style="display: inline-block; background-color: #ece0d0; padding: 3px 8px; margin-left: 5px; margin-bottom: 5px; font-size: 11px; font-weight: bold; border-radius: 5px; font-family: Arial, sans-serif;">
+    <span style="color: #a85903;">ryzyko.</span><span style="color: #555;">OPERACYJNE</span>
+  </span>
+  
+  <!-- Etykieta ryzyko.KREDYTOWE -->
+  <span style="display: inline-block; background-color: #faf3e3; padding: 3px 8px; margin-left: 5px; margin-bottom: 5px; font-size: 11px; font-weight: bold; border-radius: 5px; font-family: Arial, sans-serif;">
+    <span style="color: #a85903;">ryzyko.</span><span style="color: #555;">KREDYTOWE</span>
+  </span>
+</div>
+        
+    </div>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+<div class="header-only-card">
+    <div class="header-only-card-header" style="background: var(--gold);">
+        <h2 class="header-only-card-title">Definicja problemu</h2>
+    </div>
+</div>
+
+
+
+
+
+<div class="card-no-number">
+    <div class="card-no-number-body">
+        <h2 class="card-no-number-title" style="color: var(--gold);">Esencja problemu</h2>
+        <p class="card-no-number-text">Nieprecyzyjna interpretacja kwantyla 99.9% może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego. Ma to szczególne znaczenie w przypadku modelowania wartości skrajnych położonych w ogonach rozkładu, gdzie dotykamy katastroficznych skutków lub ich skali finansowej.</p>
+    </div>
+</div>
+
+    
+<div class="card-no-number">
+    <div class="card-no-number-body">
+        <h2 class="card-no-number-title" style="color: var(--gold);">Różne spojrzenia</h2>
+        <p class="card-no-number-text">Nieprecyzyjna interpretacja kwantyla 99.9% może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego. Ma to szczególne znaczenie w przypadku modelowania wartości skrajnych położonych w ogonach rozkładu, gdzie dotykamy katastroficznych skutków lub ich skali finansowej.</p>
+    </div>
+</div>
+
+    
+
+
+
+
+
+
+
+
+<div class="header-only-card">
+    <div class="header-only-card-header" style="background: var(--col2);">
+        <h2 class="header-only-card-title">Kluczowe liczby</h2>
+    </div>
+</div>
+
+
+<div class="card-no-number">
+    <div class="card-no-number-body">
+        <h2 class="card-no-number-title" style="color: var(--col2);">Jakie liczby są ważne?</h2>
+        <p class="card-no-number-text">Nieprecyzyjna interpretacja kwantyla 99.9% może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego. Ma to szczególne znaczenie w przypadku modelowania wartości skrajnych położonych w ogonach rozkładu, gdzie dotykamy katastroficznych skutków lub ich skali finansowej.</p>
+    </div>
+</div>
+
+
+    
+
+
+    
+    <div class="stats-card">
+        <h2 class="stats-card-title" style="color: var(--col2);">Kluczowe parametry</h2>
+        <div class="stats-row">
+            <div class="stat">
+                <span class="stat-number" style="color: var(--col2);">99.9%</span>
+                <span class="stat-label">Poziom kwantyla</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" style="color: var(--col2);">0.1%</span>
+                <span class="stat-label">Prawdop. przekr.</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" style="color: var(--col2);">1000</span>
+                <span class="stat-label">Scenariuszy</span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="header-only-card">
+    <div class="header-only-card-header" style="background: var(--col4);">
+        <h2 class="header-only-card-title">Ważne myśli</h2>
+    </div>
+</div>
+
+
+
+
+
+    
+    <div class="card-with-image">
+        <div class="card-image-section" style="background-color: var(--col3);">
+            <img src="https://raw.githubusercontent.com/MaciejBuczak/risk-research/main/assets/images/wykres1.svg" alt="Wykres 1">
+        </div>
+        <div class="card-content-section">
+            <h2 class="card-content-title">Nowa definicja rzadkości</h2>
+            <p class="card-content-text">Rzadkość powinna być interpretowana jako wyjątkowość scenariusza względem całego spektrum innych scenariuszy, gdzie okres roczny stanowi jedynie formułę. Gdzie okres roczny stanowi jedynie formułę.</p>
+        </div>
+    </div>
+
+
+
+    <div class="card-with-image">
+        <div class="card-image-section" style="background-color: var(--col3);">
+            <img src="https://raw.githubusercontent.com/MaciejBuczak/risk-research/main/assets/images/wykres2.svg" alt="Wykres 2">
+        </div>
+        <div class="card-content-section">
+            <h2 class="card-content-title">Nowa definicja rzadkości</h2>
+            <p class="card-content-text">Rzadkość powinna być interpretowana jako wyjątkowość scenariusza względem całego spektrum innych scenariuszy, gdzie okres roczny stanowi jedynie formułę.</p>
+        </div>
+    </div>
+
+
+
+
+    <div class="card-with-image">
+        <div class="card-image-section" style="background-color: var(--col3);">
+            <img src="https://raw.githubusercontent.com/MaciejBuczak/risk-research/main/assets/images/wykres3.svg" alt="Wykres 3">
+        </div>
+        <div class="card-content-section">
+            <h2 class="card-content-title">Nowa definicja rzadkości</h2>
+            <p class="card-content-text">Rzadkość powinna być interpretowana jako wyjątkowość scenariusza względem całego spektrum innych scenariuszy, gdzie okres roczny stanowi jedynie formułę.</p>
+        </div>
+    </div>
+
+    
+
+    
+
+  
+
+
+
+
+    <div class="header-only-card">
+    <div class="header-only-card-header" style="background: var(--olive);">
+        <h2 class="header-only-card-title">Podsumowanie</h2>
+    </div>
+</div>
+
+
+
+
+<div class="card-no-number">
+    <div class="card-no-number-body">
+        <h2 class="card-no-number-title" style="color: var(--olive);">Jakie są wnioski</h2>
+        <p class="card-no-number-text">Nieprecyzyjna interpretacja kwantyla 99.9% może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego. Ma to szczególne znaczenie w przypadku modelowania wartości skrajnych położonych w ogonach rozkładu, gdzie dotykamy katastroficznych skutków lub ich skali finansowej.</p>
+    </div>
+</div>
+
+
+    
+    
+
+
+
+
+<div class="save-elegant">
+    <div class="save-title">Zapisz onepager</div>
+    <div class="save-subtitle">Pobierz kopię lub wydrukuj dla przyszłego użytku</div>
+    <button onclick="window.print()" class="save-btn">📄 Drukuj/PDF</button>
+    <button onclick="downloadHTML()" class="save-btn">💾 Pobierz HTML</button>
+</div>
+
+
+
+    
+
+
+
+<div class="links-elegant">
+    <div class="links-title">Więcej o temacie</div>
+    <div class="links-subtitle">Dowiedz się więcej o zarządzaniu ryzykiem operacyjnym</div>
+    <a href="https://maciejbuczak.github.io/risk-research/artykul-kwantyl" class="elegant-link">Pełny artykuł</a>
+    <a href="https://maciejbuczak.github.io" class="elegant-link">Strona Risk Research</a>
+</div>
+
+
+
+
+
+
+
+<div class="footer-logo">
+    <div class="logo">MB</div>
+    <div class="info">
+        <div class="author">Maciej Buczak</div>
+        <div class="details">
+            Risk Management & Research • 2025<br>
+            maciejbuczak.github.io/risk-research<br>
+            maciej.buczak@gmail.com
+        </div>
+    </div>
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+</body>
+</html>
