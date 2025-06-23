@@ -834,6 +834,103 @@
 
 
         
+
+
+
+
+
+/* Style dla druku - zachowaj dokładny wygląd jak na ekranie */
+@media print {
+    /* Zachowaj wszystkie kolory i tła */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* Ustawienia strony */
+    @page {
+        size: A4;
+        margin: 0;
+    }
+    
+    /* Zachowaj tło kartki i strony */
+    html {
+        background: var(--col-tlo) !important;
+    }
+    
+    body {
+        background: var(--col-kartka) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 16px !important;
+        margin: 40px auto !important;
+        padding: 60px 50px !important;
+        max-width: 900px !important;
+        position: relative !important;
+    }
+    
+    /* Zachowaj efekt przed kartką */
+    body::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: inherit !important;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+        border-radius: inherit !important;
+        z-index: -1 !important;
+    }
+    
+    /* Zachowaj wszystkie style bloczków */
+    .card,
+    .card-no-number,
+    .header-only-card,
+    .stats-card,
+    .card-with-image,
+    .card-with-image-and-header,
+    .highlight-card,
+    .links-elegant,
+    .save-elegant {
+        box-shadow: 0 2px 12px rgba(180, 169, 136, 0.1) !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+    
+    /* Zachowaj gradienty */
+    .links-elegant::before,
+    .save-elegant::before {
+        background: linear-gradient(45deg, var(--gold), var(--olive)) !important;
+    }
+    
+    /* Ukryj tylko przyciski zapisu (żeby nie było rekurencji) */
+    .save-elegant {
+        display: none !important;
+    }
+    
+    /* Zachowaj wszystkie obrazki */
+    img {
+        -webkit-print-color-adjust: exact !important;
+    }
+    
+    /* Zapobiegnij łamaniu ważnych elementów */
+    .report-header,
+    .header-only-card,
+    .conclusion {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+    
+    /* Kontroluj łamanie między sekcjami */
+    .header-only-card {
+        page-break-before: auto !important;
+    }
+}
+
+
+
+
         
 
 
