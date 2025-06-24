@@ -1053,6 +1053,222 @@
 
 
 
+
+
+
+
+
+/* ================================
+   SEKCJA UDOSTĘPNIANIA - OPCJA 2
+   ================================ */
+
+.share-section {
+    margin: 40px 0;
+    width: 100%;
+}
+
+.share-minimal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FDFAF1;
+    padding: 20px 30px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.share-minimal:hover {
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+}
+
+.share-title {
+    font-family: Arial Black, sans-serif;
+    font-size: 17px;
+    color: #D4AF37;
+    font-weight: bold;
+    margin: 0;
+}
+
+  
+.share-minimal h3 {
+    font-family: Arial Black, sans-serif;
+    font-size: 17px;
+    color: #D4AF37;
+    font-weight: 600;
+    margin: 0;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 2px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    background: white;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.share-btn.linkedin {
+    border-color: #0077B5;
+    color: #0077B5;
+    background: white;
+}
+
+.share-btn.linkedin svg {
+    fill: #0077B5;
+}
+
+.share-btn.linkedin:hover {
+    background: #0077B5;
+    color: white;
+}
+
+.share-btn.linkedin:hover svg {
+    fill: white;
+}
+
+.share-btn.x {
+    border-color: #000000;
+    color: #000000;
+    background: white;
+}
+
+.share-btn.x svg {
+    fill: #000000;
+}
+
+.share-btn.x:hover {
+    background: #000000;
+    color: white;
+}
+
+.share-btn.x:hover svg {
+    fill: white;
+}
+
+.share-btn.email {
+    border-color: #D4AF37;
+    color: #D4AF37;
+    background: white;
+}
+
+.share-btn.email svg {
+    fill: #D4AF37;
+}
+
+.share-btn.email:hover {
+    background: #D4AF37;
+    color: white;
+}
+
+.share-btn.email:hover svg {
+    fill: white;
+}
+
+.share-btn.copy {
+    border-color: #737373;
+    color: #737373;
+    background: white;
+}
+
+.share-btn.copy svg {
+    fill: #737373;
+}
+
+.share-btn.copy:hover {
+    background: #737373;
+    color: white;
+}
+
+.share-btn.copy:hover svg {
+    fill: white;
+}
+
+
+  
+/* Komunikat o skopiowaniu linku */
+.copy-success {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #737373;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+    font-size: 14px !important;
+    font-weight: 500;
+}
+
+.copy-success.show {
+    opacity: 1;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .share-minimal {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .share-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .share-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .share-minimal {
+        padding: 15px;
+    }
+    
+    .share-minimal h3 {
+        font-size: 16px;
+    }
+    
+    .share-btn {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
         
 
         
@@ -1408,6 +1624,48 @@ function showLibraryNotification() {
 
 
 
+
+
+
+
+<!-- SEKCJA UDOSTĘPNIANIA -->
+<div class="share-section">
+    <div class="share-minimal">
+        <h3 class="share-title" style="font-family: Arial Black, Arial, sans-serif; font-size: 17px; font-weight: bold; color: #D4AF37;">Udostępnij artykuł</h3>
+        <div class="share-buttons">
+            <a href="#" class="share-btn linkedin" onclick="shareLinkedIn(); return false;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                LinkedIn
+            </a>
+<a href="#" class="share-btn x" onclick="shareX(); return false;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+    X
+</a>
+            <a href="#" class="share-btn email" onclick="shareEmail(); return false;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                Email
+            </a>
+            <button class="share-btn copy" onclick="copyShareLink()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+                Kopiuj
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Element do pokazywania komunikatu o skopiowaniu -->
+<div class="copy-success" id="copyShareSuccess">
+    Link skopiowany do schowka!
+</div>
+    
 
 
     
