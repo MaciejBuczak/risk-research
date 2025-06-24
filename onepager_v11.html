@@ -997,11 +997,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    color: var(--gold);
-    text-align: center;
-    line-height: 1.2;
     margin: 0 auto;
+    overflow: hidden;
+}
+
+.library-elegant .qr-code img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Przycisk biblioteki - tylko mobile */
@@ -1046,7 +1049,6 @@
         display: inline-block !important;
     }
 }
-
 
 
 
@@ -1383,13 +1385,10 @@ function showLibraryNotification() {
         <div class="library-title">Dodaj do biblioteki</div>
         <div class="library-subtitle">Zeskanuj kod QR telefonem</div>
         
-        <!-- Kod QR - tylko desktop -->
+        <!-- Prawdziwy kod QR -->
         <div class="qr-code">
-            QR CODE<br>
-            ████████<br>
-            ████████<br>
-            ████████<br>
-            ████████
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maciejbuczak.github.io/risk-research&format=png&bgcolor=ffffff&color=D4AF37&margin=1" 
+                 alt="QR Code do artykułu o kwantylu 99.9" />
         </div>
         
         <!-- Przycisk - tylko mobile -->
@@ -1404,7 +1403,6 @@ function showLibraryNotification() {
         <button onclick="downloadHTML()" class="save-btn">💾 Pobierz HTML</button>
     </div>
 </div>
-    
 
 
 
