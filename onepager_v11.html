@@ -889,8 +889,8 @@
 
 /* QR Code - tylko desktop */
 .qr-code {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     background: white;
     border: 2px solid var(--gold);
     border-radius: 8px;
@@ -945,6 +945,34 @@
    gap: 6px;
    margin-top: auto;
 }
+
+
+/* ORYGINALNE STYLE .save-btn - DODAJ TO */
+.save-btn {
+    display: inline-block;
+    background: transparent;
+    color: var(--gold);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    margin: 4px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-btn:hover {
+    background: var(--gold);
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+
+        
 
 /* RESPONSYWNOŚĆ - Desktop pokazuje QR */
 @media (min-width: 768px) {
@@ -1638,10 +1666,10 @@ function showLibraryNotification() {
         <div class="section-content">
             <div class="section-title">Dodaj do biblioteki</div>
             <div class="section-subtitle">Zeskanuj kod QR telefonem</div>
-            <div class="qr-code">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://maciejbuczak.github.io/risk-research&format=png&bgcolor=ffffff&color=D4AF37&margin=1" 
-                     alt="QR Code do artykułu o kwantylu 99.9" />
-            </div>
+<div class="qr-code">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maciejbuczak.github.io/risk-research&format=png&bgcolor=ffffff&color=D4AF37&margin=1" 
+         alt="QR Code do artykułu o kwantylu 99.9" />
+</div>
             <!-- Przycisk - tylko mobile -->
             <button onclick="addToLibrary()" class="library-btn">📚 Dodaj do biblioteki</button>
         </div>
