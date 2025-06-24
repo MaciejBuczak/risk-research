@@ -1124,76 +1124,47 @@
 
 
 /* ================================
-   SEKCJA UDOSTĘPNIANIA - OPCJA 2
+   NOWA SEKCJA UDOSTĘPNIANIA - RÓWNE PRZYCISKI
    ================================ */
 
-.share-section {
-    margin: 40px 0;
-    width: 100%;
+/* Grid dla przycisków udostępniania */
+.share-buttons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 8px;
 }
 
-.share-minimal {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #FDFAF1;
-    padding: 20px 30px;
-    border-radius: 15px;
-    transition: all 0.3s ease;
-}
-
-.share-minimal:hover {
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
-}
-
-.share-title {
-    font-family: Arial Black, sans-serif;
-    font-size: 17px;
-    color: #D4AF37;
-    font-weight: bold;
-    margin: 0;
-}
-
-  
-.share-minimal h3 {
-    font-family: Arial Black, sans-serif;
-    font-size: 17px;
-    color: #D4AF37;
-    font-weight: 600;
-    margin: 0;
-}
-
-.share-buttons {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
+/* Style przycisków udostępniania - DOPASOWANE DO .save-btn */
 .share-btn {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 12px;
+    padding: 8px 12px;           /* takie same jak .save-btn */
     border: 2px solid;
-    border-radius: 8px;
+    border-radius: 20px;         /* takie same jak .save-btn */
     cursor: pointer;
-    font-weight: 600;
-    font-size: 12px;
+    font-weight: 500;            /* takie same jak .save-btn */
+    font-size: 13px;             /* takie same jak .save-btn */
     transition: all 0.3s ease;
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;  /* takie same jak .save-btn */
     background: white;
+    justify-content: center;
+    min-height: 36px;            /* zapewnia równą wysokość */
+    box-sizing: border-box;
 }
 
 .share-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px);  /* takie same jak .save-btn */
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* LinkedIn */
 .share-btn.linkedin {
     border-color: #0077B5;
     color: #0077B5;
-    background: white;
 }
 
 .share-btn.linkedin svg {
@@ -1209,10 +1180,10 @@
     fill: white;
 }
 
+/* X (Twitter) */
 .share-btn.x {
     border-color: #000000;
     color: #000000;
-    background: white;
 }
 
 .share-btn.x svg {
@@ -1228,10 +1199,10 @@
     fill: white;
 }
 
+/* Email */
 .share-btn.email {
     border-color: #D4AF37;
     color: #D4AF37;
-    background: white;
 }
 
 .share-btn.email svg {
@@ -1247,10 +1218,10 @@
     fill: white;
 }
 
+/* Kopiuj */
 .share-btn.copy {
     border-color: #737373;
     color: #737373;
-    background: white;
 }
 
 .share-btn.copy svg {
@@ -1266,8 +1237,6 @@
     fill: white;
 }
 
-
-  
 /* Komunikat o skopiowaniu linku */
 .copy-success {
     position: fixed;
@@ -1280,7 +1249,7 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 1000;
-    font-size: 14px !important;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -1288,39 +1257,28 @@
     opacity: 1;
 }
 
-/* Responsywność */
+/* Responsywność dla przycisków udostępniania */
 @media (max-width: 768px) {
-    .share-minimal {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-        padding: 20px;
-    }
-    
-    .share-buttons {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 8px;
+    .share-buttons-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
     }
     
     .share-btn {
-        font-size: 11px;
+        font-size: 12px;
         padding: 6px 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .share-minimal {
-        padding: 15px;
-    }
-    
-    .share-minimal h3 {
-        font-size: 16px;
+    .share-buttons-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
     }
     
     .share-btn {
-        font-size: 10px;
-        padding: 5px 8px;
+        font-size: 11px;
+        padding: 6px 8px;
     }
 }
 
