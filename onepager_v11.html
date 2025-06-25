@@ -37,6 +37,41 @@
             padding: 50px 16px;
         }
 
+
+
+.site-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8em;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    z-index: 100;
+}
+
+.site-logo .risk { 
+    color: #444; 
+    font-weight: 700;
+}
+
+.site-logo .research { 
+    color: #D4AF37; 
+    font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    .site-logo {
+        font-size: 1.4em;
+        top: 15px;
+        left: 15px;
+    }
+}
+
+
+
+
+        
         .report-header {
             background: white;
             padding: 28px 24px;
@@ -1581,6 +1616,16 @@ function showLibraryNotification() {
 
     
 <body>
+
+
+
+<div class="site-logo">
+    <span class="risk">::risk.</span><span class="research">research</span>
+</div>
+
+
+
+    
     <div class="report-header">
         <div class="report-label">Research Summary</div>
         <h1 class="report-title">Kwantyl 99.9<br>i jego <span class="highlight-word">misinterpretacje</span></h1>
