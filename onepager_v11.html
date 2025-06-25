@@ -39,15 +39,17 @@
 
 
 
+.site-logo-container {
+    background: var(--col-kartka);
+    padding: 20px 16px 0 16px;
+    margin-bottom: 20px;
+}
+
 .site-logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
     font-family: 'Inter', sans-serif;
     font-size: 1.8em;
     letter-spacing: -1px;
     line-height: 1.2;
-    z-index: 100;
 }
 
 .site-logo .risk { 
@@ -60,14 +62,20 @@
     font-weight: 300;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 480px) {
+    .site-logo-container {
+        padding: 24px 20px 0 20px;
+    }
     .site-logo {
-        font-size: 1.4em;
-        top: 15px;
-        left: 15px;
+        font-size: 2em;
     }
 }
 
+@media (min-width: 768px) {
+    .site-logo-container {
+        padding: 50px 50px 0 50px;
+    }
+}
 
 
 
@@ -1619,8 +1627,10 @@ function showLibraryNotification() {
 
 
 
-<div class="site-logo">
-    <span class="risk">::risk.</span><span class="research">research</span>
+<div class="site-logo-container">
+    <div class="site-logo">
+        <span class="risk">::risk.</span><span class="research">research</span>
+    </div>
 </div>
 
 
