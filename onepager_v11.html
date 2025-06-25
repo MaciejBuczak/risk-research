@@ -1168,12 +1168,6 @@
     }
 
 
-    
-    /* UKRYJ NIEPOTRZEBNE SEKCJE W PDF - DODAJ TUTAJ */
-.equal-sections-container .equal-section:nth-child(1),
-.equal-sections-container .equal-section:nth-child(2) {
-    display: none !important;
-}
 
 
 /* ZAPOBIEGAJ ŁAMANIU NAGŁÓWKÓW NA GRANICY STRON */
@@ -1195,6 +1189,53 @@
     page-break-before: auto !important;
     break-before: auto !important;
 }
+
+
+
+
+    
+
+/* DWA ELEMENTY OBOK SIEBIE W PDF: Udostępnij + Więcej o temacie */
+
+/* Kontener z dwoma sekcjami obok siebie */
+.equal-sections-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+    align-items: start !important;
+}
+
+/* Ukryj pierwsze dwie sekcje (QR i Zapisz) */
+.equal-sections-container .equal-section:nth-child(1),
+.equal-sections-container .equal-section:nth-child(2) {
+    display: none !important;
+}
+
+/* Sekcja Udostępnij */
+.equal-section {
+    min-height: auto !important;
+    padding: 20px !important;
+}
+
+/* Links-elegant jako druga kolumna */
+.links-elegant {
+    margin: 0 !important;  /* usuń marginesy */
+    align-self: start !important;
+}
+
+/* Dopasuj przyciski */
+.share-buttons-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+}
+
+.share-btn {
+    font-size: 11px !important;
+    padding: 6px 8px !important;
+}
+
+
+
     
     
 }
