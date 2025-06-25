@@ -45,6 +45,7 @@
     margin-top: 0;
     margin-bottom: 30px;
     text-align: left;
+    position: relative;
 }
 
 .site-logo {
@@ -81,6 +82,59 @@
 
 
 
+
+
+.logo-squares {
+    position: absolute;
+    top: 30px;  /* taka sama odległość od góry jak logo */
+    right: 16px;  /* taka sama odległość z prawej jak padding */
+    width: 53.5px;  /* 107 * 0.5 - szerokość grupy kwadratów */
+    height: 37.75px;  /* 51.5 + 12 = wysokość grupy kwadratów */
+}
+
+.logo-square {
+    position: absolute;
+    background-color: #D4AF37;
+    opacity: 0.7;
+}
+
+.logo-squares .big-square {
+    width: 22.5px;
+    height: 22.5px;
+    top: 0;
+    right: 0;
+}
+
+.logo-squares .small-square1 {
+    width: 12px;
+    height: 12px;
+    top: 25.75px;
+    right: 31.5px;
+}
+
+.logo-squares .small-square2 {
+    width: 12px;
+    height: 12px;
+    top: 15.5px;
+    right: 53.5px;
+}
+
+@media (min-width: 480px) {
+    .logo-squares {
+        right: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .logo-squares {
+        right: 50px;
+    }
+}
+
+
+
+
+        
         
         .report-header {
             background: white;
@@ -1632,6 +1686,11 @@ function showLibraryNotification() {
 <div class="site-logo-container">
     <div class="site-logo">
         <span class="risk">::risk.</span><span class="research">research</span>
+    </div>
+    <div class="logo-squares">
+        <div class="logo-square big-square"></div>
+        <div class="logo-square small-square1"></div>
+        <div class="logo-square small-square2"></div>
     </div>
 </div>
 
