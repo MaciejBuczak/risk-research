@@ -1196,14 +1196,29 @@
     
 
 
-/* DWA ELEMENTY OBOK SIEBIE: Więcej o temacie + Udostępnij */
+/* NAPRAW LAYOUT - OBA ELEMENTY W JEDNYM RZĘDZIE */
 
-/* Stwórz wrapper dla obu sekcji */
+/* Wrapper jako grid z dwoma kolumnami */
 .actions-wrapper {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 20px !important;
     align-items: start !important;
+}
+
+/* Links-elegant jako pierwsza kolumna (lewa) */
+.links-elegant {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+}
+
+/* Equal-sections-container jako druga kolumna (prawa) */
+.equal-sections-container {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    display: block !important;
+    margin: 0 !important;
 }
 
 /* Ukryj pierwsze dwie sekcje */
@@ -1212,19 +1227,7 @@
     display: none !important;
 }
 
-/* Equal-sections-container jako jedna kolumna */
-.equal-sections-container {
-    grid-column: 2 !important;  /* Udostępnij po prawej */
-    margin: 0 !important;
-}
-
-/* Links-elegant jako druga kolumna */
-.links-elegant {
-    grid-column: 1 !important;  /* Więcej o temacie po lewej */
-    margin: 0 !important;
-}
-
-/* Stylizacja sekcji */
+/* Trzecia sekcja (Udostępnij) */
 .equal-section {
     min-height: auto !important;
     padding: 16px !important;
@@ -1234,12 +1237,6 @@
     grid-template-columns: 1fr 1fr !important;
     gap: 6px !important;
 }
-
-.share-btn {
-    font-size: 11px !important;
-    padding: 6px 8px !important;
-}
-
 
 
     
