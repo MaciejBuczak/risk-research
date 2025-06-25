@@ -1195,35 +1195,41 @@
 
     
 
-/* DWA ELEMENTY OBOK SIEBIE W PDF: Udostępnij + Więcej o temacie */
 
-/* Kontener z dwoma sekcjami obok siebie */
-.equal-sections-container {
+/* DWA ELEMENTY OBOK SIEBIE: Więcej o temacie + Udostępnij */
+
+/* Stwórz wrapper dla obu sekcji */
+.actions-wrapper {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 20px !important;
     align-items: start !important;
 }
 
-/* Ukryj pierwsze dwie sekcje (QR i Zapisz) */
+/* Ukryj pierwsze dwie sekcje */
 .equal-sections-container .equal-section:nth-child(1),
 .equal-sections-container .equal-section:nth-child(2) {
     display: none !important;
 }
 
-/* Sekcja Udostępnij */
-.equal-section {
-    min-height: auto !important;
-    padding: 20px !important;
+/* Equal-sections-container jako jedna kolumna */
+.equal-sections-container {
+    grid-column: 2 !important;  /* Udostępnij po prawej */
+    margin: 0 !important;
 }
 
 /* Links-elegant jako druga kolumna */
 .links-elegant {
-    margin: 0 !important;  /* usuń marginesy */
-    align-self: start !important;
+    grid-column: 1 !important;  /* Więcej o temacie po lewej */
+    margin: 0 !important;
 }
 
-/* Dopasuj przyciski */
+/* Stylizacja sekcji */
+.equal-section {
+    min-height: auto !important;
+    padding: 16px !important;
+}
+
 .share-buttons-grid {
     grid-template-columns: 1fr 1fr !important;
     gap: 6px !important;
