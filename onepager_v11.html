@@ -1215,7 +1215,20 @@
     margin: 0 !important;
     height: 100% !important;         /* DODAJ: dopasuj wysokość */
     padding: 16px !important;
+    display: flex !important;                /* ← DODAJ */
+    flex-direction: column !important;      /* ← DODAJ */
+    justify-content: space-between !important; /* ← DODAJ */
 }
+
+
+    /* Przyciski jeden pod drugim */
+    .links-elegant .elegant-link {
+        display: block !important;              /* ← DODAJ */
+        margin: 8px 0 !important;               /* ← DODAJ */
+        text-align: center !important;          /* ← DODAJ */
+    }
+
+    
 
 /* Equal-sections-container jako druga kolumna (prawa) */
 .equal-sections-container {
