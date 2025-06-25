@@ -1174,6 +1174,21 @@
 .equal-sections-container .equal-section:nth-child(2) {
     display: none !important;
 }
+
+
+/* ZAPOBIEGAJ ŁAMANIU NAGŁÓWKÓW NA GRANICY STRON */
+.header-only-card {
+    page-break-inside: avoid !important;
+    page-break-after: avoid !important;
+    break-inside: avoid !important;
+    break-after: avoid !important;
+}
+
+.header-only-card + * {
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+}
+
     
     
 }
@@ -1687,7 +1702,6 @@ function showLibraryNotification() {
 
     
     
-<br>
 <br>
 
 
