@@ -1196,14 +1196,15 @@
     
 
 
-/* NAPRAW LAYOUT - OBA ELEMENTY W JEDNYM RZĘDZIE */
+/* NAPRAW WYSOKOŚĆ I ODSTĘPY */
 
 /* Wrapper jako grid z dwoma kolumnami */
 .actions-wrapper {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 20px !important;
-    align-items: start !important;
+    align-items: stretch !important;        /* ZMIANA: stretch zamiast start */
+    padding: 20px !important;               /* DODAJ: padding góra/dół jak boki */
 }
 
 /* Links-elegant jako pierwsza kolumna (lewa) */
@@ -1211,6 +1212,7 @@
     grid-column: 1 !important;
     grid-row: 1 !important;
     margin: 0 !important;
+    height: fit-content !important;         /* DODAJ: dopasuj wysokość */
 }
 
 /* Equal-sections-container jako druga kolumna (prawa) */
@@ -1227,15 +1229,20 @@
     display: none !important;
 }
 
-/* Trzecia sekcja (Udostępnij) */
+/* Trzecia sekcja (Udostępnij) - DOPASUJ WYSOKOŚĆ */
 .equal-section {
     min-height: auto !important;
+    height: 100% !important;                /* DODAJ: pełna wysokość */
     padding: 16px !important;
+    display: flex !important;               /* DODAJ: flex dla wyrównania */
+    flex-direction: column !important;
+    justify-content: space-between !important;
 }
 
 .share-buttons-grid {
     grid-template-columns: 1fr 1fr !important;
     gap: 6px !important;
+    margin-top: auto !important;            /* DODAJ: przyciski na dół */
 }
 
 
