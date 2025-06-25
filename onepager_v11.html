@@ -1103,6 +1103,7 @@
     
     /* UKRYJ tło strony */
     html {
+        height: 100%;
         background: var(--col-kartka) !important;
     }
     
@@ -1117,6 +1118,9 @@
         width: 100% !important;
         min-height: 100vh !important;
         position: relative !important;
+            min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     }
     
     /* Usuń efekt przed kartką */
@@ -1192,23 +1196,13 @@
 
 
 
-    /* FOOTER NA DOLE OSTATNIEJ STRONY */
-    .footer-logo {
-        position: fixed;
-        bottom: 10mm;               /* 10mm od dolnej krawędzi strony */
-        left: 40px;                 /* wyrównane z treścią (body padding) */
-        right: 40px;                /* wyrównane z treścią */
-        margin: 0 !important;       /* usuń istniejące marginesy */
-        page-break-inside: avoid !important;
-    }
-    
-    /* Dodaj przestrzeń na footer żeby treść się nie nakładała */
-    body {
-        padding-bottom: 80px !important;  /* miejsce na footer */
-    }
 
 
-
+/* Footer na dole ostatniej strony */
+.footer-logo {
+    margin-top: auto !important;
+    margin-bottom: 10mm !important;
+}
 
 
     
