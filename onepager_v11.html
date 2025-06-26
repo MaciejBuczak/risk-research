@@ -1554,7 +1554,7 @@
 
 
 
-/* ===== FULLSCREEN BUTTON W PRAWYM GÓRNYM ROGU STRONY ===== */
+/* ===== FULLSCREEN BUTTON - DESKTOP ===== */
 .fullscreen-icon {
     position: fixed;
     top: 20px;
@@ -1562,13 +1562,13 @@
     background: none;
     border: none;
     color: var(--gold);
-    font-size: 28px;        /* większa ikona jak chciałeś */
+    font-size: 28px;
     cursor: pointer;
     opacity: 0.6;
     transition: all 0.3s ease;
     padding: 12px;
     border-radius: 8px;
-    z-index: 1000;          /* nad wszystkim */
+    z-index: 1000;
 }
 
 .fullscreen-icon:hover {
@@ -1577,13 +1577,39 @@
     transform: scale(1.1);
 }
 
-/* W trybie fullscreen ukryj przycisk jeśli chcesz */
-:fullscreen .fullscreen-icon {
-    opacity: 0.3;
+/* UKRYJ NA TELEFONACH */
+@media (max-width: 767px) {
+    .fullscreen-icon {
+        display: none;
+    }
+    
+    .mobile-hint {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(212, 175, 55, 0.95);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .mobile-hint.show {
+        opacity: 1;
+    }
 }
 
-:fullscreen .fullscreen-icon:hover {
-    opacity: 1;
+/* UKRYJ W DRUKU */
+@media print {
+    .fullscreen-icon {
+        display: none !important;
+    }
 }
 
         
@@ -1703,6 +1729,40 @@ function toggleFullscreen() {
     }
 }
 
+// DODAJ TO PONIŻEJ:
+// MOBILE: Podwójne tap + komunikat powitalny
+window.addEventListener('load', function() {
+    if (window.innerWidth <= 767) {
+        showMobileHint();
+    }
+});
+
+function showMobileHint() {
+    const hint = document.createElement('div');
+    hint.className = 'mobile-hint';
+    hint.innerHTML = '💡 Podwójne tapnięcie = pełny ekran';
+    document.body.appendChild(hint);
+    
+    setTimeout(() => hint.classList.add('show'), 500);
+    setTimeout(() => {
+        hint.classList.remove('show');
+        setTimeout(() => document.body.removeChild(hint), 300);
+    }, 3000);
+}
+
+// Double-tap fullscreen na mobile
+let tapCount = 0;
+document.addEventListener('touchend', function(e) {
+    if (window.innerWidth <= 767) {
+        tapCount++;
+        if (tapCount === 1) {
+            setTimeout(() => tapCount = 0, 300);
+        } else if (tapCount === 2) {
+            toggleFullscreen();
+            tapCount = 0;
+        }
+    }
+});
 
 
 
@@ -1740,7 +1800,9 @@ function toggleFullscreen() {
 
 
 
-<!-- PRZYCISK FULLSCREEN - PRAWY GÓRNY RÓG STRONY -->
+<body>
+
+<!-- PRZYCISK FULLSCREEN -->
 <button class="fullscreen-icon" onclick="toggleFullscreen()" title="Pełny ekran">⛶</button>
 
 
