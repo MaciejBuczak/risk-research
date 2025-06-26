@@ -1583,25 +1583,33 @@
         display: none;
     }
     
+@media (max-width: 767px) {
+    .fullscreen-icon {
+        display: none;
+    }
+    
     .mobile-hint {
         position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(212, 175, 55, 0.95);
+        top: 0;                          /* na samej górze */
+        left: 0;                         /* od lewej krawędzi */
+        right: 0;                        /* do prawej krawędzi */
+        width: 100%;                     /* pełna szerokość */
+        background: #737373;             /* Twój kolor */
         color: white;
-        padding: 12px 20px;
-        border-radius: 20px;
+        padding: 15px 20px;              /* więcej paddingu */
         font-size: 14px;
         font-weight: 500;
         z-index: 1000;
         opacity: 0;
         transition: opacity 0.3s ease;
         font-family: 'Poppins', sans-serif;
+        text-align: center;              /* wyśrodkowany tekst */
+        transform: translateY(-100%);    /* ukryty na górze */
     }
     
     .mobile-hint.show {
         opacity: 1;
+        transform: translateY(0);        /* zjeżdża z góry */
     }
 }
 
