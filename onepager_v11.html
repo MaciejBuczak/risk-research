@@ -1555,11 +1555,11 @@
 
     
     .save-btn {
-        width: 70% !important;  /* DODAJ TO */
+        width: 55% !important;  /* DODAJ TO */
     }
 
     .library-btn {                    /* ← DODAJ TO! */
-        width: 70% !important;
+        width: 55% !important;
     }
 }
 
@@ -1572,6 +1572,14 @@
     .share-btn {
         font-size: 11px;
         padding: 6px 8px;
+    }
+
+    .save-btn {
+        width: 70% !important;  /* DODAJ TO */
+    }
+
+    .library-btn {                    /* ← DODAJ TO! */
+        width: 70% !important;
     }
 }
 
@@ -1618,6 +1626,12 @@
         display: none !important;
     }
     .mobile-title, .mobile-subtitle {
+        display: block !important;
+    }
+    .desktop-qr-subtitle {
+        display: none !important;
+    }
+    .mobile-qr-subtitle {
         display: block !important;
     }
     
@@ -2076,6 +2090,7 @@ document.addEventListener('touchend', function(e) {
             <div class="section-content">
                 <div class="section-title">Onepager MOBILE APP</div>
                 <div class="section-subtitle">Zeskanuj kod QR telefonem i dodaj artykuł do mobilnej biblioteki</div>
+                <div class="section-subtitle mobile-qr-subtitle" style="display: none;">Dodaj do aplikacji mobilnej</div>
                 <div class="qr-code">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maciejbuczak.github.io/risk-research&format=png&bgcolor=ffffff&color=D4AF37&margin=1" 
                          alt="QR Code do artykułu o kwantylu 99.9" />
