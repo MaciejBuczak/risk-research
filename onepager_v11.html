@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kwantyl 99.9 - Mobile PWA</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+  
+    
+    
+    
+    <!-- SUPABASE CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    
+    
     <style>
         * {
             margin: 0;
@@ -1695,6 +1704,208 @@
 
 <script>
 
+
+
+
+
+// ===============================
+// KONFIGURACJA SUPABASE
+// ===============================
+const supabaseUrl = 'https://vjgbyyivxirfrfiatizh.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqZ2J5eWl2eGlyZnJmaWF0aXpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MTMyNTQsImV4cCI6MjA2NTI4OTI1NH0.qui7vdNdfzB1WxDwroPdPKjSZyIg_ENzcqXAxDbbzIM';
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+// FUNKCJE ANALITYCZNE
+function getDeviceInfo() {
+    const userAgent = navigator.userAgent;
+    let deviceType = 'desktop';
+    if (/Mobi|Android/i.test(userAgent)) deviceType = 'mobile';
+    else if (/Tablet|iPad/i.test(userAgent)) deviceType = 'tablet';
+    
+    let browserName = 'Unknown';
+    if (userAgent.indexOf('SamsungBrowser') > -1) browserName = 'Samsung';
+    else if (userAgent.indexOf('Edg') > -1) browserName = 'Edge';
+    else if (userAgent.indexOf('OPR') > -1) browserName = 'Opera';
+    else if (userAgent.indexOf('Firefox') > -1) browserName = 'Firefox';
+    else if (userAgent.indexOf('Chrome') > -1) browserName = 'Chrome';
+    else if (userAgent.indexOf('Safari') > -1) browserName = 'Safari';
+    
+    return { deviceType, browserName };
+}
+
+function getTrafficSource() {
+    const referrer = document.referrer;
+    if (!referrer || referrer === '') return { trafficSource: 'Direct', referrerUrl: null };
+    
+    const hostname = new URL(referrer).hostname.toLowerCase();
+    let trafficSource = 'Referral';
+    
+    if (hostname.includes('google')) trafficSource = 'Google';
+    else if (hostname.includes('linkedin')) trafficSource = 'LinkedIn';
+    else if (hostname.includes('twitter') || hostname.includes('t.co')) trafficSource = 'Twitter';
+    else if (hostname.includes('facebook')) trafficSource = 'Facebook';
+    
+    return { trafficSource, referrerUrl: referrer };
+}
+
+async function getLocationInfo() {
+    try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        return { country: data.country_name || 'Unknown', city: data.city || 'Unknown' };
+    } catch (error) {
+        return { country: 'Unknown', city: 'Unknown' };
+    }
+}
+
+function generateSessionId() {
+    return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+function getSessionId() {
+    let sessionId = sessionStorage.getItem('session_id');
+    if (!sessionId) {
+        sessionId = generateSessionId();
+        sessionStorage.setItem('session_id', sessionId);
+    }
+    return sessionId;
+}
+
+function getArticleId() {
+    return 'onepager_v11';
+}
+
+// FUNKCJE UDOSTĘPNIANIA
+async function trackShare(platform) {
+    try {
+        const articleId = getArticleId();
+        const sessionId = getSessionId();
+        const deviceInfo = getDeviceInfo();
+        const trafficInfo = getTrafficSource();
+        const locationInfo = await getLocationInfo();
+        
+        const { error } = await supabase.from('article_shares').insert([{
+            article_id: articleId,
+            session_id: sessionId,
+            platform: platform,
+            country: locationInfo.country,
+            city: locationInfo.city,
+            device_type: deviceInfo.deviceType,
+            browser_name: deviceInfo.browserName,
+            traffic_source: trafficInfo.trafficSource,
+            referrer_url: trafficInfo.referrerUrl,
+            shared_at: new Date().toISOString()
+        }]);
+        
+        if (error) console.error('Błąd trackShare:', error);
+        else console.log(`Udostępnienie na ${platform} zapisane`);
+    } catch (error) {
+        console.error('Błąd w trackShare:', error);
+    }
+}
+
+function shareLinkedIn() {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent("Kwantyl 99.9 i jego misinterpretacje");
+    const text = encodeURIComponent("Wartościowy onepager o analizie ryzyka operacyjnego");
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${text}`, '_blank', 'width=600,height=400');
+    trackShare('linkedin');
+}
+
+function shareX() {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent("Kwantyl 99.9 i jego misinterpretacje - onepager o modelowaniu ryzyka");
+    window.open(`https://x.com/intent/tweet?url=${url}&text=${text}&hashtags=RiskManagement,Analytics`, '_blank', 'width=600,height=400');
+    trackShare('x');
+}
+
+function shareEmail() {
+    const subject = encodeURIComponent("Kwantyl 99.9 i jego misinterpretacje - Onepager");
+    const body = encodeURIComponent(`Cześć!\n\nZnalazłem ciekawy onepager o analizie ryzyka:\n\n"Kwantyl 99.9 i jego misinterpretacje"\n\n${window.location.href}\n\nPolecam!`);
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    trackShare('email');
+}
+
+function copyShareLink() {
+    const url = window.location.href;
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(showCopySuccess).catch(() => fallbackCopy(url));
+    } else {
+        fallbackCopy(url);
+    }
+    trackShare('copy_link');
+}
+
+function fallbackCopy(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+        document.execCommand('copy');
+        showCopySuccess();
+    } catch (err) {
+        console.error('Błąd kopiowania:', err);
+    }
+    document.body.removeChild(textArea);
+}
+
+function showCopySuccess() {
+    const successDiv = document.createElement('div');
+    successDiv.textContent = 'Link skopiowany!';
+    successDiv.style.cssText = `position:fixed;top:20px;right:20px;background:#737373;color:white;padding:12px 20px;border-radius:12px;z-index:1000;font-family:Poppins,sans-serif;`;
+    document.body.appendChild(successDiv);
+    setTimeout(() => document.body.removeChild(successDiv), 3000);
+}
+
+// TRACKING WYŚWIETLEŃ
+async function trackPageView() {
+    try {
+        const articleId = getArticleId();
+        const sessionId = getSessionId();
+        
+        const { data: existingView } = await supabase.from('page_views').select('*').eq('article_id', articleId).eq('session_id', sessionId).single();
+        
+        if (!existingView) {
+            const deviceInfo = getDeviceInfo();
+            const trafficInfo = getTrafficSource();
+            const locationInfo = await getLocationInfo();
+            
+            const { error } = await supabase.from('page_views').insert([{
+                article_id: articleId,
+                user_id: null,
+                session_id: sessionId,
+                country: locationInfo.country,
+                city: locationInfo.city,
+                device_type: deviceInfo.deviceType,
+                browser_name: deviceInfo.browserName,
+                traffic_source: trafficInfo.trafficSource,
+                referrer_url: trafficInfo.referrerUrl
+            }]);
+            
+            if (error) console.error('Błąd trackPageView:', error);
+            else console.log('Wyświetlenie onepager\'a zapisane');
+        }
+    } catch (error) {
+        console.error('Błąd w trackPageView:', error);
+    }
+}
+
+// DODAJ TO DO WINDOW.LOAD
+window.addEventListener('load', function() {
+    trackPageView();
+    if (window.innerWidth <= 767) {
+        showMobileHint();
+    }
+});
+
+
+
+
+    
     
     
 function downloadHTML() {
@@ -1794,11 +2005,7 @@ function toggleFullscreen() {
 
 // DODAJ TO PONIŻEJ:
 // MOBILE: Podwójne tap + komunikat powitalny
-window.addEventListener('load', function() {
-    if (window.innerWidth <= 767) {
-        showMobileHint();
-    }
-});
+
 
 function showMobileHint() {
     const hint = document.createElement('div');
