@@ -1595,6 +1595,7 @@
         right: 0;                        /* do prawej krawędzi */
         width: 100%;                     /* pełna szerokość */
         background: #737373;             /* Twój kolor */
+        border-radius: 15px;
         color: white;
         padding: 15px 20px;              /* więcej paddingu */
         font-size: 14px;
@@ -1748,7 +1749,7 @@ window.addEventListener('load', function() {
 function showMobileHint() {
     const hint = document.createElement('div');
     hint.className = 'mobile-hint';
-    hint.innerHTML = '💡 Podwójne tapnięcie = pełny ekran';
+    hint.innerHTML = '💡 Dotknij 2x -> pełny ekran';
     document.body.appendChild(hint);
     
     setTimeout(() => hint.classList.add('show'), 500);
