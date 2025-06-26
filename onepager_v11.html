@@ -1549,7 +1549,37 @@
 
 
 
+/* ===== FULLSCREEN BUTTON W PRAWYM GÓRNYM ROGU STRONY ===== */
+.fullscreen-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 28px;        /* większa ikona jak chciałeś */
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    padding: 12px;
+    border-radius: 8px;
+    z-index: 1000;          /* nad wszystkim */
+}
 
+.fullscreen-icon:hover {
+    opacity: 1;
+    background: rgba(212, 175, 55, 0.1);
+    transform: scale(1.1);
+}
+
+/* W trybie fullscreen ukryj przycisk jeśli chcesz */
+:fullscreen .fullscreen-icon {
+    opacity: 0.3;
+}
+
+:fullscreen .fullscreen-icon:hover {
+    opacity: 1;
+}
 
         
 
@@ -1565,8 +1595,14 @@
 
 
 
+    
+
+
 
 <script>
+
+    
+    
 function downloadHTML() {
     const htmlContent = document.documentElement.outerHTML;
     const blob = new Blob([htmlContent], { type: 'text/html' });
@@ -1652,6 +1688,21 @@ function showLibraryNotification() {
 
 
 
+
+
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+
+
+
+    
+
     
 </script>
 
@@ -1682,6 +1733,13 @@ function showLibraryNotification() {
 <body>
 
 
+
+
+<!-- PRZYCISK FULLSCREEN - PRAWY GÓRNY RÓG STRONY -->
+<button class="fullscreen-icon" onclick="toggleFullscreen()" title="Pełny ekran">⛶</button>
+
+
+    
 
 <div class="site-logo-container">
     <div class="site-logo">
@@ -1962,7 +2020,7 @@ function showLibraryNotification() {
     <div class="links-title">Więcej o temacie</div>
     <div class="links-subtitle">Dowiedz się więcej</div>
     <a href="https://maciejbuczak.github.io/risk-research/artykul-kwantyl" class="elegant-link">Pełny artykuł</a>
-    <a href="https://maciejbuczak.github.io" class="elegant-link">Strona Risk Research</a>
+    <a href="https://maciejbuczak.github.io/risk-research" class="elegant-link">Strona Risk Research</a>
 </div>
 
 
