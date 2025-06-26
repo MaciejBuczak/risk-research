@@ -1543,11 +1543,11 @@
     }
 
     .save-btn {
-        width: 100% !important;  /* DODAJ TO */
+        width: 70% !important;  /* DODAJ TO */
     }
 
-        .library-btn {                    /* ← DODAJ TO! */
-        width: 100% !important;
+    .library-btn {                    /* ← DODAJ TO! */
+        width: 70% !important;
     }
 }
 
@@ -1602,6 +1602,13 @@
     .action-buttons .save-btn:nth-child(2) {
         display: none;
     }
+    .desktop-title, .desktop-subtitle {
+        display: none !important;
+    }
+    .mobile-title, .mobile-subtitle {
+        display: block !important;
+    }
+    
     }
     
 @media (max-width: 767px) {
@@ -2066,17 +2073,19 @@ document.addEventListener('touchend', function(e) {
             </div>
         </div>
         
-        <!-- Save Section -->
-        <div class="equal-section">
-            <div class="section-content">
-                <div class="section-title">Onepager DESKTOP</div>
-                <div class="section-subtitle">Pobierz onepager na komputer</div>
-            </div>
-            <div class="action-buttons">
-                <button onclick="window.print()" class="save-btn">Drukuj/PDF</button>
-                <button onclick="downloadHTML()" class="save-btn">Pobierz HTML</button>
-            </div>
-        </div>
+<!-- Save Section -->
+<div class="equal-section">
+    <div class="section-content">
+        <div class="section-title desktop-title">Onepager DESKTOP</div>
+        <div class="section-title mobile-title" style="display: none;">Zapisz onepager</div>
+        <div class="section-subtitle desktop-subtitle">Pobierz onepager na komputer</div>
+        <div class="section-subtitle mobile-subtitle" style="display: none;">Zapisz jako PDF</div>
+    </div>
+    <div class="action-buttons">
+        <button onclick="window.print()" class="save-btn">Drukuj/PDF</button>
+        <button onclick="downloadHTML()" class="save-btn">Pobierz HTML</button>
+    </div>
+</div>
         
         <!-- Share Section -->
         <div class="equal-section">
