@@ -3490,33 +3490,7 @@ async function trackShare(platform) {
 
 
 
-// FUNKCJA DO POBIERANIA ONEPAGERA JAKO HTML
-function downloadOnepagerHTML() {
-    // Tworzy niewidzialny link do pobrania onepagera
-    const onepagerUrl = 'https://maciejbuczak.github.io/risk-research/onepager_v11';
-    
-    // Pobiera zawartość onepagera
-    fetch(onepagerUrl)
-        .then(response => response.text())
-        .then(htmlContent => {
-            // Tworzy blob z zawartością HTML
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            
-            // Tworzy link do pobrania
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'kwantyl-999-onepager.html';
-            a.click();
-            
-            // Czyści URL
-            URL.revokeObjectURL(url);
-        })
-        .catch(error => {
-            console.error('Błąd przy pobieraniu onepagera:', error);
-            alert('Nie udało się pobrać onepagera. Spróbuj ponownie.');
-        });
-}
+
   
 
 
@@ -4312,8 +4286,8 @@ window.addEventListener('load', function() {
                 <div class="article-section-subtitle">Pobierz onepager na komputer</div>
             </div>
             <div class="article-action-buttons">
+<button onclick="window.open('https://maciejbuczak.github.io/risk-research/onepager_v11', '_blank');" class="article-save-btn">Otwórz</button>
 <button onclick="window.open('https://maciejbuczak.github.io/risk-research/onepager_v11', '_blank').print();" class="article-save-btn">Drukuj/PDF</button>
-<button onclick="downloadOnepagerHTML()" class="article-save-btn">Pobierz HTML</button>
             </div>
         </div>
         
