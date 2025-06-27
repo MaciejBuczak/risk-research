@@ -1199,7 +1199,7 @@
 
 
 
-    /* UKRYJ CAŁĄ SEKCJĘ AKCJI W PDF - DODAJ TO NA POCZĄTKU */
+    /* UKRYJ CAŁĄ SEKCJĘ AKCJI W PDF */
     .actions-wrapper {
         display: none !important;
     }
@@ -1319,100 +1319,6 @@
         display: none !important;
     }
     
-
-
-/* NAPRAW WYSOKOŚĆ I ODSTĘPY */
-
-/* Wrapper jako grid z dwoma kolumnami */
-.actions-wrapper {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 20px !important;
-    align-items: stretch !important;        /* ZMIANA: stretch zamiast start */
-    padding: 20px !important;               /* DODAJ: padding góra/dół jak boki */
-}
-
-/* Links-elegant jako pierwsza kolumna (lewa) */
-.links-elegant {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
-    margin: 0 !important;
-    height: 100% !important;         /* DODAJ: dopasuj wysokość */
-    padding: 16px !important;
-    display: flex !important;                /* ← DODAJ */
-    flex-direction: column !important;      /* ← DODAJ */
-    justify-content: space-between !important; /* ← DODAJ */
-}
-
-
-    /* Przyciski jeden pod drugim */
-    .links-elegant .elegant-link {
-        display: block !important;              /* ← DODAJ */
-        margin: 8px 0 !important;               /* ← DODAJ */
-        text-align: center !important;          /* ← DODAJ */
-    }
-
-    
-
-/* Equal-sections-container jako druga kolumna (prawa) */
-.equal-sections-container {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-    display: block !important;
-    margin: 0 !important;
-}
-
-/* Ukryj pierwsze dwie sekcje */
-.equal-sections-container .equal-section:nth-child(1),
-.equal-sections-container .equal-section:nth-child(2) {
-    display: none !important;
-}
-
-/* Trzecia sekcja (Udostępnij) - DOPASUJ WYSOKOŚĆ */
-.equal-section {
-    min-height: auto !important;
-    height: 100% !important;                /* DODAJ: pełna wysokość */
-    padding: 16px !important;
-    display: flex !important;               /* DODAJ: flex dla wyrównania */
-    flex-direction: column !important;
-    justify-content: space-between !important;
-}
-
-.share-buttons-grid {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 6px !important;
-    margin-top: auto !important;            /* DODAJ: przyciski na dół */
-}
-
-
-
-
-    
-
-
-    /* ZAPOBIEGAJ ŁAMANIU CAŁEJ SEKCJI AKCJI */
-    .actions-wrapper {
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-        page-break-before: auto !important;
-        break-before: auto !important;
-        page-break-after: auto !important;
-        break-after: auto !important;
-    }
-    
-    /* DODATKOWE ZABEZPIECZENIE DLA ELEMENTÓW WEWNĘTRZNYCH */
-    .links-elegant,
-    .equal-sections-container,
-    .equal-section {
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-    }
-    
-    /* JEŚLI SEKCJA NIE MIEŚCI SIĘ - PRZENIEŚ CAŁĄ NA NOWĄ STRONĘ */
-    .actions-wrapper {
-        orphans: 4 !important;
-        widows: 4 !important;
-    }
 
 
     
