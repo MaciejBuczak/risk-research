@@ -619,6 +619,54 @@
 
 
 
+/* PROSTA KLASA NAGŁÓWKA - BEZ TŁA I EFEKTÓW */
+.simple-header {
+    background: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    padding: 20px 0;
+    margin: 40px 0 20px 0;
+    text-align: center;
+}
+
+.simple-header-title {
+    font-family: 'DM Sans', 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #444;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+/* USUŃ WSZYSTKIE EFEKTY */
+.simple-header:hover,
+.simple-header:focus,
+.simple-header:active,
+.simple-header-title:hover,
+.simple-header-title:focus,
+.simple-header-title:active {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+
+
+
+
+
+
+
+
+        
+
+
 
     .card-no-number {
     background: white;
@@ -2110,12 +2158,10 @@ document.addEventListener('touchend', function(e) {
 
     
 
-
-<div class="header-only-card">
-    <div class="header-only-card-header" style="background: transparent;">
-        <h2 class="header-only-card-title" style="font-family: 'DM Sans', Arial; color: #444;">Definicja problemu</h2>
-    </div>
+<div class="simple-header">
+    <h2 class="simple-header-title">Definicja problemu</h2>
 </div>
+
 
 
 
