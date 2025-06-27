@@ -1376,8 +1376,32 @@
 
 
 
+    
 
 
+    /* ZAPOBIEGAJ ŁAMANIU CAŁEJ SEKCJI AKCJI */
+    .actions-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        page-break-before: auto !important;
+        break-before: auto !important;
+        page-break-after: auto !important;
+        break-after: auto !important;
+    }
+    
+    /* DODATKOWE ZABEZPIECZENIE DLA ELEMENTÓW WEWNĘTRZNYCH */
+    .links-elegant,
+    .equal-sections-container,
+    .equal-section {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+    
+    /* JEŚLI SEKCJA NIE MIEŚCI SIĘ - PRZENIEŚ CAŁĄ NA NOWĄ STRONĘ */
+    .actions-wrapper {
+        orphans: 4 !important;
+        widows: 4 !important;
+    }
 
 
     
