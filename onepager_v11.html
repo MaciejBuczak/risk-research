@@ -1935,14 +1935,28 @@ function showLibraryNotification() {
 
 
 
-
 function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
+    // Sprawdź czy jesteśmy już w fullscreen (różne sposoby dla różnych przeglądarek)
+    const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+    
+    if (!isFullscreen) {
+        // WEJDŹ w fullscreen
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();           // Chrome, Firefox, Edge
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();     // Safari
+        }
     } else {
-        document.exitFullscreen();
+        // WYJDŹ z fullscreen  
+        if (document.exitFullscreen) {
+            document.exitFullscreen();         // Chrome, Firefox, Edge
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();   // Safari
+        }
     }
 }
+
 
 // DODAJ TO PONIŻEJ:
 // MOBILE: Podwójne tap + komunikat powitalny
