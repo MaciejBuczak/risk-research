@@ -3493,7 +3493,7 @@ async function trackShare(platform) {
 // FUNKCJA DO POBIERANIA ONEPAGERA JAKO HTML
 function downloadOnepagerHTML() {
     // Tworzy niewidzialny link do pobrania onepagera
-    const onepagerUrl = 'https://maciejbuczak.github.io/risk-research/kwantyl-99-onepager.html';
+    const onepagerUrl = 'https://maciejbuczak.github.io/risk-research/onepager_v11';
     
     // Pobiera zawartość onepagera
     fetch(onepagerUrl)
@@ -3517,7 +3517,6 @@ function downloadOnepagerHTML() {
             alert('Nie udało się pobrać onepagera. Spróbuj ponownie.');
         });
 }
-
   
 
 
@@ -4297,7 +4296,7 @@ window.addEventListener('load', function() {
         <div class="article-equal-section">
             <div class="article-section-content">
                 <div class="article-section-title">Onepager MOBILE APP</div>
-                <div class="article-section-subtitle">Zeskanuj kod QR telefonem i dodaj onepader artykułu do mobilnej biblioteki</div>
+                <div class="article-section-subtitle">Zeskanuj kod QR telefonem i dodaj onepager artykułu do mobilnej biblioteki</div>
                 <div class="article-qr-code">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maciejbuczak.github.io/risk-research/onepager_v11.html&format=png&bgcolor=ffffff&color=D4AF37&margin=1" 
                          alt="QR Code do artykułu o kwantylu 99.9" />
@@ -4313,7 +4312,7 @@ window.addEventListener('load', function() {
                 <div class="article-section-subtitle">Pobierz onepager na komputer</div>
             </div>
             <div class="article-action-buttons">
-<button onclick="window.open('https://maciejbuczak.github.io/risk-research/kwantyl-99-onepager.html', '_blank'); setTimeout(() => window.open('https://maciejbuczak.github.io/risk-research/kwantyl-99-onepager.html').print(), 1000);" class="article-save-btn">Drukuj/PDF</button>
+<button onclick="window.open('https://maciejbuczak.github.io/risk-research/onepager_v11', '_blank').print();" class="article-save-btn">Drukuj/PDF</button>
 <button onclick="downloadOnepagerHTML()" class="article-save-btn">Pobierz HTML</button>
             </div>
         </div>
