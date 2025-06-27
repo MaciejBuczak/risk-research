@@ -1196,6 +1196,17 @@
 
 /* Style dla druku - bez tła na górze i ciągły dokument */
 @media print {
+
+
+
+    /* UKRYJ CAŁĄ SEKCJĘ AKCJI W PDF - DODAJ TO NA POCZĄTKU */
+    .actions-wrapper {
+        display: none !important;
+    }
+
+
+
+    
     /* Zachowaj wszystkie kolory i tła */
     * {
         -webkit-print-color-adjust: exact !important;
