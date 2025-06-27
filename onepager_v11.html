@@ -1627,6 +1627,28 @@
 
         
 
+
+
+
+
+
+
+/* SPECJALNA IKONA FULLSCREEN DLA SAFARI */
+@supports (-webkit-appearance: none) and (not (appearance: none)) {
+    .fullscreen-icon {
+        font-size: 0 !important; /* ukryj oryginalne ⛶ */
+    }
+    
+    .fullscreen-icon::before {
+        content: '⤢'; /* pokaż lepszą ikonę */
+        font-size: 28px;
+        color: var(--gold);
+        display: inline-block;
+    }
+}
+
+    
+
         
 
 
