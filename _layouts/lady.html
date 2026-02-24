@@ -3459,22 +3459,22 @@ window.addEventListener('load', function() {
 <div style="padding:16px 20px; border:1px solid #e8ddd0; border-radius:10px; background:#fdfaf6; margin-bottom:20px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
   <div>
     <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:8px;">Poziom istotności (α)</label>
-    <div style="display:flex; gap:8px;" id="ltt-alpha-buttons"></div>
+    <div style="display:flex; gap:8px;" id="ltt3-alpha-buttons"></div>
   </div>
-  <div id="ltt-alpha-val" style="font-size:18px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif; margin-top:20px;">α = 0.05</div>
+  <div id="ltt3-alpha-val" style="font-size:18px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif; margin-top:20px;">α = 0.05</div>
 </div>
 
 <!-- PRZYCISKI -->
 <div style="margin-bottom:24px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-  <button onclick="lttSim.runOne()"
+  <button id="ltt3-btn-one" onclick="ltt3.runOne()"
     style="background:#a85903; color:white; border:none; padding:11px 32px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; cursor:pointer; box-shadow:0 2px 8px rgba(168,89,3,0.3);"
     onmouseover="this.style.background='#d17a1b'" onmouseout="this.style.background='#a85903'">
-    ☕ &nbsp;Losuj kolejność filiżanek
+    ☕ &nbsp;Nowe losowanie filiżanek
   </button>
-  <button onclick="lttSim.runMany()"
+  <button id="ltt3-btn-many" onclick="ltt3.runMany()"
     style="background:white; color:#a85903; border:2px solid #a85903; padding:9px 24px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:13px; font-weight:600; cursor:pointer;"
     onmouseover="this.style.background='#fdf3e9'" onmouseout="this.style.background='white'">
-    ↻ &nbsp;Symuluj 10 000 losowych zgadywaczy
+    ↻ &nbsp;Symuluj 10 000 przypadkowych osób
   </button>
 </div>
 
@@ -3492,40 +3492,33 @@ window.addEventListener('load', function() {
   </div>
   <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
     <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">Próg krytyczny</div>
-    <div id="ltt-critical" style="font-size:24px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
+    <div id="ltt3-critical" style="font-size:24px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
   </div>
   <div style="text-align:center; padding:14px 8px; background:#fff3e6; border-radius:10px; border:2px solid #a85903;">
     <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#a85903; font-family:'Poppins',sans-serif; font-weight:700; margin-bottom:5px;">Decyzja (4/4)</div>
-    <div id="ltt-decision" style="font-size:15px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
+    <div id="ltt3-decision" style="font-size:15px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
   </div>
 </div>
 
 <!-- WERDYKT -->
-<div id="ltt-verdict" style="border-left:4px solid #27ae60; border-radius:8px; padding:12px 20px; margin-bottom:24px; font-family:'Poppins',sans-serif; font-size:13px; color:#555; background:#FDFAF1; line-height:1.7;"></div>
+<div id="ltt3-verdict" style="border-left:4px solid #27ae60; border-radius:8px; padding:12px 20px; margin-bottom:24px; font-family:'Poppins',sans-serif; font-size:13px; color:#555; background:#FDFAF1; line-height:1.7;"></div>
 
 <!-- FILIŻANKI -->
 <div style="border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px; background:#fff; margin-bottom:20px;">
-
   <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:18px;">
-    Losowy układ filiżanek — Lady aktywnie wskazuje 4 jako „mleko pierwsze" (górny rząd) · pozostałe 4 wynikają automatycznie
+    Losowy układ filiżanek — każde losowanie zmienia kolejność
   </div>
-
-  <!-- Rząd 1: Lady wskazuje te 4 -->
   <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#a85903; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">
-    ▶ Lady wskazuje jako „mleko pierwsze"
+    ▶ Lady wskazuje te 4 jako „mleko pierwsze" (aktywny wybór)
   </div>
-  <div id="ltt-cups-chosen" style="display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap;"></div>
-
-  <!-- Rząd 2: Wynikowe -->
+  <div id="ltt3-cups-chosen" style="display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap;"></div>
   <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px;">
-    Pozostałe 4 — automatycznie „herbata pierwsza"
+    Pozostałe 4 — wynikają automatycznie jako „herbata pierwsza"
   </div>
-  <div id="ltt-cups-rest" style="display:flex; gap:16px; flex-wrap:wrap;"></div>
-
-  <!-- Legenda -->
+  <div id="ltt3-cups-rest" style="display:flex; gap:16px; flex-wrap:wrap;"></div>
   <div style="margin-top:18px; display:flex; gap:20px; font-family:'Poppins',sans-serif; font-size:12px; color:#888; flex-wrap:wrap;">
-    <span>🥛 = mleko pierwsze (prawda)</span>
-    <span>🍵 = herbata pierwsza (prawda)</span>
+    <span>🥛 mleko pierwsze (prawda)</span>
+    <span>🍵 herbata pierwsza (prawda)</span>
     <span style="color:#27ae60; font-weight:600;">✓ trafienie</span>
     <span style="color:#c0392b; font-weight:600;">✗ pomyłka</span>
   </div>
@@ -3533,291 +3526,262 @@ window.addEventListener('load', function() {
 
 <!-- ROZKŁAD HIPERGEOMETRYCZNY -->
 <div style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; margin-bottom:20px; overflow:hidden;">
-  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:4px;">
-    Rozkład hipergeometryczny przy H₀ (losowe zgadywanie) · obszar krytyczny zaznaczony
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">
+    Rozkład hipergeometryczny przy H₀ — ile trafień zdarza się przez czysty przypadek
   </div>
-  <div id="ltt-hyper-chart" style="width:100%; height:280px;"></div>
+  <div id="ltt3-hyper-chart" style="width:100%; height:280px;"></div>
 </div>
 
-<!-- SYMULACJA 10 000 -->
-<div id="ltt-sim-wrap" style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; overflow:hidden; display:none;">
-  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:4px;">
-    10 000 losowych zgadywaczy — ile razy trafili k z 4 filiżanek
+<!-- SYMULACJA -->
+<div id="ltt3-sim-wrap" style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; overflow:hidden; display:none;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">
+    10 000 przypadkowych osób losowo wskazujących 4 filiżanki — rozkład empiryczny trafień
   </div>
-  <div id="ltt-sim-chart" style="width:100%; height:280px;"></div>
-  <div id="ltt-sim-note" style="font-family:'Poppins',sans-serif; font-size:12px; color:#888; margin-top:10px;"></div>
+  <div id="ltt3-sim-chart" style="width:100%; height:280px;"></div>
+  <div id="ltt3-sim-note" style="font-family:'Poppins',sans-serif; font-size:12px; color:#666; margin-top:12px; padding:10px 14px; background:#FDFAF1; border-radius:6px;"></div>
 </div>
 
 </div>
 </div>
 
 <style>
-  .ltt-alpha-btn {
+  .ltt3-alpha-btn {
     font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;
     padding:5px 12px; border-radius:5px; cursor:pointer;
     border:1.5px solid #d0b38c; background:white; color:#a85903; transition:all 0.15s;
   }
-  .ltt-alpha-btn:hover { background:#fdf3e9; }
-  .ltt-alpha-btn.active { background:#a85903; color:white; border-color:#a85903; }
-  .ltt-cup {
-    display:flex; flex-direction:column; align-items:center; gap:4px;
-    font-family:'Poppins',sans-serif;
-  }
-  .ltt-cup-icon {
-    width:54px; height:54px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-size:26px; border:2px solid transparent;
-  }
+  .ltt3-alpha-btn:hover { background:#fdf3e9; }
+  .ltt3-alpha-btn.active { background:#a85903; color:white; border-color:#a85903; }
 </style>
 
 <script>
 (function () {
 
-  const ALPHA_VALUES = [0.01, 0.05, 0.10, 0.20];
-  let alpha = 0.05;
-  const N = 4; // pary (8 filiżanek)
-  const FONT = 'Poppins, Georgia, serif';
-  const C_MAIN = '#a85903', C_GOLD = '#D4AF37', C_RED = '#c0392b', C_GREEN = '#27ae60';
+  var ALPHA_VALUES = [0.01, 0.05, 0.10, 0.20];
+  var alpha = 0.05;
+  var N = 4;
+  var FONT = 'Poppins, Georgia, serif';
+  var C_MAIN = '#a85903', C_RED = '#c0392b', C_GREEN = '#27ae60';
 
   function comb(n, k) {
     if (k < 0 || k > n) return 0;
-    let r = 1;
-    for (let i = 0; i < k; i++) r = r * (n - i) / (i + 1);
+    var r = 1;
+    for (var i = 0; i < k; i++) r = r * (n - i) / (i + 1);
     return Math.round(r);
   }
 
   function hyperProb(k) {
-    // P(X=k): spośród 8 filiżanek (4M, 4H), Lady losowo wybiera 4
     return comb(N, k) * comb(N, N - k) / comb(2 * N, N);
   }
 
   function pValue(k) {
-    let p = 0;
-    for (let i = k; i <= N; i++) p += hyperProb(i);
+    var p = 0;
+    for (var i = k; i <= N; i++) p += hyperProb(i);
     return p;
   }
 
-  // Minimalne k takie że p(k) <= alpha
   function criticalK() {
-    for (let k = N; k >= 0; k--) {
+    for (var k = N; k >= 0; k--) {
       if (pValue(k) <= alpha) return k;
     }
     return N + 1;
   }
 
-  // Losuj układ 8 filiżanek
-  function shuffleCups() {
-    const cups = Array(N).fill('M').concat(Array(N).fill('H'));
-    for (let i = cups.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [cups[i], cups[j]] = [cups[j], cups[i]];
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
     }
-    return cups;
+    return a;
   }
 
-  // Lady ZAWSZE trafia (zdolność doskonała) — wskazuje dokładnie te 4 które są M
-  function ladyGuess(cups) {
-    // Zwraca indeksy filiżanek M (Lady je zna)
-    return cups.map((c, i) => c === 'M' ? i : -1).filter(i => i >= 0);
-  }
+  function renderCups(cups) {
+    // cups = ['M','M','H','M','H','H','M','H'] — losowa kolejność
+    // Lady zna które to M i wskazuje je wszystkie (4/4)
+    var chosenIdx = [];
+    var restIdx   = [];
+    cups.forEach(function(c, i) {
+      if (c === 'M') chosenIdx.push(i);
+      else restIdx.push(i);
+    });
 
-  function renderCups(cups, chosen) {
-    const chosenSet = new Set(chosen);
-
-    // Rząd 1: te które Lady wskazała (chosen)
-    const row1 = chosen.map(i => ({ truth: cups[i], idx: i }));
-    // Rząd 2: pozostałe
-    const row2 = cups.map((t, i) => ({ truth: t, idx: i })).filter(x => !chosenSet.has(x.idx));
-
-    function cupHTML(item, isChosen) {
-      const correct = isChosen ? item.truth === 'M' : item.truth === 'H';
-      const emoji   = item.truth === 'M' ? '🥛' : '🍵';
-      const resTxt  = correct ? '✓' : '✗';
-      const resCol  = correct ? C_GREEN : C_RED;
-      const bg      = correct ? 'rgba(39,174,96,0.12)' : 'rgba(192,57,43,0.10)';
-      const border  = correct ? C_GREEN : C_RED;
-      return `<div class="ltt-cup">
-        <div class="ltt-cup-icon" style="background:${bg}; border-color:${border};">${emoji}</div>
-        <div style="font-size:10px; color:#aaa; font-family:'Poppins',sans-serif;">${item.truth === 'M' ? 'mleko' : 'herbata'}</div>
-        <div style="font-size:14px; font-weight:700; color:${resCol};">${resTxt}</div>
-      </div>`;
+    function cupHTML(idx) {
+      var truth   = cups[idx];
+      var isChosen = truth === 'M'; // Lady wskazała M → trafienie jeśli prawda to M
+      var emoji   = truth === 'M' ? '🥛' : '🍵';
+      var correct = isChosen ? truth === 'M' : truth === 'H';
+      var resCol  = correct ? C_GREEN : C_RED;
+      var bg      = correct ? 'rgba(39,174,96,0.12)' : 'rgba(192,57,43,0.10)';
+      var border  = correct ? C_GREEN : C_RED;
+      return '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-family:Poppins,sans-serif;">'
+        + '<div style="width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;background:' + bg + ';border:2px solid ' + border + ';">' + emoji + '</div>'
+        + '<div style="font-size:10px;color:#aaa;">' + (truth === 'M' ? 'mleko' : 'herbata') + '</div>'
+        + '<div style="font-size:14px;font-weight:700;color:' + resCol + ';">' + (correct ? '✓' : '✗') + '</div>'
+        + '</div>';
     }
 
-    document.getElementById('ltt-cups-chosen').innerHTML = row1.map(x => cupHTML(x, true)).join('');
-    document.getElementById('ltt-cups-rest').innerHTML   = row2.map(x => cupHTML(x, false)).join('');
+    document.getElementById('ltt3-cups-chosen').innerHTML = chosenIdx.map(cupHTML).join('');
+    document.getElementById('ltt3-cups-rest').innerHTML   = restIdx.map(cupHTML).join('');
   }
 
   function renderHyper(highlightK) {
-    const ks = [0, 1, 2, 3, 4];
-    const ps = ks.map(k => hyperProb(k));
-    const crit = criticalK();
+    var ks   = [0, 1, 2, 3, 4];
+    var ps   = ks.map(function(k) { return hyperProb(k); });
+    var crit = criticalK();
 
-    Plotly.react('ltt-hyper-chart', [
+    var barColors = ks.map(function(k) { return k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'; });
+    var lineColors = ks.map(function(k) { return k >= crit ? C_RED : C_MAIN; });
+
+    var traces = [
       {
         x: ks, y: ps, type: 'bar',
-        marker: {
-          color: ks.map(k => k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'),
-          line: { color: ks.map(k => k >= crit ? C_RED : C_MAIN), width: 1.5 }
-        },
-        text: ps.map(p => `${(p * 100).toFixed(1)}%`),
+        marker: { color: barColors, line: { color: lineColors, width: 1.5 } },
+        text: ps.map(function(p) { return (p * 100).toFixed(1) + '%'; }),
         textposition: 'outside',
         textfont: { family: FONT, size: 12, color: '#888' },
         hovertemplate: 'k=%{x}<br>P=%{y:.4f}<extra></extra>',
         showlegend: false
       },
       {
-        x: [highlightK], y: [hyperProb(highlightK) + 0.02],
+        x: [highlightK],
+        y: [hyperProb(highlightK) + 0.025],
         type: 'scatter', mode: 'markers+text',
-        text: [`k = ${highlightK}`],
+        text: ['wynik Lady'],
         textposition: 'top center',
-        textfont: { family: FONT, size: 13, color: highlightK >= crit ? C_RED : C_MAIN },
+        textfont: { family: FONT, size: 12, color: highlightK >= crit ? C_RED : C_MAIN },
         marker: { size: 14, color: highlightK >= crit ? C_RED : C_MAIN, symbol: 'triangle-down' },
         showlegend: false
       }
-    ], {
+    ];
+
+    var layout = {
       height: 280,
       paper_bgcolor: 'white', plot_bgcolor: 'white',
       font: { family: FONT, color: '#444' },
       margin: { t: 50, b: 50, l: 55, r: 20 },
-      title: {
-        text: `Rozkład hipergeometryczny H₀ · obszar krytyczny α=${alpha} (k ≥ ${crit}) zaznaczony na czerwono`,
-        font: { size: 12, color: '#444', family: FONT }
-      },
+      title: { text: 'Rozkład hipergeometryczny H₀ · obszar krytyczny α=' + alpha + ' (k ≥ ' + crit + ') zaznaczony na czerwono', font: { size: 12, color: '#444', family: FONT } },
       xaxis: { title: 'liczba trafień k', tickvals: [0,1,2,3,4], ticktext: ['0','1','2','3','4'], gridcolor: '#f0e8e0', color: '#888' },
-      yaxis: { title: 'P(X = k)', gridcolor: '#f0e8e0', color: '#888', range: [0, 0.60] },
+      yaxis: { title: 'P(X = k)', gridcolor: '#f0e8e0', color: '#888', range: [0, 0.62] },
       bargap: 0.3,
-      shapes: [{
-        type: 'line', x0: crit - 0.5, x1: crit - 0.5, y0: 0, y1: 1,
-        xref: 'x', yref: 'paper',
-        line: { color: C_RED, width: 2, dash: 'dot' }
-      }],
-      annotations: [{
-        x: crit - 0.5, y: 0.97, xref: 'x', yref: 'paper',
-        text: `  α = ${alpha}`, showarrow: false,
-        font: { color: C_RED, size: 11, family: FONT }, xanchor: 'left'
-      }]
-    }, { displayModeBar: false, responsive: true });
+      shapes: [{ type: 'line', x0: crit - 0.5, x1: crit - 0.5, y0: 0, y1: 1, xref: 'x', yref: 'paper', line: { color: C_RED, width: 2, dash: 'dot' } }],
+      annotations: [{ x: crit - 0.5, y: 0.97, xref: 'x', yref: 'paper', text: '  α = ' + alpha, showarrow: false, font: { color: C_RED, size: 11, family: FONT }, xanchor: 'left' }]
+    };
+
+    Plotly.react('ltt3-hyper-chart', traces, layout, { displayModeBar: false, responsive: true });
   }
 
   function runOne() {
-    const cups   = shuffleCups();
-    const chosen = ladyGuess(cups); // Lady zawsze trafia
-    const hits   = N; // zawsze 4/4
+    var cups   = shuffle(['M','M','M','M','H','H','H','H']);
+    var crit   = criticalK();
+    var hits   = N; // Lady zawsze trafia 4/4
+    var pval   = pValue(hits);
+    var reject = hits >= crit;
 
-    const crit   = criticalK();
-    const pval   = pValue(hits);
-    const reject = hits >= crit;
+    document.getElementById('ltt3-critical').textContent = 'k ≥ ' + crit;
+    document.getElementById('ltt3-decision').textContent = reject ? '✓ Odrzucamy H₀' : '✗ Brak podstaw';
+    document.getElementById('ltt3-decision').style.color = reject ? C_GREEN : C_RED;
 
-    document.getElementById('ltt-critical').textContent = `k ≥ ${crit}`;
-    document.getElementById('ltt-decision').textContent  = reject ? '✓ Odrzucamy H₀' : '✗ Brak podstaw';
-    document.getElementById('ltt-decision').style.color  = reject ? C_GREEN : C_RED;
+    var v = document.getElementById('ltt3-verdict');
+    v.style.borderLeftColor = reject ? C_GREEN : C_RED;
+    v.innerHTML = reject
+      ? '<strong style="color:' + C_GREEN + ';">H₀ odrzucona.</strong> Lady trafiła <strong>4 z 4</strong>. Prawdopodobieństwo takiego wyniku przez przypadek to <strong>1/70 ≈ 1.4%</strong> — poniżej α = ' + alpha + '. Fisher przyznaje: wynik jest istotny statystycznie.'
+      : '<strong style="color:' + C_RED + ';">Brak podstaw do odrzucenia H₀.</strong> Przy α = ' + alpha + ' próg krytyczny to k ≥ ' + crit + '. Wynik 4/4 daje p = ' + pval.toFixed(3) + ' — powyżej α.';
 
-    const verdict = document.getElementById('ltt-verdict');
-    verdict.style.borderLeftColor = reject ? C_GREEN : C_RED;
-    verdict.innerHTML = reject
-      ? `<strong style="color:${C_GREEN};">H₀ odrzucona.</strong>
-         Lady trafiła <strong>4 z 4</strong> filiżanek.
-         Prawdopodobieństwo takiego wyniku przez przypadek to <strong>1/70 ≈ 1.4%</strong> — poniżej α = ${alpha}.
-         Fisher przyznaje: wynik jest istotny statystycznie.`
-      : `<strong style="color:${C_RED};">Brak podstaw do odrzucenia H₀.</strong>
-         Przy α = ${alpha} próg krytyczny to k ≥ ${crit}, a 4/4 daje p = ${pval.toFixed(3)}.`;
-
-    renderCups(cups, chosen);
+    renderCups(cups);
     renderHyper(hits);
   }
 
   function runMany() {
-    // 10 000 losowych zgadywaczy (π = 0.5, czysta losowość)
-    const counts = [0, 0, 0, 0, 0];
-    for (let i = 0; i < 10000; i++) {
-      // Losowy zgadywacz: wybiera 4 losowe spośród 8
-      const cups = shuffleCups();
-      const idxs = Array.from({length: 8}, (_, i) => i);
-      // Tasuj i wybierz pierwsze 4
-      for (let j = idxs.length - 1; j > 0; j--) {
-        const k = Math.floor(Math.random() * (j + 1));
-        [idxs[j], idxs[k]] = [idxs[k], idxs[j]];
-      }
-      const chosen = idxs.slice(0, 4);
-      let hits = 0;
-      chosen.forEach(i => { if (cups[i] === 'M') hits++; });
+    var counts = [0, 0, 0, 0, 0];
+    for (var i = 0; i < 10000; i++) {
+      var cups = shuffle(['M','M','M','M','H','H','H','H']);
+      // Losowa osoba: wybiera 4 losowe indeksy
+      var idxs = shuffle([0,1,2,3,4,5,6,7]).slice(0, 4);
+      var hits = 0;
+      idxs.forEach(function(idx) { if (cups[idx] === 'M') hits++; });
       counts[hits]++;
     }
 
-    const total = 10000;
-    const ks    = [0, 1, 2, 3, 4];
-    const freqs = counts.map(c => c / total);
-    const crit  = criticalK();
+    var ks    = [0, 1, 2, 3, 4];
+    var freqs = counts.map(function(c) { return c / 10000; });
+    var crit  = criticalK();
 
-    document.getElementById('ltt-sim-wrap').style.display = 'block';
-    document.getElementById('ltt-sim-note').innerHTML =
-      `Spośród 10 000 losowych zgadywaczy: <strong>${counts[4]}</strong> trafiło wszystkie 4 (${(counts[4]/100).toFixed(1)}%).
-       Teoretycznie oczekiwanych: <strong>${(10000/70).toFixed(0)}</strong> (1/70 × 10 000).`;
+    var barColors  = ks.map(function(k) { return k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'; });
+    var lineColors = ks.map(function(k) { return k >= crit ? C_RED : C_MAIN; });
 
-    Plotly.react('ltt-sim-chart', [{
-      x: ks, y: freqs, type: 'bar',
-      marker: {
-        color: ks.map(k => k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'),
-        line: { color: ks.map(k => k >= crit ? C_RED : C_MAIN), width: 1.5 }
+    document.getElementById('ltt3-sim-wrap').style.display = 'block';
+    document.getElementById('ltt3-sim-note').innerHTML =
+      'Spośród 10 000 losowych prób: <strong>' + counts[4] + '</strong> razy padły 4 trafienia (' + (counts[4]/100).toFixed(1) + '%).'
+      + ' Teoria mówi: 1/70 × 10 000 = <strong>' + Math.round(10000/70) + '</strong>. Wyniki są zbieżne.';
+
+    Plotly.react('ltt3-sim-chart',
+      [{
+        x: ks, y: freqs, type: 'bar',
+        marker: { color: barColors, line: { color: lineColors, width: 1.5 } },
+        text: freqs.map(function(f) { return (f * 100).toFixed(1) + '%'; }),
+        textposition: 'outside',
+        textfont: { family: FONT, size: 12, color: '#888' },
+        hovertemplate: 'k=%{x}<br>częstość=%{y:.4f}<extra></extra>',
+        showlegend: false
+      }],
+      {
+        height: 280,
+        paper_bgcolor: 'white', plot_bgcolor: 'white',
+        font: { family: FONT, color: '#444' },
+        margin: { t: 45, b: 50, l: 55, r: 20 },
+        title: { text: '10 000 losowych prób · ' + counts[4] + ' razy trafiono 4/4 (≈ 1/70) · obszar krytyczny α=' + alpha, font: { size: 12, color: '#444', family: FONT } },
+        xaxis: { title: 'liczba trafień k', tickvals: [0,1,2,3,4], ticktext: ['0','1','2','3','4'], gridcolor: '#f0e8e0', color: '#888' },
+        yaxis: { title: 'częstość', gridcolor: '#f0e8e0', color: '#888', range: [0, 0.62] },
+        bargap: 0.3,
+        shapes: [{ type: 'line', x0: crit - 0.5, x1: crit - 0.5, y0: 0, y1: 1, xref: 'x', yref: 'paper', line: { color: C_RED, width: 2, dash: 'dot' } }]
       },
-      text: freqs.map(f => `${(f * 100).toFixed(1)}%`),
-      textposition: 'outside',
-      textfont: { family: FONT, size: 12, color: '#888' },
-      hovertemplate: 'k=%{x}<br>częstość=%{y:.4f}<extra></extra>',
-      showlegend: false
-    }], {
-      height: 280,
-      paper_bgcolor: 'white', plot_bgcolor: 'white',
-      font: { family: FONT, color: '#444' },
-      margin: { t: 45, b: 50, l: 55, r: 20 },
-      title: {
-        text: `10 000 losowych zgadywaczy · ${counts[4]} na 10 000 trafiło 4/4 (≈ 1/70) · obszar krytyczny α=${alpha}`,
-        font: { size: 12, color: '#444', family: FONT }
-      },
-      xaxis: { title: 'liczba trafień k', tickvals: [0,1,2,3,4], ticktext: ['0','1','2','3','4'], gridcolor: '#f0e8e0', color: '#888' },
-      yaxis: { title: 'częstość', gridcolor: '#f0e8e0', color: '#888', range: [0, 0.60] },
-      bargap: 0.3,
-      shapes: [{
-        type: 'line', x0: crit - 0.5, x1: crit - 0.5, y0: 0, y1: 1,
-        xref: 'x', yref: 'paper',
-        line: { color: C_RED, width: 2, dash: 'dot' }
-      }]
-    }, { displayModeBar: false, responsive: true });
+      { displayModeBar: false, responsive: true }
+    );
 
-    // Scroll do wykresu
-    document.getElementById('ltt-sim-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(function() {
+      document.getElementById('ltt3-sim-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   }
 
   function init() {
-    const cont = document.getElementById('ltt-alpha-buttons');
-    ALPHA_VALUES.forEach(a => {
-      const btn = document.createElement('button');
-      btn.className = 'ltt-alpha-btn' + (a === 0.05 ? ' active' : '');
-      btn.textContent = `α = ${a}`;
-      btn.onclick = () => {
-        document.querySelectorAll('.ltt-alpha-btn').forEach(b => b.classList.remove('active'));
+    // Przyciski alpha
+    var cont = document.getElementById('ltt3-alpha-buttons');
+    ALPHA_VALUES.forEach(function(a) {
+      var btn = document.createElement('button');
+      btn.className = 'ltt3-alpha-btn' + (a === 0.05 ? ' active' : '');
+      btn.textContent = 'α = ' + a;
+      btn.onclick = function() {
+        document.querySelectorAll('.ltt3-alpha-btn').forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
         alpha = a;
-        document.getElementById('ltt-alpha-val').textContent = `α = ${a}`;
+        document.getElementById('ltt3-alpha-val').textContent = 'α = ' + a;
         runOne();
       };
       cont.appendChild(btn);
     });
 
-    if (typeof Plotly !== 'undefined') runOne();
-    else {
-      const s = document.querySelector('script[src*="plotly"]');
-      if (s) s.addEventListener('load', runOne);
-      else setTimeout(runOne, 500);
+    window.ltt3 = { runOne: runOne, runMany: runMany };
+    runOne();
+  }
+
+  // Czekaj na Plotly
+  function waitForPlotly(fn) {
+    if (typeof Plotly !== 'undefined') {
+      fn();
+    } else {
+      setTimeout(function() { waitForPlotly(fn); }, 100);
     }
   }
 
-  window.lttSim = { runOne, runMany };
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { waitForPlotly(init); });
+  } else {
+    waitForPlotly(init);
+  }
+
 })();
 </script>
-
 
 
 
