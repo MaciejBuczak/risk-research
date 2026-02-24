@@ -3427,7 +3427,7 @@ window.addEventListener('load', function() {
 </style>
 
 <div class="ryzmod-header">
-  <div class="ryzmod-header-text">VaR i korelacje</div>
+  <div class="ryzmod-header-text">Lady Tasting Tea</div>
 </div>
         
 
@@ -3435,412 +3435,455 @@ window.addEventListener('load', function() {
 
 
 
-
-
-<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-
 <div class="ryzmod-columns" style="margin-top: 30px; margin-bottom: 30px;">
-  <div style="flex: 1;">
+<div style="flex:1;">
 
-    <div style="background: #FDFAF1; border-left: 4px solid #D4AF37; border-radius: 8px; padding: 12px 20px; margin-bottom: 20px; font-family: 'Courier New', monospace; font-size: 13px; color: #555;">
-      Straty ~ LogNormal(μ, σ) &nbsp;|&nbsp; Zmiana ρ przestawia kolejność wierszy, nie zmienia wartości &nbsp;|&nbsp; VaR<sub>95%</sub> = wiersz 19 z 20 kolumny Σ
+<!-- FORMUŁA -->
+<div style="background:#FDFAF1; border-left:4px solid #D4AF37; border-radius:8px; padding:12px 20px; margin-bottom:20px; font-family:'Courier New',monospace; font-size:13px; color:#555;">
+  8 filiżanek: 4 × mleko-pierwsze (M), 4 × herbata-pierwsza (H) &nbsp;|&nbsp;
+  Lady wskazuje 4 filiżanki jako M &nbsp;|&nbsp;
+  H₀: trafia losowo &nbsp;|&nbsp;
+  p = C(k,k) / C(8,4) &nbsp;gdzie k = liczba trafień
+</div>
+
+<!-- OPIS -->
+<div style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; margin-bottom:20px; line-height:1.7;">
+  <strong style="color:#a85903;">Eksperyment Fishera (1935):</strong>
+  Muriel Bristol twierdzi, że wyczuje czy do filiżanki najpierw wlano mleko czy herbatę.
+  Fisher projektuje test: losuje kolejność 8 filiżanek i każe jej wskazać które 4 to „mleko pierwsze".
+  Ile trafień jest potrzebnych, żeby odrzucić H₀ na poziomie 5%?
+</div>
+
+<!-- SUWAKI -->
+<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px; padding:16px 20px; border:1px solid #e8ddd0; border-radius:10px; background:#fdfaf6;">
+
+  <div>
+    <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">Liczba filiżanek (n par)</label>
+    <input type="range" id="ltt-n" min="2" max="10" step="1" value="4"
+      style="width:100%; height:3px; background:#e0d5c8; outline:none; -webkit-appearance:none; border-radius:2px;">
+    <div style="display:flex; justify-content:space-between; font-size:10px; color:#bbb; font-family:'Courier New',monospace; margin-top:2px;">
+      <span>2</span><span>4</span><span>6</span><span>8</span><span>10</span>
     </div>
+    <div id="ltt-n-val" style="font-size:18px; font-weight:700; margin-top:4px; color:#a85903; font-family:'Poppins',sans-serif;">4 pary = 8 filiżanek</div>
+  </div>
 
-    <!-- SUWAKI -->
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; padding: 16px 20px; border: 1px solid #e8ddd0; border-radius: 10px; background: #fdfaf6;">
-      <div>
-        <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">μ (log-średnia)</label>
-        <input type="range" id="cv3-mu" min="0.5" max="3" step="0.1" value="1.5"
-          style="width:100%; height:3px; background:#e0d5c8; outline:none; -webkit-appearance:none; border-radius:2px;">
-        <div id="cv3-mu-val" style="font-size:18px; font-weight:700; margin-top:6px; color:#a85903; font-family:'Poppins',sans-serif;">1.5</div>
-      </div>
-      <div>
-        <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">σ (log-odchylenie)</label>
-        <input type="range" id="cv3-sigma" min="0.2" max="2" step="0.1" value="0.8"
-          style="width:100%; height:3px; background:#e0d5c8; outline:none; -webkit-appearance:none; border-radius:2px;">
-        <div id="cv3-sigma-val" style="font-size:18px; font-weight:700; margin-top:6px; color:#a85903; font-family:'Poppins',sans-serif;">0.8</div>
-      </div>
-      <div>
-        <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">Korelacja (ρ) — między każdą parą linii</label>
-        <div style="display:flex; flex-wrap:wrap; gap:5px; margin-top:4px;" id="cv3-buttons"></div>
-        <div id="cv3-rho-val" style="font-size:18px; font-weight:700; margin-top:8px; color:#a85903; font-family:'Poppins',sans-serif;">0.00</div>
-      </div>
+  <div>
+    <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">Prawdziwa zdolność Lady (π)</label>
+    <input type="range" id="ltt-pi" min="0.5" max="1" step="0.05" value="0.75"
+      style="width:100%; height:3px; background:#e0d5c8; outline:none; -webkit-appearance:none; border-radius:2px;">
+    <div style="display:flex; justify-content:space-between; font-size:10px; color:#bbb; font-family:'Courier New',monospace; margin-top:2px;">
+      <span>0.5 (losowo)</span><span>0.75</span><span>1.0 (idealna)</span>
     </div>
+    <div id="ltt-pi-val" style="font-size:18px; font-weight:700; margin-top:4px; color:#a85903; font-family:'Poppins',sans-serif;">π = 0.75</div>
+  </div>
 
-    <!-- PRZYCISK -->
-    <div style="margin-bottom:24px;">
-      <button onclick="corSim3.generate()"
-        style="background:#a85903; color:white; border:none; padding:11px 32px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; cursor:pointer; letter-spacing:0.5px; box-shadow:0 2px 8px rgba(168,89,3,0.3);"
-        onmouseover="this.style.background='#d17a1b'" onmouseout="this.style.background='#a85903'">
-        ↻ &nbsp;Generuj nową próbę
-      </button>
-      <span style="font-family:'Poppins',sans-serif; font-size:11px; color:#bbb; margin-left:14px;">Zmiana ρ nie zmienia wartości — tylko układ wierszy</span>
-    </div>
+  <div>
+    <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">Poziom istotności (α)</label>
+    <div style="display:flex; flex-wrap:wrap; gap:5px; margin-top:6px;" id="ltt-alpha-buttons"></div>
+    <div id="ltt-alpha-val" style="font-size:18px; font-weight:700; margin-top:8px; color:#a85903; font-family:'Poppins',sans-serif;">α = 0.05</div>
+  </div>
 
-    <!-- STATYSTYKI VaR -->
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px;">
-      <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
-        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">A w wierszu VaR</div>
-        <div id="cv3-var-a" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
-      </div>
-      <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
-        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">B w wierszu VaR</div>
-        <div id="cv3-var-b" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
-      </div>
-      <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
-        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">C w wierszu VaR</div>
-        <div id="cv3-var-c" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
-      </div>
-      <div style="text-align:center; padding:14px 8px; background:#fff3e6; border-radius:10px; border:2px solid #a85903;">
-        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#a85903; font-family:'Poppins',sans-serif; font-weight:700; margin-bottom:5px;">VaR₉₅% — Σ Portfel</div>
-        <div id="cv3-var-port" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
-      </div>
-    </div>
+</div>
 
-    <!-- BENEFIT -->
-    <div id="cv3-benefit-box" style="border-left:4px solid #27ae60; border-radius:8px; padding:12px 20px; margin-bottom:24px; font-family:'Poppins',sans-serif; font-size:13px; color:#555; background:#FDFAF1; display:none;"></div>
+<!-- PRZYCISK -->
+<div style="margin-bottom:24px; display:flex; align-items:center; gap:16px;">
+  <button onclick="lttSim.run()"
+    style="background:#a85903; color:white; border:none; padding:11px 32px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; cursor:pointer; letter-spacing:0.5px; box-shadow:0 2px 8px rgba(168,89,3,0.3);"
+    onmouseover="this.style.background='#d17a1b'" onmouseout="this.style.background='#a85903'">
+    ☕ &nbsp;Przeprowadź eksperyment
+  </button>
+  <button onclick="lttSim.runMany()"
+    style="background:white; color:#a85903; border:2px solid #a85903; padding:9px 24px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:13px; font-weight:600; cursor:pointer;"
+    onmouseover="this.style.background='#fdf3e9'" onmouseout="this.style.background='white'">
+    ↻ &nbsp;Symuluj 1000 eksperymentów
+  </button>
+</div>
 
-    <!-- TABELA -->
-    <div style="border:1px solid #e8ddd0; border-radius:10px; padding:16px 20px; background:#fff; margin-bottom:20px; overflow-x:auto;">
-      <div id="cv3-table"></div>
-    </div>
-
-    <!-- WYKRES -->
-    <div style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; overflow:hidden;">
-      <div id="cv3-chart" style="width:100%; height:320px;"></div>
-    </div>
-
+<!-- STATYSTYKI -->
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px;">
+  <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">Trafień w tej próbie</div>
+    <div id="ltt-hits" style="font-size:28px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
+    <div id="ltt-hits-max" style="font-size:10px; color:#bbb; font-family:'Poppins',sans-serif; margin-top:2px;"></div>
+  </div>
+  <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">p-value</div>
+    <div id="ltt-pval" style="font-size:28px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
+  </div>
+  <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">Min. trafień do H₀ odrzucenia</div>
+    <div id="ltt-critical" style="font-size:28px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
+  </div>
+  <div style="text-align:center; padding:14px 8px; background:#fff3e6; border-radius:10px; border:2px solid #a85903;">
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#a85903; font-family:'Poppins',sans-serif; font-weight:700; margin-bottom:5px;">Decyzja</div>
+    <div id="ltt-decision" style="font-size:16px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
   </div>
 </div>
 
+<!-- WERDYKT -->
+<div id="ltt-verdict" style="border-left:4px solid #a85903; border-radius:8px; padding:12px 20px; margin-bottom:24px; font-family:'Poppins',sans-serif; font-size:13px; color:#555; background:#FDFAF1; display:none; line-height:1.7;"></div>
+
+<!-- FILIŻANKI -->
+<div style="border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px; background:#fff; margin-bottom:20px;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px;">Filiżanki — kolejność losowa · Lady wskazuje zaznaczone</div>
+  <div id="ltt-cups" style="display:flex; flex-wrap:wrap; gap:14px; justify-content:flex-start;"></div>
+  <div style="margin-top:16px; display:flex; gap:24px; font-family:'Poppins',sans-serif; font-size:12px; color:#888;">
+    <span>🥛 mleko pierwsze (prawda)</span>
+    <span>🍵 herbata pierwsza (prawda)</span>
+    <span style="color:#27ae60;">✓ trafienie</span>
+    <span style="color:#c0392b;">✗ pomyłka</span>
+  </div>
+</div>
+
+<!-- ROZKŁAD P-VALUE (po 1000 symulacjach) -->
+<div id="ltt-dist-wrap" style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; margin-bottom:20px; display:none;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:4px;">Rozkład liczby trafień w 1000 symulacjach · π = <span id="ltt-dist-pi"></span></div>
+  <div id="ltt-dist-chart" style="width:100%; height:300px;"></div>
+</div>
+
+<!-- ROZKŁAD HIPERGEOMETRYCZNY -->
+<div style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; overflow:hidden;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:4px;">Rozkład hipergeometryczny H₀ (losowe zgadywanie) · obszar krytyczny zaznaczony</div>
+  <div id="ltt-hyper-chart" style="width:100%; height:280px;"></div>
+</div>
+
+</div>
+</div>
+
 <style>
-  #cv3-mu::-webkit-slider-thumb, #cv3-sigma::-webkit-slider-thumb {
+  #ltt-n::-webkit-slider-thumb, #ltt-pi::-webkit-slider-thumb {
     -webkit-appearance:none; width:18px; height:18px;
     background:#a85903; cursor:pointer; border-radius:50%;
     box-shadow:0 2px 6px rgba(168,89,3,0.35);
   }
-  #cv3-mu::-moz-range-thumb, #cv3-sigma::-moz-range-thumb {
+  #ltt-n::-moz-range-thumb, #ltt-pi::-moz-range-thumb {
     width:18px; height:18px; background:#a85903;
     cursor:pointer; border-radius:50%; border:none;
   }
-  .cv3-btn {
+  .ltt-alpha-btn {
     font-family:'Poppins',sans-serif; font-size:11px; font-weight:600;
-    padding:4px 9px; border-radius:5px; cursor:pointer;
+    padding:4px 10px; border-radius:5px; cursor:pointer;
     border:1.5px solid #d0b38c; background:white; color:#a85903; transition:all 0.15s;
   }
-  .cv3-btn:hover { background:#fdf3e9; }
-  .cv3-btn.active { background:#a85903; color:white; border-color:#a85903; }
+  .ltt-alpha-btn:hover { background:#fdf3e9; }
+  .ltt-alpha-btn.active { background:#a85903; color:white; border-color:#a85903; }
 
-  .cv3-tbl { width:100%; border-collapse:collapse; font-family:'Courier New',monospace; font-size:13px; }
-  .cv3-tbl th {
-    font-family:'Poppins',sans-serif; font-size:10px; text-transform:uppercase;
-    letter-spacing:0.8px; color:#999; padding:6px 12px; text-align:right;
-    border-bottom:2px solid #e8ddd0; white-space:nowrap;
+  .ltt-cup {
+    display:flex; flex-direction:column; align-items:center;
+    gap:4px; font-family:'Poppins',sans-serif; font-size:11px;
   }
-  .cv3-tbl th:first-child { text-align:center; }
-  .cv3-tbl td { padding:4px 12px; text-align:right; border-bottom:1px solid #f5f0ea; }
-  .cv3-tbl td:first-child { text-align:center; color:#bbb; font-size:11px; font-family:'Poppins',sans-serif; }
-  .cv3-tbl tr.cv3-var td {
-    border-top:2px solid #a85903; border-bottom:2px solid #a85903;
-    font-weight:700;
+  .ltt-cup-icon {
+    width:52px; height:52px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:26px; border:2px solid transparent;
+    transition: all 0.3s;
   }
-  .cv3-tbl tr.cv3-var td:first-child { color:#a85903; font-family:'Poppins',sans-serif; font-size:10px; font-weight:700; }
-  .cv3-tbl td.cv3-sum-cell { font-weight:700; }
+  .ltt-cup-label {
+    font-size:10px; color:#aaa; text-align:center; line-height:1.3;
+  }
+  .ltt-cup-result {
+    font-size:13px; font-weight:700;
+  }
 </style>
 
 <script>
-const corSim3 = (function () {
+// Czekaj na Plotly
+function lttWhenReady(fn) {
+  if (typeof Plotly !== 'undefined') fn();
+  else {
+    const s = document.querySelector('script[src*="plotly"]');
+    if (s) s.addEventListener('load', fn);
+    else setTimeout(() => lttWhenReady(fn), 200);
+  }
+}
 
-  const N = 20;
-  let rho = 0;
-  // Stałe wartości — generowane raz, aż do kliknięcia "Generuj"
-  let fixedA = [], fixedB = [], fixedC = [];
-  const RHO_VALUES = [-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1];
+const lttSim = (function () {
 
-  /* ── losowanie ────────────────────────────────────────────── */
-  function randn() {
-    let u; do { u = Math.random(); } while (u === 0);
-    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * Math.random());
+  const ALPHA_VALUES = [0.01, 0.05, 0.10, 0.20];
+  let alpha = 0.05;
+
+  // ── Kombinatoryka ───────────────────────────────────────────
+  function factorial(n) {
+    if (n <= 1) return 1;
+    let r = 1; for (let i = 2; i <= n; i++) r *= i; return r;
+  }
+  function comb(n, k) {
+    if (k < 0 || k > n) return 0;
+    return factorial(n) / (factorial(k) * factorial(n - k));
   }
 
-  function lognorm(z, mu, sigma) { return Math.exp(mu + sigma * z); }
-
-  /* ── rangi 0..N-1 (argsort) ──────────────────────────────── */
-  function ranks(arr) {
-    // zwraca tablicę rang: ranks[i] = pozycja arr[i] po posortowaniu rosnąco
-    const idx = arr.map((v, i) => ({ v, i })).sort((a, b) => a.v - b.v);
-    const r = new Array(N);
-    idx.forEach((x, rank) => { r[x.i] = rank; });
-    return r;
+  // Rozkład hipergeometryczny:
+  // Spośród 2n filiżanek: n M i n H. Lady wybiera n.
+  // P(X = k) = C(n,k)*C(n,n-k) / C(2n,n)
+  function hyperProb(k, n) {
+    return comb(n, k) * comb(n, n - k) / comb(2 * n, n);
   }
 
-  /* ── budowanie układu przez mieszanie rang ────────────────── */
-  // Algorytm: chcemy tablicę permutacji P taka, że korelacja rang(A)[P], rang(B)[P], rang(C)[P]
-  // jest bliska rho. Używamy metody Iman-Conover (uproszczonej):
-  // Generujemy 3 zsynchronizowane wektory normalne ze skorelowaną strukturą,
-  // sortujemy każdy z nich, a ich rangi narzucamy na A, B, C.
-
-  function cholesky3(r) {
-    // Macierz korelacji [[1,r,r],[r,1,r],[r,r,1]]
-    const eps = 1e-10;
-    const l00 = 1;
-    const l10 = r;
-    const l11 = Math.sqrt(Math.max(1 - r * r, eps));
-    const l20 = r;
-    const l21 = l11 > eps ? (r - r * r) / l11 : 0;
-    const l22 = Math.sqrt(Math.max(1 - l20 * l20 - l21 * l21, eps));
-    return { l00, l10, l11, l20, l21, l22 };
+  // p-value = P(X >= k) przy H0
+  function pValue(k, n) {
+    let p = 0;
+    for (let i = k; i <= n; i++) p += hyperProb(i, n);
+    return p;
   }
 
-  function buildOrder(rhoVal) {
-    // Generuj N wierszy skorelowanych normalnych
-    const L = cholesky3(rhoVal);
-    const zA = [], zB = [], zC = [];
-    for (let i = 0; i < N; i++) {
-      const z0 = randn(), z1 = randn(), z2 = randn();
-      zA.push(L.l00 * z0);
-      zB.push(L.l10 * z0 + L.l11 * z1);
-      zC.push(L.l20 * z0 + L.l21 * z1 + L.l22 * z2);
+  // Wartość krytyczna: minimalne k takie że P(X>=k) <= alpha
+  function criticalK(n, a) {
+    for (let k = n; k >= 0; k--) {
+      if (pValue(k, n) <= a) return k;
     }
-    // Rangi z tych normalnych
-    const rA = ranks(zA), rB = ranks(zB), rC = ranks(zC);
-
-    // Posortowane wartości A, B, C (rosnąco)
-    const sA = [...fixedA].sort((a, b) => a - b);
-    const sB = [...fixedB].sort((a, b) => a - b);
-    const sC = [...fixedC].sort((a, b) => a - b);
-
-    // Przypisz: obserwacja i dostaje wartość o randze rA[i] w posortowanej A
-    const newA = fixedA.map((_, i) => sA[rA[i]]);
-    const newB = fixedB.map((_, i) => sB[rB[i]]);
-    const newC = fixedC.map((_, i) => sC[rC[i]]);
-
-    // Tworzenie wierszy i sortowanie wg sumy
-    const rows = newA.map((a, i) => ({ a, b: newB[i], c: newC[i], sum: a + newB[i] + newC[i] }));
-    rows.sort((x, y) => x.sum - y.sum);
-    return rows;
+    return n + 1; // nieosiągalne
   }
 
-  /* ── generuj nowe wartości (przycisk) ───────────────────────*/
-  function generate() {
-    const mu    = parseFloat(document.getElementById('cv3-mu').value);
-    const sigma = parseFloat(document.getElementById('cv3-sigma').value);
-    document.getElementById('cv3-mu-val').textContent    = mu.toFixed(1);
-    document.getElementById('cv3-sigma-val').textContent = sigma.toFixed(1);
-
-    // Nowe losowe wartości (niezależne)
-    fixedA = Array.from({ length: N }, () => lognorm(randn(), mu, sigma));
-    fixedB = Array.from({ length: N }, () => lognorm(randn(), mu, sigma));
-    fixedC = Array.from({ length: N }, () => lognorm(randn(), mu, sigma));
-
-    render();
-  }
-
-  /* ── tylko przelicz układ wg ρ ───────────────────────────── */
-  function render() {
-    document.getElementById('cv3-rho-val').textContent = rho.toFixed(2);
-
-    const rows = buildOrder(rho);
-    const varRow = rows[N - 2]; // wiersz 19 (0-indexed: 18)
-
-    // VaR osobnych linii (każda niezależnie posortowana)
-    const sA = [...fixedA].sort((a, b) => a - b);
-    const sB = [...fixedB].sort((a, b) => a - b);
-    const sC = [...fixedC].sort((a, b) => a - b);
-    const varSumInd = sA[N - 2] + sB[N - 2] + sC[N - 2];
-
-    document.getElementById('cv3-var-a').textContent    = varRow.a.toFixed(1);
-    document.getElementById('cv3-var-b').textContent    = varRow.b.toFixed(1);
-    document.getElementById('cv3-var-c').textContent    = varRow.c.toFixed(1);
-    document.getElementById('cv3-var-port').textContent = varRow.sum.toFixed(1);
-
-    const benefit    = varSumInd - varRow.sum;
-    const benefitPct = varSumInd > 0 ? (benefit / varSumInd * 100) : 0;
-    const box = document.getElementById('cv3-benefit-box');
-    box.style.display = 'block';
-    if (benefit >= 0) {
-      box.style.borderLeftColor = '#27ae60';
-      box.innerHTML = `<strong style="color:#27ae60;">✓ Efekt dywersyfikacji:</strong>
-        Σ VaR osobnych = <strong>${varSumInd.toFixed(1)}</strong> &nbsp;·&nbsp;
-        VaR portfela = <strong>${varRow.sum.toFixed(1)}</strong> &nbsp;·&nbsp;
-        <strong style="color:#27ae60;">Korzyść: −${benefit.toFixed(1)} (−${benefitPct.toFixed(1)}%)</strong>`;
-    } else {
-      box.style.borderLeftColor = '#c0392b';
-      box.innerHTML = `<strong style="color:#c0392b;">✗ Brak dywersyfikacji:</strong>
-        Σ VaR osobnych = <strong>${varSumInd.toFixed(1)}</strong> &nbsp;·&nbsp;
-        VaR portfela = <strong>${varRow.sum.toFixed(1)}</strong> &nbsp;·&nbsp;
-        <strong style="color:#c0392b;">Nadwyżka: +${Math.abs(benefit).toFixed(1)}</strong>`;
+  // ── Symulacja jednego eksperymentu ───────────────────────────
+  // pi = prawdziwa prawdopodobieństwo trafienia każdej filiżanki
+  // Model: Lady ocenia każdą filiżankę niezależnie z prawdop. pi,
+  // ale musi wybrać dokładnie n — symulujemy przez losowanie
+  // permutacji z wagami.
+  function simulate(n, pi) {
+    // Prawdziwy układ: pierwsze n to M, kolejne n to H (losowo pomieszane)
+    const truth = Array(n).fill('M').concat(Array(n).fill('H'));
+    // Tasuj
+    for (let i = truth.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [truth[i], truth[j]] = [truth[j], truth[i]];
     }
 
-    renderTable(rows, N - 2, varSumInd);
-    renderChart(rows, varRow.sum, varSumInd);
-  }
-
-  /* ── kolorowanie komórek heatmap ────────────────────────────*/
-  // Dla każdej kolumny osobno: ranga 0 = najbledszy, ranga N-1 = najbardziej intensywny
-  function cellColor(rank, col) {
-    // intensywność od 0 (blady) do 1 (mocny)
-    const t = rank / (N - 1);
-    if (col === 'a') {
-      // odcień brązowo-pomarańczowy #a85903
-      const r = Math.round(255 - t * (255 - 168));
-      const g = Math.round(255 - t * (255 - 89));
-      const b = Math.round(255 - t * (255 - 3));
-      return `rgb(${r},${g},${b})`;
-    }
-    if (col === 'b') {
-      // odcień złoty #D4AF37
-      const r = Math.round(255 - t * (255 - 212));
-      const g = Math.round(255 - t * (255 - 175));
-      const b = Math.round(255 - t * (255 - 55));
-      return `rgb(${r},${g},${b})`;
-    }
-    if (col === 'c') {
-      // odcień ciepły brąz #7a3b00
-      const r = Math.round(255 - t * (255 - 122));
-      const g = Math.round(255 - t * (255 - 59));
-      const b = Math.round(255 - t * (255 - 0));
-      return `rgb(${r},${g},${b})`;
-    }
-    if (col === 's') {
-      // odcień suma — ciemniejszy bordowy
-      const r = Math.round(255 - t * (255 - 140));
-      const g = Math.round(255 - t * (255 - 30));
-      const b = Math.round(255 - t * (255 - 10));
-      return `rgb(${r},${g},${b})`;
-    }
-    return '#fff';
-  }
-
-  function textColor(rank) {
-    return rank > N * 0.55 ? 'white' : '#333';
-  }
-
-  function renderTable(rows, varIdx, varSumInd) {
-    // Oblicz rangi dla każdej kolumny w obecnym układzie
-    const aVals = rows.map(r => r.a);
-    const bVals = rows.map(r => r.b);
-    const cVals = rows.map(r => r.c);
-    const sVals = rows.map(r => r.sum);
-
-    const rA = ranks(aVals), rB = ranks(bVals), rC = ranks(cVals), rS = ranks(sVals);
-
-    let html = `
-      <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.8px;">
-        Wiersze posortowane wg Σ rosnąco &nbsp;·&nbsp; intensywność koloru = wielkość wartości w kolumnie &nbsp;·&nbsp; wiersz 19 = VaR<sub style="text-transform:none">95%</sub>
-      </div>
-      <table class="cv3-tbl">
-        <thead><tr>
-          <th>#</th>
-          <th>Linia A</th>
-          <th>Linia B</th>
-          <th>Linia C</th>
-          <th>Σ Portfel</th>
-        </tr></thead><tbody>`;
-
-    rows.forEach((r, i) => {
-      const isVar = (i === varIdx);
-      const bgA = cellColor(rA[i], 'a');
-      const bgB = cellColor(rB[i], 'b');
-      const bgC = cellColor(rC[i], 'c');
-      const bgS = cellColor(rS[i], 's');
-      const tA  = textColor(rA[i]), tB = textColor(rB[i]);
-      const tC  = textColor(rC[i]), tS = textColor(rS[i]);
-
-      html += `<tr class="${isVar ? 'cv3-var' : ''}">
-        <td>${isVar ? '▶ VaR₉₅%' : i + 1}</td>
-        <td style="background:${bgA}; color:${tA};">${r.a.toFixed(1)}</td>
-        <td style="background:${bgB}; color:${tB};">${r.b.toFixed(1)}</td>
-        <td style="background:${bgC}; color:${tC};">${r.c.toFixed(1)}</td>
-        <td class="cv3-sum-cell" style="background:${bgS}; color:${tS};">${r.sum.toFixed(1)}</td>
-      </tr>`;
+    // Lady daje każdej filiżance "wynik" — jeśli to M, wyższy wynik z prawdop. pi
+    const scores = truth.map((t, i) => {
+      if (t === 'M') {
+        // wyższy wynik (łatwiej wybrać jako M) z prawdop. pi
+        return { i, t, score: Math.random() < pi ? Math.random() * 0.5 + 0.5 : Math.random() * 0.5 };
+      } else {
+        return { i, t, score: Math.random() < pi ? Math.random() * 0.5 : Math.random() * 0.5 + 0.5 };
+      }
     });
 
-    html += '</tbody></table>';
-    document.getElementById('cv3-table').innerHTML = html;
+    // Lady wybiera n filiżanek z najwyższym "wynikiem M"
+    const sorted = [...scores].sort((a, b) => b.score - a.score);
+    const chosen = new Set(sorted.slice(0, n).map(x => x.i));
+
+    // Trafienia: Lady powiedziała M i to prawda
+    let hits = 0;
+    const cups = truth.map((t, i) => {
+      const guessM = chosen.has(i);
+      const correct = (t === 'M' && guessM) || (t === 'H' && !guessM);
+      if (t === 'M' && guessM) hits++;
+      return { truth: t, guessM, correct };
+    });
+
+    return { hits, cups, truth };
   }
 
-  function renderChart(rows, varPort, varSumInd) {
-    const C_MAIN = '#a85903', C_GOLD = '#D4AF37', C_GRID = '#f0e8e0';
-    const FONT = 'Poppins, Georgia, serif';
-    const sums = rows.map(r => r.sum);
-    const idxs = rows.map((_, i) => i + 1);
+  // ── Rysuj filiżanki ──────────────────────────────────────────
+  function renderCups(cups, n) {
+    const container = document.getElementById('ltt-cups');
+    container.innerHTML = cups.map((c, i) => {
+      const emoji  = c.truth === 'M' ? '🥛' : '🍵';
+      const result = c.correct ? '✓' : '✗';
+      const resCol = c.correct ? '#27ae60' : '#c0392b';
+      let bg, border;
+      if (c.correct && c.truth === 'M') { bg = 'rgba(39,174,96,0.12)'; border = '#27ae60'; }
+      else if (!c.correct && c.truth === 'M') { bg = 'rgba(192,57,43,0.10)'; border = '#c0392b'; }
+      else if (c.correct && c.truth === 'H') { bg = 'rgba(39,174,96,0.07)'; border = '#27ae60'; }
+      else { bg = 'rgba(192,57,43,0.07)'; border = '#c0392b'; }
 
-    Plotly.react('cv3-chart', [
+      const guessLabel = c.guessM ? 'Lady: M' : 'Lady: H';
+      return `<div class="ltt-cup">
+        <div class="ltt-cup-icon" style="background:${bg}; border-color:${border};">${emoji}</div>
+        <div class="ltt-cup-label" style="color:#888;">${c.truth === 'M' ? 'mleko' : 'herbata'}</div>
+        <div class="ltt-cup-label" style="color:#bbb;">${guessLabel}</div>
+        <div class="ltt-cup-result" style="color:${resCol};">${result}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // ── Rysuj rozkład hipergeometryczny ──────────────────────────
+  function renderHyper(n, a, hitsCurrent) {
+    const ks  = Array.from({ length: n + 1 }, (_, i) => i);
+    const ps  = ks.map(k => hyperProb(k, n));
+    const crit = criticalK(n, a);
+
+    const C_MAIN = '#a85903', C_GOLD = '#D4AF37', C_RED = '#c0392b', C_GREEN = '#27ae60';
+    const FONT = 'Poppins, Georgia, serif';
+
+    // Kumulatywne p-value od prawej
+    const pvals = ks.map(k => pValue(k, n));
+
+    Plotly.react('ltt-hyper-chart', [
       {
-        x: idxs, y: sums, type: 'bar', name: 'Σ portfela',
+        x: ks, y: ps, type: 'bar', name: 'P(X=k) przy H₀',
         marker: {
-          color: idxs.map(i => i === N - 1 ? C_MAIN : 'rgba(168,89,3,0.28)'),
-          line: { color: C_MAIN, width: 1 }
-        }
+          color: ks.map(k => k >= crit ? 'rgba(192,57,43,0.7)' : 'rgba(168,89,3,0.28)'),
+          line: { color: ks.map(k => k >= crit ? C_RED : C_MAIN), width: 1.5 }
+        },
+        text: ps.map(p => p > 0.001 ? p.toFixed(3) : ''),
+        textposition: 'outside',
+        textfont: { family: FONT, size: 11, color: '#888' }
       },
-      {
-        x: [1, N], y: [varPort, varPort],
-        type: 'scatter', mode: 'lines',
-        name: `VaR₉₅% portfela = ${varPort.toFixed(1)}`,
-        line: { color: C_MAIN, width: 2.5, dash: 'dash' }
-      },
-      {
-        x: [1, N], y: [varSumInd, varSumInd],
-        type: 'scatter', mode: 'lines',
-        name: `Σ VaR niezależnych = ${varSumInd.toFixed(1)}`,
-        line: { color: C_GOLD, width: 2, dash: 'dot' }
-      }
+      // Marker aktualnego wyniku
+      ...(hitsCurrent !== null ? [{
+        x: [hitsCurrent], y: [hyperProb(hitsCurrent, n) * 1.18],
+        type: 'scatter', mode: 'markers+text',
+        text: [`← ${hitsCurrent} trafień`],
+        textposition: 'middle right',
+        textfont: { family: FONT, size: 12, color: hitsCurrent >= crit ? C_RED : C_MAIN },
+        marker: { size: 12, color: hitsCurrent >= crit ? C_RED : C_MAIN, symbol: 'triangle-down' },
+        showlegend: false
+      }] : [])
     ], {
-      height: 320,
+      height: 280,
       paper_bgcolor: 'white', plot_bgcolor: 'white',
       font: { family: FONT, color: '#444' },
-      margin: { t: 40, b: 50, l: 60, r: 20 },
+      margin: { t: 30, b: 50, l: 55, r: 20 },
       legend: { x: 0.01, y: 0.99, font: { size: 11 } },
       title: {
-        text: 'Σ strat portfela posortowane wg Σ &nbsp;·&nbsp; słupek 19 = VaR₉₅%',
-        font: { size: 13, color: '#444', family: FONT }
+        text: `Rozkład hipergeometryczny przy H₀ · obszar krytyczny (α=${a}) zaznaczony na czerwono · próg k≥${crit}`,
+        font: { size: 12, color: '#444', family: FONT }
       },
-      xaxis: { title: 'wiersz (posortowane wg Σ rosnąco)', gridcolor: C_GRID, color: '#888', tickvals: idxs, ticktext: idxs.map(String) },
-      yaxis: { title: 'suma strat', gridcolor: C_GRID, color: '#888' },
-      bargap: 0.15
+      xaxis: {
+        title: 'liczba trafień k', tickvals: ks, ticktext: ks.map(String),
+        gridcolor: '#f0e8e0', color: '#888'
+      },
+      yaxis: { title: 'P(X = k)', gridcolor: '#f0e8e0', color: '#888' },
+      bargap: 0.25,
+      shapes: [{
+        type: 'line', x0: crit - 0.5, x1: crit - 0.5, y0: 0, y1: 1,
+        xref: 'x', yref: 'paper',
+        line: { color: C_RED, width: 2, dash: 'dot' }
+      }],
+      annotations: [{
+        x: crit - 0.5, y: 1, xref: 'x', yref: 'paper',
+        text: `  α = ${a}`, showarrow: false,
+        font: { color: C_RED, size: 11, family: FONT }, xanchor: 'left'
+      }]
     }, { displayModeBar: false, responsive: true });
   }
 
+  // ── Rysuj rozkład z 1000 symulacji ───────────────────────────
+  function renderDist(counts, n, pi, a) {
+    const crit = criticalK(n, a);
+    const total = counts.reduce((s, c) => s + c, 0);
+    const freqs = counts.map(c => c / total);
+    const ks = Array.from({ length: n + 1 }, (_, i) => i);
+    const C_MAIN = '#a85903', C_RED = '#c0392b';
+    const FONT = 'Poppins, Georgia, serif';
+
+    document.getElementById('ltt-dist-pi').textContent = pi.toFixed(2);
+    document.getElementById('ltt-dist-wrap').style.display = 'block';
+
+    Plotly.react('ltt-dist-chart', [{
+      x: ks, y: freqs, type: 'bar', name: `Symulacje (π=${pi})`,
+      marker: {
+        color: ks.map(k => k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.35)'),
+        line: { color: ks.map(k => k >= crit ? C_RED : C_MAIN), width: 1.5 }
+      },
+      text: freqs.map(f => f > 0.01 ? (f * 100).toFixed(1) + '%' : ''),
+      textposition: 'outside',
+      textfont: { family: FONT, size: 11, color: '#888' }
+    }], {
+      height: 300,
+      paper_bgcolor: 'white', plot_bgcolor: 'white',
+      font: { family: FONT, color: '#444' },
+      margin: { t: 35, b: 50, l: 55, r: 20 },
+      title: {
+        text: `Rozkład trafień w 1000 symulacjach · π=${pi} · moc testu = ${(freqs.slice(crit).reduce((a,b)=>a+b,0)*100).toFixed(1)}%`,
+        font: { size: 12, color: '#444', family: FONT }
+      },
+      xaxis: { title: 'liczba trafień k', tickvals: ks, ticktext: ks.map(String), gridcolor: '#f0e8e0', color: '#888' },
+      yaxis: { title: 'częstość', gridcolor: '#f0e8e0', color: '#888' },
+      bargap: 0.25,
+      shapes: [{ type: 'line', x0: crit - 0.5, x1: crit - 0.5, y0: 0, y1: 1, xref: 'x', yref: 'paper', line: { color: C_RED, width: 2, dash: 'dot' } }]
+    }, { displayModeBar: false, responsive: true });
+  }
+
+  // ── Jeden eksperyment ─────────────────────────────────────────
+  function run() {
+    const n   = parseInt(document.getElementById('ltt-n').value);
+    const pi  = parseFloat(document.getElementById('ltt-pi').value);
+    const { hits, cups } = simulate(n, pi);
+    const pval  = pValue(hits, n);
+    const crit  = criticalK(n, alpha);
+    const reject = hits >= crit;
+
+    document.getElementById('ltt-hits').textContent = `${hits} / ${n}`;
+    document.getElementById('ltt-hits-max').textContent = `maksymalnie ${n}`;
+    document.getElementById('ltt-pval').textContent = pval < 0.001 ? '<0.001' : pval.toFixed(3);
+    document.getElementById('ltt-pval').style.color = reject ? '#27ae60' : '#a85903';
+    document.getElementById('ltt-critical').textContent = crit > n ? '—' : `≥ ${crit}`;
+    document.getElementById('ltt-decision').textContent = reject ? '✓ Odrzucamy H₀' : '✗ Brak podstaw';
+    document.getElementById('ltt-decision').style.color = reject ? '#27ae60' : '#c0392b';
+
+    const verdict = document.getElementById('ltt-verdict');
+    verdict.style.display = 'block';
+    if (reject) {
+      verdict.style.borderLeftColor = '#27ae60';
+      verdict.innerHTML = `<strong style="color:#27ae60;">H₀ odrzucona (p = ${pval < 0.001 ? '<0.001' : pval.toFixed(3)} ≤ α = ${alpha}).</strong>
+        Lady trafiła <strong>${hits} z ${n}</strong> filiżanek. Wynik jest wystarczająco rzadki,
+        żeby uznać, że nie zgadywała losowo — Fisher przyznałby jej rację.`;
+    } else {
+      verdict.style.borderLeftColor = '#c0392b';
+      verdict.innerHTML = `<strong style="color:#c0392b;">Brak podstaw do odrzucenia H₀ (p = ${pval.toFixed(3)} > α = ${alpha}).</strong>
+        Lady trafiła <strong>${hits} z ${n}</strong> filiżanek. Taki wynik mógł pojawić się przez czysty przypadek —
+        ${hits === n ? 'idealne trafienie jest możliwe losowo z prawdop. ' + (1/comb(2*n,n)).toFixed(4) + '.' : 'za mało trafień.'}`;
+    }
+
+    renderCups(cups, n);
+    renderHyper(n, alpha, hits);
+  }
+
+  // ── 1000 symulacji ────────────────────────────────────────────
+  function runMany() {
+    const n  = parseInt(document.getElementById('ltt-n').value);
+    const pi = parseFloat(document.getElementById('ltt-pi').value);
+    const counts = new Array(n + 1).fill(0);
+    for (let i = 0; i < 1000; i++) {
+      const { hits } = simulate(n, pi);
+      counts[hits]++;
+    }
+    run(); // pokaż też jeden konkretny
+    renderDist(counts, n, pi, alpha);
+  }
+
+  // ── Init ──────────────────────────────────────────────────────
   function init() {
-    // Przyciski ρ
-    const cont = document.getElementById('cv3-buttons');
-    RHO_VALUES.forEach(r => {
+    // Przyciski alpha
+    const cont = document.getElementById('ltt-alpha-buttons');
+    ALPHA_VALUES.forEach(a => {
       const btn = document.createElement('button');
-      btn.className = 'cv3-btn' + (r === 0 ? ' active' : '');
-      btn.textContent = r === 0 ? '0' : r.toFixed(1);
+      btn.className = 'ltt-alpha-btn' + (a === 0.05 ? ' active' : '');
+      btn.textContent = `α = ${a}`;
       btn.onclick = () => {
-        document.querySelectorAll('.cv3-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.ltt-alpha-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        rho = r;
-        render(); // tylko przelicz układ, nie generuj nowych wartości
+        alpha = a;
+        document.getElementById('ltt-alpha-val').textContent = `α = ${a}`;
+        run();
       };
       cont.appendChild(btn);
     });
 
-    // Suwaki — tylko aktualizują label, nie generują (dopiero "Generuj")
-    ['cv3-mu', 'cv3-sigma'].forEach(id => {
-      document.getElementById(id).addEventListener('input', e => {
-        document.getElementById(id + '-val').textContent = parseFloat(e.target.value).toFixed(1);
-      });
+    // Suwaki
+    document.getElementById('ltt-n').addEventListener('input', e => {
+      const v = parseInt(e.target.value);
+      document.getElementById('ltt-n-val').textContent = `${v} pary = ${2*v} filiżanek`;
+      run();
+    });
+    document.getElementById('ltt-pi').addEventListener('input', e => {
+      document.getElementById('ltt-pi-val').textContent = `π = ${parseFloat(e.target.value).toFixed(2)}`;
     });
 
-    const ready = () => generate();
-    if (typeof Plotly !== 'undefined') ready();
-    else document.querySelector('script[src*="plotly"]').addEventListener('load', ready);
+    lttWhenReady(run);
   }
 
-  return { generate, init };
+  return { run, runMany, init };
 })();
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', corSim3.init);
+  document.addEventListener('DOMContentLoaded', lttSim.init);
 } else {
-  corSim3.init();
+  lttSim.init();
 }
 </script>
-        
-
 
 
 
