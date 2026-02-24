@@ -3427,7 +3427,7 @@ window.addEventListener('load', function() {
 </style>
 
 <div class="ryzmod-header">
-  <div class="ryzmod-header-text">Lady Tasting Tea</div>
+  <div class="ryzmod-header-text">SIGNAL-NOISE. Field experiment</div>
 </div>
         
 
@@ -3435,291 +3435,379 @@ window.addEventListener('load', function() {
 
 
 
-
-
-
-
-
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
-<div class="ryzmod-columns" style="margin-top: 30px; margin-bottom: 30px;">
+<div class="ryzmod-columns" style="margin-top:30px; margin-bottom:30px;">
 <div style="flex:1;">
 
+<!-- FORMUŁA -->
 <div style="background:#FDFAF1; border-left:4px solid #D4AF37; border-radius:8px; padding:12px 20px; margin-bottom:20px; font-family:'Courier New',monospace; font-size:13px; color:#555;">
-  8 filiżanek: 4 × mleko-pierwsze (M), 4 × herbata-pierwsza (H) &nbsp;|&nbsp;
-  Lady wskazuje 4 jako M &nbsp;|&nbsp;
-  H₀: trafia losowo &nbsp;|&nbsp;
-  P(4/4 losowo) = 1/C(8,4) = 1/70 ≈ 0.014
+  8 pól: 4 × nawóz (T), 4 × kontrola (C) &nbsp;|&nbsp;
+  statystyka: D = x̄<sub>T</sub> − x̄<sub>C</sub> &nbsp;|&nbsp;
+  H₀: nawóz nie ma efektu &nbsp;|&nbsp;
+  p = #{permutacji: |D*| ≥ |D<sub>obs</sub>|} / C(8,4)
 </div>
 
-<div style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; margin-bottom:20px; line-height:1.7;">
-  <strong style="color:#a85903;">Eksperyment Fishera (1935):</strong>
-  Muriel Bristol twierdzi, że wyczuje czy do filiżanki najpierw wlano mleko czy herbatę.
-  Fisher losuje kolejność 8 filiżanek i każe jej wskazać 4 jako „mleko pierwsze".
-  Lady <strong>trafia wszystkie 4</strong>. Czy to dowód zdolności czy przypadek?
-</div>
-
-<div style="padding:16px 20px; border:1px solid #e8ddd0; border-radius:10px; background:#fdfaf6; margin-bottom:20px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+<!-- SUWAKI -->
+<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px; padding:16px 20px; border:1px solid #e8ddd0; border-radius:10px; background:#fdfaf6;">
   <div>
-    <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:8px;">Poziom istotności (α)</label>
-    <div style="display:flex; gap:8px;">
-      <button class="ltt4btn active" onclick="ltt4_setAlpha(0.01, this)">α = 0.01</button>
-      <button class="ltt4btn" onclick="ltt4_setAlpha(0.05, this)">α = 0.05</button>
-      <button class="ltt4btn" onclick="ltt4_setAlpha(0.10, this)">α = 0.10</button>
-      <button class="ltt4btn" onclick="ltt4_setAlpha(0.20, this)">α = 0.20</button>
-    </div>
+    <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">Efekt nawozu (δ)</label>
+    <input type="range" id="perm-delta" min="0" max="5" step="0.5" value="2"
+      style="width:100%; height:3px; background:#e0d5c8; outline:none; -webkit-appearance:none; border-radius:2px;">
+    <div style="display:flex; justify-content:space-between; font-size:10px; color:#bbb; font-family:'Courier New',monospace; margin-top:2px;"><span>0</span><span>2.5</span><span>5</span></div>
+    <div id="perm-delta-val" style="font-size:18px; font-weight:700; margin-top:4px; color:#a85903; font-family:'Poppins',sans-serif;">δ = 2.0</div>
+    <div style="font-size:11px; color:#bbb; font-family:'Poppins',sans-serif;">średni wzrost plonu dzięki nawozowi</div>
   </div>
-  <div id="ltt4-alpha-val" style="font-size:18px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif; margin-top:20px;">α = 0.01</div>
+  <div>
+    <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">Szum losowy (σ)</label>
+    <input type="range" id="perm-sigma" min="0.5" max="5" step="0.5" value="1.5"
+      style="width:100%; height:3px; background:#e0d5c8; outline:none; -webkit-appearance:none; border-radius:2px;">
+    <div style="display:flex; justify-content:space-between; font-size:10px; color:#bbb; font-family:'Courier New',monospace; margin-top:2px;"><span>0.5</span><span>2.5</span><span>5</span></div>
+    <div id="perm-sigma-val" style="font-size:18px; font-weight:700; margin-top:4px; color:#a85903; font-family:'Poppins',sans-serif;">σ = 1.5</div>
+    <div style="font-size:11px; color:#bbb; font-family:'Poppins',sans-serif;">zmienność naturalna między polami</div>
+  </div>
+  <div>
+    <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">Poziom istotności (α)</label>
+    <div style="display:flex; flex-wrap:wrap; gap:5px; margin-top:6px;">
+      <button class="perm-abtn active" onclick="perm_setAlpha(0.05,this)">α = 0.05</button>
+      <button class="perm-abtn" onclick="perm_setAlpha(0.10,this)">α = 0.10</button>
+      <button class="perm-abtn" onclick="perm_setAlpha(0.20,this)">α = 0.20</button>
+    </div>
+    <div id="perm-alpha-val" style="font-size:18px; font-weight:700; margin-top:8px; color:#a85903; font-family:'Poppins',sans-serif;">α = 0.05</div>
+  </div>
 </div>
 
-<div style="margin-bottom:24px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-  <button onclick="ltt4_runOne()"
+<!-- PRZYCISKI -->
+<div style="margin-bottom:24px; display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+  <button onclick="perm_generate()"
     style="background:#a85903; color:white; border:none; padding:11px 32px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; cursor:pointer; box-shadow:0 2px 8px rgba(168,89,3,0.3);"
     onmouseover="this.style.background='#d17a1b'" onmouseout="this.style.background='#a85903'">
-    ☕ &nbsp;Nowe losowanie filiżanek
+    🌱 &nbsp;Generuj nowe plony
   </button>
-  <button onclick="ltt4_runMany()"
+  <button onclick="perm_runPermTest()"
     style="background:white; color:#a85903; border:2px solid #a85903; padding:9px 24px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:13px; font-weight:600; cursor:pointer;"
     onmouseover="this.style.background='#fdf3e9'" onmouseout="this.style.background='white'">
-    ↻ &nbsp;Symuluj 10 000 losowych prób
+    ↻ &nbsp;Przeprowadź test permutacyjny
   </button>
 </div>
 
+<!-- STATYSTYKI -->
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px;">
   <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
-    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">Możliwych układów</div>
-    <div style="font-size:24px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">70</div>
-    <div style="font-size:10px; color:#bbb; font-family:'Poppins',sans-serif; margin-top:2px;">C(8,4) = 70</div>
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">x̄ nawóz</div>
+    <div id="perm-mean-t" style="font-size:22px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
   </div>
   <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
-    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">P(4/4 losowo)</div>
-    <div style="font-size:24px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">1/70</div>
-    <div style="font-size:10px; color:#bbb; font-family:'Poppins',sans-serif; margin-top:2px;">≈ 0.0143</div>
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">x̄ kontrola</div>
+    <div id="perm-mean-c" style="font-size:22px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
   </div>
   <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
-    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">Próg krytyczny</div>
-    <div id="ltt4-critical" style="font-size:24px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">k ≥ 4</div>
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">D = x̄T − x̄C</div>
+    <div id="perm-dobs" style="font-size:22px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
   </div>
   <div style="text-align:center; padding:14px 8px; background:#fff3e6; border-radius:10px; border:2px solid #a85903;">
-    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#a85903; font-family:'Poppins',sans-serif; font-weight:700; margin-bottom:5px;">Decyzja (4/4)</div>
-    <div id="ltt4-decision" style="font-size:15px; font-weight:700; color:#27ae60; font-family:'Poppins',sans-serif;">✓ Odrzucamy H₀</div>
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#a85903; font-family:'Poppins',sans-serif; font-weight:700; margin-bottom:5px;">p-value</div>
+    <div id="perm-pval" style="font-size:22px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
   </div>
 </div>
 
-<div id="ltt4-verdict" style="border-left:4px solid #27ae60; border-radius:8px; padding:12px 20px; margin-bottom:24px; font-family:'Poppins',sans-serif; font-size:13px; color:#555; background:#FDFAF1; line-height:1.7;">
-  Ładowanie...
-</div>
+<!-- WERDYKT -->
+<div id="perm-verdict" style="border-left:4px solid #a85903; border-radius:8px; padding:12px 20px; margin-bottom:24px; font-family:'Poppins',sans-serif; font-size:13px; color:#555; background:#FDFAF1; line-height:1.7; display:none;"></div>
 
+<!-- POLA — wizualizacja -->
 <div style="border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px; background:#fff; margin-bottom:20px;">
-  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px;">Losowy układ filiżanek — każde losowanie zmienia kolejność</div>
-  <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#a85903; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">▶ Lady wskazuje te 4 jako „mleko pierwsze" (aktywny wybór)</div>
-  <div id="ltt4-cups-chosen" style="display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap;"></div>
-  <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px;">Pozostałe 4 — wynikają automatycznie jako „herbata pierwsza"</div>
-  <div id="ltt4-cups-rest" style="display:flex; gap:16px; flex-wrap:wrap;"></div>
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:16px;">8 pól doświadczalnych — plony po losowaniu</div>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px;" id="perm-fields"></div>
   <div style="margin-top:16px; display:flex; gap:20px; font-family:'Poppins',sans-serif; font-size:12px; color:#888; flex-wrap:wrap;">
-    <span>🥛 mleko pierwsze · obwódka zielona = aktywny wybór Lady</span>
-    <span>🍵 herbata pierwsza · obwódka szara = wynik automatyczny</span>
-    <span style="color:#27ae60; font-weight:600;">✓ wszystkie 4+4 poprawnie</span>
+    <span style="display:flex; align-items:center; gap:6px;"><span style="width:14px;height:14px;border-radius:3px;background:#a85903;display:inline-block;"></span>nawóz (T)</span>
+    <span style="display:flex; align-items:center; gap:6px;"><span style="width:14px;height:14px;border-radius:3px;background:#bbb;display:inline-block;"></span>kontrola (C)</span>
   </div>
 </div>
 
+<!-- WYKRES PLONÓW -->
 <div style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; margin-bottom:20px; overflow:hidden;">
-  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">Rozkład hipergeometryczny przy H₀ — ile trafień zdarza się przez czysty przypadek</div>
-  <div id="ltt4-hyper-chart" style="width:100%; height:280px;"></div>
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">Plony — nawóz vs kontrola</div>
+  <div id="perm-yield-chart" style="width:100%; height:260px;"></div>
 </div>
 
-<div id="ltt4-sim-wrap" style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; overflow:hidden; display:none;">
-  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">10 000 losowych prób — rozkład empiryczny trafień</div>
-  <div id="ltt4-sim-chart" style="width:100%; height:280px;"></div>
-  <div id="ltt4-sim-note" style="font-family:'Poppins',sans-serif; font-size:12px; color:#666; margin-top:10px; padding:10px 14px; background:#FDFAF1; border-radius:6px;"></div>
+<!-- TEST PERMUTACYJNY -->
+<div id="perm-test-wrap" style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; overflow:hidden; display:none;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">
+    Rozkład D* we wszystkich C(8,4)=70 permutacjach etykiet przy H₀ — jak ekstremalny jest nasz wynik?
+  </div>
+  <div id="perm-test-chart" style="width:100%; height:300px;"></div>
+  <div id="perm-test-note" style="font-family:'Poppins',sans-serif; font-size:12px; color:#666; margin-top:10px; padding:10px 14px; background:#FDFAF1; border-radius:6px;"></div>
 </div>
 
 </div>
 </div>
 
 <style>
-.ltt4btn {
-  font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;
-  padding:5px 12px; border-radius:5px; cursor:pointer;
-  border:1.5px solid #d0b38c; background:white; color:#a85903; transition:all 0.15s;
-}
-.ltt4btn:hover { background:#fdf3e9; }
-.ltt4btn.active { background:#a85903; color:white; border-color:#a85903; }
+  #perm-delta::-webkit-slider-thumb, #perm-sigma::-webkit-slider-thumb {
+    -webkit-appearance:none; width:18px; height:18px;
+    background:#a85903; cursor:pointer; border-radius:50%;
+    box-shadow:0 2px 6px rgba(168,89,3,0.35);
+  }
+  #perm-delta::-moz-range-thumb, #perm-sigma::-moz-range-thumb {
+    width:18px; height:18px; background:#a85903; cursor:pointer; border-radius:50%; border:none;
+  }
+  .perm-abtn {
+    font-family:'Poppins',sans-serif; font-size:11px; font-weight:600;
+    padding:4px 10px; border-radius:5px; cursor:pointer;
+    border:1.5px solid #d0b38c; background:white; color:#a85903; transition:all 0.15s;
+  }
+  .perm-abtn:hover { background:#fdf3e9; }
+  .perm-abtn.active { background:#a85903; color:white; border-color:#a85903; }
+  .perm-field {
+    border-radius:8px; padding:14px 10px; text-align:center;
+    font-family:'Poppins',sans-serif; border:1px solid #e8ddd0;
+  }
 </style>
 
 <script>
-var ltt4_alpha = 0.01;
-var ltt4_FONT  = 'Poppins, Georgia, serif';
+var perm_alpha = 0.05;
+var perm_yields = [];   // tablica 8 plonów
+var perm_labels = [];   // 'T' lub 'C' dla każdego pola
+var perm_FONT = 'Poppins, Georgia, serif';
 
-function ltt4_comb(n, k) {
-  if (k < 0 || k > n) return 0;
-  var r = 1;
-  for (var i = 0; i < k; i++) r = r * (n - i) / (i + 1);
-  return Math.round(r);
+function perm_randn() {
+  var u; do { u = Math.random(); } while (u === 0);
+  return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*Math.random());
 }
 
-function ltt4_hyperProb(k) {
-  return ltt4_comb(4, k) * ltt4_comb(4, 4 - k) / ltt4_comb(8, 4);
-}
-
-function ltt4_pValue(k) {
-  var p = 0;
-  for (var i = k; i <= 4; i++) p += ltt4_hyperProb(i);
-  return p;
-}
-
-function ltt4_critK() {
-  for (var k = 4; k >= 0; k--) {
-    if (ltt4_pValue(k) <= ltt4_alpha) return k;
-  }
-  return 5;
-}
-
-function ltt4_shuffle(arr) {
-  var a = arr.slice();
-  for (var i = a.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var t = a[i]; a[i] = a[j]; a[j] = t;
-  }
-  return a;
-}
-
-function ltt4_setAlpha(a, btn) {
-  ltt4_alpha = a;
-  document.querySelectorAll('.ltt4btn').forEach(function(b) { b.classList.remove('active'); });
+function perm_setAlpha(a, btn) {
+  perm_alpha = a;
+  document.querySelectorAll('.perm-abtn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
-  document.getElementById('ltt4-alpha-val').textContent = 'α = ' + a;
-  ltt4_runOne();
+  document.getElementById('perm-alpha-val').textContent = 'α = ' + a;
+  if (perm_yields.length) perm_renderYieldChart();
 }
 
-function ltt4_renderCups(cups) {
-  var chosenIdx = [], restIdx = [];
-  cups.forEach(function(c, i) { (c === 'M' ? chosenIdx : restIdx).push(i); });
-
-  function cupHTML(idx, isChosen) {
-    var t = cups[idx];
-    var border = isChosen ? '#27ae60' : '#bbb';
-    var bg     = isChosen ? 'rgba(39,174,96,0.08)' : 'rgba(0,0,0,0.03)';
-    return '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-family:Poppins,sans-serif;">'
-      + '<div style="width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;'
-      + 'background:' + bg + ';border:2px solid ' + border + ';">'
-      + (t === 'M' ? '🥛' : '🍵') + '</div>'
-      + '<div style="font-size:10px;color:#aaa;">' + (t === 'M' ? 'mleko' : 'herbata') + '</div>'
-      + '<div style="font-size:14px;font-weight:700;color:#27ae60;">&#10003;</div>'
-      + '</div>';
-  }
-
-  document.getElementById('ltt4-cups-chosen').innerHTML = chosenIdx.map(function(i) { return cupHTML(i, true);  }).join('');
-  document.getElementById('ltt4-cups-rest').innerHTML   = restIdx.map(function(i)   { return cupHTML(i, false); }).join('');
-}
-
-function ltt4_renderHyper(highlightK, crit) {
-  var ks = [0,1,2,3,4];
-  var ps = ks.map(ltt4_hyperProb);
-
-  Plotly.react('ltt4-hyper-chart', [
-    {
-      x: ks, y: ps, type: 'bar',
-      marker: {
-        color: ks.map(function(k) { return k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'; }),
-        line:  { color: ks.map(function(k) { return k >= crit ? '#c0392b' : '#a85903'; }), width: 1.5 }
-      },
-      text: ps.map(function(p) { return (p*100).toFixed(1)+'%'; }),
-      textposition: 'outside',
-      textfont: { family: ltt4_FONT, size: 12, color: '#888' },
-      showlegend: false
-    },
-    {
-      x: [highlightK], y: [ltt4_hyperProb(highlightK) + 0.03],
-      type: 'scatter', mode: 'markers+text',
-      text: ['wynik Lady'], textposition: 'top center',
-      textfont: { family: ltt4_FONT, size: 12, color: highlightK >= crit ? '#c0392b' : '#a85903' },
-      marker: { size: 14, color: highlightK >= crit ? '#c0392b' : '#a85903', symbol: 'triangle-down' },
-      showlegend: false
+// Wszystkie C(8,4)=70 permutacji indeksów {0..7} na 2 grupy po 4
+function perm_allPerms() {
+  var result = [];
+  var idxs = [0,1,2,3,4,5,6,7];
+  function combine(start, chosen) {
+    if (chosen.length === 4) { result.push(chosen.slice()); return; }
+    for (var i = start; i < 8; i++) {
+      chosen.push(i);
+      combine(i+1, chosen);
+      chosen.pop();
     }
-  ], {
-    height: 280, paper_bgcolor: 'white', plot_bgcolor: 'white',
-    font: { family: ltt4_FONT, color: '#444' },
-    margin: { t: 50, b: 50, l: 55, r: 20 },
-    title: { text: 'Rozkład H₀ · obszar krytyczny α='+ltt4_alpha+' (k≥'+crit+') na czerwono', font: { size: 12, color: '#444', family: ltt4_FONT } },
-    xaxis: { title: 'liczba trafień k', tickvals:[0,1,2,3,4], ticktext:['0','1','2','3','4'], gridcolor:'#f0e8e0', color:'#888' },
-    yaxis: { title: 'P(X=k)', gridcolor:'#f0e8e0', color:'#888', range:[0,0.62] },
-    bargap: 0.3,
-    shapes: [{ type:'line', x0:crit-0.5, x1:crit-0.5, y0:0, y1:1, xref:'x', yref:'paper', line:{ color:'#c0392b', width:2, dash:'dot' } }],
-    annotations: [{ x:crit-0.5, y:0.97, xref:'x', yref:'paper', text:'  α='+ltt4_alpha, showarrow:false, font:{ color:'#c0392b', size:11, family:ltt4_FONT }, xanchor:'left' }]
-  }, { displayModeBar: false, responsive: true });
+  }
+  combine(0, []);
+  return result;
 }
 
-function ltt4_runOne() {
-  var cups  = ltt4_shuffle(['M','M','M','M','H','H','H','H']);
-  var crit  = ltt4_critK();
-  var pval  = ltt4_pValue(4);
-  var reject = (crit <= 4);
+function perm_mean(arr) {
+  return arr.reduce(function(s,v){return s+v;},0) / arr.length;
+}
 
-  document.getElementById('ltt4-critical').textContent = 'k ≥ ' + crit;
-  document.getElementById('ltt4-decision').textContent = reject ? '✓ Odrzucamy H₀' : '✗ Brak podstaw';
-  document.getElementById('ltt4-decision').style.color = reject ? '#27ae60' : '#c0392b';
+function perm_generate() {
+  var delta = parseFloat(document.getElementById('perm-delta').value);
+  var sigma = parseFloat(document.getElementById('perm-sigma').value);
+  document.getElementById('perm-delta-val').textContent = 'δ = ' + delta.toFixed(1);
+  document.getElementById('perm-sigma-val').textContent = 'σ = ' + sigma.toFixed(1);
 
-  var v = document.getElementById('ltt4-verdict');
+  // Bazowy plon ~10, nawóz dodaje delta, szum N(0,sigma)
+  var base = 10;
+  perm_yields = [];
+  perm_labels = ['T','T','T','T','C','C','C','C'];
+  for (var i = 0; i < 4; i++) perm_yields.push(+(base + delta + perm_randn()*sigma).toFixed(2));
+  for (var i = 0; i < 4; i++) perm_yields.push(+(base + perm_randn()*sigma).toFixed(2));
+
+  // Losuj kolejność pól (tasuj indeksy razem)
+  var order = [0,1,2,3,4,5,6,7];
+  for (var i = 7; i > 0; i--) {
+    var j = Math.floor(Math.random()*(i+1));
+    var t = order[i]; order[i]=order[j]; order[j]=t;
+  }
+  var shuffledY = [], shuffledL = [];
+  order.forEach(function(i){ shuffledY.push(perm_yields[i]); shuffledL.push(perm_labels[i]); });
+  perm_yields = shuffledY;
+  perm_labels = shuffledL;
+
+  perm_renderFields();
+  perm_renderYieldChart();
+  perm_updateStats();
+  document.getElementById('perm-test-wrap').style.display = 'none';
+  document.getElementById('perm-verdict').style.display = 'none';
+}
+
+function perm_updateStats() {
+  var T = [], C = [];
+  perm_yields.forEach(function(y,i){ (perm_labels[i]==='T'?T:C).push(y); });
+  var mT = perm_mean(T), mC = perm_mean(C), D = mT - mC;
+  document.getElementById('perm-mean-t').textContent = mT.toFixed(2);
+  document.getElementById('perm-mean-c').textContent = mC.toFixed(2);
+  document.getElementById('perm-dobs').textContent   = (D>=0?'+':'')+D.toFixed(2);
+  document.getElementById('perm-pval').textContent   = '—';
+}
+
+function perm_renderFields() {
+  // Oblicz rangi do intensywności koloru (bardziej zielono = wyższy plon)
+  var sorted = perm_yields.slice().sort(function(a,b){return a-b;});
+  var minY = sorted[0], maxY = sorted[sorted.length-1];
+
+  var html = '';
+  perm_yields.forEach(function(y, i) {
+    var isT = perm_labels[i] === 'T';
+    var t = maxY > minY ? (y - minY)/(maxY - minY) : 0.5;
+    // Kolor tła: od bladego do intensywnego w palecie nawozu/kontroli
+    var bg, border, label;
+    if (isT) {
+      var r = Math.round(255 - t*(255-140));
+      var g = Math.round(255 - t*(255-60));
+      var b = Math.round(255 - t*(255-0));
+      bg = 'rgb('+r+','+g+','+b+')';
+      border = '#a85903';
+      label = 'nawóz';
+    } else {
+      var v = Math.round(220 - t*80);
+      bg = 'rgb('+v+','+v+','+v+')';
+      border = '#aaa';
+      label = 'kontrola';
+    }
+    var textCol = t > 0.55 ? 'white' : '#444';
+    html += '<div class="perm-field" style="background:'+bg+'; border-color:'+border+';">'
+      + '<div style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px; color:'+textCol+'; opacity:0.8; margin-bottom:4px;">Pole '+(i+1)+'</div>'
+      + '<div style="font-size:10px; font-weight:600; color:'+textCol+'; margin-bottom:8px;">'+label+'</div>'
+      + '<div style="font-size:22px; font-weight:700; color:'+textCol+';">'+y.toFixed(1)+'</div>'
+      + '<div style="font-size:10px; color:'+textCol+'; opacity:0.7; margin-top:2px;">t/ha</div>'
+      + '</div>';
+  });
+  document.getElementById('perm-fields').innerHTML = html;
+}
+
+function perm_renderYieldChart() {
+  var T_vals = [], T_idx = [], C_vals = [], C_idx = [];
+  perm_yields.forEach(function(y,i){
+    if (perm_labels[i]==='T') { T_vals.push(y); T_idx.push('Pole '+(i+1)); }
+    else                      { C_vals.push(y); C_idx.push('Pole '+(i+1)); }
+  });
+  var mT = perm_mean(T_vals), mC = perm_mean(C_vals);
+
+  Plotly.react('perm-yield-chart', [
+    { x: T_idx, y: T_vals, type:'bar', name:'Nawóz (T)',
+      marker:{ color:'rgba(168,89,3,0.75)', line:{color:'#a85903',width:1.5} },
+      text: T_vals.map(function(v){return v.toFixed(1);}), textposition:'outside',
+      textfont:{family:perm_FONT, size:11, color:'#888'} },
+    { x: C_idx, y: C_vals, type:'bar', name:'Kontrola (C)',
+      marker:{ color:'rgba(180,180,180,0.7)', line:{color:'#aaa',width:1.5} },
+      text: C_vals.map(function(v){return v.toFixed(1);}), textposition:'outside',
+      textfont:{family:perm_FONT, size:11, color:'#888'} },
+    { x: T_idx, y: T_idx.map(function(){return mT;}), type:'scatter', mode:'lines',
+      name:'x̄T = '+mT.toFixed(2), line:{color:'#a85903',width:2,dash:'dash'}, showlegend:true },
+    { x: C_idx, y: C_idx.map(function(){return mC;}), type:'scatter', mode:'lines',
+      name:'x̄C = '+mC.toFixed(2), line:{color:'#aaa',width:2,dash:'dash'}, showlegend:true }
+  ], {
+    height:260, paper_bgcolor:'white', plot_bgcolor:'white',
+    font:{family:perm_FONT, color:'#444'},
+    margin:{t:30,b:50,l:55,r:20},
+    legend:{x:0.01,y:0.99,font:{size:11}},
+    title:{text:'Plony pól [t/ha] · D = x̄T − x̄C = '+((mT-mC)>=0?'+':'')+(mT-mC).toFixed(2), font:{size:12,color:'#444',family:perm_FONT}},
+    xaxis:{gridcolor:'#f0e8e0',color:'#888'},
+    yaxis:{title:'plon [t/ha]',gridcolor:'#f0e8e0',color:'#888'},
+    bargap:0.3, barmode:'group'
+  }, {displayModeBar:false, responsive:true});
+}
+
+function perm_runPermTest() {
+  if (!perm_yields.length) { perm_generate(); }
+
+  var T_obs = [], C_obs = [];
+  perm_yields.forEach(function(y,i){ (perm_labels[i]==='T'?T_obs:C_obs).push(y); });
+  var D_obs = perm_mean(T_obs) - perm_mean(C_obs);
+
+  // Wszystkie 70 permutacji
+  var perms = perm_allPerms();
+  var D_star = perms.map(function(tIdx) {
+    var tVals = tIdx.map(function(i){return perm_yields[i];});
+    var cVals = perm_yields.filter(function(_,i){return tIdx.indexOf(i)<0;});
+    return perm_mean(tVals) - perm_mean(cVals);
+  });
+
+  // p-value: obustronne
+  var extreme = D_star.filter(function(d){ return Math.abs(d) >= Math.abs(D_obs) - 1e-9; }).length;
+  var pval = extreme / 70;
+
+  document.getElementById('perm-pval').textContent = pval < 0.001 ? '<0.001' : pval.toFixed(3);
+  document.getElementById('perm-pval').style.color = pval <= perm_alpha ? '#27ae60' : '#c0392b';
+
+  var reject = pval <= perm_alpha;
+  var v = document.getElementById('perm-verdict');
+  v.style.display = 'block';
   v.style.borderLeftColor = reject ? '#27ae60' : '#c0392b';
   v.innerHTML = reject
-    ? '<strong style="color:#27ae60;">H₀ odrzucona.</strong> Lady trafiła <strong>4 z 4</strong>. Prawdopodobieństwo takiego wyniku przez przypadek to <strong>1/70 ≈ 1.4%</strong> — poniżej α = '+ltt4_alpha+'. Wynik jest istotny statystycznie.'
-    : '<strong style="color:#c0392b;">Brak podstaw do odrzucenia H₀.</strong> Przy α = '+ltt4_alpha+' próg krytyczny to k ≥ '+crit+'. Wynik 4/4 daje p = '+pval.toFixed(3)+' &gt; α.';
+    ? '<strong style="color:#27ae60;">H₀ odrzucona (p = '+pval.toFixed(3)+' ≤ α = '+perm_alpha+').</strong> Obserwowana różnica D = '+(D_obs>=0?'+':'')+D_obs.toFixed(2)+' t/ha jest zbyt duża by być przypadkowa — tylko '+extreme+' z 70 permutacji daje tak ekstremalny wynik. Nawóz ma istotny efekt.'
+    : '<strong style="color:#c0392b;">Brak podstaw do odrzucenia H₀ (p = '+pval.toFixed(3)+' &gt; α = '+perm_alpha+').</strong> Różnica D = '+(D_obs>=0?'+':'')+D_obs.toFixed(2)+' t/ha mogła pojawić się przez przypadek — '+extreme+' z 70 permutacji daje co najmniej tak dużą różnicę.';
 
-  ltt4_renderCups(cups);
-  ltt4_renderHyper(4, crit);
+  perm_renderTestChart(D_star, D_obs, pval, extreme);
+  document.getElementById('perm-test-wrap').style.display = 'block';
+  setTimeout(function(){ document.getElementById('perm-test-wrap').scrollIntoView({behavior:'smooth',block:'start'}); }, 100);
 }
 
-function ltt4_runMany() {
-  var counts = [0,0,0,0,0];
-  for (var i = 0; i < 10000; i++) {
-    var cups = ltt4_shuffle(['M','M','M','M','H','H','H','H']);
-    var idxs = ltt4_shuffle([0,1,2,3,4,5,6,7]).slice(0,4);
-    var hits = 0;
-    idxs.forEach(function(idx) { if (cups[idx] === 'M') hits++; });
-    counts[hits]++;
-  }
+function perm_renderTestChart(D_star, D_obs, pval, extreme) {
+  // Histogram D* z zaznaczonym D_obs
+  var minD = Math.min.apply(null, D_star), maxD = Math.max.apply(null, D_star);
+  var BINS = 14;
+  var binW = (maxD - minD) / BINS || 0.1;
+  var counts = new Array(BINS).fill(0);
+  D_star.forEach(function(d){
+    var idx = Math.min(Math.floor((d - minD)/binW), BINS-1);
+    counts[idx]++;
+  });
+  var mids = counts.map(function(_,i){ return +(minD + (i+0.5)*binW).toFixed(3); });
 
-  var ks    = [0,1,2,3,4];
-  var freqs = counts.map(function(c) { return c/10000; });
-  var crit  = ltt4_critK();
+  // Koloruj słupki: ekstremalniejsze od D_obs na czerwono
+  var barColors = mids.map(function(m){
+    return Math.abs(m) >= Math.abs(D_obs) - 1e-9 ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)';
+  });
+  var lineColors = mids.map(function(m){
+    return Math.abs(m) >= Math.abs(D_obs) - 1e-9 ? '#c0392b' : '#a85903';
+  });
 
-  document.getElementById('ltt4-sim-wrap').style.display = 'block';
-  document.getElementById('ltt4-sim-note').innerHTML =
-    'Spośród 10 000 losowych prób: <strong>' + counts[4] + '</strong> razy padły 4 trafienia ('+(counts[4]/100).toFixed(1)+'%).'
-    + ' Teoria: 1/70 × 10 000 = <strong>' + Math.round(10000/70) + '</strong>.';
+  var yMax = Math.max.apply(null, counts) * 1.25;
 
-  Plotly.react('ltt4-sim-chart', [{
-    x: ks, y: freqs, type: 'bar',
-    marker: {
-      color: ks.map(function(k) { return k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'; }),
-      line:  { color: ks.map(function(k) { return k >= crit ? '#c0392b' : '#a85903'; }), width: 1.5 }
-    },
-    text: freqs.map(function(f) { return (f*100).toFixed(1)+'%'; }),
-    textposition: 'outside',
-    textfont: { family: ltt4_FONT, size: 12, color: '#888' },
-    showlegend: false
-  }], {
-    height: 280, paper_bgcolor: 'white', plot_bgcolor: 'white',
-    font: { family: ltt4_FONT, color: '#444' },
-    margin: { t: 45, b: 50, l: 55, r: 20 },
-    title: { text: '10 000 losowych prób · '+counts[4]+' razy trafiono 4/4 (≈1/70) · α='+ltt4_alpha, font: { size: 12, color: '#444', family: ltt4_FONT } },
-    xaxis: { title: 'liczba trafień k', tickvals:[0,1,2,3,4], ticktext:['0','1','2','3','4'], gridcolor:'#f0e8e0', color:'#888' },
-    yaxis: { title: 'częstość', gridcolor:'#f0e8e0', color:'#888', range:[0,0.62] },
-    bargap: 0.3,
-    shapes: [{ type:'line', x0:crit-0.5, x1:crit-0.5, y0:0, y1:1, xref:'x', yref:'paper', line:{ color:'#c0392b', width:2, dash:'dot' } }]
-  }, { displayModeBar: false, responsive: true });
+  Plotly.react('perm-test-chart', [
+    { x: mids, y: counts, type:'bar', name:'Permutacje H₀',
+      marker:{ color:barColors, line:{color:lineColors,width:1.5} },
+      width: binW*0.85, showlegend:false },
+    { x:[D_obs, D_obs], y:[0, yMax*0.85], type:'scatter', mode:'lines',
+      name:'D<sub>obs</sub> = '+(D_obs>=0?'+':'')+D_obs.toFixed(2),
+      line:{color:'#a85903',width:3,dash:'solid'}, showlegend:true },
+    { x:[-D_obs, -D_obs], y:[0, yMax*0.85], type:'scatter', mode:'lines',
+      name:'−D<sub>obs</sub>',
+      line:{color:'#a85903',width:2,dash:'dot'}, showlegend:true }
+  ], {
+    height:300, paper_bgcolor:'white', plot_bgcolor:'white',
+    font:{family:perm_FONT, color:'#444'},
+    margin:{t:45,b:55,l:55,r:20},
+    legend:{x:0.65,y:0.99,font:{size:11}},
+    title:{text:'Rozkład D* w 70 permutacjach · czerwone = co najmniej tak ekstremalne jak D<sub>obs</sub> · p = '+extreme+'/70 = '+pval.toFixed(3), font:{size:12,color:'#444',family:perm_FONT}},
+    xaxis:{title:'D* = x̄T* − x̄C* (permutacja)',gridcolor:'#f0e8e0',color:'#888'},
+    yaxis:{title:'liczba permutacji',gridcolor:'#f0e8e0',color:'#888',range:[0,yMax]},
+    bargap:0.05
+  }, {displayModeBar:false, responsive:true});
 
-  document.getElementById('ltt4-sim-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('perm-test-note').innerHTML =
+    'C(8,4) = <strong>70</strong> możliwych sposobów przypisania etykiet nawóz/kontrola do 8 pól. '
+    + 'Przy H₀ każdy z 70 układów jest jednakowo prawdopodobny. '
+    + '<strong style="color:'+(pval<=perm_alpha?'#27ae60':'#c0392b')+';">'
+    + extreme+' z 70 permutacji ('+pval.toFixed(3)*100+'%) daje |D*| ≥ |D<sub>obs</sub>| = '+Math.abs(D_obs).toFixed(2)+'</strong> — to jest p-value.';
 }
 
-// Init — czeka na Plotly
-(function waitAndInit() {
-  if (typeof Plotly !== 'undefined') {
-    ltt4_runOne();
-  } else {
-    setTimeout(waitAndInit, 100);
-  }
+// Suwaki
+document.getElementById('perm-delta').addEventListener('input', function(e){
+  document.getElementById('perm-delta-val').textContent = 'δ = ' + parseFloat(e.target.value).toFixed(1);
+});
+document.getElementById('perm-sigma').addEventListener('input', function(e){
+  document.getElementById('perm-sigma-val').textContent = 'σ = ' + parseFloat(e.target.value).toFixed(1);
+});
+
+(function waitAndInit(){
+  if (typeof Plotly !== 'undefined') perm_generate();
+  else setTimeout(waitAndInit, 100);
 })();
 </script>
 
@@ -3731,206 +3819,153 @@ function ltt4_runMany() {
 
 
 
-        
 
 
 
 
 
 
-
-
-
-<div class="ryzmod-columns" style="margin-top: 30px; margin-bottom: 30px;">
+<div class="ryzmod-columns" style="margin-top:30px; margin-bottom:30px;">
 <div style="flex:1;">
 
 <!-- WSTĘP -->
 <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; line-height:1.8; margin-bottom:28px;">
-  <strong style="color:#a85903;">Co testujemy?</strong>
-  Fisher chce sprawdzić czy Muriel Bristol naprawdę wyczuwa smak — czy tylko zgaduje.
-  Przygotowuje 8 filiżanek: w 4 najpierw wlano mleko, w 4 najpierw herbatę. Lady zna tę liczbę.
-  Jej zadanie: <strong>wskazać które 4 filiżanki mają mleko pierwsze</strong>.
-  <br><br>
-  Hipoteza zerowa H₀ mówi: Lady nie ma żadnej zdolności — wskazuje losowo.
-  Pytanie: ile kombinacji wskazań jest możliwych i jak rzadkie jest idealne trafienie?
+  <strong style="color:#a85903;">Problem sygnału i szumu.</strong>
+  Mamy 8 pól: 4 nawożone, 4 kontrolne. Po zbiorach widzimy że nawożone plonowały lepiej.
+  Ale skąd wiemy czy to <em>efekt nawozu</em> (sygnał) czy <em>przypadkowe wahania</em> między polami (szum)?
+  To jest fundamentalne pytanie statystyki eksperymentalnej — odpowiada na nie <strong>test permutacyjny</strong>.
 </div>
 
-<!-- SETUP EKSPERYMENTU -->
+<!-- DWIE KOLUMNY: SYGNAŁ vs SZUM -->
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:28px;">
 
   <div style="background:#FDFAF1; border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px;">
-    <div style="font-family:'Poppins',sans-serif; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; margin-bottom:14px;">Układ filiżanek</div>
-    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;">
-      <div style="text-align:center;">
-        <div style="font-size:22px;">🥛</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#a85903; font-weight:700;">M</div>
+    <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#a85903; margin-bottom:14px;">Sygnał — efekt nawozu (δ)</div>
+    <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.8;">
+      Gdyby nawóz działał, pola nawożone plonowałyby średnio o <strong>δ</strong> ton/ha więcej.
+      Obserwujemy różnicę średnich:<br>
+      <div style="margin:10px 0; padding:8px 14px; background:white; border-radius:6px; border:1px solid #e8ddd0; font-family:'Courier New',monospace; font-size:14px; color:#a85903; text-align:center;">
+        D = x̄<sub>nawóz</sub> − x̄<sub>kontrola</sub>
       </div>
-      <div style="text-align:center;">
-        <div style="font-size:22px;">🥛</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#a85903; font-weight:700;">M</div>
-      </div>
-      <div style="text-align:center;">
-        <div style="font-size:22px;">🥛</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#a85903; font-weight:700;">M</div>
-      </div>
-      <div style="text-align:center;">
-        <div style="font-size:22px;">🥛</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#a85903; font-weight:700;">M</div>
-      </div>
-      <div style="text-align:center;">
-        <div style="font-size:22px;">🍵</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#888; font-weight:700;">H</div>
-      </div>
-      <div style="text-align:center;">
-        <div style="font-size:22px;">🍵</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#888; font-weight:700;">H</div>
-      </div>
-      <div style="text-align:center;">
-        <div style="font-size:22px;">🍵</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#888; font-weight:700;">H</div>
-      </div>
-      <div style="text-align:center;">
-        <div style="font-size:22px;">🍵</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#888; font-weight:700;">H</div>
-      </div>
-    </div>
-    <div style="font-family:'Poppins',sans-serif; font-size:12px; color:#888; line-height:1.6;">
-      Kolejność jest <strong>losowa</strong> — Lady nie wie która filiżanka to M a która H. Musi wskazać 4 jako M.
+      Im większe δ względem szumu, tym łatwiej go wykryć.
     </div>
   </div>
 
   <div style="background:#FDFAF1; border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px;">
-    <div style="font-family:'Poppins',sans-serif; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; margin-bottom:14px;">Pytanie kombinatoryczne</div>
+    <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#888; margin-bottom:14px;">Szum — naturalna zmienność (σ)</div>
     <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.8;">
-      Ile sposobów można wybrać 4 filiżanki spośród 8?
-    </div>
-    <div style="margin:12px 0; padding:10px 16px; background:white; border-radius:8px; border:1px solid #e8ddd0; font-family:'Courier New',monospace; font-size:15px; color:#a85903; text-align:center;">
-      C(8,4) = 8! / (4! × 4!) = <strong>70</strong>
-    </div>
-    <div style="font-family:'Poppins',sans-serif; font-size:12px; color:#888; line-height:1.6;">
-      70 możliwych wskazań. Tylko 1 z nich jest idealne. Reszta to różne stopnie pomyłek.
+      Każde pole różni się naturalnie — jakość gleby, nasłonecznienie, wilgotność.
+      Nawet bez nawozu plony różnią się losowo o <strong>σ</strong> ton/ha.
+      Jeśli σ jest duże, różnica D może być duża <em>przez przypadek</em> — bez żadnego efektu nawozu.
     </div>
   </div>
 
 </div>
 
-<!-- TABELA KOMBINACJI -->
+<!-- LOGIKA TESTU PERMUTACYJNEGO -->
 <div style="border:1px solid #e8ddd0; border-radius:10px; overflow:hidden; margin-bottom:28px;">
 
   <div style="background:#a85903; padding:14px 24px;">
-    <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:rgba(255,255,255,0.7);">Wszystkie możliwe wyniki — rozkład 70 kombinacji</div>
+    <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:rgba(255,255,255,0.85);">Logika testu permutacyjnego — rozumowanie Fishera</div>
   </div>
 
-  <table style="width:100%; border-collapse:collapse; font-family:'Poppins',sans-serif;">
-    <thead>
-      <tr style="background:#fdfaf6; border-bottom:2px solid #e8ddd0;">
-        <th style="padding:12px 20px; text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">Trafień (k)</th>
-        <th style="padding:12px 20px; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">Wzór</th>
-        <th style="padding:12px 20px; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">Rozpisanie</th>
-        <th style="padding:12px 20px; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">Kombinacji</th>
-        <th style="padding:12px 20px; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">P(X = k)</th>
-        <th style="padding:12px 20px; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">P(X ≥ k)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- k=4 -->
-      <tr style="background:#fff3e6; border-bottom:1px solid #f5f0ea;">
-        <td style="padding:14px 20px; font-size:13px; font-weight:700; color:#a85903;">k = 4 &nbsp;<span style="font-size:11px; color:#27ae60; font-weight:700;">← wynik Lady</span></td>
-        <td style="padding:14px 20px; text-align:center; font-family:'Courier New',monospace; font-size:13px; color:#555;">C(4,4) × C(4,0)</td>
-        <td style="padding:14px 20px; text-align:center; font-family:'Poppins',sans-serif; font-size:12px; color:#777;">
-          wszystkie 4 M trafione<br>
-          <span style="color:#aaa; font-size:11px;">× 0 błędnych H</span>
-        </td>
-        <td style="padding:14px 20px; text-align:center; font-size:18px; font-weight:700; color:#a85903;">1 × 1 = <strong>1</strong></td>
-        <td style="padding:14px 20px; text-align:center; font-size:13px; font-weight:700; color:#a85903;">1/70 ≈ <strong>1.4%</strong></td>
-        <td style="padding:14px 20px; text-align:center; font-size:13px; font-weight:700; color:#27ae60;">1/70 ≈ <strong>1.4%</strong></td>
-      </tr>
-      <!-- k=3 -->
-      <tr style="border-bottom:1px solid #f5f0ea;">
-        <td style="padding:14px 20px; font-size:13px; color:#555; font-weight:600;">k = 3</td>
-        <td style="padding:14px 20px; text-align:center; font-family:'Courier New',monospace; font-size:13px; color:#555;">C(4,3) × C(4,1)</td>
-        <td style="padding:14px 20px; text-align:center; font-family:'Poppins',sans-serif; font-size:12px; color:#777;">
-          3 z 4 M trafione<br>
-          <span style="color:#aaa; font-size:11px;">× 1 błędna H zamiast M</span>
-        </td>
-        <td style="padding:14px 20px; text-align:center; font-size:18px; font-weight:700; color:#555;">4 × 4 = <strong>16</strong></td>
-        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#555;">16/70 ≈ <strong>22.9%</strong></td>
-        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#888;">17/70 ≈ <strong>24.3%</strong></td>
-      </tr>
-      <!-- k=2 -->
-      <tr style="border-bottom:1px solid #f5f0ea; background:#fdfaf6;">
-        <td style="padding:14px 20px; font-size:13px; color:#555; font-weight:600;">k = 2</td>
-        <td style="padding:14px 20px; text-align:center; font-family:'Courier New',monospace; font-size:13px; color:#555;">C(4,2) × C(4,2)</td>
-        <td style="padding:14px 20px; text-align:center; font-family:'Poppins',sans-serif; font-size:12px; color:#777;">
-          2 z 4 M trafione<br>
-          <span style="color:#aaa; font-size:11px;">× 2 błędne H zamiast M</span>
-        </td>
-        <td style="padding:14px 20px; text-align:center; font-size:18px; font-weight:700; color:#555;">6 × 6 = <strong>36</strong></td>
-        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#555;">36/70 ≈ <strong>51.4%</strong></td>
-        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#888;">53/70 ≈ <strong>75.7%</strong></td>
-      </tr>
-      <!-- k=1 -->
-      <tr style="border-bottom:1px solid #f5f0ea;">
-        <td style="padding:14px 20px; font-size:13px; color:#555; font-weight:600;">k = 1</td>
-        <td style="padding:14px 20px; text-align:center; font-family:'Courier New',monospace; font-size:13px; color:#555;">C(4,1) × C(4,3)</td>
-        <td style="padding:14px 20px; text-align:center; font-family:'Poppins',sans-serif; font-size:12px; color:#777;">
-          1 z 4 M trafione<br>
-          <span style="color:#aaa; font-size:11px;">× 3 błędne H zamiast M</span>
-        </td>
-        <td style="padding:14px 20px; text-align:center; font-size:18px; font-weight:700; color:#555;">4 × 4 = <strong>16</strong></td>
-        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#555;">16/70 ≈ <strong>22.9%</strong></td>
-        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#888;">69/70 ≈ <strong>98.6%</strong></td>
-      </tr>
-      <!-- k=0 -->
-      <tr style="border-bottom:1px solid #f5f0ea; background:#fdfaf6;">
-        <td style="padding:14px 20px; font-size:13px; color:#555; font-weight:600;">k = 0</td>
-        <td style="padding:14px 20px; text-align:center; font-family:'Courier New',monospace; font-size:13px; color:#555;">C(4,0) × C(4,4)</td>
-        <td style="padding:14px 20px; text-align:center; font-family:'Poppins',sans-serif; font-size:12px; color:#777;">
-          0 z 4 M trafione<br>
-          <span style="color:#aaa; font-size:11px;">× wszystkie 4 błędne</span>
-        </td>
-        <td style="padding:14px 20px; text-align:center; font-size:18px; font-weight:700; color:#555;">1 × 1 = <strong>1</strong></td>
-        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#555;">1/70 ≈ <strong>1.4%</strong></td>
-        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#888;">70/70 = <strong>100%</strong></td>
-      </tr>
-      <!-- SUMA -->
-      <tr style="background:#a85903;">
-        <td style="padding:12px 20px; font-family:'Poppins',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:white;">Suma</td>
-        <td style="padding:12px 20px; text-align:center; color:rgba(255,255,255,0.7); font-size:12px;">—</td>
-        <td style="padding:12px 20px; text-align:center; color:rgba(255,255,255,0.7); font-size:12px;">—</td>
-        <td style="padding:12px 20px; text-align:center; font-size:18px; font-weight:700; color:white;">1+16+36+16+1 = <strong>70</strong></td>
-        <td style="padding:12px 20px; text-align:center; font-size:13px; font-weight:700; color:white;">70/70 = 100%</td>
-        <td style="padding:12px 20px;"></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div style="padding:0;">
 
-<!-- INTERPRETACJA C(4,3) x C(4,1) -->
-<div style="border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px; background:#FDFAF1; margin-bottom:28px;">
-  <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; margin-bottom:16px;">Jak czytać wzór C(4,k) × C(4, 4−k)</div>
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-    <div>
-      <div style="font-family:'Courier New',monospace; font-size:15px; color:#a85903; margin-bottom:8px; font-weight:700;">C(4, k)</div>
-      <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; line-height:1.7;">
-        Ile sposobów wybrać <strong>k prawidłowych M</strong> spośród 4 prawdziwych filiżanek M.
-        <br><br>
-        Dla k=3: C(4,3) = 4 — są dokładnie <strong>4 sposoby</strong> na wybranie 3 z 4 filiżanek M.
+    <div style="display:grid; grid-template-columns:48px 1fr; gap:0; align-items:stretch;">
+
+      <!-- Krok 1 -->
+      <div style="background:#fff8f0; display:flex; align-items:center; justify-content:center; padding:20px 0; border-bottom:1px solid #f0e8e0;">
+        <div style="width:28px; height:28px; border-radius:50%; background:#a85903; color:white; display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-size:13px; font-weight:700;">1</div>
       </div>
-    </div>
-    <div>
-      <div style="font-family:'Courier New',monospace; font-size:15px; color:#888; margin-bottom:8px; font-weight:700;">C(4, 4−k)</div>
-      <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; line-height:1.7;">
-        Ile sposobów "dopełnić" wskazanie (4−k) błędnymi filiżankami H zamiast M.
-        <br><br>
-        Dla k=3: C(4,1) = 4 — są dokładnie <strong>4 sposoby</strong> na wybranie 1 błędnej H.
+      <div style="padding:18px 24px; border-bottom:1px solid #f0e8e0;">
+        <div style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; color:#a85903; margin-bottom:6px;">Obserwujemy D<sub>obs</sub></div>
+        <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.7;">
+          Obliczamy różnicę średnich w rzeczywistym układzie: które pola dostały nawóz, a które nie.
+          To jest nasz <strong>sygnał do wyjaśnienia</strong>.
+        </div>
       </div>
+
+      <!-- Krok 2 -->
+      <div style="background:#fff8f0; display:flex; align-items:center; justify-content:center; padding:20px 0; border-bottom:1px solid #f0e8e0;">
+        <div style="width:28px; height:28px; border-radius:50%; background:#a85903; color:white; display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-size:13px; font-weight:700;">2</div>
+      </div>
+      <div style="padding:18px 24px; border-bottom:1px solid #f0e8e0;">
+        <div style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; color:#a85903; margin-bottom:6px;">Zadajemy pytanie H₀</div>
+        <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.7;">
+          <em>„Jeśli nawóz nic nie robi — plony są takie jakie są, niezależnie od tego które pole dostało nawóz."</em>
+          Wtedy etykiety T/C są <strong>wymienne</strong> — każdy z 70 układów jest jednakowo prawdopodobny.
+        </div>
+      </div>
+
+      <!-- Krok 3 -->
+      <div style="background:#fff8f0; display:flex; align-items:center; justify-content:center; padding:20px 0; border-bottom:1px solid #f0e8e0;">
+        <div style="width:28px; height:28px; border-radius:50%; background:#a85903; color:white; display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-size:13px; font-weight:700;">3</div>
+      </div>
+      <div style="padding:18px 24px; border-bottom:1px solid #f0e8e0;">
+        <div style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; color:#a85903; margin-bottom:6px;">Generujemy wszystkie 70 permutacji</div>
+        <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.7;">
+          Dla każdego z C(8,4) = 70 sposobów przypisania etykiet T/C obliczamy D*.
+          Dostajemy <strong>rozkład D* przy H₀</strong> — jak duże różnice zdarzają się przez czysty przypadek.
+        </div>
+      </div>
+
+      <!-- Krok 4 -->
+      <div style="background:#fff8f0; display:flex; align-items:center; justify-content:center; padding:20px 0;">
+        <div style="width:28px; height:28px; border-radius:50%; background:#a85903; color:white; display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-size:13px; font-weight:700;">4</div>
+      </div>
+      <div style="padding:18px 24px;">
+        <div style="font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; color:#a85903; margin-bottom:6px;">Liczymy p-value</div>
+        <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.7;">
+          p = ile z 70 permutacji daje |D*| ≥ |D<sub>obs</sub>|. Jeśli mało — D<sub>obs</sub> jest rzadki przy H₀,
+          czyli mało prawdopodobny przy losowym rozkładzie. Odrzucamy H₀.
+        </div>
+      </div>
+
     </div>
-  </div>
-  <div style="margin-top:16px; padding:12px 16px; background:white; border-radius:8px; border-left:4px solid #D4AF37; font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.7;">
-    Mnożymy bo oba wybory są niezależne: każdy ze sposobów wyboru k trafień łączy się z każdym ze sposobów wyboru pomyłek. Stąd 4 × 4 = <strong>16 kombinacji</strong> dla k=3.
   </div>
 </div>
 
-<!-- WNIOSEK -->
+<!-- KOMBINATORYKA -->
+<div style="background:#FDFAF1; border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px; margin-bottom:28px;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; margin-bottom:14px;">Skąd 70 permutacji?</div>
+  <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.8;">
+    Mamy 8 pól i musimy wybrać 4 które dostają etykietę „nawóz". Liczba sposobów:
+  </div>
+  <div style="margin:12px 0; padding:10px 16px; background:white; border-radius:8px; border:1px solid #e8ddd0; font-family:'Courier New',monospace; font-size:15px; color:#a85903; text-align:center;">
+    C(8,4) = 8! / (4! × 4!) = 70
+  </div>
+  <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.8;">
+    To dokładnie tyle samo co w eksperymencie Lady Tasting Tea — tam Lady wybierała 4 filiżanki z 8, tutaj natura „wybiera" 4 pola z 8 do grupy nawozu.
+    <strong style="color:#a85903;">To ten sam problem kombinatoryczny.</strong>
+  </div>
+</div>
+
+<!-- STOSUNEK SYGNAŁ / SZUM -->
+<div style="border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px; margin-bottom:28px; background:#fff;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; margin-bottom:16px;">Kiedy test wykrywa efekt?</div>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+    <div style="text-align:center; padding:16px; background:#FDFAF1; border-radius:8px; border:1px solid #e8ddd0;">
+      <div style="font-family:'Courier New',monospace; font-size:18px; color:#27ae60; font-weight:700; margin-bottom:8px;">δ ≫ σ</div>
+      <div style="font-family:'Poppins',sans-serif; font-size:12px; color:#666; line-height:1.6;">Sygnał dominuje nad szumem. Różnica D<sub>obs</sub> jest duża i rzadka przy H₀. Mała p-value, odrzucamy H₀.</div>
+    </div>
+    <div style="text-align:center; padding:16px; background:#FDFAF1; border-radius:8px; border:1px solid #e8ddd0;">
+      <div style="font-family:'Courier New',monospace; font-size:18px; color:#e67e22; font-weight:700; margin-bottom:8px;">δ ≈ σ</div>
+      <div style="font-family:'Poppins',sans-serif; font-size:12px; color:#666; line-height:1.6;">Szum maskuje sygnał. Trudno rozstrzygnąć. p-value blisko α. Potrzebujemy więcej obserwacji.</div>
+    </div>
+    <div style="text-align:center; padding:16px; background:#FDFAF1; border-radius:8px; border:1px solid #e8ddd0;">
+      <div style="font-family:'Courier New',monospace; font-size:18px; color:#c0392b; font-weight:700; margin-bottom:8px;">δ ≪ σ</div>
+      <div style="font-family:'Poppins',sans-serif; font-size:12px; color:#666; line-height:1.6;">Szum dominuje. Różnica D<sub>obs</sub> wygląda jak przypadkowe wahanie. Duże p-value, H₀ nie odrzucona.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ZWIĄZEK Z LADY TASTING TEA -->
 <div style="border-left:4px solid #a85903; border-radius:8px; padding:16px 24px; background:#FDFAF1; font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.8;">
-  <strong style="color:#a85903;">Wniosek Fishera:</strong>
-  Przy losowym wskazaniu prawdopodobieństwo trafienia wszystkich 4 wynosi <strong>1/70 ≈ 1.4%</strong>.
-  Ponieważ 1.4% &lt; 5% (przyjęty poziom α), wynik Lady jest <strong>istotny statystycznie</strong> — odrzucamy H₀.
-  Trafienie 3 z 4 (p = 17/70 ≈ 24%) <strong>nie byłoby</strong> wystarczające — zbyt prawdopodobne przy losowym zgadywaniu.
-  Fisher celowo tak zaprojektował eksperyment, wiedząc że jedynym "przekonującym" wynikiem jest 4/4.
+  <strong style="color:#a85903;">Związek z Lady Tasting Tea.</strong>
+  W eksperymencie Lady: 70 możliwych wskazań, 1 idealne → p = 1/70 ≈ 1.4%.
+  Tu: 70 możliwych przypisań etykiet, liczymy ile daje D* ≥ D<sub>obs</sub>.
+  W obu przypadkach pytamy to samo: <em>jak rzadki jest nasz wynik gdyby wszystko było przypadkiem?</em>
+  Fisher sformalizował obie sytuacje jako <strong>testy permutacyjne</strong> — to ten sam pomysł w różnych opakowaniach.
 </div>
 
 </div>
