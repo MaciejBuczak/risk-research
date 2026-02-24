@@ -3436,18 +3436,21 @@ window.addEventListener('load', function() {
 
 
 
+
+
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
 <div class="ryzmod-columns" style="margin-top: 30px; margin-bottom: 30px;">
 <div style="flex:1;">
 
-<!-- FORMUŁA -->
 <div style="background:#FDFAF1; border-left:4px solid #D4AF37; border-radius:8px; padding:12px 20px; margin-bottom:20px; font-family:'Courier New',monospace; font-size:13px; color:#555;">
   8 filiżanek: 4 × mleko-pierwsze (M), 4 × herbata-pierwsza (H) &nbsp;|&nbsp;
   Lady wskazuje 4 jako M &nbsp;|&nbsp;
   H₀: trafia losowo &nbsp;|&nbsp;
-  P(wszystkie 4 trafione losowo) = 1/C(8,4) = 1/70 ≈ 0.014
+  P(4/4 losowo) = 1/C(8,4) = 1/70 ≈ 0.014
 </div>
 
-<!-- OPIS -->
 <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; margin-bottom:20px; line-height:1.7;">
   <strong style="color:#a85903;">Eksperyment Fishera (1935):</strong>
   Muriel Bristol twierdzi, że wyczuje czy do filiżanki najpierw wlano mleko czy herbatę.
@@ -3455,30 +3458,32 @@ window.addEventListener('load', function() {
   Lady <strong>trafia wszystkie 4</strong>. Czy to dowód zdolności czy przypadek?
 </div>
 
-<!-- POZIOM ISTOTNOŚCI -->
 <div style="padding:16px 20px; border:1px solid #e8ddd0; border-radius:10px; background:#fdfaf6; margin-bottom:20px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
   <div>
     <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:8px;">Poziom istotności (α)</label>
-    <div style="display:flex; gap:8px;" id="ltt3-alpha-buttons"></div>
+    <div style="display:flex; gap:8px;">
+      <button class="ltt4btn active" onclick="ltt4_setAlpha(0.01, this)">α = 0.01</button>
+      <button class="ltt4btn" onclick="ltt4_setAlpha(0.05, this)">α = 0.05</button>
+      <button class="ltt4btn" onclick="ltt4_setAlpha(0.10, this)">α = 0.10</button>
+      <button class="ltt4btn" onclick="ltt4_setAlpha(0.20, this)">α = 0.20</button>
+    </div>
   </div>
-  <div id="ltt3-alpha-val" style="font-size:18px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif; margin-top:20px;">α = 0.05</div>
+  <div id="ltt4-alpha-val" style="font-size:18px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif; margin-top:20px;">α = 0.01</div>
 </div>
 
-<!-- PRZYCISKI -->
 <div style="margin-bottom:24px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-  <button id="ltt3-btn-one" onclick="ltt3.runOne()"
+  <button onclick="ltt4_runOne()"
     style="background:#a85903; color:white; border:none; padding:11px 32px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; cursor:pointer; box-shadow:0 2px 8px rgba(168,89,3,0.3);"
     onmouseover="this.style.background='#d17a1b'" onmouseout="this.style.background='#a85903'">
     ☕ &nbsp;Nowe losowanie filiżanek
   </button>
-  <button id="ltt3-btn-many" onclick="ltt3.runMany()"
+  <button onclick="ltt4_runMany()"
     style="background:white; color:#a85903; border:2px solid #a85903; padding:9px 24px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:13px; font-weight:600; cursor:pointer;"
     onmouseover="this.style.background='#fdf3e9'" onmouseout="this.style.background='white'">
-    ↻ &nbsp;Symuluj 10 000 przypadkowych osób
+    ↻ &nbsp;Symuluj 10 000 losowych prób
   </button>
 </div>
 
-<!-- STATYSTYKI -->
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px;">
   <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
     <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">Możliwych układów</div>
@@ -3492,31 +3497,25 @@ window.addEventListener('load', function() {
   </div>
   <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
     <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">Próg krytyczny</div>
-    <div id="ltt3-critical" style="font-size:24px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
+    <div id="ltt4-critical" style="font-size:24px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">k ≥ 4</div>
   </div>
   <div style="text-align:center; padding:14px 8px; background:#fff3e6; border-radius:10px; border:2px solid #a85903;">
     <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#a85903; font-family:'Poppins',sans-serif; font-weight:700; margin-bottom:5px;">Decyzja (4/4)</div>
-    <div id="ltt3-decision" style="font-size:15px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
+    <div id="ltt4-decision" style="font-size:15px; font-weight:700; color:#27ae60; font-family:'Poppins',sans-serif;">✓ Odrzucamy H₀</div>
   </div>
 </div>
 
-<!-- WERDYKT -->
-<div id="ltt3-verdict" style="border-left:4px solid #27ae60; border-radius:8px; padding:12px 20px; margin-bottom:24px; font-family:'Poppins',sans-serif; font-size:13px; color:#555; background:#FDFAF1; line-height:1.7;"></div>
+<div id="ltt4-verdict" style="border-left:4px solid #27ae60; border-radius:8px; padding:12px 20px; margin-bottom:24px; font-family:'Poppins',sans-serif; font-size:13px; color:#555; background:#FDFAF1; line-height:1.7;">
+  Ładowanie...
+</div>
 
-<!-- FILIŻANKI -->
 <div style="border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px; background:#fff; margin-bottom:20px;">
-  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:18px;">
-    Losowy układ filiżanek — każde losowanie zmienia kolejność
-  </div>
-  <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#a85903; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">
-    ▶ Lady wskazuje te 4 jako „mleko pierwsze" (aktywny wybór)
-  </div>
-  <div id="ltt3-cups-chosen" style="display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap;"></div>
-  <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px;">
-    Pozostałe 4 — wynikają automatycznie jako „herbata pierwsza"
-  </div>
-  <div id="ltt3-cups-rest" style="display:flex; gap:16px; flex-wrap:wrap;"></div>
-  <div style="margin-top:18px; display:flex; gap:20px; font-family:'Poppins',sans-serif; font-size:12px; color:#888; flex-wrap:wrap;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px;">Losowy układ filiżanek — każde losowanie zmienia kolejność</div>
+  <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#a85903; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">▶ Lady wskazuje te 4 jako „mleko pierwsze" (aktywny wybór)</div>
+  <div id="ltt4-cups-chosen" style="display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap;"></div>
+  <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px;">Pozostałe 4 — wynikają automatycznie jako „herbata pierwsza"</div>
+  <div id="ltt4-cups-rest" style="display:flex; gap:16px; flex-wrap:wrap;"></div>
+  <div style="margin-top:16px; display:flex; gap:20px; font-family:'Poppins',sans-serif; font-size:12px; color:#888; flex-wrap:wrap;">
     <span>🥛 mleko pierwsze (prawda)</span>
     <span>🍵 herbata pierwsza (prawda)</span>
     <span style="color:#27ae60; font-weight:600;">✓ trafienie</span>
@@ -3524,270 +3523,207 @@ window.addEventListener('load', function() {
   </div>
 </div>
 
-<!-- ROZKŁAD HIPERGEOMETRYCZNY -->
 <div style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; margin-bottom:20px; overflow:hidden;">
-  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">
-    Rozkład hipergeometryczny przy H₀ — ile trafień zdarza się przez czysty przypadek
-  </div>
-  <div id="ltt3-hyper-chart" style="width:100%; height:280px;"></div>
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">Rozkład hipergeometryczny przy H₀ — ile trafień zdarza się przez czysty przypadek</div>
+  <div id="ltt4-hyper-chart" style="width:100%; height:280px;"></div>
 </div>
 
-<!-- SYMULACJA -->
-<div id="ltt3-sim-wrap" style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; overflow:hidden; display:none;">
-  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">
-    10 000 przypadkowych osób losowo wskazujących 4 filiżanki — rozkład empiryczny trafień
-  </div>
-  <div id="ltt3-sim-chart" style="width:100%; height:280px;"></div>
-  <div id="ltt3-sim-note" style="font-family:'Poppins',sans-serif; font-size:12px; color:#666; margin-top:12px; padding:10px 14px; background:#FDFAF1; border-radius:6px;"></div>
+<div id="ltt4-sim-wrap" style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; overflow:hidden; display:none;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">10 000 losowych prób — rozkład empiryczny trafień</div>
+  <div id="ltt4-sim-chart" style="width:100%; height:280px;"></div>
+  <div id="ltt4-sim-note" style="font-family:'Poppins',sans-serif; font-size:12px; color:#666; margin-top:10px; padding:10px 14px; background:#FDFAF1; border-radius:6px;"></div>
 </div>
 
 </div>
 </div>
 
 <style>
-  .ltt3-alpha-btn {
-    font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;
-    padding:5px 12px; border-radius:5px; cursor:pointer;
-    border:1.5px solid #d0b38c; background:white; color:#a85903; transition:all 0.15s;
-  }
-  .ltt3-alpha-btn:hover { background:#fdf3e9; }
-  .ltt3-alpha-btn.active { background:#a85903; color:white; border-color:#a85903; }
+.ltt4btn {
+  font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;
+  padding:5px 12px; border-radius:5px; cursor:pointer;
+  border:1.5px solid #d0b38c; background:white; color:#a85903; transition:all 0.15s;
+}
+.ltt4btn:hover { background:#fdf3e9; }
+.ltt4btn.active { background:#a85903; color:white; border-color:#a85903; }
 </style>
 
 <script>
-(function () {
+var ltt4_alpha = 0.01;
+var ltt4_FONT  = 'Poppins, Georgia, serif';
 
-  var ALPHA_VALUES = [0.01, 0.05, 0.10, 0.20];
-  var alpha = 0.05;
-  var N = 4;
-  var FONT = 'Poppins, Georgia, serif';
-  var C_MAIN = '#a85903', C_RED = '#c0392b', C_GREEN = '#27ae60';
+function ltt4_comb(n, k) {
+  if (k < 0 || k > n) return 0;
+  var r = 1;
+  for (var i = 0; i < k; i++) r = r * (n - i) / (i + 1);
+  return Math.round(r);
+}
 
-  function comb(n, k) {
-    if (k < 0 || k > n) return 0;
-    var r = 1;
-    for (var i = 0; i < k; i++) r = r * (n - i) / (i + 1);
-    return Math.round(r);
+function ltt4_hyperProb(k) {
+  return ltt4_comb(4, k) * ltt4_comb(4, 4 - k) / ltt4_comb(8, 4);
+}
+
+function ltt4_pValue(k) {
+  var p = 0;
+  for (var i = k; i <= 4; i++) p += ltt4_hyperProb(i);
+  return p;
+}
+
+function ltt4_critK() {
+  for (var k = 4; k >= 0; k--) {
+    if (ltt4_pValue(k) <= ltt4_alpha) return k;
+  }
+  return 5;
+}
+
+function ltt4_shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+function ltt4_setAlpha(a, btn) {
+  ltt4_alpha = a;
+  document.querySelectorAll('.ltt4btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('ltt4-alpha-val').textContent = 'α = ' + a;
+  ltt4_runOne();
+}
+
+function ltt4_renderCups(cups) {
+  var chosenIdx = [], restIdx = [];
+  cups.forEach(function(c, i) { (c === 'M' ? chosenIdx : restIdx).push(i); });
+
+  function html(idx) {
+    var t = cups[idx];
+    var hit = (t === 'M');
+    return '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-family:Poppins,sans-serif;">'
+      + '<div style="width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;'
+      + 'background:' + (hit ? 'rgba(39,174,96,0.12)' : 'rgba(192,57,43,0.10)') + ';'
+      + 'border:2px solid ' + (hit ? '#27ae60' : '#c0392b') + ';">'
+      + (t === 'M' ? '🥛' : '🍵') + '</div>'
+      + '<div style="font-size:10px;color:#aaa;">' + (t === 'M' ? 'mleko' : 'herbata') + '</div>'
+      + '<div style="font-size:14px;font-weight:700;color:' + (hit ? '#27ae60' : '#c0392b') + ';">' + (hit ? '✓' : '✗') + '</div>'
+      + '</div>';
   }
 
-  function hyperProb(k) {
-    return comb(N, k) * comb(N, N - k) / comb(2 * N, N);
-  }
+  // W rzędzie 1 (chosen) — wszystkie to M → wszystkie trafienia ✓
+  // W rzędzie 2 (rest)   — wszystkie to H → Lady powiedziała H → trafienie ✓
+  document.getElementById('ltt4-cups-chosen').innerHTML = chosenIdx.map(html).join('');
+  document.getElementById('ltt4-cups-rest').innerHTML   = restIdx.map(html).join('');
+}
 
-  function pValue(k) {
-    var p = 0;
-    for (var i = k; i <= N; i++) p += hyperProb(i);
-    return p;
-  }
+function ltt4_renderHyper(highlightK, crit) {
+  var ks = [0,1,2,3,4];
+  var ps = ks.map(ltt4_hyperProb);
 
-  function criticalK() {
-    for (var k = N; k >= 0; k--) {
-      if (pValue(k) <= alpha) return k;
-    }
-    return N + 1;
-  }
-
-  function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
-    }
-    return a;
-  }
-
-  function renderCups(cups) {
-    // cups = ['M','M','H','M','H','H','M','H'] — losowa kolejność
-    // Lady zna które to M i wskazuje je wszystkie (4/4)
-    var chosenIdx = [];
-    var restIdx   = [];
-    cups.forEach(function(c, i) {
-      if (c === 'M') chosenIdx.push(i);
-      else restIdx.push(i);
-    });
-
-    function cupHTML(idx) {
-      var truth   = cups[idx];
-      var isChosen = truth === 'M'; // Lady wskazała M → trafienie jeśli prawda to M
-      var emoji   = truth === 'M' ? '🥛' : '🍵';
-      var correct = isChosen ? truth === 'M' : truth === 'H';
-      var resCol  = correct ? C_GREEN : C_RED;
-      var bg      = correct ? 'rgba(39,174,96,0.12)' : 'rgba(192,57,43,0.10)';
-      var border  = correct ? C_GREEN : C_RED;
-      return '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-family:Poppins,sans-serif;">'
-        + '<div style="width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;background:' + bg + ';border:2px solid ' + border + ';">' + emoji + '</div>'
-        + '<div style="font-size:10px;color:#aaa;">' + (truth === 'M' ? 'mleko' : 'herbata') + '</div>'
-        + '<div style="font-size:14px;font-weight:700;color:' + resCol + ';">' + (correct ? '✓' : '✗') + '</div>'
-        + '</div>';
-    }
-
-    document.getElementById('ltt3-cups-chosen').innerHTML = chosenIdx.map(cupHTML).join('');
-    document.getElementById('ltt3-cups-rest').innerHTML   = restIdx.map(cupHTML).join('');
-  }
-
-  function renderHyper(highlightK) {
-    var ks   = [0, 1, 2, 3, 4];
-    var ps   = ks.map(function(k) { return hyperProb(k); });
-    var crit = criticalK();
-
-    var barColors = ks.map(function(k) { return k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'; });
-    var lineColors = ks.map(function(k) { return k >= crit ? C_RED : C_MAIN; });
-
-    var traces = [
-      {
-        x: ks, y: ps, type: 'bar',
-        marker: { color: barColors, line: { color: lineColors, width: 1.5 } },
-        text: ps.map(function(p) { return (p * 100).toFixed(1) + '%'; }),
-        textposition: 'outside',
-        textfont: { family: FONT, size: 12, color: '#888' },
-        hovertemplate: 'k=%{x}<br>P=%{y:.4f}<extra></extra>',
-        showlegend: false
+  Plotly.react('ltt4-hyper-chart', [
+    {
+      x: ks, y: ps, type: 'bar',
+      marker: {
+        color: ks.map(function(k) { return k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'; }),
+        line:  { color: ks.map(function(k) { return k >= crit ? '#c0392b' : '#a85903'; }), width: 1.5 }
       },
-      {
-        x: [highlightK],
-        y: [hyperProb(highlightK) + 0.025],
-        type: 'scatter', mode: 'markers+text',
-        text: ['wynik Lady'],
-        textposition: 'top center',
-        textfont: { family: FONT, size: 12, color: highlightK >= crit ? C_RED : C_MAIN },
-        marker: { size: 14, color: highlightK >= crit ? C_RED : C_MAIN, symbol: 'triangle-down' },
-        showlegend: false
-      }
-    ];
-
-    var layout = {
-      height: 280,
-      paper_bgcolor: 'white', plot_bgcolor: 'white',
-      font: { family: FONT, color: '#444' },
-      margin: { t: 50, b: 50, l: 55, r: 20 },
-      title: { text: 'Rozkład hipergeometryczny H₀ · obszar krytyczny α=' + alpha + ' (k ≥ ' + crit + ') zaznaczony na czerwono', font: { size: 12, color: '#444', family: FONT } },
-      xaxis: { title: 'liczba trafień k', tickvals: [0,1,2,3,4], ticktext: ['0','1','2','3','4'], gridcolor: '#f0e8e0', color: '#888' },
-      yaxis: { title: 'P(X = k)', gridcolor: '#f0e8e0', color: '#888', range: [0, 0.62] },
-      bargap: 0.3,
-      shapes: [{ type: 'line', x0: crit - 0.5, x1: crit - 0.5, y0: 0, y1: 1, xref: 'x', yref: 'paper', line: { color: C_RED, width: 2, dash: 'dot' } }],
-      annotations: [{ x: crit - 0.5, y: 0.97, xref: 'x', yref: 'paper', text: '  α = ' + alpha, showarrow: false, font: { color: C_RED, size: 11, family: FONT }, xanchor: 'left' }]
-    };
-
-    Plotly.react('ltt3-hyper-chart', traces, layout, { displayModeBar: false, responsive: true });
-  }
-
-  function runOne() {
-    var cups   = shuffle(['M','M','M','M','H','H','H','H']);
-    var crit   = criticalK();
-    var hits   = N; // Lady zawsze trafia 4/4
-    var pval   = pValue(hits);
-    var reject = hits >= crit;
-
-    document.getElementById('ltt3-critical').textContent = 'k ≥ ' + crit;
-    document.getElementById('ltt3-decision').textContent = reject ? '✓ Odrzucamy H₀' : '✗ Brak podstaw';
-    document.getElementById('ltt3-decision').style.color = reject ? C_GREEN : C_RED;
-
-    var v = document.getElementById('ltt3-verdict');
-    v.style.borderLeftColor = reject ? C_GREEN : C_RED;
-    v.innerHTML = reject
-      ? '<strong style="color:' + C_GREEN + ';">H₀ odrzucona.</strong> Lady trafiła <strong>4 z 4</strong>. Prawdopodobieństwo takiego wyniku przez przypadek to <strong>1/70 ≈ 1.4%</strong> — poniżej α = ' + alpha + '. Fisher przyznaje: wynik jest istotny statystycznie.'
-      : '<strong style="color:' + C_RED + ';">Brak podstaw do odrzucenia H₀.</strong> Przy α = ' + alpha + ' próg krytyczny to k ≥ ' + crit + '. Wynik 4/4 daje p = ' + pval.toFixed(3) + ' — powyżej α.';
-
-    renderCups(cups);
-    renderHyper(hits);
-  }
-
-  function runMany() {
-    var counts = [0, 0, 0, 0, 0];
-    for (var i = 0; i < 10000; i++) {
-      var cups = shuffle(['M','M','M','M','H','H','H','H']);
-      // Losowa osoba: wybiera 4 losowe indeksy
-      var idxs = shuffle([0,1,2,3,4,5,6,7]).slice(0, 4);
-      var hits = 0;
-      idxs.forEach(function(idx) { if (cups[idx] === 'M') hits++; });
-      counts[hits]++;
+      text: ps.map(function(p) { return (p*100).toFixed(1)+'%'; }),
+      textposition: 'outside',
+      textfont: { family: ltt4_FONT, size: 12, color: '#888' },
+      showlegend: false
+    },
+    {
+      x: [highlightK], y: [ltt4_hyperProb(highlightK) + 0.03],
+      type: 'scatter', mode: 'markers+text',
+      text: ['wynik Lady'], textposition: 'top center',
+      textfont: { family: ltt4_FONT, size: 12, color: highlightK >= crit ? '#c0392b' : '#a85903' },
+      marker: { size: 14, color: highlightK >= crit ? '#c0392b' : '#a85903', symbol: 'triangle-down' },
+      showlegend: false
     }
+  ], {
+    height: 280, paper_bgcolor: 'white', plot_bgcolor: 'white',
+    font: { family: ltt4_FONT, color: '#444' },
+    margin: { t: 50, b: 50, l: 55, r: 20 },
+    title: { text: 'Rozkład H₀ · obszar krytyczny α='+ltt4_alpha+' (k≥'+crit+') na czerwono', font: { size: 12, color: '#444', family: ltt4_FONT } },
+    xaxis: { title: 'liczba trafień k', tickvals:[0,1,2,3,4], ticktext:['0','1','2','3','4'], gridcolor:'#f0e8e0', color:'#888' },
+    yaxis: { title: 'P(X=k)', gridcolor:'#f0e8e0', color:'#888', range:[0,0.62] },
+    bargap: 0.3,
+    shapes: [{ type:'line', x0:crit-0.5, x1:crit-0.5, y0:0, y1:1, xref:'x', yref:'paper', line:{ color:'#c0392b', width:2, dash:'dot' } }],
+    annotations: [{ x:crit-0.5, y:0.97, xref:'x', yref:'paper', text:'  α='+ltt4_alpha, showarrow:false, font:{ color:'#c0392b', size:11, family:ltt4_FONT }, xanchor:'left' }]
+  }, { displayModeBar: false, responsive: true });
+}
 
-    var ks    = [0, 1, 2, 3, 4];
-    var freqs = counts.map(function(c) { return c / 10000; });
-    var crit  = criticalK();
+function ltt4_runOne() {
+  var cups  = ltt4_shuffle(['M','M','M','M','H','H','H','H']);
+  var crit  = ltt4_critK();
+  var pval  = ltt4_pValue(4);
+  var reject = (crit <= 4);
 
-    var barColors  = ks.map(function(k) { return k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'; });
-    var lineColors = ks.map(function(k) { return k >= crit ? C_RED : C_MAIN; });
+  document.getElementById('ltt4-critical').textContent = 'k ≥ ' + crit;
+  document.getElementById('ltt4-decision').textContent = reject ? '✓ Odrzucamy H₀' : '✗ Brak podstaw';
+  document.getElementById('ltt4-decision').style.color = reject ? '#27ae60' : '#c0392b';
 
-    document.getElementById('ltt3-sim-wrap').style.display = 'block';
-    document.getElementById('ltt3-sim-note').innerHTML =
-      'Spośród 10 000 losowych prób: <strong>' + counts[4] + '</strong> razy padły 4 trafienia (' + (counts[4]/100).toFixed(1) + '%).'
-      + ' Teoria mówi: 1/70 × 10 000 = <strong>' + Math.round(10000/70) + '</strong>. Wyniki są zbieżne.';
+  var v = document.getElementById('ltt4-verdict');
+  v.style.borderLeftColor = reject ? '#27ae60' : '#c0392b';
+  v.innerHTML = reject
+    ? '<strong style="color:#27ae60;">H₀ odrzucona.</strong> Lady trafiła <strong>4 z 4</strong>. Prawdopodobieństwo takiego wyniku przez przypadek to <strong>1/70 ≈ 1.4%</strong> — poniżej α = '+ltt4_alpha+'. Wynik jest istotny statystycznie.'
+    : '<strong style="color:#c0392b;">Brak podstaw do odrzucenia H₀.</strong> Przy α = '+ltt4_alpha+' próg krytyczny to k ≥ '+crit+'. Wynik 4/4 daje p = '+pval.toFixed(3)+' &gt; α.';
 
-    Plotly.react('ltt3-sim-chart',
-      [{
-        x: ks, y: freqs, type: 'bar',
-        marker: { color: barColors, line: { color: lineColors, width: 1.5 } },
-        text: freqs.map(function(f) { return (f * 100).toFixed(1) + '%'; }),
-        textposition: 'outside',
-        textfont: { family: FONT, size: 12, color: '#888' },
-        hovertemplate: 'k=%{x}<br>częstość=%{y:.4f}<extra></extra>',
-        showlegend: false
-      }],
-      {
-        height: 280,
-        paper_bgcolor: 'white', plot_bgcolor: 'white',
-        font: { family: FONT, color: '#444' },
-        margin: { t: 45, b: 50, l: 55, r: 20 },
-        title: { text: '10 000 losowych prób · ' + counts[4] + ' razy trafiono 4/4 (≈ 1/70) · obszar krytyczny α=' + alpha, font: { size: 12, color: '#444', family: FONT } },
-        xaxis: { title: 'liczba trafień k', tickvals: [0,1,2,3,4], ticktext: ['0','1','2','3','4'], gridcolor: '#f0e8e0', color: '#888' },
-        yaxis: { title: 'częstość', gridcolor: '#f0e8e0', color: '#888', range: [0, 0.62] },
-        bargap: 0.3,
-        shapes: [{ type: 'line', x0: crit - 0.5, x1: crit - 0.5, y0: 0, y1: 1, xref: 'x', yref: 'paper', line: { color: C_RED, width: 2, dash: 'dot' } }]
-      },
-      { displayModeBar: false, responsive: true }
-    );
+  ltt4_renderCups(cups);
+  ltt4_renderHyper(4, crit);
+}
 
-    setTimeout(function() {
-      document.getElementById('ltt3-sim-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+function ltt4_runMany() {
+  var counts = [0,0,0,0,0];
+  for (var i = 0; i < 10000; i++) {
+    var cups = ltt4_shuffle(['M','M','M','M','H','H','H','H']);
+    var idxs = ltt4_shuffle([0,1,2,3,4,5,6,7]).slice(0,4);
+    var hits = 0;
+    idxs.forEach(function(idx) { if (cups[idx] === 'M') hits++; });
+    counts[hits]++;
   }
 
-  function init() {
-    // Przyciski alpha
-    var cont = document.getElementById('ltt3-alpha-buttons');
-    ALPHA_VALUES.forEach(function(a) {
-      var btn = document.createElement('button');
-      btn.className = 'ltt3-alpha-btn' + (a === 0.05 ? ' active' : '');
-      btn.textContent = 'α = ' + a;
-      btn.onclick = function() {
-        document.querySelectorAll('.ltt3-alpha-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        alpha = a;
-        document.getElementById('ltt3-alpha-val').textContent = 'α = ' + a;
-        runOne();
-      };
-      cont.appendChild(btn);
-    });
+  var ks    = [0,1,2,3,4];
+  var freqs = counts.map(function(c) { return c/10000; });
+  var crit  = ltt4_critK();
 
-    window.ltt3 = { runOne: runOne, runMany: runMany };
-    runOne();
-  }
+  document.getElementById('ltt4-sim-wrap').style.display = 'block';
+  document.getElementById('ltt4-sim-note').innerHTML =
+    'Spośród 10 000 losowych prób: <strong>' + counts[4] + '</strong> razy padły 4 trafienia ('+(counts[4]/100).toFixed(1)+'%).'
+    + ' Teoria: 1/70 × 10 000 = <strong>' + Math.round(10000/70) + '</strong>.';
 
-  // Czekaj na Plotly
-  function waitForPlotly(fn) {
-    if (typeof Plotly !== 'undefined') {
-      fn();
-    } else {
-      setTimeout(function() { waitForPlotly(fn); }, 100);
-    }
-  }
+  Plotly.react('ltt4-sim-chart', [{
+    x: ks, y: freqs, type: 'bar',
+    marker: {
+      color: ks.map(function(k) { return k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'; }),
+      line:  { color: ks.map(function(k) { return k >= crit ? '#c0392b' : '#a85903'; }), width: 1.5 }
+    },
+    text: freqs.map(function(f) { return (f*100).toFixed(1)+'%'; }),
+    textposition: 'outside',
+    textfont: { family: ltt4_FONT, size: 12, color: '#888' },
+    showlegend: false
+  }], {
+    height: 280, paper_bgcolor: 'white', plot_bgcolor: 'white',
+    font: { family: ltt4_FONT, color: '#444' },
+    margin: { t: 45, b: 50, l: 55, r: 20 },
+    title: { text: '10 000 losowych prób · '+counts[4]+' razy trafiono 4/4 (≈1/70) · α='+ltt4_alpha, font: { size: 12, color: '#444', family: ltt4_FONT } },
+    xaxis: { title: 'liczba trafień k', tickvals:[0,1,2,3,4], ticktext:['0','1','2','3','4'], gridcolor:'#f0e8e0', color:'#888' },
+    yaxis: { title: 'częstość', gridcolor:'#f0e8e0', color:'#888', range:[0,0.62] },
+    bargap: 0.3,
+    shapes: [{ type:'line', x0:crit-0.5, x1:crit-0.5, y0:0, y1:1, xref:'x', yref:'paper', line:{ color:'#c0392b', width:2, dash:'dot' } }]
+  }, { displayModeBar: false, responsive: true });
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() { waitForPlotly(init); });
+  document.getElementById('ltt4-sim-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Init — czeka na Plotly
+(function waitAndInit() {
+  if (typeof Plotly !== 'undefined') {
+    ltt4_runOne();
   } else {
-    waitForPlotly(init);
+    setTimeout(waitAndInit, 100);
   }
-
 })();
 </script>
-
-
-
-
-
-
 
 
 
