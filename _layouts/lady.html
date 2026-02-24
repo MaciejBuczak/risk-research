@@ -3439,6 +3439,7 @@ window.addEventListener('load', function() {
 
 
 
+
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
 <div class="ryzmod-columns" style="margin-top: 30px; margin-bottom: 30px;">
@@ -3516,10 +3517,9 @@ window.addEventListener('load', function() {
   <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px;">Pozostałe 4 — wynikają automatycznie jako „herbata pierwsza"</div>
   <div id="ltt4-cups-rest" style="display:flex; gap:16px; flex-wrap:wrap;"></div>
   <div style="margin-top:16px; display:flex; gap:20px; font-family:'Poppins',sans-serif; font-size:12px; color:#888; flex-wrap:wrap;">
-    <span>🥛 mleko pierwsze (prawda)</span>
-    <span>🍵 herbata pierwsza (prawda)</span>
-    <span style="color:#27ae60; font-weight:600;">✓ trafienie</span>
-    <span style="color:#c0392b; font-weight:600;">✗ pomyłka</span>
+    <span>🥛 mleko pierwsze · obwódka zielona = aktywny wybór Lady</span>
+    <span>🍵 herbata pierwsza · obwódka szara = wynik automatyczny</span>
+    <span style="color:#27ae60; font-weight:600;">✓ wszystkie 4+4 poprawnie</span>
   </div>
 </div>
 
@@ -3596,23 +3596,21 @@ function ltt4_renderCups(cups) {
   var chosenIdx = [], restIdx = [];
   cups.forEach(function(c, i) { (c === 'M' ? chosenIdx : restIdx).push(i); });
 
-  function html(idx) {
+  function cupHTML(idx, isChosen) {
     var t = cups[idx];
-    var hit = (t === 'M');
+    var border = isChosen ? '#27ae60' : '#bbb';
+    var bg     = isChosen ? 'rgba(39,174,96,0.08)' : 'rgba(0,0,0,0.03)';
     return '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-family:Poppins,sans-serif;">'
       + '<div style="width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;'
-      + 'background:' + (hit ? 'rgba(39,174,96,0.12)' : 'rgba(192,57,43,0.10)') + ';'
-      + 'border:2px solid ' + (hit ? '#27ae60' : '#c0392b') + ';">'
+      + 'background:' + bg + ';border:2px solid ' + border + ';">'
       + (t === 'M' ? '🥛' : '🍵') + '</div>'
       + '<div style="font-size:10px;color:#aaa;">' + (t === 'M' ? 'mleko' : 'herbata') + '</div>'
-      + '<div style="font-size:14px;font-weight:700;color:' + (hit ? '#27ae60' : '#c0392b') + ';">' + (hit ? '✓' : '✗') + '</div>'
+      + '<div style="font-size:14px;font-weight:700;color:#27ae60;">&#10003;</div>'
       + '</div>';
   }
 
-  // W rzędzie 1 (chosen) — wszystkie to M → wszystkie trafienia ✓
-  // W rzędzie 2 (rest)   — wszystkie to H → Lady powiedziała H → trafienie ✓
-  document.getElementById('ltt4-cups-chosen').innerHTML = chosenIdx.map(html).join('');
-  document.getElementById('ltt4-cups-rest').innerHTML   = restIdx.map(html).join('');
+  document.getElementById('ltt4-cups-chosen').innerHTML = chosenIdx.map(function(i) { return cupHTML(i, true);  }).join('');
+  document.getElementById('ltt4-cups-rest').innerHTML   = restIdx.map(function(i)   { return cupHTML(i, false); }).join('');
 }
 
 function ltt4_renderHyper(highlightK, crit) {
@@ -3724,6 +3722,18 @@ function ltt4_runMany() {
   }
 })();
 </script>
+
+
+
+
+
+
+
+
+
+        
+
+
 
 
 
