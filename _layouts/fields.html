@@ -1,0 +1,4091 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,maximum-scale=2">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&family=Indie+Flower&family=Shadows+Into+Light&family=Satisfy&family=Playfair+Display:wght@700;900&family=Source+Sans+Pro:wght@300;400;600&family=Roboto:wght@300;400;500&family=Montserrat:wght@400;600;800&family=Merriweather:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  {% include head-custom.html %}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      background-color: white !important;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .outer {
+      width: 100%;
+      max-width: 100%;
+      padding: 0;
+      margin: 0;
+      background-color: transparent !important;
+    }
+    #header_wrap {
+      background-color: #a85903 !important;
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding-top: 30px;
+      padding-bottom: 30.5px;
+      overflow: hidden; /* Zapobiega wystawaniu kwadratów */
+    }
+    #header_wrap .inner {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+      position: relative;
+      left: 260px;
+      text-align: left;
+      /* Ukrywamy oryginalny nagłówek */
+      visibility: hidden;
+    }
+    #project_title {
+      font-size: 42px;
+      margin-top: 20px;
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
+      color: white;
+    }
+    #project_tagline {
+      font-size: 24px;
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
+      color: white;
+    }
+    
+    /* Nowy kontener title-square-container */
+.title-square-container {
+  position: absolute;
+  top: 28px; /* Kontrolowanie położenia w pionie */
+  left: 49.68%; /* Wycentrowanie w poziomie */
+  transform: translateX(-50%);
+  width: 100%; /* Pełna szerokość w ramach max-width */
+  max-width: 650px; /* Maksymalna szerokość */
+  height: 150px; /* Wysokość kontenera - możesz zmienić */
+  z-index: 10;
+}
+
+/* Nowy styl dla nagłówka w kontenerze title-square-container */
+.title-square-container .header-content {
+  position: absolute;
+  top: 2.5px; /* Kontrolowanie położenia w pionie */
+  left: 10px; /* Kontrolowanie położenia w poziomie */
+  z-index: 10;
+}
+
+/* Style dla nagłówka w nowym kontenerze, zachowujące oryginalne style */
+.title-square-container #title {
+  font-size: 42px;
+  margin-top: 20px;
+  text-align: left;
+  margin-left: 0;
+  position: relative;
+  left: 0px;
+  color: white;
+}
+
+.title-square-container #tagline {
+  font-size: 24px;
+  margin-top: 10px;
+  text-align: left;
+  margin-left: 0;
+  position: relative;
+  left: 0px;
+  color: white;
+  font-weight: normal !important;
+}
+
+/* Usunięcie pseudoelementów, które mogłyby tworzyć podkreślenie */
+.title-square-container #tagline::after,
+.title-square-container #tagline::before {
+  content: none !important;
+  display: none !important;
+}
+    
+    /* Nowy niebieski kwadrat w prawym górnym rogu */
+    .title-square-container .blue-square {
+      width: 45px;
+      height: 45px;
+      background-color: #d17a1b;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    
+    /* Nowe niebieskie kwadraty w kontenerze title-square-container */
+    .title-square-container .blue-square1 {
+      width: 24px;
+      height: 24px;
+      background-color: #d17a1b;
+      position: absolute;
+      top: 51.5px; /* Możesz kontrolować położenie w pionie */
+      right: 63px; /* Możesz kontrolować położenie w poziomie */
+    }
+    
+    .title-square-container .blue-square2 {
+      width: 24px;
+      height: 24px;
+      background-color: #d17a1b;
+      position: absolute;
+      top: 31px; /* Możesz kontrolować położenie w pionie */
+      right: 107px; /* Możesz kontrolować położenie w poziomie */
+    }
+    
+    .title-square-container .blue-square-big {
+      width: 175px;
+      height: 30px;
+      background-color: #d17a1b;
+      position: absolute;
+      top: 60px; /* Możesz kontrolować położenie w pionie */
+      left: 0px; /* Możesz kontrolować położenie w poziomie */
+    }
+    
+    /* Media queries dla różnych szerokości ekranu */
+    @media screen and (max-width: 1200px) {
+      /* Dostosowujemy pozycję kontenera z tytułem */
+      #header_wrap .inner {
+        left: 150px; /* Dostosuj tę wartość do swoich potrzeb */
+      }
+    }
+    
+    /* Media queries dla telefonów z proporcjonalnym położeniem kwadratów */
+    @media screen and (max-width: 768px) {
+      /* Style dla kontenera z tytułem - zachowujemy te same proporcje jak dla komputera */
+      #header_wrap .inner {
+        left: 0px; /* Dostosowany do urządzeń mobilnych */
+        width: calc(100% - 60px); /* Zapewnienie, że tekst się zmieści */
+      }
+      
+      /* Zachowujemy taki sam rozmiar czcionki jak na komputerze */
+      #project_title, #title {
+        font-size: 42px;
+      }
+      
+      #project_tagline, #tagline {
+        font-size: 24px;
+      }
+    }
+    
+    /* Dodatkowe style dla małych telefonów */
+    @media screen and (max-width: 480px) {
+      /* Radykalne resetowanie pozycji kontenera z tytułem */
+      #header_wrap {
+        padding-left: 0;
+        padding-right: 0;
+        justify-content: flex-start; /* Wyrównanie do lewej */
+      }
+      
+      #header_wrap .inner {
+        left: 0;
+        right: auto;
+        margin-left: 0;
+        padding-left: 10px; /* Minimalny padding, aby tekst nie przylegał do krawędzi */
+        width: 100%;
+        max-width: 100%;
+        transform: none;
+        justify-content: flex-start;
+      }
+      
+      #project_title, #title {
+        font-size: 32px;
+        margin-left: 0;
+        padding-left: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+      }
+      
+      #project_tagline, #tagline {
+        font-size: 24px;
+        margin-left: 0;
+        padding-left: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+      }
+      
+      .outer {
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+    
+    /* Dodatkowe media query dla orientacji poziomej na telefonach */
+    @media screen and (max-width: 900px) and (orientation: landscape) {
+      /* Dostosowanie położenia kontenera z tytułem dla orientacji poziomej */
+      #header_wrap .inner {
+        left: 80px;
+        width: calc(100% - 100px);
+      }
+    }
+
+/* TUTAJ DODAJ STYLE DLA CZCIONKI CHARTER - WERSJA OMIJAJĄCA MENU */
+/* Zamiast stylować cały main_content_wrap, stylujemy tylko konkretne kontenery treści */
+#main_content > *:not(#myMenu):not([id^="myMenu"]), 
+.ryzmod-container > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-text-block > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-intro-text > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-regular-text > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-text-t31 > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-t52-text > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-o51-box > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-orange-box > *:not(#myMenu):not([id^="myMenu"]),
+.ryzmod-footnote > *:not(#myMenu):not([id^="myMenu"]) {
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+/* Specyficzne selektory dla paragrafów w głównej treści */
+#main_content p, 
+.ryzmod-container p,
+.ryzmod-text-block p,
+.ryzmod-intro-text p,
+.ryzmod-regular-text p,
+.ryzmod-text-t31 p,
+.ryzmod-t52-text p,
+.ryzmod-o51-box p,
+.ryzmod-orange-box p,
+.ryzmod-footnote p {
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+/* Specyficzne selektory dla nagłówków w głównej treści */
+.ryzmod-container h1, .ryzmod-container h2, .ryzmod-container h3, 
+.ryzmod-container h4, .ryzmod-container h5, .ryzmod-container h6,
+.ryzmod-text-block h5,
+.ryzmod-intro-text h5,
+.ryzmod-text-t31 h5,
+.ryzmod-t52-text h5 {
+  font-family: Georgia, serif;
+}
+
+/* Dodatkowe selektory dla innych elementów tekstowych */
+.ryzmod-title-modeli,
+.ryzmod-title-ryzyko,
+.ryzmod-header-modeli,
+.ryzmod-overlay-text,
+.ryzmod-article-text,
+.ryzmod-article-title,
+.ryzmod-article-desc,
+.ryzmod-o51-title {
+  font-family: Georgia, serif;
+}
+
+    /* Zaktualizowane style dla menu - zgodne z poprzednią stroną */
+    #myMenu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      padding: 20px 0;
+      margin-top: 0 !important;
+      margin-bottom: 60px;
+      width: 100%;
+      position: relative;
+      top: 21px; /* Kontrola położenia w pionie */
+      z-index: 100;
+    }
+    
+    #myMenu a.menu-option {
+      color: rgb(115, 115, 115);
+      text-decoration: none;
+      padding: 5px 10px;
+      margin: 0 15px;
+      font-size: 18px;
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
+    
+    #myMenu a.menu-option:hover {
+      color: #a85903;
+    }
+    
+    /* Style responsywne dla menu */
+    @media screen and (max-width: 768px) {
+      #myMenu {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      #myMenu a.menu-option {
+        margin: 5px 0;
+      }
+    }
+    
+    #main_content_wrap {
+      background-color: white !important;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      border: none;
+    }
+    #main_content {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    /* Zaktualizowane style dla dolnej belki (footer) */
+    #footer_wrap {
+      background-color: #a85903 !important;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      height: auto;
+      padding-top: 27.75px;
+      padding-bottom: 27.75px;
+      position: relative;
+    }
+    #footer_wrap .inner {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+      position: relative;
+      left: 260px;
+      text-align: center;
+    }
+    #footer_wrap p {
+      margin: 5px 0;
+      position: relative;
+      left: 0px;
+      top: 0px;
+    }
+    #footer_wrap .copyright {
+      position: relative;
+      top: 0px;
+      left: 0px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* KOLORY ROOT DLA KATEGORII KOMENTARZY */
+
+:root {
+
+  --cat-color0: #D4AF37;
+  --cat-color1: #e4c087;
+  --cat-color2: #b4a988;
+  --cat-color3: #d0b38c;
+  --cat-color4: #C29D2F;
+  --cat-color5: #A89D7C;
+  --cat-color6: #C4A67C;
+  
+}
+
+
+    
+:root {
+  /* Kolory awatarów - 20 kolorów w ciepłej palecie */
+  --awat-color1: #a85903;    /* Ciemny brąz */
+  --awat-color2: #d17a1b;    /* Pomarańczowy */
+  --awat-color3: #e6cd94;    /* Jasny beż */
+  --awat-color4: #b4a988;    /* Oliwkowy beż */
+  --awat-color5: #c79452;    /* Złoto-brązowy */
+  --awat-color6: #be9170;    /* Ciepły beż */
+  --awat-color7: #a6824c;    /* Ciemny złoty */
+  --awat-color8: #f6ba92;    /* Brzoskwiniowy */
+  --awat-color9: #8b4513;    /* Bardzo ciemny brąz */
+  --awat-color10: #D4AF37;   /* Złoty */
+  --awat-color11: #d0b38c;   /* Jasny beż */
+  --awat-color12: #b8952a;   /* Miodowy */
+  --awat-color13: #cd853f;   /* Peru */
+  --awat-color14: #daa520;   /* Ciemno-złoty */
+  --awat-color15: #bc9a6a;   /* Piaskowy brąz */
+  --awat-color16: #cc8c3c;   /* Karmelowy */
+  --awat-color17: #a0855b;   /* Orzechowy */
+  --awat-color18: #e4c087;   /* Słomkowy */
+  --awat-color19: #996633;   /* Czekoladowy */
+  --awat-color20: #deb887;   /* Burlywood */
+}
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    
+    /* NOWE STYLE DLA PROJEKTU RYZYKO MODELI - POPRAWIONE */
+    
+    /* Główny kontener */
+    .ryzmod-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Tytuł główny sekcji */
+    .ryzmod-title {
+      margin-bottom: 40px;
+      display: flex;
+    }
+    
+    .ryzmod-title-modeli {
+      color: #555;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    
+    .ryzmod-title-ryzyko {
+      color: #a85903;
+      font-size: 32px;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+    
+    /* Główny nagłówek sekcji */
+    .ryzmod-header {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    
+.ryzmod-header-text {
+  color: #444;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  margin-right: 15px;
+  font-family: 'Playfair Display', serif;
+}
+    
+    .ryzmod-header-modeli {
+      color: #555;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    
+    /* Kontener głównego zdjęcia Z 1.1 - POPRAWIONY OSTATECZNIE */
+    .ryzmod-main-image {
+      position: relative;
+      width: 100%;
+      height: 220px; /* Zwiększona wysokość */
+      margin-bottom: 30px;
+      border: 1px solid #a85903;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .ryzmod-main-image img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      max-width: none !important;
+      max-height: none !important;
+    }
+    
+    /* Napis O 1.2 na głównym zdjęciu */
+    .ryzmod-overlay-text {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ffebd3;
+      padding: 15px 20px;
+      max-width: 40%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .ryzmod-overlay-id {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: #777;
+    }
+    
+    /* Drugi wiersz z diagramem sieciowym i tekstami */
+    .ryzmod-network-row {
+      display: flex;
+      margin-bottom: 0;
+      gap: 30px;
+    }
+    
+    /* Kontener diagramu sieciowego - POPRAWIONY */
+    .ryzmod-network-container {
+      width: 35%;
+      border: 1px solid #a85903;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .ryzmod-network-container img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      max-width: none !important;
+      max-height: none !important;
+    }
+    
+    /* Kontener tekstów po prawej stronie diagramu */
+    .ryzmod-text-block {
+      width: 65%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Tekst wstępny - POPRAWIONY (usunięte tło) */
+    .ryzmod-intro-text {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 20px;
+      padding-right: 0;
+      background-color: transparent; /* Usunięte szare tło */
+      margin-bottom: 15px;
+      position: relative;
+      font-weight: bold;
+    }
+    
+    /* Zwykły tekst - POPRAWIONY (usunięte tło) */
+    .ryzmod-regular-text {
+      padding: 15px 20px;
+      background-color: transparent; /* Usunięte szare tło */
+      position: relative;
+      margin-bottom: 30px;
+    }
+    
+    /* NOWE STYLE DLA DODATKOWYCH ELEMENTÓW */
+    
+    /* Style dla T.3.1 - kontener na tekst */
+    .ryzmod-text-t31 {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 20px;
+      background-color: transparent;
+      position: relative;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+    
+    /* Style dla O.3.2 - kolorowy prostokąt */
+    .ryzmod-orange-box {
+      background-color: #fdf3e9;
+      padding: 20px;
+      position: relative;
+      margin-bottom: 40px;
+    }
+    
+    /* Style dla KDG4 - kontener na dynamiczną grafikę */
+    .ryzmod-kdg-container {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #a85903;
+      position: relative;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    .ryzmod-kdg-title {
+      position: absolute;
+      bottom: 15px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #555;
+    }
+    
+    /* Style dla O5.1 - kolorowy prostokąt z tekstem */
+    .ryzmod-o51-container {
+      display: flex;
+      margin-bottom: 30px;
+      gap: 30px;
+    }
+    
+    .ryzmod-o51-box {
+      width: 35%;
+      background-color: #fdf3e9;
+      padding: 20px;
+      border-left: 5px solid #a85903;
+      position: relative;
+    }
+    
+    .ryzmod-o51-title {
+      color: #a85903;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    
+    /* Style dla T 5.2 - tekst po prawej stronie */
+    .ryzmod-t52-text {
+      width: 65%;
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 20px;
+      padding-right: 0;
+      background-color: transparent;
+      position: relative;
+    }
+    
+    /* Style dla sekcji pełnej szerokości */
+    .full-width-section {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+    
+    /* Styl dla artykułów w sekcji O6 */
+    .ryzmod-articles-section {
+      background-color: #656461;
+      padding: 30px 0;
+      color: white;
+      margin: 40px 0;
+    }
+    
+    .ryzmod-articles-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .ryzmod-articles-title {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .ryzmod-articles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+    }
+    
+    .ryzmod-article-item {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .ryzmod-article-image {
+      border: 1px solid #a85903;
+      height: 120px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    .ryzmod-article-image img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      max-width: none !important;
+      max-height: none !important;
+    }
+    
+    .ryzmod-article-text {
+      background-color: #fdf3e9;
+      color: #333;
+      padding: 15px;
+      flex: 1;
+      position: relative;
+    }
+    
+    .ryzmod-article-title {
+      font-weight: bold;
+      color: #a85903;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    
+    .ryzmod-article-desc {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    
+    /* ID obiektów */
+    .ryzmod-object-id {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: #777;
+      z-index: 5;
+    }
+    
+    /* Media queries dla responsywności */
+    @media screen and (max-width: 992px) {
+      .ryzmod-network-row,
+      .ryzmod-o51-container {
+        flex-direction: column;
+      }
+      
+      .ryzmod-network-container,
+      .ryzmod-text-block,
+      .ryzmod-o51-box,
+      .ryzmod-t52-text {
+        width: 100%;
+      }
+      
+      .ryzmod-network-container {
+        height: 300px;
+        margin-bottom: 20px;
+      }
+      
+      .ryzmod-articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .ryzmod-o51-box {
+        margin-bottom: 20px;
+      }
+    }
+    
+    @media screen and (max-width: 576px) {
+      .ryzmod-articles-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .ryzmod-overlay-text {
+        max-width: 80%;
+      }
+    }
+    
+    .title-square-container h2#tagline,
+    .title-square-container h2[id="tagline"],
+    .title-square-container .header-content h2,
+    h2#tagline {
+      border-bottom: none !important;
+      text-decoration: none !important;
+      box-shadow: none !important;
+      background-image: none !important;
+      font-weight: normal !important;
+      color: white !important;
+      position: relative !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Ukrycie wszystkich możliwych pseudoelementów */
+    .title-square-container h2#tagline::after,
+    .title-square-container h2#tagline::before,
+    .title-square-container h2[id="tagline"]::after,
+    .title-square-container h2[id="tagline"]::before,
+    .title-square-container .header-content h2::after,
+    .title-square-container .header-content h2::before,
+    h2#tagline::after,
+    h2#tagline::before {
+      content: none !important;
+      display: none !important;
+      visibility: hidden !important;
+      border: none !important;
+      background: none !important;
+      position: static !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      text-decoration: none !important;
+      box-shadow: none !important;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SEKCJA METADANYCH ARTYKUŁU */
+.article-meta {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+.meta-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.rating-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.rating-text {
+  font-size: 14px;
+  color: #D4AF37;
+  font-weight: 600;
+  font-family: Arial, serif;
+}
+.rating-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+.rating-btn {
+  background: none;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  position: relative;
+  color: #D4AF37;
+  font-family: 'Poppins', sans-serif;
+}
+.rating-btn:hover {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.rating-btn:hover svg,
+.rating-btn:hover span {
+  color: #737373 !important;
+  transform: translateY(-1px);
+}
+.rating-btn.active {
+  background: #D4AF37;
+  color: white;
+  border-color: #D4AF37;
+}
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #D4AF37;
+  border-color: #D4AF37;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-bottom: 0.3rem;
+  font-family: 'Poppins', sans-serif;
+}
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #D4AF37;
+}
+.rating-btn:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+@media (max-width: 600px) {
+  .meta-info {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .rating-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+
+
+
+    
+
+/* SEKCJA TAGÓW */
+.tags-section {
+  margin-top: 1.5rem;
+}
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.tag {
+  background: #FDFAF1;
+  color: #737373;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid #f0e6d6;
+}
+.tag:hover {
+  background: #D4AF37;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(168, 89, 3, 0.15);
+}
+
+@media (max-width: 600px) {
+  .tags-container {
+    gap: 0.4rem;
+  }
+  .tag {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+
+
+
+
+  
+    
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <style>
+
+/* MASONRY KOMENTARZE - NOWE STYLE */
+.comments-section {
+    width: 100%;
+    margin: 40px 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.add-comment-form {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.add-comment-form h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#comment-category, #author-name, #comment-text {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+#comment-category:focus, #author-name:focus, #comment-text:focus {
+    outline: none;
+    border-color: #D4AF37;
+}
+
+
+
+#comment-text {
+    resize: vertical;
+    min-height: 100px;
+}
+
+
+
+
+    #comment-category, #author-name, #comment-text {
+    font-family: Arial, sans-serif;
+      color: #737373;
+}
+
+.submit-comment-btn {
+    background: #D4AF37;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.submit-comment-btn:hover {
+    background: #B8952A;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.comment-hint-new {
+    text-align: left !important;
+    font-size: 12px !important;
+    color: #737373 !important;
+    margin-top: 15px !important;
+    line-height: 1.4 !important;
+    display: block !important;
+    text-indent: 0 !important;
+}
+
+.comments-filters {
+  margin-top: 30px;  
+  margin-bottom: 40px;
+    padding: 0px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.comments-filters h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #D4AF37;
+    font-size: 17px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--category-color);
+    padding: 8px 16px;
+    margin: 5px 5px 5px 0;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: var(--category-color);
+    --category-color: var(--cat-color0);
+}
+
+.filter-btn:hover {
+    background: var(--category-color);
+    color: white;
+}
+
+.filter-btn.active {
+    background: var(--category-color);
+    color: white;
+    box-shadow: none;
+}
+
+#comments-counter {
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #D4AF37;
+    font-size: 17px;
+  font-family: Georgia, serif;
+}
+
+/* MASONRY LAYOUT DLA KOMENTARZY */
+.comments-masonry-container {
+    columns: 3;
+    column-gap: 25px;
+    column-fill: balance;
+}
+
+.masonry-comment-card {
+    break-inside: avoid;
+    margin-bottom: 25px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-left: 4px solid #e5e7eb;
+    position: relative;
+    overflow: hidden;
+}
+
+.masonry-comment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.masonry-comment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.masonry-comment-author-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.masonry-comment-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.masonry-comment-author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.masonry-comment-author {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 13px;
+  font-family: Poppins, serif;
+}
+
+.masonry-comment-time {
+    color: #a0aec0;
+    font-size: 11px;
+}
+
+.masonry-comment-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.masonry-comment-like-btn {
+    background: none;
+    border: none;
+    color: #D4AF37;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.masonry-comment-like-btn:hover {
+    color: #737373;
+    background: #f7fafc;
+    transform: translateY(-1px);
+}
+
+.masonry-comment-text {
+    color: #737373;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  font-family: Arial, sans-serif;
+}
+
+.masonry-comment-text a {
+    color: #D4AF37;
+    text-decoration: underline;
+}
+
+.masonry-comment-category-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+  font-family: Arial;
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 8px;
+    color: white;
+}
+
+
+
+.no-comments {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 60px 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+
+    
+
+/* PAGINACJA */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.pagination-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    color: #D4AF37;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: Georgia, serif;
+    backdrop-filter: blur(10px);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #D4AF37;
+    border-color: #D4AF37;
+    color: white;
+    font-family: Georgia, serif;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+.pagination-btn:disabled {
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    font-family: Georgia, serif;
+    color: #c7c7c7;
+    cursor: not-allowed;
+}
+
+.pagination-numbers {
+    display: flex;
+    gap: 8px;
+}
+
+.page-number {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    color: #D4AF37;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: Georgia, serif;
+    min-width: 40px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.page-number:hover {
+    background: rgba(212, 175, 55, 0.1);
+    font-family: Georgia, serif;
+    border-color: #D4AF37;
+    color: #D4AF37;
+}
+
+.page-number.active {
+    background: #D4AF37;
+    font-family: Georgia, serif;
+    border-color: #D4AF37;
+    color: white;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.page-ellipsis {
+    color: #a0aec0;
+    padding: 8px 4px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .pagination-container {
+        gap: 8px;
+        margin-top: 30px;
+    }
+    
+    .pagination-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .page-number {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-width: 32px;
+    }
+}
+
+
+
+    
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .comments-masonry-container {
+        columns: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .comments-masonry-container {
+        columns: 1;
+        column-gap: 20px;
+    }
+    
+    .comments-section {
+        padding: 15px;
+    }
+    
+    .add-comment-form {
+        padding: 20px;
+    }
+}
+
+/* ANIMACJE */
+.masonry-comment-card {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    </style>
+
+
+
+
+
+<style>
+
+/* SEPARATOR SEKCJI KOMENTARZY - BEZ EFEKTÓW */
+.comments-separator {
+    text-align: center;
+    margin: 60px 0 40px 0;
+    position: relative;
+}
+
+.comments-separator::before,
+.comments-separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 2px;
+    background: #D4AF37; /* Jednolity kolor */
+}
+
+.comments-separator::before { 
+    left: 0; 
+}
+
+.comments-separator::after { 
+    right: 0; 
+}
+
+.separator-text {
+    background: white;
+    padding: 10px 30px;
+    color: #D4AF37;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media (max-width: 768px) {
+    .separator-text {
+        font-size: 16px;
+        letter-spacing: 1px;
+        padding: 8px 20px;
+    }
+}
+
+  </style>
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+
+/* ================================
+   SEKCJA UDOSTĘPNIANIA - OPCJA 2
+   ================================ */
+
+.share-section {
+    margin: 40px 0;
+    width: 100%;
+}
+
+.share-minimal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FDFAF1;
+    padding: 20px 30px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.share-minimal:hover {
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+}
+
+.share-title {
+    font-family: Arial Black, sans-serif;
+    font-size: 17px;
+    color: #D4AF37;
+    font-weight: bold;
+    margin: 0;
+}
+
+  
+.share-minimal h3 {
+    font-family: Arial Black, sans-serif;
+    font-size: 17px;
+    color: #D4AF37;
+    font-weight: 600;
+    margin: 0;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 2px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    background: white;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.share-btn.linkedin {
+    border-color: #0077B5;
+    color: #0077B5;
+    background: white;
+}
+
+.share-btn.linkedin svg {
+    fill: #0077B5;
+}
+
+.share-btn.linkedin:hover {
+    background: #0077B5;
+    color: white;
+}
+
+.share-btn.linkedin:hover svg {
+    fill: white;
+}
+
+.share-btn.x {
+    border-color: #000000;
+    color: #000000;
+    background: white;
+}
+
+.share-btn.x svg {
+    fill: #000000;
+}
+
+.share-btn.x:hover {
+    background: #000000;
+    color: white;
+}
+
+.share-btn.x:hover svg {
+    fill: white;
+}
+
+.share-btn.email {
+    border-color: #D4AF37;
+    color: #D4AF37;
+    background: white;
+}
+
+.share-btn.email svg {
+    fill: #D4AF37;
+}
+
+.share-btn.email:hover {
+    background: #D4AF37;
+    color: white;
+}
+
+.share-btn.email:hover svg {
+    fill: white;
+}
+
+.share-btn.copy {
+    border-color: #737373;
+    color: #737373;
+    background: white;
+}
+
+.share-btn.copy svg {
+    fill: #737373;
+}
+
+.share-btn.copy:hover {
+    background: #737373;
+    color: white;
+}
+
+.share-btn.copy:hover svg {
+    fill: white;
+}
+
+
+  
+/* Komunikat o skopiowaniu linku */
+.copy-success {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #737373;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+    font-size: 14px !important;
+    font-weight: 500;
+}
+
+.copy-success.show {
+    opacity: 1;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .share-minimal {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .share-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .share-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .share-minimal {
+        padding: 15px;
+    }
+    
+    .share-minimal h3 {
+        font-size: 16px;
+    }
+    
+    .share-btn {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+}
+
+
+
+</style>
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+<!-- DODAJ TO DO SEKCJI <head> TWOJEJ STRONY -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// Konfiguracja Supabase
+const supabaseUrl = 'https://vjgbyyivxirfrfiatizh.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqZ2J5eWl2eGlyZnJmaWF0aXpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3MTMyNTQsImV4cCI6MjA2NTI4OTI1NH0.qui7vdNdfzB1WxDwroPdPKjSZyIg_ENzcqXAxDbbzIM';
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+// NOWE FUNKCJE ANALITYCZNE
+// =========================
+
+
+// Funkcja do wykrywania urządzenia i przeglądarki
+function getDeviceInfo() {
+    const userAgent = navigator.userAgent;
+    
+    // Wykrywanie typu urządzenia
+    let deviceType = 'desktop';
+    if (/Mobi|Android/i.test(userAgent)) {
+        deviceType = 'mobile';
+    } else if (/Tablet|iPad/i.test(userAgent)) {
+        deviceType = 'tablet';
+    }
+    
+    // Wykrywanie przeglądarki
+    let browserName = 'Unknown';
+    if (userAgent.indexOf('SamsungBrowser') > -1) {
+        browserName = 'Samsung';
+    } else if (userAgent.indexOf('Edg') > -1) {
+        browserName = 'Edge';
+    } else if (userAgent.indexOf('OPR') > -1) {
+        browserName = 'Opera';
+    } else if (userAgent.indexOf('Firefox') > -1) {
+        browserName = 'Firefox';
+    } else if (userAgent.indexOf('Chrome') > -1) {
+        browserName = 'Chrome';
+    } else if (userAgent.indexOf('Safari') > -1) {
+        browserName = 'Safari';
+    }
+    
+    return { deviceType, browserName };
+}
+
+  
+// Funkcja do analizy źródła ruchu
+function getTrafficSource() {
+    const referrer = document.referrer;
+    
+    if (!referrer || referrer === '') {
+        return {
+            trafficSource: 'Direct',
+            referrerUrl: null
+        };
+    }
+    
+    const hostname = new URL(referrer).hostname.toLowerCase();
+    let trafficSource = 'Referral';
+    
+    // Wyszukiwarki
+    if (hostname.includes('google')) {
+        trafficSource = 'Google';
+    } else if (hostname.includes('bing')) {
+        trafficSource = 'Bing';
+    } else if (hostname.includes('duckduckgo')) {
+        trafficSource = 'DuckDuckGo';
+    } else if (hostname.includes('yahoo')) {
+        trafficSource = 'Yahoo';
+    }
+    // Social Media
+    else if (hostname.includes('facebook')) {
+        trafficSource = 'Facebook';
+    } else if (hostname.includes('twitter') || hostname.includes('t.co')) {
+        trafficSource = 'Twitter';
+    } else if (hostname.includes('linkedin')) {
+        trafficSource = 'LinkedIn';
+    } else if (hostname.includes('instagram')) {
+        trafficSource = 'Instagram';
+    } else if (hostname.includes('youtube')) {
+        trafficSource = 'YouTube';
+    } else if (hostname.includes('tiktok')) {
+        trafficSource = 'TikTok';
+    }
+    
+    return {
+        trafficSource,
+        referrerUrl: referrer
+    };
+}
+
+// Funkcja do geolokalizacji (używa darmowego API)
+async function getLocationInfo() {
+    try {
+        // Używamy bezpłatnego API ipapi.co (30,000 requestów/miesiąc)
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        
+        return {
+            country: data.country_name || 'Unknown',
+            city: data.city || 'Unknown'
+        };
+    } catch (error) {
+        console.log('Nie udało się pobrać lokalizacji:', error);
+        return {
+            country: 'Unknown',
+            city: 'Unknown'
+        };
+    }
+}
+
+// ISTNIEJĄCE FUNKCJE - BEZ ZMIAN
+// ===============================
+
+function generateSessionId() {
+    return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+function getSessionId() {
+    let sessionId = sessionStorage.getItem('session_id');
+    if (!sessionId) {
+        sessionId = generateSessionId();
+        sessionStorage.setItem('session_id', sessionId);
+    }
+    return sessionId;
+}
+
+function getArticleId() {
+    return window.location.pathname || 'main-page';
+}
+
+// ZAKTUALIZOWANA FUNKCJA - Z NOWYMI DANYMI ANALITYCZNYMI
+// ======================================================
+
+async function trackPageView() {
+    try {
+        const articleId = getArticleId();
+        const sessionId = getSessionId();
+        
+        // Sprawdź czy już zapisano wyświetlenie dla tej sesji i artykułu
+        const { data: existingView } = await supabase
+            .from('page_views')
+            .select('*')
+            .eq('article_id', articleId)
+            .eq('session_id', sessionId)
+            .single();
+            
+        if (!existingView) {
+            console.log('Zbieranie danych analitycznych...');
+            
+            // Pobierz wszystkie dane analityczne
+            const deviceInfo = getDeviceInfo();
+            const trafficInfo = getTrafficSource();
+            const locationInfo = await getLocationInfo();
+            
+            console.log('Dane do zapisania:', {
+                articleId,
+                sessionId,
+                ...deviceInfo,
+                ...trafficInfo,
+                ...locationInfo
+            });
+            
+            // Zapisz nowe wyświetlenie z rozszerzonymi danymi
+            const { error } = await supabase
+                .from('page_views')
+                .insert([
+                    {
+                        article_id: articleId,
+                        user_id: null,
+                        session_id: sessionId,
+                        // Nowe dane analityczne
+                        country: locationInfo.country,
+                        city: locationInfo.city,
+                        device_type: deviceInfo.deviceType,
+                        browser_name: deviceInfo.browserName,
+                        traffic_source: trafficInfo.trafficSource,
+                        referrer_url: trafficInfo.referrerUrl
+                    }
+                ]);
+                
+if (error) {
+                console.error('Błąd przy zapisywaniu wyświetlenia:', error);
+            } else {
+                console.log('Wyświetlenie zostało zapisane z danymi analitycznymi');
+            }
+        }
+        
+        // ZAWSZE aktualizuj licznik - niezależnie od tego czy to nowa sesja czy odświeżenie
+        updateViewCount();
+        
+    } catch (error) {
+        console.error('Błąd w trackPageView:', error);
+    }
+}
+
+// ZAKTUALIZOWANA FUNKCJA - Z NOWYMI DANYMI ANALITYCZNYMI DLA REAKCJI
+// ==================================================================
+
+async function saveReaction(reactionType) {
+    console.log('=== DEBUG SAVE REACTION ===');
+    console.log('Reaction type:', reactionType);
+    
+    try {
+        const articleId = getArticleId();
+        const sessionId = getSessionId();
+        
+        console.log('Will insert:', {
+            article_id: articleId,
+            user_id: sessionId,
+            reaction_type: reactionType
+        });
+
+        // Sprawdź czy użytkownik już zagłosował na ten artykuł w tej sesji
+        const { data: existingReaction, error: selectError } = await supabase
+            .from('article_reactions')
+            .select('*')
+            .eq('article_id', articleId)
+            .eq('user_id', sessionId)
+            .single();
+
+        console.log('Select error:', selectError);
+
+        if (existingReaction) {
+            // Jeśli użytkownik kliknął tę samą reakcję - usuń ją
+            if (existingReaction.reaction_type === reactionType) {
+                const { error } = await supabase
+                    .from('article_reactions')
+                    .delete()
+                    .eq('article_id', articleId)
+                    .eq('user_id', sessionId);
+                    
+                if (error) {
+                    console.error('Błąd przy usuwaniu reakcji:', error);
+                } else {
+                    console.log('Reakcja została usunięta');
+                }
+            } else {
+                // Zmień reakcję na nową (UPDATE - bez nowych danych analitycznych)
+                const { error } = await supabase
+                    .from('article_reactions')
+                    .update({ reaction_type: reactionType })
+                    .eq('article_id', articleId)
+                    .eq('user_id', sessionId);
+                    
+                if (error) {
+                    console.error('Błąd przy zmianie reakcji:', error);
+                } else {
+                    console.log('Reakcja została zmieniona');
+                }
+            }
+        } else {
+            // Pobierz dane analityczne dla nowej reakcji
+            const deviceInfo = getDeviceInfo();
+            const trafficInfo = getTrafficSource();
+            const locationInfo = await getLocationInfo();
+            
+            // Dodaj nową reakcję z danymi analitycznymi
+            const { error } = await supabase
+                .from('article_reactions')
+                .insert([
+                    {
+                        article_id: articleId,
+                        user_id: sessionId,
+                        reaction_type: reactionType,
+                        // Nowe dane analityczne
+                        country: locationInfo.country,
+                        city: locationInfo.city,
+                        device_type: deviceInfo.deviceType,
+                        browser_name: deviceInfo.browserName,
+                        traffic_source: trafficInfo.trafficSource,
+                        referrer_url: trafficInfo.referrerUrl
+                    }
+                ]);
+                
+            if (error) {
+                console.error('Błąd przy zapisywaniu reakcji:', error);
+            } else {
+                console.log('Reakcja została zapisana z danymi analitycznymi');
+            }
+        }
+        
+        // Zaktualizuj liczniki reakcji
+        updateReactionCounts();
+        
+    } catch (error) {
+        console.error('Błąd w saveReaction:', error);
+    }
+}
+
+// POZOSTAŁE FUNKCJE - BEZ ZMIAN
+// ==============================
+
+async function updateViewCount() {
+    try {
+        const articleId = getArticleId();
+        
+        const { data, error } = await supabase
+            .from('page_views')
+            .select('*')
+            .eq('article_id', articleId);
+            
+        if (error) {
+            console.error('Błąd przy pobieraniu wyświetleń:', error);
+            return;
+        }
+        
+        const viewCount = data.length;
+        
+// Zaktualizuj licznik wyświetleń
+const viewCounterElement = document.getElementById('view-counter');
+if (viewCounterElement) {
+    viewCounterElement.textContent = `${viewCount.toLocaleString()} wyświetleń`;
+    console.log('Licznik zaktualizowany na:', viewCount);
+}
+
+      
+    } catch (error) {
+        console.error('Błąd w updateViewCount:', error);
+    }
+}
+
+async function updateReactionCounts() {
+    try {
+        const articleId = getArticleId();
+        
+        const { data, error } = await supabase
+            .from('article_reactions')
+            .select('reaction_type')
+            .eq('article_id', articleId);
+            
+        if (error) {
+            console.error('Błąd przy pobieraniu reakcji:', error);
+            return;
+        }
+        
+        // Policz reakcje według typu
+        const counts = {
+            'like': 0,
+            'useful': 0,
+            'discuss': 0,
+            'complex': 0
+        };
+        
+        data.forEach(reaction => {
+            if (counts.hasOwnProperty(reaction.reaction_type)) {
+                counts[reaction.reaction_type]++;
+            }
+        });
+        
+        // Zaktualizuj liczniki w interfejsie
+        Object.keys(counts).forEach(type => {
+            const countElement = document.getElementById(`${type}-count`);
+            if (countElement) {
+                countElement.textContent = counts[type];
+            }
+        });
+        
+        // Sprawdź czy użytkownik już zagłosował i oznacz aktywny przycisk
+        const sessionId = getSessionId();
+        const { data: userReaction } = await supabase
+            .from('article_reactions')
+            .select('reaction_type')
+            .eq('article_id', articleId)
+            .eq('user_id', sessionId)
+            .single();
+            
+        // Reset wszystkich przycisków
+        document.querySelectorAll('.rating-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Oznacz aktywny przycisk jeśli użytkownik zagłosował
+        if (userReaction) {
+            const activeButton = document.querySelector(`[onclick="rate('${userReaction.reaction_type}')"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+        
+    } catch (error) {
+        console.error('Błąd w updateReactionCounts:', error);
+    }
+}
+
+function rate(type) {
+    saveReaction(type);
+}
+
+// Inicjalizacja po załadowaniu strony - tylko raz
+window.addEventListener('load', function() {
+    trackPageView();
+    updateReactionCounts();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// SYSTEM KOMENTARZY Z KATEGORIAMI
+// ================================
+
+
+// =========================================
+// KONFIGURACJA KATEGORII - ŁATWE DO EDYCJI
+// =========================================
+const CATEGORIES_CONFIG = {
+  kwantyl: { 
+    displayName: 'kwantyl', 
+    color: 'var(--cat-color1)' 
+  },
+  'ryzyko-operacyjne': { 
+    displayName: 'ryzyko operacyjne', 
+    color: 'var(--cat-color2)' 
+  },
+    'ryzyko-modeli': { 
+    displayName: 'ryzyko mod', 
+    color: 'var(--cat-color3)' 
+  },
+    'rzadkość': { 
+    displayName: 'frequency', 
+    color: 'var(--cat-color4)' 
+  },
+
+};
+
+// Automatyczne tworzenie tablicy kategorii (nie zmieniaj tego)
+const categories = Object.keys(CATEGORIES_CONFIG).map(name => ({
+  name: name,
+  color: CATEGORIES_CONFIG[name].color,
+  displayName: CATEGORIES_CONFIG[name].displayName
+}));  
+
+
+// Zmienna do przechowywania aktualnego filtru
+let currentCategoryFilter = 'all';
+
+
+
+// PAGINACJA - USTAWIENIA
+const COMMENTS_PER_PAGE = 12; // Ile komentarzy na stronie
+let currentPage = 1;
+let totalPages = 1;
+let allLoadedComments = []; // Przechowuje wszystkie komentarze
+  
+
+
+// Funkcja do generowania losowego koloru dla awatara - NOWA
+function generateAvatarColor(name) {
+    const colors = [
+        'var(--awat-color1)', 'var(--awat-color2)', 'var(--awat-color3)', 
+        'var(--awat-color4)', 'var(--awat-color5)', 'var(--awat-color6)',
+        'var(--awat-color7)', 'var(--awat-color8)', 'var(--awat-color9)',
+        'var(--awat-color10)', 'var(--awat-color11)', 'var(--awat-color12)',
+        'var(--awat-color13)', 'var(--awat-color14)', 'var(--awat-color15)',
+        'var(--awat-color16)', 'var(--awat-color17)', 'var(--awat-color18)',
+        'var(--awat-color19)', 'var(--awat-color20)'
+    ];
+    
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+        hash += name.charCodeAt(i);
+    }
+    
+    return colors[hash % colors.length];
+}
+
+// Funkcja do generowania inicjałów - NOWA
+function generateInitials(name) {
+    const words = name.trim().split(' ');
+    if (words.length >= 2) {
+        return (words[0][0] + words[1][0]).toUpperCase();
+    } else {
+        return name.substring(0, 2).toUpperCase();
+    }
+}
+
+
+
+
+  
+// Funkcja do automatycznego linkowania URL-i
+function linkifyText(text) {
+    const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|[^\s]+\.[a-z]{2,}(?:\/[^\s]*)?)/gi;
+    return text.replace(urlRegex, function(url) {
+        let href = url;
+        if (!url.match(/^https?:\/\//)) {
+            href = 'http://' + url;
+        }
+        return `<a href="${href}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    });
+}
+
+// Funkcja do inicjalizacji kategorii w dropdown
+function initializeCategoryDropdown() {
+    const categorySelect = document.getElementById('comment-category');
+    if (!categorySelect) return;
+    
+    // Wyczyść istniejące opcje
+    categorySelect.innerHTML = '';
+    
+    // Dodaj opcję "bez kategorii"
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Wybierz kategorię (opcjonalnie)';
+    categorySelect.appendChild(defaultOption);
+    
+    // Dodaj kategorie
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.name;
+        option.textContent = category.displayName;
+        categorySelect.appendChild(option);
+    });
+}
+
+// Funkcja do tworzenia przycisków filtrowania
+function createCategoryFilters() {
+    const filtersContainer = document.getElementById('category-filters');
+    if (!filtersContainer) return;
+    
+    filtersContainer.innerHTML = '';
+    
+    // Przycisk "Wszystkie"
+    const allButton = document.createElement('button');
+    allButton.textContent = 'Wszystkie';
+    allButton.className = 'filter-btn active';
+    allButton.style.setProperty('--category-color', 'var(--cat-color0)'); // DODANE
+    allButton.onclick = () => filterComments('all');
+    filtersContainer.appendChild(allButton);
+    
+// Przyciski dla każdej kategorii
+categories.forEach((category, index) => {
+    const button = document.createElement('button');
+    button.textContent = category.displayName;
+    button.className = 'filter-btn';
+    
+    // DYNAMICZNE USTAWIENIE KOLORU KATEGORII
+    const colorVar = `--cat-color${index + 1}`;
+    button.style.setProperty('--category-color', `var(${colorVar})`);
+    
+    button.onclick = () => filterComments(category.name);
+    filtersContainer.appendChild(button);
+});
+}
+
+// Funkcja do filtrowania komentarzy
+function filterComments(categoryFilter) {
+    currentCategoryFilter = categoryFilter;
+    
+    // Aktualizuj aktywny przycisk
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    if (categoryFilter === 'all') {
+        document.querySelector('.filter-btn').classList.add('active');
+    } else {
+        const activeBtn = Array.from(document.querySelectorAll('.filter-btn'))
+            .find(btn => btn.textContent === categories.find(c => c.name === categoryFilter)?.displayName);
+        if (activeBtn) activeBtn.classList.add('active');
+    }
+    
+    // Przeładuj komentarze z filtrem
+    loadComments();
+}
+
+// Funkcja do dodawania komentarza
+async function addComment() {
+    const authorName = document.getElementById('author-name')?.value?.trim();
+    const commentText = document.getElementById('comment-text')?.value?.trim();
+    const category = document.getElementById('comment-category')?.value || null;
+    
+    // Walidacja
+    if (!authorName || authorName.length < 2 || authorName.length > 50) {
+        alert('Imię musi mieć od 2 do 50 znaków');
+        return;
+    }
+    
+    if (!commentText || commentText.length < 10 || commentText.length > 1000) {
+        alert('Komentarz musi mieć od 10 do 1000 znaków');
+        return;
+    }
+    
+    // Sprawdź czy użytkownik nie spamuje (max 1 komentarz na 30 sekund)
+    const lastCommentTime = localStorage.getItem('lastCommentTime');
+    const now = Date.now();
+    if (lastCommentTime && (now - parseInt(lastCommentTime)) < 30000) {
+        alert('Możesz dodać kolejny komentarz za ' + Math.ceil((30000 - (now - parseInt(lastCommentTime))) / 1000) + ' sekund');
+        return;
+    }
+    
+    try {
+        const articleId = getArticleId();
+        
+        const { error } = await supabase
+            .from('comments')
+            .insert([
+                {
+                    article_id: articleId,
+                    author_name: authorName,
+                    comment_text: commentText,
+                    category: category,
+                    likes_count: 0
+                }
+            ]);
+            
+        if (error) {
+            console.error('Błąd przy dodawaniu komentarza:', error);
+            alert('Wystąpił błąd podczas dodawania komentarza');
+        } else {
+            // Zapisz czas ostatniego komentarza
+            localStorage.setItem('lastCommentTime', now.toString());
+            
+            // Wyczyść formularz
+            document.getElementById('author-name').value = '';
+            document.getElementById('comment-text').value = '';
+            document.getElementById('comment-category').value = '';
+            
+            // Przeładuj komentarze
+            loadComments();
+            
+            console.log('Komentarz dodany pomyślnie');
+        }
+    } catch (error) {
+        console.error('Błąd w addComment:', error);
+        alert('Wystąpił błąd podczas dodawania komentarza');
+    }
+}
+
+// Funkcja do pobierania i wyświetlania komentarzy
+async function loadComments() {
+    try {
+        const articleId = getArticleId();
+        
+        let query = supabase
+            .from('comments')
+            .select('*')
+            .eq('article_id', articleId)
+            .order('created_at', { ascending: false });
+            
+        if (currentCategoryFilter !== 'all') {
+            query = query.eq('category', currentCategoryFilter);
+        }
+        
+        const { data: comments, error } = await query;
+        
+        if (error) {
+            console.error('Błąd przy pobieraniu komentarzy:', error);
+            return;
+        }
+        
+        // Zapisz wszystkie komentarze
+        allLoadedComments = comments || [];
+        
+        // Resetuj paginację do pierwszej strony
+        currentPage = 1;
+        totalPages = Math.ceil(allLoadedComments.length / COMMENTS_PER_PAGE);
+        
+        // Wyświetl pierwszą stronę
+        displayCurrentPage();
+        updatePagination();
+        updateCommentsCount(allLoadedComments.length);
+        updateTopCommentsCount();
+        
+    } catch (error) {
+        console.error('Błąd w loadComments:', error);
+    }
+}
+
+// NOWA FUNKCJA displayComments() Z MASONRY LAYOUT
+function displayComments(comments) {
+    const commentsContainer = document.getElementById('comments-list');
+    if (!commentsContainer) return;
+    
+if (comments.length === 0) {
+    commentsContainer.innerHTML = ''; // Pusty kontener
+    return;
+}
+    
+    commentsContainer.innerHTML = comments.map((comment, index) => {
+const category = categories.find(c => c.name === comment.category);
+const categoryIndex = categories.findIndex(c => c.name === comment.category);
+const categoryColor = categoryIndex >= 0 ? `var(--cat-color${categoryIndex + 1})` : null;
+const categoryDisplay = category ? 
+    `<span class="masonry-comment-category-tag" style="background-color: ${categoryColor};">${category.displayName}</span>` : '';
+        
+        const timeAgo = getTimeAgo(comment.created_at);
+        const linkedText = linkifyText(comment.comment_text);
+        const avatarColor = generateAvatarColor(comment.author_name);
+        const initials = generateInitials(comment.author_name);
+        
+        return `
+<div class="masonry-comment-card" ${categoryColor ? `style="border-left-color: ${categoryColor}; animation-delay: ${index * 0.05}s;"` : `style="border-left: none; animation-delay: ${index * 0.05}s;"`}
+                 data-comment-id="${comment.id}">
+                <div class="masonry-comment-header">
+                    <div class="masonry-comment-author-section">
+                        <div class="masonry-comment-avatar" style="background: ${avatarColor};">${initials}</div>
+                        <div class="masonry-comment-author-info">
+                            <div class="masonry-comment-author">${escapeHtml(comment.author_name)}</div>
+                            <div class="masonry-comment-time">${timeAgo}</div>
+                        </div>
+                    </div>
+                    <div class="masonry-comment-meta">
+                        <button class="masonry-comment-like-btn" onclick="likeComment(${comment.id})">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                            </svg>
+                            <span class="like-count">${comment.likes_count || 0}</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="masonry-comment-text">${linkedText}</div>
+                ${categoryDisplay}
+            </div>
+        `;
+    }).join('');
+}
+
+
+
+
+// Wyświetl komentarze dla aktualnej strony
+function displayCurrentPage() {
+    const start = (currentPage - 1) * COMMENTS_PER_PAGE;
+    const end = start + COMMENTS_PER_PAGE;
+    const pageComments = allLoadedComments.slice(start, end);
+    displayComments(pageComments);
+}
+
+// Przejdź do konkretnej strony
+function goToPage(pageNumber) {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    
+    currentPage = pageNumber;
+    displayCurrentPage();
+    updatePagination();
+    updateCommentsCount(allLoadedComments.length);
+    
+    // Smooth scroll do góry komentarzy
+    document.getElementById('comments-list').scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+    });
+}
+
+// Aktualizuj paginację
+function updatePagination() {
+    const paginationContainer = document.getElementById('pagination-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const numbersContainer = document.getElementById('pagination-numbers');
+    
+    // Ukryj paginację jeśli tylko jedna strona lub brak komentarzy
+    if (totalPages <= 1) {
+        paginationContainer.style.display = 'none';
+        return;
+    } else {
+        paginationContainer.style.display = 'flex';
+    }
+    
+    // Aktualizuj przyciski poprzednia/następna
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+    
+    // Generuj numery stron
+    numbersContainer.innerHTML = '';
+    
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, currentPage + 2);
+    
+    // Pierwsza strona + ...
+    if (startPage > 1) {
+        addPageNumber(1);
+        if (startPage > 2) {
+            addEllipsis();
+        }
+    }
+    
+    // Numery stron wokół aktualnej
+    for (let i = startPage; i <= endPage; i++) {
+        addPageNumber(i);
+    }
+    
+    // ... + ostatnia strona
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            addEllipsis();
+        }
+        addPageNumber(totalPages);
+    }
+}
+
+function addPageNumber(pageNum) {
+    const numbersContainer = document.getElementById('pagination-numbers');
+    const pageBtn = document.createElement('button');
+    pageBtn.className = `page-number ${pageNum === currentPage ? 'active' : ''}`;
+    pageBtn.textContent = pageNum;
+    pageBtn.onclick = () => goToPage(pageNum);
+    numbersContainer.appendChild(pageBtn);
+}
+
+function addEllipsis() {
+    const numbersContainer = document.getElementById('pagination-numbers');
+    const ellipsis = document.createElement('span');
+    ellipsis.className = 'page-ellipsis';
+    ellipsis.textContent = '...';
+    numbersContainer.appendChild(ellipsis);
+}
+
+
+
+
+  
+// Funkcja do polubienia komentarza
+async function likeComment(commentId) {
+    try {
+        // Sprawdź czy użytkownik już polubił ten komentarz
+const sessionId = getSessionId();
+        const likeKey = `${commentId}_${sessionId}`;
+        
+        if (window.likedCommentsSet && window.likedCommentsSet.has(likeKey)) {
+            alert('Już polubiłeś ten komentarz!');
+            return;
+        }
+        
+        // Pobierz aktualną liczbę polubień
+        const { data: comment, error: selectError } = await supabase
+            .from('comments')
+            .select('likes_count')
+            .eq('id', commentId)
+            .single();
+            
+        if (selectError) {
+            console.error('Błąd przy pobieraniu komentarza:', selectError);
+            return;
+        }
+        
+        // Zwiększ liczbę polubień
+        const newLikesCount = (comment.likes_count || 0) + 1;
+        
+        const { error } = await supabase
+            .from('comments')
+            .update({ likes_count: newLikesCount })
+            .eq('id', commentId);
+            
+        if (error) {
+            console.error('Błąd przy polubíaniu komentarza:', error);
+        } else {
+// Zapisz że użytkownik polubił
+            if (!window.likedCommentsSet) window.likedCommentsSet = new Set();
+            window.likedCommentsSet.add(likeKey);
+            
+            // Zaktualizuj wyświetlanie
+            const likeCountElement = document.querySelector(`[data-comment-id="${commentId}"] .like-count`);
+            if (likeCountElement) {
+                likeCountElement.textContent = newLikesCount;
+            }
+            
+            console.log('Komentarz polubiony');
+        }
+    } catch (error) {
+        console.error('Błąd w likeComment:', error);
+    }
+}
+// Funkcja do aktualizacji licznika komentarzy
+function updateCommentsCount(count) {
+    const counterElement = document.getElementById('comments-counter');
+    if (counterElement) {
+        const categoryText = currentCategoryFilter === 'all' ? '' : 
+            ` w kategorii "${categories.find(c => c.name === currentCategoryFilter)?.displayName}"`;
+        
+        if (totalPages > 1) {
+            const start = (currentPage - 1) * COMMENTS_PER_PAGE + 1;
+            const end = Math.min(currentPage * COMMENTS_PER_PAGE, count);
+            counterElement.textContent = `Komentarze ${start}-${end} z ${count}${categoryText} • Strona ${currentPage}/${totalPages}`;
+        } else {
+            counterElement.textContent = `${count} komentarz${count === 1 ? '' : count < 5 ? 'e' : 'y'}${categoryText}`;
+        }
+    }
+}
+
+
+
+
+// Funkcja do aktualizacji licznika komentarzy na górze strony
+function updateTopCommentsCount() {
+    const articleId = getArticleId();
+    
+    supabase
+        .from('comments')
+        .select('*', { count: 'exact' })
+        .eq('article_id', articleId)
+        .then(({ count, error }) => {
+            if (!error) {
+                const counterElement = document.getElementById('comments-counter-top');
+                if (counterElement) {
+                    counterElement.textContent = `${count} komentarz${count === 1 ? '' : count < 5 ? 'e' : 'y'}`;
+                }
+            }
+        });
+}
+
+
+  
+// Funkcje pomocnicze
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function getTimeAgo(dateString) {
+    const now = new Date();
+    const commentDate = new Date(dateString);
+    const diffInSeconds = Math.floor((now - commentDate) / 1000);
+    
+    if (diffInSeconds < 60) return 'przed chwilą';
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} min temu`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} godz. temu`;
+    if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} dni temu`;
+    
+    return commentDate.toLocaleDateString('pl-PL');
+}
+
+// Funkcja inicjalizacyjna dla komentarzy
+function initializeComments() {
+    initializeCategoryDropdown();
+    createCategoryFilters();
+    loadComments();
+}
+
+// Funkcja dla przycisku submit (do wywołania w HTML)
+function submitComment() {
+    addComment();
+}
+
+
+
+
+
+
+
+
+
+
+
+  
+// ===============================
+// FUNKCJONALNOŚĆ NEWSLETTERA
+// ===============================
+
+// Funkcja do zapisywania subskrypcji newslettera
+async function subscribeToNewsletter() {
+    const emailInput = document.getElementById('newsletter-email');
+    const submitButton = document.getElementById('newsletter-submit');
+    const email = emailInput?.value?.trim();
+    
+    // Walidacja emaila
+    if (!email) {
+        showNewsletterMessage('Wprowadź adres email', 'error');
+        return;
+    }
+    
+    // Prosta walidacja formatu email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showNewsletterMessage('Wprowadź prawidłowy adres email', 'error');
+        return;
+    }
+    
+    // Wyłącz przycisk podczas sprawdzania/zapisywania
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sprawdzanie...';
+    }
+    
+    // Sprawdź czy email nie jest już w bazie lub nie został wypisany
+    try {
+        const { data: existingSubscriber, error: checkError } = await supabase
+            .from('newsletter_subscribers')
+            .select('email, unsubscribed_at')
+            .eq('email', email)
+            .single();
+            
+        if (existingSubscriber) {
+            if (!existingSubscriber.unsubscribed_at) {
+                // Email aktywny - nie może się zapisać ponownie
+                showNewsletterMessage('Ten email jest już zapisany do newslettera', 'info');
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Zapisz się';
+                }
+                return;
+            } else {
+                // Email był wypisany - reaktywuj go zamiast dodawać nowy
+                if (submitButton) {
+                    submitButton.textContent = 'Reaktywuję...';
+                }
+                
+                const { error: reactivateError } = await supabase
+                    .from('newsletter_subscribers')
+                    .update({ 
+                        unsubscribed_at: null,
+                        is_active: true
+                    })
+                    .eq('email', email);
+                    
+                if (reactivateError) {
+                    console.error('Błąd przy reaktywacji:', reactivateError);
+                    showNewsletterMessage('Wystąpił błąd. Spróbuj ponownie.', 'error');
+                } else {
+                    showNewsletterMessage('Zostałeś ponownie zapisany do newslettera!', 'success');
+                    emailInput.value = '';
+                    localStorage.setItem('newsletter_subscribed', 'true');
+                    console.log('Newsletter reactivated successfully');
+                }
+                
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Zapisz się';
+                }
+                return; // WAŻNE: zakończ tutaj, nie dodawaj nowego rekordu
+            }
+        }
+    } catch (error) {
+        // Ignoruj błąd jeśli email nie istnieje (to jest pożądane)
+        console.log('Email nie istnieje w bazie - można dodać nowy rekord');
+    }
+    
+    // Jeśli doszliśmy tutaj, email nie istnieje lub wystąpił błąd - dodaj nowy rekord
+    if (submitButton) {
+        submitButton.textContent = 'Zapisywanie...';
+    }
+    
+    try {
+        // Pobierz dodatkowe dane dla analityki (używa Twoich istniejących funkcji)
+        const deviceInfo = getDeviceInfo();
+        const trafficInfo = getTrafficSource();
+        const locationInfo = await getLocationInfo();
+        const articleId = getArticleId();
+        
+        // Zapisz subskrypcję do bazy
+        const { error } = await supabase
+            .from('newsletter_subscribers')
+            .insert([
+                {
+                    email: email,
+                    source_page: articleId,
+                    is_active: true,
+                    // Dodatkowe dane analityczne (opcjonalne)
+                    country: locationInfo.country,
+                    city: locationInfo.city,
+                    device_type: deviceInfo.deviceType,
+                    browser_name: deviceInfo.browserName,
+                    traffic_source: trafficInfo.trafficSource,
+                    referrer_url: trafficInfo.referrerUrl
+                }
+            ]);
+            
+        if (error) {
+            console.error('Błąd przy zapisywaniu do newslettera:', error);
+            showNewsletterMessage('Wystąpił błąd. Spróbuj ponownie.', 'error');
+        } else {
+            // Sukces
+            showNewsletterMessage('Dziękujemy! Zostałeś zapisany do newslettera.', 'success');
+            emailInput.value = ''; // Wyczyść pole
+            
+            // Opcjonalnie zapisz w localStorage, żeby nie pokazywać formularza ponownie
+            localStorage.setItem('newsletter_subscribed', 'true');
+            
+            console.log('Newsletter subscription saved successfully');
+        }
+        
+    } catch (error) {
+        console.error('Błąd w subscribeToNewsletter:', error);
+        showNewsletterMessage('Wystąpił błąd. Spróbuj ponownie.', 'error');
+    } finally {
+        // Przywróć przycisk
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Zapisz się';
+        }
+    }
+}
+
+// Funkcja do pokazywania komunikatów - NAPRAWIONA
+function showNewsletterMessage(message, type) {
+    // Usuń poprzedni komunikat jeśli istnieje
+    const existingMessage = document.getElementById('newsletter-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Stwórz nowy komunikat
+    const messageDiv = document.createElement('div');
+    messageDiv.id = 'newsletter-message';
+    messageDiv.textContent = message;
+    
+    // Style w zależności od typu
+    let bgColor, textColor;
+    switch(type) {
+        case 'success':
+            bgColor = '#d4edda';
+            textColor = '#155724';
+            break;
+        case 'error':
+            bgColor = '#f8d7da';
+            textColor = '#721c24';
+            break;
+        case 'info':
+            bgColor = '#d1ecf1';
+            textColor = '#0c5460';
+            break;
+        default:
+            bgColor = '#f8f9fa';
+            textColor = '#333';
+    }
+    
+    messageDiv.style.cssText = `
+        background-color: ${bgColor};
+        color: ${textColor};
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+        border: 1px solid ${textColor}33;
+    `;
+    
+    // NAPRAWIONE ZNAJDOWANIE KONTENERA NEWSLETTERA
+    const newsletterInput = document.getElementById('newsletter-email');
+    let newsletterContainer = null;
+    
+    if (newsletterInput) {
+        // Znajdź kontener newslettera - parent element formularza
+        newsletterContainer = newsletterInput.parentElement.parentElement;
+    }
+    
+    if (newsletterContainer) {
+        newsletterContainer.appendChild(messageDiv);
+        
+        // Usuń komunikat po 5 sekundach
+        setTimeout(() => {
+            if (messageDiv && messageDiv.parentNode) {
+                messageDiv.remove();
+            }
+        }, 5000);
+    }
+}
+
+// Funkcja do obsługi Enter w polu email
+function handleNewsletterKeyPress(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        subscribeToNewsletter();
+    }
+}
+
+// Opcjonalna funkcja do sprawdzenia czy użytkownik już się zapisał
+function checkNewsletterStatus() {
+    const isSubscribed = localStorage.getItem('newsletter_subscribed');
+    if (isSubscribed === 'true') {
+        const newsletterContainer = document.querySelector('.ryzmod-orange-box');
+        if (newsletterContainer) {
+            // Można pokazać inną wiadomość dla już zapisanych użytkowników
+            // lub ukryć formularz - na razie zostawiamy bez zmian
+        }
+    }
+}
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+// ===============================
+// FUNKCJONALNOŚĆ UDOSTĘPNIANIA
+// ===============================
+
+// Funkcja udostępniania na LinkedIn
+function shareLinkedIn() {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(document.title);
+    const text = encodeURIComponent("Wartościowy artykuł o analizie ryzyka i interpretacji kwantyli");
+    
+    window.open(
+        `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${text}`, 
+        '_blank', 
+        'width=600,height=400,scrollbars=yes,resizable=yes'
+    );
+    
+    // Tracking udostępnienia
+    trackShare('linkedin');
+}
+
+// Funkcja udostępniania na X
+function shareX() {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent("Kwantyl 99.9 i jego misinterpretacje - fascynujący artykuł o modelowaniu ryzyka operacyjnego");
+    
+    window.open(
+        `https://x.com/intent/tweet?url=${url}&text=${text}&hashtags=RiskManagement,Analytics,Finance,Quantile`, 
+        '_blank', 
+        'width=600,height=400,scrollbars=yes,resizable=yes'
+    );
+    
+    // Tracking udostępnienia
+    trackShare('x');
+}
+
+// Funkcja udostępniania przez email
+function shareEmail() {
+    const subject = encodeURIComponent(document.title);
+    const body = encodeURIComponent(
+        `Cześć!\n\nZnalazłem bardzo ciekawy artykuł o analizie ryzyka, który może Cię zainteresować:\n\n"${document.title}"\n\n${window.location.href}\n\nArtykuł omawia problematykę interpretacji kwantyli w modelowaniu ryzyka operacyjnego. Polecam lekturę!\n\nPozdrawiam`
+    );
+    
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    
+    // Tracking udostępnienia
+    trackShare('email');
+}
+
+// Funkcja kopiowania linku do schowka
+function copyShareLink() {
+    const url = window.location.href;
+    
+    // Nowoczesne API Clipboard
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(function() {
+            showCopySuccess();
+        }).catch(function(err) {
+            console.error('Błąd kopiowania:', err);
+            fallbackCopyTextToClipboard(url);
+        });
+    } else {
+        // Fallback dla starszych przeglądarek
+        fallbackCopyTextToClipboard(url);
+    }
+    
+    // Tracking udostępnienia
+    trackShare('copy_link');
+}
+
+// Fallback kopiowania dla starszych przeglądarek
+function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.position = 'fixed';
+    
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+            showCopySuccess();
+        } else {
+            console.error('Kopiowanie nie powiodło się');
+        }
+    } catch (err) {
+        console.error('Błąd kopiowania:', err);
+    }
+    
+    document.body.removeChild(textArea);
+}
+
+// Pokazanie komunikatu o udanym skopiowaniu
+function showCopySuccess() {
+    const successDiv = document.getElementById('copyShareSuccess');
+    if (successDiv) {
+        successDiv.classList.add('show');
+        setTimeout(() => {
+            successDiv.classList.remove('show');
+        }, 3000);
+    }
+}
+
+// Tracking udostępnień w Supabase
+async function trackShare(platform) {
+    try {
+        const articleId = getArticleId();
+        const sessionId = getSessionId();
+        
+        // Pobierz dane analityczne (używając Twoich istniejących funkcji)
+        const deviceInfo = getDeviceInfo();
+        const trafficInfo = getTrafficSource();
+        const locationInfo = await getLocationInfo();
+        
+        console.log(`Tracking udostępnienia na: ${platform}`);
+        
+        // Zapisz do Supabase
+        const { error } = await supabase
+            .from('article_shares')
+            .insert([
+                {
+                    article_id: articleId,
+                    session_id: sessionId,
+                    platform: platform,
+                    // Dodatkowe dane analityczne
+                    country: locationInfo.country,
+                    city: locationInfo.city,
+                    device_type: deviceInfo.deviceType,
+                    browser_name: deviceInfo.browserName,
+                    traffic_source: trafficInfo.trafficSource,
+                    referrer_url: trafficInfo.referrerUrl,
+                    shared_at: new Date().toISOString()
+                }
+            ]);
+            
+        if (error) {
+            console.error('Błąd przy zapisywaniu udostępnienia:', error);
+        } else {
+            console.log(`Udostępnienie na ${platform} zostało zapisane`);
+        }
+        
+    } catch (error) {
+        console.error('Błąd w trackShare:', error);
+    }
+}
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+  
+// load event
+const originalLoadHandler = window.onload;
+window.addEventListener('load', function() {
+    // Wywołaj oryginalny handler jeśli istnieje
+    if (originalLoadHandler) {
+        originalLoadHandler();
+    }
+    
+    // Inicjalizuj komentarze
+    initializeComments();
+
+    // Sprawdź status newslettera  ← DODAJ TĘ LINIĘ
+    checkNewsletterStatus();
+  
+});
+
+
+
+
+
+
+
+
+  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- META TAGS DLA SOCIAL MEDIA (Open Graph) -->
+<meta property="og:title" content="Kwantyl 99.9 i jego misinterpretacje">
+<meta property="og:description" content="Nieprecyzyjna interpretacja kwantyla może.">
+<meta property="og:image" content="https://maciejbuczak.github.io/risk-research/assets/images/ECL-rys1.jpg">
+<meta property="og:url" content="https://maciejbuczak.github.io/risk-research/art-oprisk-kw999_v5_1/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Risk Research by Maciej Buczak">
+<!-- META TAGS SPECYFICZNE DLA LINKEDIN -->
+<meta property="article:author" content="Maciej Buczak">
+<meta property="article:published_time" content="2025-06-10T02:00:00Z">
+<meta property="article:section" content="Risk Management">
+<meta property="article:tag" content="Statystyka">
+<meta property="article:tag" content="Analiza danych">
+<meta property="article:tag" content="Kwantyle">
+<meta property="article:tag" content="Risk Management">
+<!-- META TAGS DLA TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kwantyl 99.9 i jego misinterpretacje">
+<meta name="twitter:description" content="Nieprecyzyjna interpretacja kwantyla może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego. Analiza błędnych interpretacji poziomu 99.9% w modelowaniu ryzyka.">
+<meta name="twitter:image" content="https://maciejbuczak.github.io/risk-research/assets/images/ECL-rys1.jpg">
+<!-- PODSTAWOWE META TAGS -->
+<meta name="description" content="Nieprecyzyjna interpretacja kwantyla może w sposób znaczący zmienić wyniki modeli analizy ryzyka operacyjnego. Analiza błędnych interpretacji poziomu 99.9% w modelowaniu ryzyka. Ma to szczególne znaczenie w przypadku modelowania wartości skrajnych położonych w ogonach rozkładu.">
+<meta name="keywords" content="kwantyl, statystyka, analiza ryzyka, risk management, modelowanie, interpretacja danych">
+<meta name="author" content="Maciej Buczak">
+<!-- CANONICAL URL -->
+<link rel="canonical" href="https://maciejbuczak.github.io/risk-research/art-oprisk-kw999_v5_1/">
+
+
+
+
+
+
+
+
+  
+
+
+  
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<body>
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+    <!-- Nowy kontener title-square-container -->
+    <div class="title-square-container">
+      <!-- Przeniesiony nagłówek -->
+      <div class="header-content">
+        <h1 id="title">{{ site.title | default: site.github.repository_name }}</h1>
+        <h2 id="tagline">{{ site.description | default: site.github.project_tagline }}</h2>
+      </div>
+      
+      <div class="blue-square"></div>
+      <div class="blue-square1"></div>
+      <div class="blue-square2"></div>
+      <div class="blue-square-big"></div>
+    </div>
+    
+    <!-- Oryginalny header pozostawiony, ale ukryty przez CSS -->
+    <header class="inner">
+      <h1 id="project_title">{{ site.title | default: site.github.repository_name }}</h1>
+      <h2 id="project_tagline">{{ site.description | default: site.github.project_tagline }}</h2>
+    </header>
+  </div>
+  
+  <!-- Menu będzie wstawiane z pliku .md przez Jekyll -->
+
+<!-- Style dla przypisu hoovernote -->
+
+<style>
+  .hovernote {
+    position: relative;
+    cursor: help;
+    color: #D4AF37;
+  }
+
+  .hovernote:hover::after {
+    content: attr(data-note);
+    position: absolute;
+    top: 1.5em;
+    left: 0;
+    z-index: 100;
+    background: #fff;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    white-space: normal;
+    font-family: Poppins, serif;
+  font-size: 12px;
+  line-height: 1.5;
+    text-indent: 0;
+  }
+
+
+.hovernote2 {
+  position: relative;
+  cursor: help;
+  color: #D4AF37;
+  font-weight: normal;
+}
+
+/* Klasa dla znaku ≡ */
+.equiv-big {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #D4AF37; /* Można inny kolor dla wyróżnienia */
+  vertical-align: middle; /* To wyrówna znak do środka */
+}
+
+.hovernote2:hover::after {
+  content: attr(data-note);
+  position: absolute;
+  top: 1.5em;
+  left: 0;
+  z-index: 100;
+  background: #fff;
+  color: #333;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  white-space: normal;
+  font-family: Poppins, serif;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.5;
+  text-indent: 0;
+}
+
+  
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <!-- MAIN CONTENT -->
+  <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+      {{ content }}
+      
+      <!-- Główny kontener dla layoutu strony Ryzyko Modeli -->
+      <div class="ryzmod-container">
+        <!-- Główny nagłówek -->
+
+
+
+        
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ryzmod-header-font-size: 36px; /* ← TU ZMIENIAJ ROZMIAR */
+  }
+
+  .ryzmod-header-text {
+    color: #D4AF37;
+    font-size: var(--ryzmod-header-font-size);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    margin-right: 15px;
+    font-family: 'Playfair Display', serif;
+  }
+</style>
+
+<div class="ryzmod-header">
+  <div class="ryzmod-header-text">Lady Tasting Tea</div>
+</div>
+        
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+<div class="ryzmod-columns" style="margin-top: 30px; margin-bottom: 30px;">
+<div style="flex:1;">
+
+<div style="background:#FDFAF1; border-left:4px solid #D4AF37; border-radius:8px; padding:12px 20px; margin-bottom:20px; font-family:'Courier New',monospace; font-size:13px; color:#555;">
+  8 filiżanek: 4 × mleko-pierwsze (M), 4 × herbata-pierwsza (H) &nbsp;|&nbsp;
+  Lady wskazuje 4 jako M &nbsp;|&nbsp;
+  H₀: trafia losowo &nbsp;|&nbsp;
+  P(4/4 losowo) = 1/C(8,4) = 1/70 ≈ 0.014
+</div>
+
+<div style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; margin-bottom:20px; line-height:1.7;">
+  <strong style="color:#a85903;">Eksperyment Fishera (1935):</strong>
+  Muriel Bristol twierdzi, że wyczuje czy do filiżanki najpierw wlano mleko czy herbatę.
+  Fisher losuje kolejność 8 filiżanek i każe jej wskazać 4 jako „mleko pierwsze".
+  Lady <strong>trafia wszystkie 4</strong>. Czy to dowód zdolności czy przypadek?
+</div>
+
+<div style="padding:16px 20px; border:1px solid #e8ddd0; border-radius:10px; background:#fdfaf6; margin-bottom:20px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+  <div>
+    <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:8px;">Poziom istotności (α)</label>
+    <div style="display:flex; gap:8px;">
+      <button class="ltt4btn active" onclick="ltt4_setAlpha(0.01, this)">α = 0.01</button>
+      <button class="ltt4btn" onclick="ltt4_setAlpha(0.05, this)">α = 0.05</button>
+      <button class="ltt4btn" onclick="ltt4_setAlpha(0.10, this)">α = 0.10</button>
+      <button class="ltt4btn" onclick="ltt4_setAlpha(0.20, this)">α = 0.20</button>
+    </div>
+  </div>
+  <div id="ltt4-alpha-val" style="font-size:18px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif; margin-top:20px;">α = 0.01</div>
+</div>
+
+<div style="margin-bottom:24px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+  <button onclick="ltt4_runOne()"
+    style="background:#a85903; color:white; border:none; padding:11px 32px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; cursor:pointer; box-shadow:0 2px 8px rgba(168,89,3,0.3);"
+    onmouseover="this.style.background='#d17a1b'" onmouseout="this.style.background='#a85903'">
+    ☕ &nbsp;Nowe losowanie filiżanek
+  </button>
+  <button onclick="ltt4_runMany()"
+    style="background:white; color:#a85903; border:2px solid #a85903; padding:9px 24px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:13px; font-weight:600; cursor:pointer;"
+    onmouseover="this.style.background='#fdf3e9'" onmouseout="this.style.background='white'">
+    ↻ &nbsp;Symuluj 10 000 losowych prób
+  </button>
+</div>
+
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px;">
+  <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">Możliwych układów</div>
+    <div style="font-size:24px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">70</div>
+    <div style="font-size:10px; color:#bbb; font-family:'Poppins',sans-serif; margin-top:2px;">C(8,4) = 70</div>
+  </div>
+  <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">P(4/4 losowo)</div>
+    <div style="font-size:24px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">1/70</div>
+    <div style="font-size:10px; color:#bbb; font-family:'Poppins',sans-serif; margin-top:2px;">≈ 0.0143</div>
+  </div>
+  <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">Próg krytyczny</div>
+    <div id="ltt4-critical" style="font-size:24px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">k ≥ 4</div>
+  </div>
+  <div style="text-align:center; padding:14px 8px; background:#fff3e6; border-radius:10px; border:2px solid #a85903;">
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#a85903; font-family:'Poppins',sans-serif; font-weight:700; margin-bottom:5px;">Decyzja (4/4)</div>
+    <div id="ltt4-decision" style="font-size:15px; font-weight:700; color:#27ae60; font-family:'Poppins',sans-serif;">✓ Odrzucamy H₀</div>
+  </div>
+</div>
+
+<div id="ltt4-verdict" style="border-left:4px solid #27ae60; border-radius:8px; padding:12px 20px; margin-bottom:24px; font-family:'Poppins',sans-serif; font-size:13px; color:#555; background:#FDFAF1; line-height:1.7;">
+  Ładowanie...
+</div>
+
+<div style="border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px; background:#fff; margin-bottom:20px;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px;">Losowy układ filiżanek — każde losowanie zmienia kolejność</div>
+  <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#a85903; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">▶ Lady wskazuje te 4 jako „mleko pierwsze" (aktywny wybór)</div>
+  <div id="ltt4-cups-chosen" style="display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap;"></div>
+  <div style="margin-bottom:6px; font-family:'Poppins',sans-serif; font-size:11px; color:#888; text-transform:uppercase; letter-spacing:0.5px;">Pozostałe 4 — wynikają automatycznie jako „herbata pierwsza"</div>
+  <div id="ltt4-cups-rest" style="display:flex; gap:16px; flex-wrap:wrap;"></div>
+  <div style="margin-top:16px; display:flex; gap:20px; font-family:'Poppins',sans-serif; font-size:12px; color:#888; flex-wrap:wrap;">
+    <span>🥛 mleko pierwsze · obwódka zielona = aktywny wybór Lady</span>
+    <span>🍵 herbata pierwsza · obwódka szara = wynik automatyczny</span>
+    <span style="color:#27ae60; font-weight:600;">✓ wszystkie 4+4 poprawnie</span>
+  </div>
+</div>
+
+<div style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; margin-bottom:20px; overflow:hidden;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">Rozkład hipergeometryczny przy H₀ — ile trafień zdarza się przez czysty przypadek</div>
+  <div id="ltt4-hyper-chart" style="width:100%; height:280px;"></div>
+</div>
+
+<div id="ltt4-sim-wrap" style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; overflow:hidden; display:none;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">10 000 losowych prób — rozkład empiryczny trafień</div>
+  <div id="ltt4-sim-chart" style="width:100%; height:280px;"></div>
+  <div id="ltt4-sim-note" style="font-family:'Poppins',sans-serif; font-size:12px; color:#666; margin-top:10px; padding:10px 14px; background:#FDFAF1; border-radius:6px;"></div>
+</div>
+
+</div>
+</div>
+
+<style>
+.ltt4btn {
+  font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;
+  padding:5px 12px; border-radius:5px; cursor:pointer;
+  border:1.5px solid #d0b38c; background:white; color:#a85903; transition:all 0.15s;
+}
+.ltt4btn:hover { background:#fdf3e9; }
+.ltt4btn.active { background:#a85903; color:white; border-color:#a85903; }
+</style>
+
+<script>
+var ltt4_alpha = 0.01;
+var ltt4_FONT  = 'Poppins, Georgia, serif';
+
+function ltt4_comb(n, k) {
+  if (k < 0 || k > n) return 0;
+  var r = 1;
+  for (var i = 0; i < k; i++) r = r * (n - i) / (i + 1);
+  return Math.round(r);
+}
+
+function ltt4_hyperProb(k) {
+  return ltt4_comb(4, k) * ltt4_comb(4, 4 - k) / ltt4_comb(8, 4);
+}
+
+function ltt4_pValue(k) {
+  var p = 0;
+  for (var i = k; i <= 4; i++) p += ltt4_hyperProb(i);
+  return p;
+}
+
+function ltt4_critK() {
+  for (var k = 4; k >= 0; k--) {
+    if (ltt4_pValue(k) <= ltt4_alpha) return k;
+  }
+  return 5;
+}
+
+function ltt4_shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+function ltt4_setAlpha(a, btn) {
+  ltt4_alpha = a;
+  document.querySelectorAll('.ltt4btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('ltt4-alpha-val').textContent = 'α = ' + a;
+  ltt4_runOne();
+}
+
+function ltt4_renderCups(cups) {
+  var chosenIdx = [], restIdx = [];
+  cups.forEach(function(c, i) { (c === 'M' ? chosenIdx : restIdx).push(i); });
+
+  function cupHTML(idx, isChosen) {
+    var t = cups[idx];
+    var border = isChosen ? '#27ae60' : '#bbb';
+    var bg     = isChosen ? 'rgba(39,174,96,0.08)' : 'rgba(0,0,0,0.03)';
+    return '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;font-family:Poppins,sans-serif;">'
+      + '<div style="width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;'
+      + 'background:' + bg + ';border:2px solid ' + border + ';">'
+      + (t === 'M' ? '🥛' : '🍵') + '</div>'
+      + '<div style="font-size:10px;color:#aaa;">' + (t === 'M' ? 'mleko' : 'herbata') + '</div>'
+      + '<div style="font-size:14px;font-weight:700;color:#27ae60;">&#10003;</div>'
+      + '</div>';
+  }
+
+  document.getElementById('ltt4-cups-chosen').innerHTML = chosenIdx.map(function(i) { return cupHTML(i, true);  }).join('');
+  document.getElementById('ltt4-cups-rest').innerHTML   = restIdx.map(function(i)   { return cupHTML(i, false); }).join('');
+}
+
+function ltt4_renderHyper(highlightK, crit) {
+  var ks = [0,1,2,3,4];
+  var ps = ks.map(ltt4_hyperProb);
+
+  Plotly.react('ltt4-hyper-chart', [
+    {
+      x: ks, y: ps, type: 'bar',
+      marker: {
+        color: ks.map(function(k) { return k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'; }),
+        line:  { color: ks.map(function(k) { return k >= crit ? '#c0392b' : '#a85903'; }), width: 1.5 }
+      },
+      text: ps.map(function(p) { return (p*100).toFixed(1)+'%'; }),
+      textposition: 'outside',
+      textfont: { family: ltt4_FONT, size: 12, color: '#888' },
+      showlegend: false
+    },
+    {
+      x: [highlightK], y: [ltt4_hyperProb(highlightK) + 0.03],
+      type: 'scatter', mode: 'markers+text',
+      text: ['wynik Lady'], textposition: 'top center',
+      textfont: { family: ltt4_FONT, size: 12, color: highlightK >= crit ? '#c0392b' : '#a85903' },
+      marker: { size: 14, color: highlightK >= crit ? '#c0392b' : '#a85903', symbol: 'triangle-down' },
+      showlegend: false
+    }
+  ], {
+    height: 280, paper_bgcolor: 'white', plot_bgcolor: 'white',
+    font: { family: ltt4_FONT, color: '#444' },
+    margin: { t: 50, b: 50, l: 55, r: 20 },
+    title: { text: 'Rozkład H₀ · obszar krytyczny α='+ltt4_alpha+' (k≥'+crit+') na czerwono', font: { size: 12, color: '#444', family: ltt4_FONT } },
+    xaxis: { title: 'liczba trafień k', tickvals:[0,1,2,3,4], ticktext:['0','1','2','3','4'], gridcolor:'#f0e8e0', color:'#888' },
+    yaxis: { title: 'P(X=k)', gridcolor:'#f0e8e0', color:'#888', range:[0,0.62] },
+    bargap: 0.3,
+    shapes: [{ type:'line', x0:crit-0.5, x1:crit-0.5, y0:0, y1:1, xref:'x', yref:'paper', line:{ color:'#c0392b', width:2, dash:'dot' } }],
+    annotations: [{ x:crit-0.5, y:0.97, xref:'x', yref:'paper', text:'  α='+ltt4_alpha, showarrow:false, font:{ color:'#c0392b', size:11, family:ltt4_FONT }, xanchor:'left' }]
+  }, { displayModeBar: false, responsive: true });
+}
+
+function ltt4_runOne() {
+  var cups  = ltt4_shuffle(['M','M','M','M','H','H','H','H']);
+  var crit  = ltt4_critK();
+  var pval  = ltt4_pValue(4);
+  var reject = (crit <= 4);
+
+  document.getElementById('ltt4-critical').textContent = 'k ≥ ' + crit;
+  document.getElementById('ltt4-decision').textContent = reject ? '✓ Odrzucamy H₀' : '✗ Brak podstaw';
+  document.getElementById('ltt4-decision').style.color = reject ? '#27ae60' : '#c0392b';
+
+  var v = document.getElementById('ltt4-verdict');
+  v.style.borderLeftColor = reject ? '#27ae60' : '#c0392b';
+  v.innerHTML = reject
+    ? '<strong style="color:#27ae60;">H₀ odrzucona.</strong> Lady trafiła <strong>4 z 4</strong>. Prawdopodobieństwo takiego wyniku przez przypadek to <strong>1/70 ≈ 1.4%</strong> — poniżej α = '+ltt4_alpha+'. Wynik jest istotny statystycznie.'
+    : '<strong style="color:#c0392b;">Brak podstaw do odrzucenia H₀.</strong> Przy α = '+ltt4_alpha+' próg krytyczny to k ≥ '+crit+'. Wynik 4/4 daje p = '+pval.toFixed(3)+' &gt; α.';
+
+  ltt4_renderCups(cups);
+  ltt4_renderHyper(4, crit);
+}
+
+function ltt4_runMany() {
+  var counts = [0,0,0,0,0];
+  for (var i = 0; i < 10000; i++) {
+    var cups = ltt4_shuffle(['M','M','M','M','H','H','H','H']);
+    var idxs = ltt4_shuffle([0,1,2,3,4,5,6,7]).slice(0,4);
+    var hits = 0;
+    idxs.forEach(function(idx) { if (cups[idx] === 'M') hits++; });
+    counts[hits]++;
+  }
+
+  var ks    = [0,1,2,3,4];
+  var freqs = counts.map(function(c) { return c/10000; });
+  var crit  = ltt4_critK();
+
+  document.getElementById('ltt4-sim-wrap').style.display = 'block';
+  document.getElementById('ltt4-sim-note').innerHTML =
+    'Spośród 10 000 losowych prób: <strong>' + counts[4] + '</strong> razy padły 4 trafienia ('+(counts[4]/100).toFixed(1)+'%).'
+    + ' Teoria: 1/70 × 10 000 = <strong>' + Math.round(10000/70) + '</strong>.';
+
+  Plotly.react('ltt4-sim-chart', [{
+    x: ks, y: freqs, type: 'bar',
+    marker: {
+      color: ks.map(function(k) { return k >= crit ? 'rgba(192,57,43,0.65)' : 'rgba(168,89,3,0.28)'; }),
+      line:  { color: ks.map(function(k) { return k >= crit ? '#c0392b' : '#a85903'; }), width: 1.5 }
+    },
+    text: freqs.map(function(f) { return (f*100).toFixed(1)+'%'; }),
+    textposition: 'outside',
+    textfont: { family: ltt4_FONT, size: 12, color: '#888' },
+    showlegend: false
+  }], {
+    height: 280, paper_bgcolor: 'white', plot_bgcolor: 'white',
+    font: { family: ltt4_FONT, color: '#444' },
+    margin: { t: 45, b: 50, l: 55, r: 20 },
+    title: { text: '10 000 losowych prób · '+counts[4]+' razy trafiono 4/4 (≈1/70) · α='+ltt4_alpha, font: { size: 12, color: '#444', family: ltt4_FONT } },
+    xaxis: { title: 'liczba trafień k', tickvals:[0,1,2,3,4], ticktext:['0','1','2','3','4'], gridcolor:'#f0e8e0', color:'#888' },
+    yaxis: { title: 'częstość', gridcolor:'#f0e8e0', color:'#888', range:[0,0.62] },
+    bargap: 0.3,
+    shapes: [{ type:'line', x0:crit-0.5, x1:crit-0.5, y0:0, y1:1, xref:'x', yref:'paper', line:{ color:'#c0392b', width:2, dash:'dot' } }]
+  }, { displayModeBar: false, responsive: true });
+
+  document.getElementById('ltt4-sim-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Init — czeka na Plotly
+(function waitAndInit() {
+  if (typeof Plotly !== 'undefined') {
+    ltt4_runOne();
+  } else {
+    setTimeout(waitAndInit, 100);
+  }
+})();
+</script>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+<div class="ryzmod-columns" style="margin-top: 30px; margin-bottom: 30px;">
+<div style="flex:1;">
+
+<!-- WSTĘP -->
+<div style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; line-height:1.8; margin-bottom:28px;">
+  <strong style="color:#a85903;">Co testujemy?</strong>
+  Fisher chce sprawdzić czy Muriel Bristol naprawdę wyczuwa smak — czy tylko zgaduje.
+  Przygotowuje 8 filiżanek: w 4 najpierw wlano mleko, w 4 najpierw herbatę. Lady zna tę liczbę.
+  Jej zadanie: <strong>wskazać które 4 filiżanki mają mleko pierwsze</strong>.
+  <br><br>
+  Hipoteza zerowa H₀ mówi: Lady nie ma żadnej zdolności — wskazuje losowo.
+  Pytanie: ile kombinacji wskazań jest możliwych i jak rzadkie jest idealne trafienie?
+</div>
+
+<!-- SETUP EKSPERYMENTU -->
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:28px;">
+
+  <div style="background:#FDFAF1; border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px;">
+    <div style="font-family:'Poppins',sans-serif; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; margin-bottom:14px;">Układ filiżanek</div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;">
+      <div style="text-align:center;">
+        <div style="font-size:22px;">🥛</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#a85903; font-weight:700;">M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:22px;">🥛</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#a85903; font-weight:700;">M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:22px;">🥛</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#a85903; font-weight:700;">M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:22px;">🥛</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#a85903; font-weight:700;">M</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:22px;">🍵</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#888; font-weight:700;">H</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:22px;">🍵</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#888; font-weight:700;">H</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:22px;">🍵</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#888; font-weight:700;">H</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:22px;">🍵</div><div style="font-family:'Courier New',monospace; font-size:10px; color:#888; font-weight:700;">H</div>
+      </div>
+    </div>
+    <div style="font-family:'Poppins',sans-serif; font-size:12px; color:#888; line-height:1.6;">
+      Kolejność jest <strong>losowa</strong> — Lady nie wie która filiżanka to M a która H. Musi wskazać 4 jako M.
+    </div>
+  </div>
+
+  <div style="background:#FDFAF1; border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px;">
+    <div style="font-family:'Poppins',sans-serif; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; margin-bottom:14px;">Pytanie kombinatoryczne</div>
+    <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.8;">
+      Ile sposobów można wybrać 4 filiżanki spośród 8?
+    </div>
+    <div style="margin:12px 0; padding:10px 16px; background:white; border-radius:8px; border:1px solid #e8ddd0; font-family:'Courier New',monospace; font-size:15px; color:#a85903; text-align:center;">
+      C(8,4) = 8! / (4! × 4!) = <strong>70</strong>
+    </div>
+    <div style="font-family:'Poppins',sans-serif; font-size:12px; color:#888; line-height:1.6;">
+      70 możliwych wskazań. Tylko 1 z nich jest idealne. Reszta to różne stopnie pomyłek.
+    </div>
+  </div>
+
+</div>
+
+<!-- TABELA KOMBINACJI -->
+<div style="border:1px solid #e8ddd0; border-radius:10px; overflow:hidden; margin-bottom:28px;">
+
+  <div style="background:#a85903; padding:14px 24px;">
+    <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:rgba(255,255,255,0.7);">Wszystkie możliwe wyniki — rozkład 70 kombinacji</div>
+  </div>
+
+  <table style="width:100%; border-collapse:collapse; font-family:'Poppins',sans-serif;">
+    <thead>
+      <tr style="background:#fdfaf6; border-bottom:2px solid #e8ddd0;">
+        <th style="padding:12px 20px; text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">Trafień (k)</th>
+        <th style="padding:12px 20px; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">Wzór</th>
+        <th style="padding:12px 20px; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">Rozpisanie</th>
+        <th style="padding:12px 20px; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">Kombinacji</th>
+        <th style="padding:12px 20px; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">P(X = k)</th>
+        <th style="padding:12px 20px; text-align:center; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-weight:600;">P(X ≥ k)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- k=4 -->
+      <tr style="background:#fff3e6; border-bottom:1px solid #f5f0ea;">
+        <td style="padding:14px 20px; font-size:13px; font-weight:700; color:#a85903;">k = 4 &nbsp;<span style="font-size:11px; color:#27ae60; font-weight:700;">← wynik Lady</span></td>
+        <td style="padding:14px 20px; text-align:center; font-family:'Courier New',monospace; font-size:13px; color:#555;">C(4,4) × C(4,0)</td>
+        <td style="padding:14px 20px; text-align:center; font-family:'Poppins',sans-serif; font-size:12px; color:#777;">
+          wszystkie 4 M trafione<br>
+          <span style="color:#aaa; font-size:11px;">× 0 błędnych H</span>
+        </td>
+        <td style="padding:14px 20px; text-align:center; font-size:18px; font-weight:700; color:#a85903;">1 × 1 = <strong>1</strong></td>
+        <td style="padding:14px 20px; text-align:center; font-size:13px; font-weight:700; color:#a85903;">1/70 ≈ <strong>1.4%</strong></td>
+        <td style="padding:14px 20px; text-align:center; font-size:13px; font-weight:700; color:#27ae60;">1/70 ≈ <strong>1.4%</strong></td>
+      </tr>
+      <!-- k=3 -->
+      <tr style="border-bottom:1px solid #f5f0ea;">
+        <td style="padding:14px 20px; font-size:13px; color:#555; font-weight:600;">k = 3</td>
+        <td style="padding:14px 20px; text-align:center; font-family:'Courier New',monospace; font-size:13px; color:#555;">C(4,3) × C(4,1)</td>
+        <td style="padding:14px 20px; text-align:center; font-family:'Poppins',sans-serif; font-size:12px; color:#777;">
+          3 z 4 M trafione<br>
+          <span style="color:#aaa; font-size:11px;">× 1 błędna H zamiast M</span>
+        </td>
+        <td style="padding:14px 20px; text-align:center; font-size:18px; font-weight:700; color:#555;">4 × 4 = <strong>16</strong></td>
+        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#555;">16/70 ≈ <strong>22.9%</strong></td>
+        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#888;">17/70 ≈ <strong>24.3%</strong></td>
+      </tr>
+      <!-- k=2 -->
+      <tr style="border-bottom:1px solid #f5f0ea; background:#fdfaf6;">
+        <td style="padding:14px 20px; font-size:13px; color:#555; font-weight:600;">k = 2</td>
+        <td style="padding:14px 20px; text-align:center; font-family:'Courier New',monospace; font-size:13px; color:#555;">C(4,2) × C(4,2)</td>
+        <td style="padding:14px 20px; text-align:center; font-family:'Poppins',sans-serif; font-size:12px; color:#777;">
+          2 z 4 M trafione<br>
+          <span style="color:#aaa; font-size:11px;">× 2 błędne H zamiast M</span>
+        </td>
+        <td style="padding:14px 20px; text-align:center; font-size:18px; font-weight:700; color:#555;">6 × 6 = <strong>36</strong></td>
+        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#555;">36/70 ≈ <strong>51.4%</strong></td>
+        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#888;">53/70 ≈ <strong>75.7%</strong></td>
+      </tr>
+      <!-- k=1 -->
+      <tr style="border-bottom:1px solid #f5f0ea;">
+        <td style="padding:14px 20px; font-size:13px; color:#555; font-weight:600;">k = 1</td>
+        <td style="padding:14px 20px; text-align:center; font-family:'Courier New',monospace; font-size:13px; color:#555;">C(4,1) × C(4,3)</td>
+        <td style="padding:14px 20px; text-align:center; font-family:'Poppins',sans-serif; font-size:12px; color:#777;">
+          1 z 4 M trafione<br>
+          <span style="color:#aaa; font-size:11px;">× 3 błędne H zamiast M</span>
+        </td>
+        <td style="padding:14px 20px; text-align:center; font-size:18px; font-weight:700; color:#555;">4 × 4 = <strong>16</strong></td>
+        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#555;">16/70 ≈ <strong>22.9%</strong></td>
+        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#888;">69/70 ≈ <strong>98.6%</strong></td>
+      </tr>
+      <!-- k=0 -->
+      <tr style="border-bottom:1px solid #f5f0ea; background:#fdfaf6;">
+        <td style="padding:14px 20px; font-size:13px; color:#555; font-weight:600;">k = 0</td>
+        <td style="padding:14px 20px; text-align:center; font-family:'Courier New',monospace; font-size:13px; color:#555;">C(4,0) × C(4,4)</td>
+        <td style="padding:14px 20px; text-align:center; font-family:'Poppins',sans-serif; font-size:12px; color:#777;">
+          0 z 4 M trafione<br>
+          <span style="color:#aaa; font-size:11px;">× wszystkie 4 błędne</span>
+        </td>
+        <td style="padding:14px 20px; text-align:center; font-size:18px; font-weight:700; color:#555;">1 × 1 = <strong>1</strong></td>
+        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#555;">1/70 ≈ <strong>1.4%</strong></td>
+        <td style="padding:14px 20px; text-align:center; font-size:13px; color:#888;">70/70 = <strong>100%</strong></td>
+      </tr>
+      <!-- SUMA -->
+      <tr style="background:#a85903;">
+        <td style="padding:12px 20px; font-family:'Poppins',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:white;">Suma</td>
+        <td style="padding:12px 20px; text-align:center; color:rgba(255,255,255,0.7); font-size:12px;">—</td>
+        <td style="padding:12px 20px; text-align:center; color:rgba(255,255,255,0.7); font-size:12px;">—</td>
+        <td style="padding:12px 20px; text-align:center; font-size:18px; font-weight:700; color:white;">1+16+36+16+1 = <strong>70</strong></td>
+        <td style="padding:12px 20px; text-align:center; font-size:13px; font-weight:700; color:white;">70/70 = 100%</td>
+        <td style="padding:12px 20px;"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- INTERPRETACJA C(4,3) x C(4,1) -->
+<div style="border:1px solid #e8ddd0; border-radius:10px; padding:20px 24px; background:#FDFAF1; margin-bottom:28px;">
+  <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; margin-bottom:16px;">Jak czytać wzór C(4,k) × C(4, 4−k)</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+    <div>
+      <div style="font-family:'Courier New',monospace; font-size:15px; color:#a85903; margin-bottom:8px; font-weight:700;">C(4, k)</div>
+      <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; line-height:1.7;">
+        Ile sposobów wybrać <strong>k prawidłowych M</strong> spośród 4 prawdziwych filiżanek M.
+        <br><br>
+        Dla k=3: C(4,3) = 4 — są dokładnie <strong>4 sposoby</strong> na wybranie 3 z 4 filiżanek M.
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Courier New',monospace; font-size:15px; color:#888; margin-bottom:8px; font-weight:700;">C(4, 4−k)</div>
+      <div style="font-family:'Poppins',sans-serif; font-size:13px; color:#666; line-height:1.7;">
+        Ile sposobów "dopełnić" wskazanie (4−k) błędnymi filiżankami H zamiast M.
+        <br><br>
+        Dla k=3: C(4,1) = 4 — są dokładnie <strong>4 sposoby</strong> na wybranie 1 błędnej H.
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:16px; padding:12px 16px; background:white; border-radius:8px; border-left:4px solid #D4AF37; font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.7;">
+    Mnożymy bo oba wybory są niezależne: każdy ze sposobów wyboru k trafień łączy się z każdym ze sposobów wyboru pomyłek. Stąd 4 × 4 = <strong>16 kombinacji</strong> dla k=3.
+  </div>
+</div>
+
+<!-- WNIOSEK -->
+<div style="border-left:4px solid #a85903; border-radius:8px; padding:16px 24px; background:#FDFAF1; font-family:'Poppins',sans-serif; font-size:13px; color:#555; line-height:1.8;">
+  <strong style="color:#a85903;">Wniosek Fishera:</strong>
+  Przy losowym wskazaniu prawdopodobieństwo trafienia wszystkich 4 wynosi <strong>1/70 ≈ 1.4%</strong>.
+  Ponieważ 1.4% &lt; 5% (przyjęty poziom α), wynik Lady jest <strong>istotny statystycznie</strong> — odrzucamy H₀.
+  Trafienie 3 z 4 (p = 17/70 ≈ 24%) <strong>nie byłoby</strong> wystarczające — zbyt prawdopodobne przy losowym zgadywaniu.
+  Fisher celowo tak zaprojektował eksperyment, wiedząc że jedynym "przekonującym" wynikiem jest 4/4.
+</div>
+
+</div>
+</div>
+
+
+
+
+        
+        
+
+
+
+
+        
+ </div> <!-- zamknięcie głównego kontenera przed obiektami na pełną szerokość -->
+
+
+
+
+
+      
+    </section>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<!-- FOOTER - niezależna implementacja -->
+<style>
+  #custom_footer_container {
+    background-color: #a85903;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 27.75px;
+    padding-bottom: 27.75px;
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  #custom_footer_content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    position: relative;
+    left: 260px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  #custom_footer_container p {
+    margin: 5px 0;
+    position: relative;
+    color: white;
+    font-size: 16px;
+  }
+  
+  #custom_footer_container a {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    #custom_footer_content {
+      left: 150px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    #custom_footer_content {
+      left: 0;
+      padding: 0 30px;
+    }
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+<div id="custom_footer_container">
+  <div id="custom_footer_content">
+    {% if site.github.is_project_page %}
+    <p>Maintained by <a href="{{ site.github.owner_url }}">Maciej Buczak</a></p>
+    {% endif %}
+  </div>
+</div>
+
+
+
+
+
+
+  
+  <!-- Skrypt do wykrywania przeglądarki -->
+  <script>
+    
+    // Funkcja do wykrywania przeglądarki
+    function detectBrowser() {
+      const userAgent = navigator.userAgent;
+      const html = document.documentElement;
+      
+      if (userAgent.indexOf("Firefox") > -1) {
+        html.classList.add("browser-firefox");
+      } else if (userAgent.indexOf("Edg") > -1) {
+        html.classList.add("browser-edge");
+      } else if (userAgent.indexOf("Chrome") > -1) {
+        html.classList.add("browser-chrome");
+      } else if (userAgent.indexOf("Safari") > -1) {
+        html.classList.add("browser-safari");
+      } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+        html.classList.add("browser-ie");
+      } else {
+        html.classList.add("browser-other");
+      }
+      
+      // Debug - pokaż w konsoli wykrytą przeglądarkę
+      console.log("Wykryta przeglądarka:", html.className);
+    }
+    
+    // Uruchom natychmiast po załadowaniu skryptu
+    detectBrowser();
+    
+    // I ponownie po pełnym załadowaniu strony (na wszelki wypadek)
+    window.addEventListener('load', detectBrowser);
+
+  </script>
+
+
+
+
+  
+</body>
+</html>
