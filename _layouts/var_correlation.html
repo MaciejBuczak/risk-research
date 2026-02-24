@@ -3436,290 +3436,341 @@ window.addEventListener('load', function() {
 
 
 
+
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
 <div class="ryzmod-columns" style="margin-top: 30px; margin-bottom: 30px;">
   <div style="flex: 1;">
 
-    <!-- FORMUŁA -->
     <div style="background: #FDFAF1; border-left: 4px solid #D4AF37; border-radius: 8px; padding: 12px 20px; margin-bottom: 20px; font-family: 'Courier New', monospace; font-size: 13px; color: #555;">
-      Straty ~ LogNormal(μ, σ) &nbsp;|&nbsp; Sortujemy wiersze wg Σ rosnąco &nbsp;|&nbsp; VaR<sub>95%</sub> = wiersz 19 z 20 (kolumna Σ)
+      Straty ~ LogNormal(μ, σ) &nbsp;|&nbsp; Zmiana ρ przestawia kolejność wierszy, nie zmienia wartości &nbsp;|&nbsp; VaR<sub>95%</sub> = wiersz 19 z 20 kolumny Σ
     </div>
 
     <!-- SUWAKI -->
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; padding: 16px 20px; border: 1px solid #e8ddd0; border-radius: 10px; background: #fdfaf6;">
       <div>
-        <label style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: #999; font-family: 'Poppins', sans-serif; display:block; margin-bottom: 6px;">μ (log-średnia)</label>
-        <input type="range" id="cv2-mu" min="0.5" max="3" step="0.1" value="1.5"
+        <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">μ (log-średnia)</label>
+        <input type="range" id="cv3-mu" min="0.5" max="3" step="0.1" value="1.5"
           style="width:100%; height:3px; background:#e0d5c8; outline:none; -webkit-appearance:none; border-radius:2px;">
-        <div id="cv2-mu-val" style="font-size: 18px; font-weight: 700; margin-top: 6px; color: #a85903; font-family: 'Poppins', sans-serif;">1.5</div>
+        <div id="cv3-mu-val" style="font-size:18px; font-weight:700; margin-top:6px; color:#a85903; font-family:'Poppins',sans-serif;">1.5</div>
       </div>
       <div>
-        <label style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: #999; font-family: 'Poppins', sans-serif; display:block; margin-bottom: 6px;">σ (log-odchylenie)</label>
-        <input type="range" id="cv2-sigma" min="0.2" max="2" step="0.1" value="0.8"
+        <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">σ (log-odchylenie)</label>
+        <input type="range" id="cv3-sigma" min="0.2" max="2" step="0.1" value="0.8"
           style="width:100%; height:3px; background:#e0d5c8; outline:none; -webkit-appearance:none; border-radius:2px;">
-        <div id="cv2-sigma-val" style="font-size: 18px; font-weight: 700; margin-top: 6px; color: #a85903; font-family: 'Poppins', sans-serif;">0.8</div>
+        <div id="cv3-sigma-val" style="font-size:18px; font-weight:700; margin-top:6px; color:#a85903; font-family:'Poppins',sans-serif;">0.8</div>
       </div>
       <div>
-        <label style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: #999; font-family: 'Poppins', sans-serif; display:block; margin-bottom: 6px;">Korelacja (ρ)</label>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px;" id="cv2-buttons"></div>
-        <div id="cv2-rho-val" style="font-size: 18px; font-weight: 700; margin-top: 8px; color: #a85903; font-family: 'Poppins', sans-serif;">0.00</div>
+        <label style="font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; display:block; margin-bottom:6px;">Korelacja (ρ) — między każdą parą linii</label>
+        <div style="display:flex; flex-wrap:wrap; gap:5px; margin-top:4px;" id="cv3-buttons"></div>
+        <div id="cv3-rho-val" style="font-size:18px; font-weight:700; margin-top:8px; color:#a85903; font-family:'Poppins',sans-serif;">0.00</div>
       </div>
     </div>
 
     <!-- PRZYCISK -->
-    <div style="margin-bottom: 24px;">
-      <button onclick="corSim2.generate()"
+    <div style="margin-bottom:24px;">
+      <button onclick="corSim3.generate()"
         style="background:#a85903; color:white; border:none; padding:11px 32px; border-radius:8px; font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; cursor:pointer; letter-spacing:0.5px; box-shadow:0 2px 8px rgba(168,89,3,0.3);"
         onmouseover="this.style.background='#d17a1b'" onmouseout="this.style.background='#a85903'">
         ↻ &nbsp;Generuj nową próbę
       </button>
+      <span style="font-family:'Poppins',sans-serif; font-size:11px; color:#bbb; margin-left:14px;">Zmiana ρ nie zmienia wartości — tylko układ wierszy</span>
     </div>
 
     <!-- STATYSTYKI VaR -->
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px;">
       <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
-        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">VaR₉₅% — Linia A</div>
-        <div id="cv2-var-a" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
-        <div style="font-size:9px; color:#bbb; font-family:'Poppins',sans-serif; margin-top:3px;">wartość A w wierszu VaR</div>
+        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">A w wierszu VaR</div>
+        <div id="cv3-var-a" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
       </div>
       <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
-        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">VaR₉₅% — Linia B</div>
-        <div id="cv2-var-b" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
-        <div style="font-size:9px; color:#bbb; font-family:'Poppins',sans-serif; margin-top:3px;">wartość B w wierszu VaR</div>
+        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">B w wierszu VaR</div>
+        <div id="cv3-var-b" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
       </div>
       <div style="text-align:center; padding:14px 8px; background:#FDFAF1; border-radius:10px; border:1px solid #e8ddd0;">
-        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">VaR₉₅% — Linia C</div>
-        <div id="cv2-var-c" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
-        <div style="font-size:9px; color:#bbb; font-family:'Poppins',sans-serif; margin-top:3px;">wartość C w wierszu VaR</div>
+        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#999; font-family:'Poppins',sans-serif; margin-bottom:5px;">C w wierszu VaR</div>
+        <div id="cv3-var-c" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
       </div>
       <div style="text-align:center; padding:14px 8px; background:#fff3e6; border-radius:10px; border:2px solid #a85903;">
-        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#a85903; font-family:'Poppins',sans-serif; font-weight:700; margin-bottom:5px;">VaR₉₅% — Portfel Σ</div>
-        <div id="cv2-var-port" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
-        <div style="font-size:9px; color:#a85903; font-family:'Poppins',sans-serif; margin-top:3px;">wiersz 19 kolumny Σ</div>
+        <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.8px; color:#a85903; font-family:'Poppins',sans-serif; font-weight:700; margin-bottom:5px;">VaR₉₅% — Σ Portfel</div>
+        <div id="cv3-var-port" style="font-size:20px; font-weight:700; color:#a85903; font-family:'Poppins',sans-serif;">—</div>
       </div>
     </div>
 
-    <!-- DIVERSIFICATION BENEFIT -->
-    <div id="cv2-benefit-box" style="border-left: 4px solid #27ae60; border-radius: 8px; padding: 12px 20px; margin-bottom: 24px; font-family: 'Poppins', sans-serif; font-size: 13px; color: #555; background:#FDFAF1; display:none;"></div>
+    <!-- BENEFIT -->
+    <div id="cv3-benefit-box" style="border-left:4px solid #27ae60; border-radius:8px; padding:12px 20px; margin-bottom:24px; font-family:'Poppins',sans-serif; font-size:13px; color:#555; background:#FDFAF1; display:none;"></div>
 
     <!-- TABELA -->
     <div style="border:1px solid #e8ddd0; border-radius:10px; padding:16px 20px; background:#fff; margin-bottom:20px; overflow-x:auto;">
-      <div id="cv2-table-container"></div>
+      <div id="cv3-table"></div>
     </div>
 
     <!-- WYKRES -->
     <div style="border:1px solid #e8ddd0; border-radius:10px; padding:16px; background:#fff; overflow:hidden;">
-      <div id="cv2-chart" style="width:100%; height:320px;"></div>
+      <div id="cv3-chart" style="width:100%; height:320px;"></div>
     </div>
 
   </div>
 </div>
 
 <style>
-  #cv2-mu::-webkit-slider-thumb,
-  #cv2-sigma::-webkit-slider-thumb {
-    -webkit-appearance: none; width:18px; height:18px;
+  #cv3-mu::-webkit-slider-thumb, #cv3-sigma::-webkit-slider-thumb {
+    -webkit-appearance:none; width:18px; height:18px;
     background:#a85903; cursor:pointer; border-radius:50%;
     box-shadow:0 2px 6px rgba(168,89,3,0.35);
   }
-  #cv2-mu::-moz-range-thumb,
-  #cv2-sigma::-moz-range-thumb {
+  #cv3-mu::-moz-range-thumb, #cv3-sigma::-moz-range-thumb {
     width:18px; height:18px; background:#a85903;
     cursor:pointer; border-radius:50%; border:none;
   }
-  .cv2-btn {
+  .cv3-btn {
     font-family:'Poppins',sans-serif; font-size:11px; font-weight:600;
     padding:4px 9px; border-radius:5px; cursor:pointer;
-    border:1.5px solid #d0b38c; background:white; color:#a85903;
-    transition:all 0.15s;
+    border:1.5px solid #d0b38c; background:white; color:#a85903; transition:all 0.15s;
   }
-  .cv2-btn:hover { background:#fdf3e9; }
-  .cv2-btn.active { background:#a85903; color:white; border-color:#a85903; }
+  .cv3-btn:hover { background:#fdf3e9; }
+  .cv3-btn.active { background:#a85903; color:white; border-color:#a85903; }
 
-  .cv2-table {
-    width:100%; border-collapse:collapse;
-    font-family:'Courier New',monospace; font-size:13px;
-  }
-  .cv2-table th {
-    font-family:'Poppins',sans-serif; font-size:10px;
-    text-transform:uppercase; letter-spacing:0.8px; color:#999;
-    padding:6px 12px; text-align:right;
+  .cv3-tbl { width:100%; border-collapse:collapse; font-family:'Courier New',monospace; font-size:13px; }
+  .cv3-tbl th {
+    font-family:'Poppins',sans-serif; font-size:10px; text-transform:uppercase;
+    letter-spacing:0.8px; color:#999; padding:6px 12px; text-align:right;
     border-bottom:2px solid #e8ddd0; white-space:nowrap;
   }
-  .cv2-table th:first-child { text-align:center; }
-  .cv2-table td {
-    padding:5px 12px; text-align:right;
-    border-bottom:1px solid #f5f0ea; color:#666;
-  }
-  .cv2-table td:first-child {
-    text-align:center; color:#ccc;
-    font-size:11px; font-family:'Poppins',sans-serif;
-  }
-  .cv2-table tr.cv2-var-row td {
-    background:#fff3e6; font-weight:700; color:#a85903;
+  .cv3-tbl th:first-child { text-align:center; }
+  .cv3-tbl td { padding:4px 12px; text-align:right; border-bottom:1px solid #f5f0ea; }
+  .cv3-tbl td:first-child { text-align:center; color:#bbb; font-size:11px; font-family:'Poppins',sans-serif; }
+  .cv3-tbl tr.cv3-var td {
     border-top:2px solid #a85903; border-bottom:2px solid #a85903;
+    font-weight:700;
   }
-  .cv2-table tr.cv2-var-row td:first-child {
-    color:#a85903; font-family:'Poppins',sans-serif;
-    font-size:10px; font-weight:700; letter-spacing:0.5px;
-  }
-  .cv2-table td.cv2-sum { color:#a85903; font-weight:700; }
-  .cv2-table tr.cv2-var-row td.cv2-sum { background:#fde8cc; }
+  .cv3-tbl tr.cv3-var td:first-child { color:#a85903; font-family:'Poppins',sans-serif; font-size:10px; font-weight:700; }
+  .cv3-tbl td.cv3-sum-cell { font-weight:700; }
 </style>
 
 <script>
-const corSim2 = (function() {
+const corSim3 = (function () {
 
   const N = 20;
-  let currentRho = 0;
+  let rho = 0;
+  // Stałe wartości — generowane raz, aż do kliknięcia "Generuj"
+  let fixedA = [], fixedB = [], fixedC = [];
   const RHO_VALUES = [-1, -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1];
 
-  // Box-Muller
+  /* ── losowanie ────────────────────────────────────────────── */
   function randn() {
-    let u;
-    do { u = Math.random(); } while (u === 0);
+    let u; do { u = Math.random(); } while (u === 0);
     return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * Math.random());
   }
 
-  // 3 skorelowane N(0,1) przez dekompozycję Cholesky'ego
-  // dla macierzy 3x3 z jednakową korelacją ρ
-  function correlatedNormals(rho) {
+  function lognorm(z, mu, sigma) { return Math.exp(mu + sigma * z); }
+
+  /* ── rangi 0..N-1 (argsort) ──────────────────────────────── */
+  function ranks(arr) {
+    // zwraca tablicę rang: ranks[i] = pozycja arr[i] po posortowaniu rosnąco
+    const idx = arr.map((v, i) => ({ v, i })).sort((a, b) => a.v - b.v);
+    const r = new Array(N);
+    idx.forEach((x, rank) => { r[x.i] = rank; });
+    return r;
+  }
+
+  /* ── budowanie układu przez mieszanie rang ────────────────── */
+  // Algorytm: chcemy tablicę permutacji P taka, że korelacja rang(A)[P], rang(B)[P], rang(C)[P]
+  // jest bliska rho. Używamy metody Iman-Conover (uproszczonej):
+  // Generujemy 3 zsynchronizowane wektory normalne ze skorelowaną strukturą,
+  // sortujemy każdy z nich, a ich rangi narzucamy na A, B, C.
+
+  function cholesky3(r) {
+    // Macierz korelacji [[1,r,r],[r,1,r],[r,r,1]]
     const eps = 1e-10;
-    // Cholesky dla [[1,ρ,ρ],[ρ,1,ρ],[ρ,ρ,1]]
     const l00 = 1;
-    const l10 = rho;
-    const l11 = Math.sqrt(Math.max(1 - rho * rho, eps));
-    const l20 = rho;
-    const l21 = l11 > eps ? (rho - rho * rho) / l11 : 0;
-    const l22 = Math.sqrt(Math.max(1 - l20*l20 - l21*l21, eps));
-
-    const z0 = randn(), z1 = randn(), z2 = randn();
-    return [
-      l00 * z0,
-      l10 * z0 + l11 * z1,
-      l20 * z0 + l21 * z1 + l22 * z2
-    ];
+    const l10 = r;
+    const l11 = Math.sqrt(Math.max(1 - r * r, eps));
+    const l20 = r;
+    const l21 = l11 > eps ? (r - r * r) / l11 : 0;
+    const l22 = Math.sqrt(Math.max(1 - l20 * l20 - l21 * l21, eps));
+    return { l00, l10, l11, l20, l21, l22 };
   }
 
-  function lognorm(z, mu, sigma) {
-    return Math.exp(mu + sigma * z);
-  }
-
-  function generate() {
-    const mu    = parseFloat(document.getElementById('cv2-mu').value);
-    const sigma = parseFloat(document.getElementById('cv2-sigma').value);
-    const rho   = currentRho;
-
-    document.getElementById('cv2-mu-val').textContent    = mu.toFixed(1);
-    document.getElementById('cv2-sigma-val').textContent = sigma.toFixed(1);
-    document.getElementById('cv2-rho-val').textContent   = rho.toFixed(2);
-
-    // Generuj N par (a, b, c) ze skorelowanymi resztkami
-    const rows = [];
+  function buildOrder(rhoVal) {
+    // Generuj N wierszy skorelowanych normalnych
+    const L = cholesky3(rhoVal);
+    const zA = [], zB = [], zC = [];
     for (let i = 0; i < N; i++) {
-      const z = correlatedNormals(rho);
-      const a = lognorm(z[0], mu, sigma);
-      const b = lognorm(z[1], mu, sigma);
-      const c = lognorm(z[2], mu, sigma);
-      rows.push({ a, b, c, sum: a + b + c });
+      const z0 = randn(), z1 = randn(), z2 = randn();
+      zA.push(L.l00 * z0);
+      zB.push(L.l10 * z0 + L.l11 * z1);
+      zC.push(L.l20 * z0 + L.l21 * z1 + L.l22 * z2);
     }
+    // Rangi z tych normalnych
+    const rA = ranks(zA), rB = ranks(zB), rC = ranks(zC);
 
-    // Sortuj WYŁĄCZNIE wg sumy rosnąco — A, B, C idą razem z wierszem
+    // Posortowane wartości A, B, C (rosnąco)
+    const sA = [...fixedA].sort((a, b) => a - b);
+    const sB = [...fixedB].sort((a, b) => a - b);
+    const sC = [...fixedC].sort((a, b) => a - b);
+
+    // Przypisz: obserwacja i dostaje wartość o randze rA[i] w posortowanej A
+    const newA = fixedA.map((_, i) => sA[rA[i]]);
+    const newB = fixedB.map((_, i) => sB[rB[i]]);
+    const newC = fixedC.map((_, i) => sC[rC[i]]);
+
+    // Tworzenie wierszy i sortowanie wg sumy
+    const rows = newA.map((a, i) => ({ a, b: newB[i], c: newC[i], sum: a + newB[i] + newC[i] }));
     rows.sort((x, y) => x.sum - y.sum);
+    return rows;
+  }
 
-    // Odczyt VaR — wiersz nr 19 (indeks 18), czyli przedostatni
-    const varRow   = rows[N - 2];
-    const varPort  = varRow.sum;
-    const varA     = varRow.a;
-    const varB     = varRow.b;
-    const varC     = varRow.c;
+  /* ── generuj nowe wartości (przycisk) ───────────────────────*/
+  function generate() {
+    const mu    = parseFloat(document.getElementById('cv3-mu').value);
+    const sigma = parseFloat(document.getElementById('cv3-sigma').value);
+    document.getElementById('cv3-mu-val').textContent    = mu.toFixed(1);
+    document.getElementById('cv3-sigma-val').textContent = sigma.toFixed(1);
 
-    // Suma VaRów gdybyśmy liczyli je osobno (każdy szereg posortowany niezależnie)
-    const sortedA  = [...rows.map(r => r.a)].sort((x, y) => x - y);
-    const sortedB  = [...rows.map(r => r.b)].sort((x, y) => x - y);
-    const sortedC  = [...rows.map(r => r.c)].sort((x, y) => x - y);
-    const varSumInd = sortedA[N-2] + sortedB[N-2] + sortedC[N-2];
+    // Nowe losowe wartości (niezależne)
+    fixedA = Array.from({ length: N }, () => lognorm(randn(), mu, sigma));
+    fixedB = Array.from({ length: N }, () => lognorm(randn(), mu, sigma));
+    fixedC = Array.from({ length: N }, () => lognorm(randn(), mu, sigma));
 
-    document.getElementById('cv2-var-a').textContent    = varA.toFixed(1);
-    document.getElementById('cv2-var-b').textContent    = varB.toFixed(1);
-    document.getElementById('cv2-var-c').textContent    = varC.toFixed(1);
-    document.getElementById('cv2-var-port').textContent = varPort.toFixed(1);
+    render();
+  }
 
-    // Benefit
-    const benefit    = varSumInd - varPort;
+  /* ── tylko przelicz układ wg ρ ───────────────────────────── */
+  function render() {
+    document.getElementById('cv3-rho-val').textContent = rho.toFixed(2);
+
+    const rows = buildOrder(rho);
+    const varRow = rows[N - 2]; // wiersz 19 (0-indexed: 18)
+
+    // VaR osobnych linii (każda niezależnie posortowana)
+    const sA = [...fixedA].sort((a, b) => a - b);
+    const sB = [...fixedB].sort((a, b) => a - b);
+    const sC = [...fixedC].sort((a, b) => a - b);
+    const varSumInd = sA[N - 2] + sB[N - 2] + sC[N - 2];
+
+    document.getElementById('cv3-var-a').textContent    = varRow.a.toFixed(1);
+    document.getElementById('cv3-var-b').textContent    = varRow.b.toFixed(1);
+    document.getElementById('cv3-var-c').textContent    = varRow.c.toFixed(1);
+    document.getElementById('cv3-var-port').textContent = varRow.sum.toFixed(1);
+
+    const benefit    = varSumInd - varRow.sum;
     const benefitPct = varSumInd > 0 ? (benefit / varSumInd * 100) : 0;
-    const box = document.getElementById('cv2-benefit-box');
+    const box = document.getElementById('cv3-benefit-box');
     box.style.display = 'block';
     if (benefit >= 0) {
       box.style.borderLeftColor = '#27ae60';
-      box.innerHTML = `
-        <strong style="color:#27ae60;">✓ Efekt dywersyfikacji:</strong>
-        Suma VaR osobnych linii = <strong>${varSumInd.toFixed(1)}</strong> &nbsp;·&nbsp;
-        VaR portfela = <strong>${varPort.toFixed(1)}</strong> &nbsp;·&nbsp;
-        <strong style="color:#27ae60;">Korzyść: −${benefit.toFixed(1)} (−${benefitPct.toFixed(1)}%)</strong>
-        &nbsp;— przy ρ &lt; 1 złe zdarzenia nie nakładają się jednocześnie.
-      `;
+      box.innerHTML = `<strong style="color:#27ae60;">✓ Efekt dywersyfikacji:</strong>
+        Σ VaR osobnych = <strong>${varSumInd.toFixed(1)}</strong> &nbsp;·&nbsp;
+        VaR portfela = <strong>${varRow.sum.toFixed(1)}</strong> &nbsp;·&nbsp;
+        <strong style="color:#27ae60;">Korzyść: −${benefit.toFixed(1)} (−${benefitPct.toFixed(1)}%)</strong>`;
     } else {
       box.style.borderLeftColor = '#c0392b';
-      box.innerHTML = `
-        <strong style="color:#c0392b;">✗ Brak dywersyfikacji:</strong>
-        Suma VaR osobnych linii = <strong>${varSumInd.toFixed(1)}</strong> &nbsp;·&nbsp;
-        VaR portfela = <strong>${varPort.toFixed(1)}</strong> &nbsp;·&nbsp;
-        <strong style="color:#c0392b;">Nadwyżka: +${Math.abs(benefit).toFixed(1)}</strong>
-        &nbsp;— silna korelacja sprawia, że złe zdarzenia nakładają się.
-      `;
+      box.innerHTML = `<strong style="color:#c0392b;">✗ Brak dywersyfikacji:</strong>
+        Σ VaR osobnych = <strong>${varSumInd.toFixed(1)}</strong> &nbsp;·&nbsp;
+        VaR portfela = <strong>${varRow.sum.toFixed(1)}</strong> &nbsp;·&nbsp;
+        <strong style="color:#c0392b;">Nadwyżka: +${Math.abs(benefit).toFixed(1)}</strong>`;
     }
 
-    renderTable(rows, N - 2);
-    renderChart(rows, varPort, varSumInd);
+    renderTable(rows, N - 2, varSumInd);
+    renderChart(rows, varRow.sum, varSumInd);
   }
 
-  function fmt(v) { return v.toFixed(1); }
+  /* ── kolorowanie komórek heatmap ────────────────────────────*/
+  // Dla każdej kolumny osobno: ranga 0 = najbledszy, ranga N-1 = najbardziej intensywny
+  function cellColor(rank, col) {
+    // intensywność od 0 (blady) do 1 (mocny)
+    const t = rank / (N - 1);
+    if (col === 'a') {
+      // odcień brązowo-pomarańczowy #a85903
+      const r = Math.round(255 - t * (255 - 168));
+      const g = Math.round(255 - t * (255 - 89));
+      const b = Math.round(255 - t * (255 - 3));
+      return `rgb(${r},${g},${b})`;
+    }
+    if (col === 'b') {
+      // odcień złoty #D4AF37
+      const r = Math.round(255 - t * (255 - 212));
+      const g = Math.round(255 - t * (255 - 175));
+      const b = Math.round(255 - t * (255 - 55));
+      return `rgb(${r},${g},${b})`;
+    }
+    if (col === 'c') {
+      // odcień ciepły brąz #7a3b00
+      const r = Math.round(255 - t * (255 - 122));
+      const g = Math.round(255 - t * (255 - 59));
+      const b = Math.round(255 - t * (255 - 0));
+      return `rgb(${r},${g},${b})`;
+    }
+    if (col === 's') {
+      // odcień suma — ciemniejszy bordowy
+      const r = Math.round(255 - t * (255 - 140));
+      const g = Math.round(255 - t * (255 - 30));
+      const b = Math.round(255 - t * (255 - 10));
+      return `rgb(${r},${g},${b})`;
+    }
+    return '#fff';
+  }
 
-  function renderTable(rows, varIdx) {
+  function textColor(rank) {
+    return rank > N * 0.55 ? 'white' : '#333';
+  }
+
+  function renderTable(rows, varIdx, varSumInd) {
+    // Oblicz rangi dla każdej kolumny w obecnym układzie
+    const aVals = rows.map(r => r.a);
+    const bVals = rows.map(r => r.b);
+    const cVals = rows.map(r => r.c);
+    const sVals = rows.map(r => r.sum);
+
+    const rA = ranks(aVals), rB = ranks(bVals), rC = ranks(cVals), rS = ranks(sVals);
+
     let html = `
       <div style="font-family:'Poppins',sans-serif; font-size:11px; color:#999; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.8px;">
-        Wiersze posortowane rosnąco wg kolumny Σ &nbsp;·&nbsp; wiersz 19 = VaR<sub style="text-transform:none">95%</sub> portfela
+        Wiersze posortowane wg Σ rosnąco &nbsp;·&nbsp; intensywność koloru = wielkość wartości w kolumnie &nbsp;·&nbsp; wiersz 19 = VaR<sub style="text-transform:none">95%</sub>
       </div>
-      <table class="cv2-table">
+      <table class="cv3-tbl">
         <thead><tr>
           <th>#</th>
           <th>Linia A</th>
           <th>Linia B</th>
           <th>Linia C</th>
           <th>Σ Portfel</th>
-        </tr></thead>
-        <tbody>
-    `;
+        </tr></thead><tbody>`;
+
     rows.forEach((r, i) => {
       const isVar = (i === varIdx);
-      html += `
-        <tr class="${isVar ? 'cv2-var-row' : ''}">
-          <td>${isVar ? '▶ VaR₉₅%' : i + 1}</td>
-          <td>${fmt(r.a)}</td>
-          <td>${fmt(r.b)}</td>
-          <td>${fmt(r.c)}</td>
-          <td class="cv2-sum">${fmt(r.sum)}</td>
-        </tr>`;
+      const bgA = cellColor(rA[i], 'a');
+      const bgB = cellColor(rB[i], 'b');
+      const bgC = cellColor(rC[i], 'c');
+      const bgS = cellColor(rS[i], 's');
+      const tA  = textColor(rA[i]), tB = textColor(rB[i]);
+      const tC  = textColor(rC[i]), tS = textColor(rS[i]);
+
+      html += `<tr class="${isVar ? 'cv3-var' : ''}">
+        <td>${isVar ? '▶ VaR₉₅%' : i + 1}</td>
+        <td style="background:${bgA}; color:${tA};">${r.a.toFixed(1)}</td>
+        <td style="background:${bgB}; color:${tB};">${r.b.toFixed(1)}</td>
+        <td style="background:${bgC}; color:${tC};">${r.c.toFixed(1)}</td>
+        <td class="cv3-sum-cell" style="background:${bgS}; color:${tS};">${r.sum.toFixed(1)}</td>
+      </tr>`;
     });
+
     html += '</tbody></table>';
-    document.getElementById('cv2-table-container').innerHTML = html;
+    document.getElementById('cv3-table').innerHTML = html;
   }
 
   function renderChart(rows, varPort, varSumInd) {
     const C_MAIN = '#a85903', C_GOLD = '#D4AF37', C_GRID = '#f0e8e0';
     const FONT = 'Poppins, Georgia, serif';
-    const sums  = rows.map(r => r.sum);
-    const idxs  = rows.map((_, i) => i + 1);
-    const varIdx = N - 1; // wiersz 19 (1-indexed)
+    const sums = rows.map(r => r.sum);
+    const idxs = rows.map((_, i) => i + 1);
 
-    Plotly.react('cv2-chart', [
+    Plotly.react('cv3-chart', [
       {
-        x: idxs, y: sums,
-        type: 'bar', name: 'Σ portfela',
+        x: idxs, y: sums, type: 'bar', name: 'Σ portfela',
         marker: {
-          color: idxs.map(i => i === varIdx ? C_MAIN : 'rgba(168,89,3,0.30)'),
+          color: idxs.map(i => i === N - 1 ? C_MAIN : 'rgba(168,89,3,0.28)'),
           line: { color: C_MAIN, width: 1 }
         }
       },
@@ -3742,14 +3793,10 @@ const corSim2 = (function() {
       margin: { t: 40, b: 50, l: 60, r: 20 },
       legend: { x: 0.01, y: 0.99, font: { size: 11 } },
       title: {
-        text: 'Suma strat portfela — posortowana wg Σ · słupek 19 = VaR₉₅%',
+        text: 'Σ strat portfela posortowane wg Σ &nbsp;·&nbsp; słupek 19 = VaR₉₅%',
         font: { size: 13, color: '#444', family: FONT }
       },
-      xaxis: {
-        title: 'wiersz (posortowane wg Σ rosnąco)',
-        gridcolor: C_GRID, color: '#888',
-        tickvals: idxs, ticktext: idxs.map(String)
-      },
+      xaxis: { title: 'wiersz (posortowane wg Σ rosnąco)', gridcolor: C_GRID, color: '#888', tickvals: idxs, ticktext: idxs.map(String) },
       yaxis: { title: 'suma strat', gridcolor: C_GRID, color: '#888' },
       bargap: 0.15
     }, { displayModeBar: false, responsive: true });
@@ -3757,53 +3804,41 @@ const corSim2 = (function() {
 
   function init() {
     // Przyciski ρ
-    const cont = document.getElementById('cv2-buttons');
-    RHO_VALUES.forEach(rho => {
+    const cont = document.getElementById('cv3-buttons');
+    RHO_VALUES.forEach(r => {
       const btn = document.createElement('button');
-      btn.className = 'cv2-btn' + (rho === 0 ? ' active' : '');
-      btn.textContent = rho === 0 ? '0' : rho.toFixed(1);
+      btn.className = 'cv3-btn' + (r === 0 ? ' active' : '');
+      btn.textContent = r === 0 ? '0' : r.toFixed(1);
       btn.onclick = () => {
-        document.querySelectorAll('.cv2-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.cv3-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        currentRho = rho;
-        document.getElementById('cv2-rho-val').textContent = rho.toFixed(2);
-        generate();
+        rho = r;
+        render(); // tylko przelicz układ, nie generuj nowych wartości
       };
       cont.appendChild(btn);
     });
 
-    // Suwaki
-    ['cv2-mu', 'cv2-sigma'].forEach(id => {
+    // Suwaki — tylko aktualizują label, nie generują (dopiero "Generuj")
+    ['cv3-mu', 'cv3-sigma'].forEach(id => {
       document.getElementById(id).addEventListener('input', e => {
-        document.getElementById(id + '-val').textContent =
-          parseFloat(e.target.value).toFixed(1);
-        generate();
+        document.getElementById(id + '-val').textContent = parseFloat(e.target.value).toFixed(1);
       });
     });
 
-    if (typeof Plotly !== 'undefined') {
-      generate();
-    } else {
-      document.querySelector('script[src*="plotly"]').addEventListener('load', generate);
-    }
+    const ready = () => generate();
+    if (typeof Plotly !== 'undefined') ready();
+    else document.querySelector('script[src*="plotly"]').addEventListener('load', ready);
   }
 
   return { generate, init };
 })();
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', corSim2.init);
+  document.addEventListener('DOMContentLoaded', corSim3.init);
 } else {
-  corSim2.init();
+  corSim3.init();
 }
 </script>
-
-
-
-
-
-
-
         
 
 
