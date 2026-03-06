@@ -3437,7 +3437,476 @@ window.addEventListener('load', function() {
 
 
 
+<!-- ========== GALTON WIDGET START ========== -->
+<style>
+.galton-wrap {
+  width: 100%;
+  max-width: 780px;
+  margin: 40px auto;
+  font-family: Georgia, serif;
+  color: #333;
+}
 
+.galton-title-block {
+  margin-bottom: 6px;
+}
+
+.galton-title-block h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #a85903;
+  margin: 0 0 2px 0;
+  border: none;
+}
+
+.galton-title-block p {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #888;
+  margin: 0 0 16px 0;
+}
+
+.galton-controls {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: 14px;
+  background: #fdf3e9;
+  border-left: 4px solid #a85903;
+  padding: 14px 20px;
+}
+
+.galton-ctrl-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.galton-ctrl-group label {
+  font-family: Georgia, serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #a85903;
+}
+
+.galton-ctrl-group .galton-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #333;
+  min-width: 44px;
+  text-align: center;
+}
+
+.galton-controls input[type=range] {
+  -webkit-appearance: none;
+  width: 130px;
+  height: 3px;
+  background: #e0c9a8;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.galton-controls input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #a85903;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.galton-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.galton-checks label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-family: Georgia, serif;
+  color: #666;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.galton-checks input[type=checkbox] {
+  accent-color: #a85903;
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+}
+
+.galton-canvas-wrap {
+  background: #fff;
+  border: 1px solid #d0b38c;
+  box-shadow: 3px 3px 0 #e0c9a8;
+  width: 100%;
+  overflow: hidden;
+}
+
+.galton-canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.galton-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+  font-size: 12px;
+  font-family: Georgia, serif;
+  color: #555;
+}
+
+.galton-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.galton-legend-line {
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.galton-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.galton-note {
+  margin-top: 20px;
+  background: #fdf3e9;
+  border-left: 3px solid #D4AF37;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-family: Georgia, serif;
+  line-height: 1.7;
+  color: #444;
+}
+
+.galton-note p + p {
+  margin-top: 9px;
+}
+
+.galton-note strong {
+  color: #a85903;
+  font-family: 'Playfair Display', serif;
+}
+
+@media (max-width: 600px) {
+  .galton-controls {
+    gap: 18px;
+    padding: 12px 14px;
+  }
+  .galton-controls input[type=range] {
+    width: 100px;
+  }
+  .galton-checks {
+    gap: 10px;
+  }
+}
+</style>
+
+<div class="galton-wrap">
+  <div class="galton-title-block">
+    <h3>Galton 1885 — Elipsa Regresji</h3>
+    <p>Wzrost rodziców a wzrost dzieci</p>
+  </div>
+
+  <div class="galton-controls">
+    <div class="galton-ctrl-group">
+      <label>Korelacja r</label>
+      <input type="range" id="g_rSlider" min="-95" max="95" value="65" step="1">
+      <div class="galton-val" id="g_rVal">0.65</div>
+    </div>
+    <div class="galton-ctrl-group">
+      <label>Liczba punktów</label>
+      <input type="range" id="g_nSlider" min="30" max="600" value="200" step="10">
+      <div class="galton-val" id="g_nVal">200</div>
+    </div>
+  </div>
+
+  <div class="galton-checks">
+    <label><input type="checkbox" id="g_chkPoints" checked> Punkty danych</label>
+    <label><input type="checkbox" id="g_chkEllipse" checked> Elipsa</label>
+    <label><input type="checkbox" id="g_chkReg1" checked> Regresja Y na X</label>
+    <label><input type="checkbox" id="g_chkReg2" checked> Regresja X na Y</label>
+    <label><input type="checkbox" id="g_chkAxis" checked> Oś główna (45°)</label>
+    <label><input type="checkbox" id="g_chkCond" checked> Średnie warunkowe</label>
+  </div>
+
+  <div class="galton-canvas-wrap">
+    <canvas id="g_c" width="740" height="520"></canvas>
+  </div>
+
+  <div class="galton-legend">
+    <div class="galton-legend-item"><div class="galton-legend-dot" style="background:#a85903;opacity:0.4"></div> Dane (rodzic, dziecko)</div>
+    <div class="galton-legend-item"><div class="galton-legend-line" style="background:#2d6a8f"></div> Elipsa koncentracji</div>
+    <div class="galton-legend-item"><div class="galton-legend-line" style="background:#c0392b"></div> Regresja Y na X</div>
+    <div class="galton-legend-item"><div class="galton-legend-line" style="background:#16a085;border-top:2px dashed #16a085;height:0"></div> Regresja X na Y</div>
+    <div class="galton-legend-item"><div class="galton-legend-line" style="background:#a85903;opacity:0.5;border-top:2px dotted #a85903;height:0"></div> Oś główna (45°)</div>
+    <div class="galton-legend-item"><div class="galton-legend-dot" style="background:#D4AF37"></div> Średnie warunkowe</div>
+  </div>
+
+  <div class="galton-note">
+    <p>Galton nanosił wzrost rodziców (oś X) i wzrost dorosłych dzieci (oś Y). Chmura punktów tworzy <strong>elipsę</strong> — jej kształt koduje siłę związku między zmiennymi.</p>
+    <p><strong>Dwie linie regresji:</strong> czerwona (przewiduj Y z X) i zielona przerywana (przewiduj X z Y) — obie przechodzą przez środek, ale mają różne nachylenia. Żadna nie pokrywa się z osią główną elipsy (linia kropkowana, 45°).</p>
+    <p><strong>Gdy r = 1:</strong> obie linie i oś główna zlewają się w jedną. <strong>Gdy r = 0:</strong> linie regresji są pozioma i pionowa. To właśnie <strong>spłaszczenie</strong> względem 45° Galton nazwał regresją do średniej.</p>
+  </div>
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('g_c');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  const ML = 64, MR = 30, MT = 30, MB = 56;
+  const PW = W - ML - MR, PH = H - MT - MB;
+
+  let r = 0.65, N = 200;
+  let pts = [];
+
+  const MUX = 170, MUY = 170, SX = 6, SY = 6;
+  const XMIN = MUX - 3.5*SX, XMAX = MUX + 3.5*SX;
+  const YMIN = MUY - 3.5*SY, YMAX = MUY + 3.5*SY;
+
+  function randn() {
+    let u = 0, v = 0;
+    while(u === 0) u = Math.random();
+    while(v === 0) v = Math.random();
+    return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
+  }
+
+  function generatePoints() {
+    pts = [];
+    for(let i = 0; i < N; i++) {
+      const z1 = randn();
+      const z2 = randn();
+      const x = MUX + SX * z1;
+      const y = MUY + SY * (r * z1 + Math.sqrt(1 - r*r) * z2);
+      pts.push([x, y]);
+    }
+  }
+
+  function tx(x) { return ML + (x - XMIN)/(XMAX - XMIN) * PW; }
+  function ty(y) { return MT + PH - (y - YMIN)/(YMAX - YMIN) * PH; }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, W, H);
+
+    // Grid
+    ctx.strokeStyle = '#f0e8dc';
+    ctx.lineWidth = 1;
+    for(let v = Math.ceil(XMIN/2)*2; v <= XMAX; v += 2) {
+      ctx.beginPath(); ctx.moveTo(tx(v), MT); ctx.lineTo(tx(v), MT+PH); ctx.stroke();
+    }
+    for(let v = Math.ceil(YMIN/2)*2; v <= YMAX; v += 2) {
+      ctx.beginPath(); ctx.moveTo(ML, ty(v)); ctx.lineTo(ML+PW, ty(v)); ctx.stroke();
+    }
+
+    // Axes
+    ctx.strokeStyle = '#d0b38c';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(ML, MT+PH); ctx.lineTo(ML+PW, MT+PH); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ML, MT); ctx.lineTo(ML, MT+PH); ctx.stroke();
+
+    // Axis labels
+    ctx.fillStyle = '#a85903';
+    ctx.font = '12px Georgia, serif';
+    ctx.textAlign = 'center';
+    for(let v = 160; v <= 180; v += 5) {
+      ctx.fillText(v+'', tx(v), MT+PH+18);
+    }
+    ctx.textAlign = 'right';
+    for(let v = 160; v <= 180; v += 5) {
+      ctx.fillText(v+'', ML-8, ty(v)+4);
+    }
+
+    // Axis titles
+    ctx.fillStyle = '#666';
+    ctx.font = 'italic 12px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Wzrost rodzica (cm)', ML + PW/2, H - 10);
+    ctx.save();
+    ctx.translate(16, MT + PH/2);
+    ctx.rotate(-Math.PI/2);
+    ctx.fillText('Wzrost dziecka (cm)', 0, 0);
+    ctx.restore();
+
+    const showPts  = document.getElementById('g_chkPoints').checked;
+    const showEll  = document.getElementById('g_chkEllipse').checked;
+    const showR1   = document.getElementById('g_chkReg1').checked;
+    const showR2   = document.getElementById('g_chkReg2').checked;
+    const showAx   = document.getElementById('g_chkAxis').checked;
+    const showCond = document.getElementById('g_chkCond').checked;
+
+    // Points
+    if(showPts) {
+      ctx.fillStyle = 'rgba(168,89,3,0.22)';
+      for(const [x,y] of pts) {
+        ctx.beginPath();
+        ctx.arc(tx(x), ty(y), 3, 0, 2*Math.PI);
+        ctx.fill();
+      }
+    }
+
+    // Ellipse
+    if(showEll) {
+      ctx.save();
+      ctx.strokeStyle = '#2d6a8f';
+      ctx.lineWidth = 2;
+      const scale = 2.0;
+      ctx.beginPath();
+      for(let i = 0; i <= 360; i++) {
+        const t = i * Math.PI/180;
+        const xi = MUX + scale*SX * Math.cos(t);
+        const yi = MUY + scale*SY * (r * Math.cos(t) + Math.sqrt(1-r*r) * Math.sin(t));
+        if(i === 0) ctx.moveTo(tx(xi), ty(yi));
+        else ctx.lineTo(tx(xi), ty(yi));
+      }
+      ctx.closePath();
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Main axis 45°
+    if(showAx) {
+      ctx.save();
+      ctx.strokeStyle = '#a85903';
+      ctx.globalAlpha = 0.55;
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([5,5]);
+      const y0 = MUY + (XMIN - MUX);
+      const y1 = MUY + (XMAX - MUX);
+      ctx.beginPath(); ctx.moveTo(tx(XMIN), ty(y0)); ctx.lineTo(tx(XMAX), ty(y1)); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+      ctx.restore();
+      ctx.fillStyle = '#a85903';
+      ctx.globalAlpha = 0.7;
+      ctx.font = '11px Georgia, serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('Oś główna (45°)', tx(XMAX)-92, ty(MUY + (XMAX-MUX))-6);
+      ctx.globalAlpha = 1;
+    }
+
+    // Regression Y on X
+    if(showR1) {
+      const slope1 = r * SY/SX;
+      const int1 = MUY - slope1 * MUX;
+      ctx.strokeStyle = '#c0392b';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(tx(XMIN), ty(slope1*XMIN + int1));
+      ctx.lineTo(tx(XMAX), ty(slope1*XMAX + int1));
+      ctx.stroke();
+      ctx.fillStyle = '#c0392b';
+      ctx.font = '11px Georgia, serif';
+      ctx.textAlign = 'right';
+      ctx.fillText('Regresja Y na X', tx(XMAX-1), ty(slope1*(XMAX-1)+int1)-7);
+    }
+
+    // Regression X on Y
+    if(showR2 && Math.abs(r) > 0.05) {
+      const slopeXY = 1/(r * SX/SY);
+      const intXY = MUY - slopeXY * MUX;
+      ctx.save();
+      ctx.strokeStyle = '#16a085';
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([8,5]);
+      ctx.beginPath();
+      ctx.moveTo(tx(XMIN), ty(slopeXY*XMIN + intXY));
+      ctx.lineTo(tx(XMAX), ty(slopeXY*XMAX + intXY));
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+      ctx.fillStyle = '#16a085';
+      ctx.font = '11px Georgia, serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('Regresja X na Y', tx(XMIN+1), ty(slopeXY*(XMIN+1)+intXY)+14);
+    }
+
+    // Conditional means
+    if(showCond) {
+      const slope1 = r * SY/SX;
+      const int1 = MUY - slope1 * MUX;
+      ctx.fillStyle = '#D4AF37';
+      for(const b of [-3,-2,-1,0,1,2,3]) {
+        const cx = MUX + b * SX;
+        const cy = slope1 * cx + int1;
+        ctx.beginPath();
+        ctx.arc(tx(cx), ty(cy), 6, 0, 2*Math.PI);
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+    }
+
+    // r label
+    ctx.fillStyle = '#333';
+    ctx.font = 'bold 15px "Playfair Display", Georgia, serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('r = ' + r.toFixed(2), ML+8, MT+22);
+
+    if(showR1) {
+      const slope1 = r * SY/SX;
+      const angle = Math.atan(slope1) * 180/Math.PI;
+      ctx.fillStyle = '#c0392b';
+      ctx.font = '11px Georgia, serif';
+      ctx.fillText('α = ' + angle.toFixed(1) + '°', ML+8, MT+40);
+    }
+  }
+
+  function update() {
+    generatePoints();
+    draw();
+  }
+
+  document.getElementById('g_rSlider').addEventListener('input', function() {
+    r = this.value / 100;
+    document.getElementById('g_rVal').textContent = r.toFixed(2);
+    update();
+  });
+
+  document.getElementById('g_nSlider').addEventListener('input', function() {
+    N = parseInt(this.value);
+    document.getElementById('g_nVal').textContent = N;
+    update();
+  });
+
+  ['g_chkPoints','g_chkEllipse','g_chkReg1','g_chkReg2','g_chkAxis','g_chkCond'].forEach(id => {
+    document.getElementById(id).addEventListener('change', draw);
+  });
+
+  update();
+})();
+</script>
+<!-- ========== GALTON WIDGET END ========== -->
 
         
         
