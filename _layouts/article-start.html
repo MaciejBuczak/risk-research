@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,maximum-scale=2">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+{% seo %}
+  {% include head-custom.html %}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      background-color: white !important;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .outer {
+      width: 100%;
+      max-width: 100%;
+      padding: 0;
+      margin: 0;
+      background-color: transparent !important;
+    }
+    #header_wrap {
+      background-color: #a85903 !important;
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding-top: 30px;
+      padding-bottom: 30.5px;
+      overflow: hidden; /* Zapobiega wystawaniu kwadratów */
+    }
+    #header_wrap .inner {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+      position: relative;
+      left: 260px;
+      text-align: left;
+      /* Ukrywamy oryginalny nagłówek */
+      visibility: hidden;
+    }
+    #project_title {
+      font-size: 42px;
+      margin-top: 20px;
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
+      color: white;
+    }
+    #project_tagline {
+      font-size: 24px;
+      margin-top: 10px;
+      text-align: left;
+      margin-left: 0;
+      position: relative;
+      left: 0px;
+      color: white;
+    }
+    
+    /* Nowy kontener title-square-container */
+.title-square-container {
+  position: absolute;
+  top: 28px; /* Kontrolowanie położenia w pionie */
+  left: 49.68%; /* Wycentrowanie w poziomie */
+  transform: translateX(-50%);
+  width: 100%; /* Pełna szerokość w ramach max-width */
+  max-width: 650px; /* Maksymalna szerokość */
+  height: 150px; /* Wysokość kontenera - możesz zmienić */
+  z-index: 10;
+}
+
+/* Nowy styl dla nagłówka w kontenerze title-square-container */
+.title-square-container .header-content {
+  position: absolute;
+  top: 2.5px; /* Kontrolowanie położenia w pionie */
+  left: 10px; /* Kontrolowanie położenia w poziomie */
+  z-index: 10;
+}
+
+/* Style dla nagłówka w nowym kontenerze, zachowujące oryginalne style */
+.title-square-container #title {
+  font-size: 42px;
+  margin-top: 20px;
+  text-align: left;
+  margin-left: 0;
+  position: relative;
+  left: 0px;
+  color: white;
+}
+
+.title-square-container #tagline {
+  font-size: 24px;
+  margin-top: 10px;
+  text-align: left;
+  margin-left: 0;
+  position: relative;
+  left: 0px;
+  color: white;
+  font-weight: normal !important;
+}
+
+/* Usunięcie pseudoelementów, które mogłyby tworzyć podkreślenie */
+.title-square-container #tagline::after,
+.title-square-container #tagline::before {
+  content: none !important;
+  display: none !important;
+}
+    
+    /* Nowy niebieski kwadrat w prawym górnym rogu */
+    .title-square-container .blue-square {
+      width: 45px;
+      height: 45px;
+      background-color: #d17a1b;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    
+    /* Nowe niebieskie kwadraty w kontenerze title-square-container */
+    .title-square-container .blue-square1 {
+      width: 24px;
+      height: 24px;
+      background-color: #d17a1b;
+      position: absolute;
+      top: 51.5px; /* Możesz kontrolować położenie w pionie */
+      right: 63px; /* Możesz kontrolować położenie w poziomie */
+    }
+    
+    .title-square-container .blue-square2 {
+      width: 24px;
+      height: 24px;
+      background-color: #d17a1b;
+      position: absolute;
+      top: 31px; /* Możesz kontrolować położenie w pionie */
+      right: 107px; /* Możesz kontrolować położenie w poziomie */
+    }
+    
+    .title-square-container .blue-square-big {
+      width: 175px;
+      height: 30px;
+      background-color: #d17a1b;
+      position: absolute;
+      top: 60px; /* Możesz kontrolować położenie w pionie */
+      left: 0px; /* Możesz kontrolować położenie w poziomie */
+    }
+    
+    /* Media queries dla różnych szerokości ekranu */
+    @media screen and (max-width: 1200px) {
+      /* Dostosowujemy pozycję kontenera z tytułem */
+      #header_wrap .inner {
+        left: 150px; /* Dostosuj tę wartość do swoich potrzeb */
+      }
+    }
+    
+    /* Media queries dla telefonów z proporcjonalnym położeniem kwadratów */
+    @media screen and (max-width: 768px) {
+      /* Style dla kontenera z tytułem - zachowujemy te same proporcje jak dla komputera */
+      #header_wrap .inner {
+        left: 0px; /* Dostosowany do urządzeń mobilnych */
+        width: calc(100% - 60px); /* Zapewnienie, że tekst się zmieści */
+      }
+      
+      /* Zachowujemy taki sam rozmiar czcionki jak na komputerze */
+      #project_title, #title {
+        font-size: 42px;
+      }
+      
+      #project_tagline, #tagline {
+        font-size: 24px;
+      }
+    }
+    
+    /* Dodatkowe style dla małych telefonów */
+    @media screen and (max-width: 480px) {
+      /* Radykalne resetowanie pozycji kontenera z tytułem */
+      #header_wrap {
+        padding-left: 0;
+        padding-right: 0;
+        justify-content: flex-start; /* Wyrównanie do lewej */
+      }
+      
+      #header_wrap .inner {
+        left: 0;
+        right: auto;
+        margin-left: 0;
+        padding-left: 10px; /* Minimalny padding, aby tekst nie przylegał do krawędzi */
+        width: 100%;
+        max-width: 100%;
+        transform: none;
+        justify-content: flex-start;
+      }
+      
+      #project_title, #title {
+        font-size: 32px;
+        margin-left: 0;
+        padding-left: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+      }
+      
+      #project_tagline, #tagline {
+        font-size: 24px;
+        margin-left: 0;
+        padding-left: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+      }
+      
+      .outer {
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+    
+    /* Dodatkowe media query dla orientacji poziomej na telefonach */
+    @media screen and (max-width: 900px) and (orientation: landscape) {
+      /* Dostosowanie położenia kontenera z tytułem dla orientacji poziomej */
+      #header_wrap .inner {
+        left: 80px;
+        width: calc(100% - 100px);
+      }
+    }
+    
+    /* Zaktualizowane style dla menu - zgodne z poprzednią stroną */
+    #myMenu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      padding: 20px 0;
+      margin-top: 0 !important;
+      margin-bottom: 60px;
+      width: 100%;
+      position: relative;
+      top: 21px; /* Kontrola położenia w pionie */
+      z-index: 100;
+    }
+    
+    #myMenu a.menu-option {
+      color: rgb(115, 115, 115);
+      text-decoration: none;
+      padding: 5px 10px;
+      margin: 0 15px;
+      font-size: 18px;
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
+    
+    #myMenu a.menu-option:hover {
+      color: #a85903;
+    }
+    
+    /* Style responsywne dla menu */
+    @media screen and (max-width: 768px) {
+      #myMenu {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      #myMenu a.menu-option {
+        margin: 5px 0;
+      }
+    }
+    
+    #main_content_wrap {
+      background-color: white !important;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      border: none;
+    }
+    #main_content {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+    }
+    
+    /* Zaktualizowane style dla dolnej belki (footer) */
+    #footer_wrap {
+      background-color: #a85903 !important;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      height: auto;
+      padding-top: 27.75px;
+      padding-bottom: 27.75px;
+      position: relative;
+    }
+    #footer_wrap .inner {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+      position: relative;
+      left: 260px;
+      text-align: center;
+    }
+    #footer_wrap p {
+      margin: 5px 0;
+      position: relative;
+      left: 0px;
+      top: 0px;
+    }
+    #footer_wrap .copyright {
+      position: relative;
+      top: 0px;
+      left: 0px;
+    }
+
+    .title-square-container h2#tagline,
+    .title-square-container h2[id="tagline"],
+    .title-square-container .header-content h2,
+    h2#tagline {
+      border-bottom: none !important;
+      text-decoration: none !important;
+      box-shadow: none !important;
+      background-image: none !important;
+      font-weight: normal !important;
+      color: white !important;
+      position: relative !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Ukrycie wszystkich możliwych pseudoelementów */
+    .title-square-container h2#tagline::after,
+    .title-square-container h2#tagline::before,
+    .title-square-container h2[id="tagline"]::after,
+    .title-square-container h2[id="tagline"]::before,
+    .title-square-container .header-content h2::after,
+    .title-square-container .header-content h2::before,
+    h2#tagline::after,
+    h2#tagline::before {
+      content: none !important;
+      display: none !important;
+      visibility: hidden !important;
+      border: none !important;
+      background: none !important;
+      position: static !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      text-decoration: none !important;
+      box-shadow: none !important;
+    }
+    
+    /* NOWE STYLE DLA PROJEKTU - POPRAWIONE */
+    
+    /* Główny kontener dla siatki elementów */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 30px;
+      margin-bottom: 50px;
+    }
+    
+    /* Styl dla elementów typu obiekt (O) + zdjęcie (Z) */
+    .topic-item {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      height: 380px; /* Stała wysokość dla wszystkich elementów */
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .topic-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Kontener na zdjęcie (Z) - POPRAWIONY */
+    .image-container {
+      position: relative;
+      padding: 0;
+      margin: 0;
+      border: 1px solid #a85903;
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+    
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      margin: 0;
+      padding: 0;
+      display: block;
+      flex: 1;
+    }
+    
+    /* Kontener na grafiki dynamiczne (KDG) */
+    .kdg-container {
+      position: relative;
+      height: 100%;
+      border: 1px solid #a85903;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      padding: 0;
+      margin: 0;
+    }
+    
+    /* Style dla prostokątów (O) */
+    .object-box {
+      position: relative;
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      text-align: center;
+    }
+    
+    /* Specjalny styl dla pierwszego elementu */
+    .title-only {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 20px;
+      margin: 0;
+    }
+    
+    .title-only .object-title {
+      font-size: 42px;
+      text-align: center;
+    }
+    
+    /* Kolory dla różnych prostokątów */
+    .color-d6d2c7 {
+      background-color: #d6d2c7;
+    }
+    
+    .color-faf9f4 {
+      background-color: #faf9f4;
+    }
+    
+    .color-ece0d0 {
+      background-color: #ece0d0;
+    }
+    
+    /* Style dla typografii */
+    .object-id {
+      font-size: 14px;
+      margin-bottom: 5px;
+      color: #666;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 5;
+    }
+    
+    .object-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #a85903;
+      margin-bottom: 0;
+      line-height: 1.2;
+      text-align: center;
+    }
+    
+    .object-subtitle {
+      font-size: 28px;
+      font-weight: bold;
+      color: #555; /* Zmieniono z #333 na ciemno szary */
+      line-height: 1.2;
+      text-align: center;
+    }
+    
+    /* Jednoliniowe tytuły */
+    .title-wrapper {
+      display: flex;
+      flex-direction: column; /* zmieniono na kolumnę dla lepszego wycentrowania */
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 6px;
+    }
+    
+    /* Style dla mediów o różnych rozmiarach */
+    @media screen and (max-width: 992px) {
+      .topics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media screen and (max-width: 576px) {
+      .topics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Style dla dynamicznych grafik SVG */
+    .dynamic-graphic {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .dynamic-graphic svg {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    /* Animacje dla grafik */
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .pulse {
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    .rotate {
+      animation: rotate 20s infinite linear;
+    }
+
+    .float {
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .delayed-pulse {
+      animation: pulse 3s infinite ease-in-out;
+      animation-delay: 1.5s;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+    <!-- Nowy kontener title-square-container -->
+    <div class="title-square-container">
+      <!-- Przeniesiony nagłówek -->
+      <div class="header-content">
+        <h1 id="title">{{ site.title | default: site.github.repository_name }}</h1>
+        <h2 id="tagline">{{ site.description | default: site.github.project_tagline }}</h2>
+      </div>
+      
+      <div class="blue-square"></div>
+      <div class="blue-square1"></div>
+      <div class="blue-square2"></div>
+      <div class="blue-square-big"></div>
+    </div>
+    
+    <!-- Oryginalny header pozostawiony, ale ukryty przez CSS -->
+    <header class="inner">
+      <h1 id="project_title">{{ site.title | default: site.github.repository_name }}</h1>
+      <h2 id="project_tagline">{{ site.description | default: site.github.project_tagline }}</h2>
+    </header>
+  </div>
+  
+  <!-- Menu będzie teraz wstawiane z index.md przez Jekyll -->
+
+
+  <!-- MAIN CONTENT -->
+  <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+      {{ content }}
+
+
+  
+
+
+
+  
+
+
+<!-- Sekcja O 1 - na pełną szerokość z zawartością w kontenerze -->
+<div class="elegant-section-full-width">
+  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <div class="elegant-cards-container">
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Zaawansowana analityka</h3>
+          <p>Kompleksowe rozwiązania analityczne wykorzystujące najnowsze narzędzia statystyczne i modele predykcyjne dla precyzyjnej oceny ryzyka biznesowego.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Strategia biznesowa</h3>
+          <p>Spersonalizowane podejście do rozwoju i implementacji modeli strategicznych, uwzględniających specyfikę branży i indywidualne potrzeby organizacji.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Walidacja modeli</h3>
+          <p>Niezależna weryfikacja skuteczności modeli biznesowych i finansowych zgodnie z najwyższymi standardami branżowymi i wymogami regulacyjnymi.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+<style>
+  .elegant-section-full-width {
+    background-color: #656461;
+    padding: 60px 0;
+    margin: 60px 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .elegant-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .elegant-card {
+    background: #faf3e3;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 100%;
+  }
+  
+  .elegant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-image {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  
+  .elegant-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+  }
+  
+  .card-content {
+    padding: 30px;
+  }
+  
+  .card-content h3 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  
+  .card-content h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #a85903;
+  }
+  
+  .card-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 16px;
+    text-indent: 0;
+  }
+  
+  .elegant-button {
+    display: inline-block;
+    color: #a85903;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  .elegant-button:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #a85903;
+    transition: width 0.3s ease;
+  }
+  
+  .elegant-button:hover:after {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .elegant-cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .elegant-cards-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .elegant-section-full-width {
+      padding: 40px 0;
+    }
+  }
+</style>
+  
+
+
+
+  
+
+
+
+<!-- Sekcja O 3 - na pełną szerokość z zawartością w kontenerze -->
+<div class="elegant-section-full-width">
+  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <div class="elegant-cards-container">
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Zaawansowana analityka</h3>
+          <p>Kompleksowe rozwiązania analityczne wykorzystujące najnowsze narzędzia statystyczne i modele predykcyjne dla precyzyjnej oceny ryzyka biznesowego.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Strategia biznesowa</h3>
+          <p>Spersonalizowane podejście do rozwoju i implementacji modeli strategicznych, uwzględniających specyfikę branży i indywidualne potrzeby organizacji.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Walidacja modeli</h3>
+          <p>Niezależna weryfikacja skuteczności modeli biznesowych i finansowych zgodnie z najwyższymi standardami branżowymi i wymogami regulacyjnymi.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+<style>
+  .elegant-section-full-width {
+    background-color: #656461;
+    padding: 60px 0;
+    margin: 60px 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .elegant-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .elegant-card {
+    background: #faf3e3;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 100%;
+  }
+  
+  .elegant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-image {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  
+  .elegant-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+  }
+  
+  .card-content {
+    padding: 30px;
+  }
+  
+  .card-content h3 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  
+  .card-content h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #a85903;
+  }
+  
+  .card-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 16px;
+    text-indent: 0;
+  }
+  
+  .elegant-button {
+    display: inline-block;
+    color: #a85903;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  .elegant-button:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #a85903;
+    transition: width 0.3s ease;
+  }
+  
+  .elegant-button:hover:after {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .elegant-cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .elegant-cards-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .elegant-section-full-width {
+      padding: 40px 0;
+    }
+  }
+</style>
+
+
+<!-- Sekcja O 4 - na pełną szerokość z zawartością w kontenerze -->
+<div class="elegant-section-full-width">
+  <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <div class="elegant-cards-container">
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Zaawansowana analityka</h3>
+          <p>Kompleksowe rozwiązania analityczne wykorzystujące najnowsze narzędzia statystyczne i modele predykcyjne dla precyzyjnej oceny ryzyka biznesowego.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Strategia biznesowa</h3>
+          <p>Spersonalizowane podejście do rozwoju i implementacji modeli strategicznych, uwzględniających specyfikę branży i indywidualne potrzeby organizacji.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+      
+      <div class="elegant-card">
+        <div class="card-image">
+          <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3>Walidacja modeli</h3>
+          <p>Niezależna weryfikacja skuteczności modeli biznesowych i finansowych zgodnie z najwyższymi standardami branżowymi i wymogami regulacyjnymi.</p>
+          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+<style>
+  .elegant-section-full-width {
+    background-color: #656461;
+    padding: 60px 0;
+    margin: 60px 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .elegant-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .elegant-card {
+    background: #faf3e3;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 100%;
+  }
+  
+  .elegant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-image {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  
+  .elegant-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+  }
+  
+  .card-content {
+    padding: 30px;
+  }
+  
+  .card-content h3 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 12px;
+  }
+  
+  .card-content h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #a85903;
+  }
+  
+  .card-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 16px;
+    text-indent: 0;
+  }
+  
+  .elegant-button {
+    display: inline-block;
+    color: #a85903;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  .elegant-button:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #a85903;
+    transition: width 0.3s ease;
+  }
+  
+  .elegant-button:hover:after {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .elegant-cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .elegant-cards-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .elegant-section-full-width {
+      padding: 40px 0;
+    }
+  }
+</style>
+
+
+
+
+
+
+
+<!-- Sekcja z obiektem SVG i podpisem -->
+<div class="risk-section">
+  <div class="risk-container">
+    <div class="risk-cards">
+      <!-- Obiekt SVG z podpisem -->
+      <div class="risk-card svg-object-container">
+        <!-- Tutaj wstawiany jest plik SVG -->
+        <div class="svg-content">
+          <img src="/risk-research/assets/images/grafika-exc1.png" alt="Opis twojego SVG" class="svg-image">
+          <!-- Alternatywnie, możesz wstawić kod SVG bezpośrednio -->
+          <!--
+          <svg viewBox="0 0 300 300" width="100%" height="100%">
+            [Tutaj wklej kod SVG z Canvy]
+          </svg>
+          -->
+        </div>
+        <!-- Podpis pod obiektem SVG -->
+        <div class="card-text">
+          <h3>nazwa.<span>OBIEKTU</span></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Style dla kontenera obiektu SVG */
+  .svg-object-container {
+    background-color: #faf3e3;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .svg-object-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Kontener dla SVG */
+  .svg-content {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 220px;
+    overflow: hidden;
+  }
+  
+  /* Style dla obrazka SVG */
+  .svg-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+  }
+  
+  /* Możesz dostosować poniższe style według potrzeb */
+  @media screen and (max-width: 768px) {
+    .svg-content {
+      min-height: 180px;
+    }
+  }
+</style>
+
+
+
+
+
+
+
+  
+  <!-- FOOTER  -->
+  <div id="footer_wrap" class="outer">
+    <footer class="inner">
+      {% if site.github.is_project_page %}
+      <p class="copyright">Maintained by <a href="{{ site.github.owner_url }}">Maciej Buczak</a></p>
+      {% endif %}
+    </footer>
+  </div>
+  
+  <!-- Skrypt do wykrywania przeglądarki -->
+  <script>
+    // Funkcja do wykrywania przeglądarki
+    function detectBrowser() {
+      const userAgent = navigator.userAgent;
+      const html = document.documentElement;
+      
+      if (userAgent.indexOf("Firefox") > -1) {
+        html.classList.add("browser-firefox");
+      } else if (userAgent.indexOf("Edg") > -1) {
+        html.classList.add("browser-edge");
+      } else if (userAgent.indexOf("Chrome") > -1) {
+        html.classList.add("browser-chrome");
+      } else if (userAgent.indexOf("Safari") > -1) {
+        html.classList.add("browser-safari");
+      } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+        html.classList.add("browser-ie");
+      } else {
+        html.classList.add("browser-other");
+      }
+      
+      // Debug - pokaż w konsoli wykrytą przeglądarkę
+      console.log("Wykryta przeglądarka:", html.className);
+    }
+    
+    // Uruchom natychmiast po załadowaniu skryptu
+    detectBrowser();
+    
+    // I ponownie po pełnym załadowaniu strony (na wszelki wypadek)
+    window.addEventListener('load', detectBrowser);
+  </script>
+</body>
+</html>
