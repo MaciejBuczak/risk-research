@@ -805,11 +805,12 @@
 
         
         
- <!-- Sekcja O 1 - na pełną szerokość z zawartością w kontenerze -->
+<!-- Sekcja O 1 - na pełną szerokość z zawartością w kontenerze -->
 <div class="elegant-section-full-width">
   <div class="ryzmod-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
     <div class="elegant-cards-container">
-      <div class="elegant-card">
+
+      <a href="/risk-research/art-ama_failure" class="elegant-card">
         <div class="card-image">
           <img src="/risk-research/assets/images/holistyczna-ocena-main.jpg" alt="Analiza danych">
           <div class="card-overlay"></div>
@@ -817,11 +818,11 @@
         <div class="card-content">
           <h3>Zaawansowana analityka</h3>
           <p>Kompleksowe rozwiązania analityczne wykorzystujące najnowsze narzędzia statystyczne i modele predykcyjne dla precyzyjnej oceny ryzyka biznesowego.</p>
-          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+          <span class="elegant-button">Dowiedz się więcej</span>
         </div>
-      </div>
-      
-      <div class="elegant-card">
+      </a>
+
+      <a href="/risk-research/art-episode2023" class="elegant-card">
         <div class="card-image">
           <img src="/risk-research/assets/images/holistyczna-ocena-main2.jpg" alt="Strategia biznesowa">
           <div class="card-overlay"></div>
@@ -829,11 +830,11 @@
         <div class="card-content">
           <h3>Strategia biznesowa</h3>
           <p>Spersonalizowane podejście do rozwoju i implementacji modeli strategicznych, uwzględniających specyfikę branży i indywidualne potrzeby organizacji.</p>
-          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+          <span class="elegant-button">Dowiedz się więcej</span>
         </div>
-      </div>
-      
-      <div class="elegant-card">
+      </a>
+
+      <a href="/risk-research/art-1_in_1000years" class="elegant-card">
         <div class="card-image">
           <img src="/risk-research/assets/images/ryzyko-nieoczekiwane-main.jpg" alt="Walidacja modeli">
           <div class="card-overlay"></div>
@@ -841,12 +842,14 @@
         <div class="card-content">
           <h3>Walidacja modeli</h3>
           <p>Niezależna weryfikacja skuteczności modeli biznesowych i finansowych zgodnie z najwyższymi standardami branżowymi i wymogami regulacyjnymi.</p>
-          <a href="#" class="elegant-button">Dowiedz się więcej</a>
+          <span class="elegant-button">Dowiedz się więcej</span>
         </div>
-      </div>
+      </a>
+
     </div>
   </div>
 </div>
+
 <style>
   .elegant-section-full-width {
     background-color: #656461;
@@ -865,7 +868,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
   }
-  
+
   .elegant-card {
     background: #faf3e3;
     border-radius: 12px;
@@ -873,30 +876,33 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     height: 100%;
+    display: block;
+    text-decoration: none;
+    color: inherit;
   }
-  
+
   .elegant-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   }
-  
+
   .card-image {
     height: 220px;
     position: relative;
     overflow: hidden;
   }
-  
+
   .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.8s ease;
   }
-  
+
   .elegant-card:hover .card-image img {
     transform: scale(1.05);
   }
-  
+
   .card-overlay {
     position: absolute;
     top: 0;
@@ -905,11 +911,11 @@
     height: 100%;
     background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
   }
-  
+
   .card-content {
     padding: 30px;
   }
-  
+
   .card-content h3 {
     color: #333;
     font-size: 22px;
@@ -917,7 +923,7 @@
     position: relative;
     padding-bottom: 12px;
   }
-  
+
   .card-content h3:after {
     content: '';
     position: absolute;
@@ -927,7 +933,7 @@
     height: 3px;
     background: #a85903;
   }
-  
+
   .card-content p {
     color: #666;
     line-height: 1.6;
@@ -935,7 +941,7 @@
     font-size: 16px;
     text-indent: 0;
   }
-  
+
   .elegant-button {
     display: inline-block;
     color: #a85903;
@@ -946,7 +952,7 @@
     padding-bottom: 2px;
     transition: all 0.3s ease;
   }
-  
+
   .elegant-button:after {
     content: '';
     position: absolute;
@@ -957,29 +963,27 @@
     background: #a85903;
     transition: width 0.3s ease;
   }
-  
-  .elegant-button:hover:after {
+
+  .elegant-card:hover .elegant-button:after {
     width: 100%;
   }
-  
+
   @media screen and (max-width: 992px) {
     .elegant-cards-container {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  
+
   @media screen and (max-width: 576px) {
     .elegant-cards-container {
       grid-template-columns: 1fr;
     }
-    
+
     .elegant-section-full-width {
       padding: 40px 0;
     }
   }
 </style>
-  
-
 
         
 
