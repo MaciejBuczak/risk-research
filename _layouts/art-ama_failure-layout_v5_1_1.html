@@ -4005,27 +4005,33 @@ window.addEventListener('load', function() {
 
 
 
-        
         <!-- Sekcja "Czy warto to analizować?" część 2 -->
         <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
           <!-- Kolumna 1 -->
           <div style="flex: 1;">
             <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Źle ufundowana intuicja</h5>
-            <p style="margin-bottom: 15px;">Krytyka koncepcji Value at Risk oraz towarzyszącego jej aparatu statystycznego ma już boga-tą tradycję. Artzner i in. (1999), Danielsson (2000), Danielsson i in. (2001), a także inni, wielo-krotnie wskazywali, że estymacja dalekich kwantyli rozkładu — takich jak 0,99 czy 0,999 — jest zadaniem znajdującym się na granicy możliwości dostępnych metod statystycznych, obarczonym błędami sięgającymi rzędów wielkości. Ten problem, dobrze rozpoznany i wielokrotnie opisany w literaturze, nie jest przedmiotem niniejszej pracy. Artykuł ten stawia pytanie inne, węższe i, jak się wydaje, dotychczas nieopisane wprost: nie o to, czy potrafimy rzetelnie oszacować wartość leżącą na kwantylu 0,999; lecz o to, jak rozumieć interpretację kwantyla 0.999 jako zdarzenia „1 raz na 1000 lat”. Innymi słowy, przedmiotem analizy nie jest jakość estymacji na dalekich kwan-tylach rozkładów, lecz zasadność samej interpretacji czasowej, jaką wynikom tej estymacji się przypisuje.</p>
-            <p style="margin-bottom: 15px;">Rozróżnienie to jest kluczowe dla zrozumienia wkładu tej pracy. Nawet gdyby dysponowano idealnym, wolnym od błędu estymacyjnego modelem ryzyka, pytanie o to, co właściwie oznacza twierdzenie, że jego wynik odpowiada zdarzeniu 1000-letniemu, pozostałoby otwarte. </p>
-
-          </div>
+            <p style="margin-bottom: 15px;">Poziom kwantyla odczytu (99.9%) zaproponowany przez nadzorcę, spójny z poziomami określonymi dla ryzyka kredytowego oraz rynkowego, budził od początku wiele kontrowersji.
+              Ogniskowały się one wokół percepcji nadmiernego konserwatyzmu.
+              Wskazywano skutki przyjęcia tak wysokiego poziomu: duże problemy z wiarygodnością wyniku na tak dalekim kwantylu, a także bardzo wysokie poziomy kapitałów korespondujące z poziomem 99.9%.
+              Nadzorca nie wsłuchał się w ten głos. Poziom został utrzymany.</p>
+            <p>Za takim postrzeganiem w/w kwantyla jako nadmiernie konserwatywnego, stoi pewna zakorzeniona intuicja związana z jego interpretacją.
+              Intuicja ta wskazuje na zintegrowanie pojęcia kwantyla rozkładu z horyzontem czasu jaki jest domniemany w modelowaniu badanego zjawiska.
+              W naszym przypadku horyzont został wskazany explicite jako roczny.
+              Oznaczało to, że model zaawansowanego pomiaru AMA miał mieć zdolność do wyznaczania wartości oczekiwanej, którą była roczna wartość strat operacyjnych (czyli suma wszystkich rocznych strat), jak również do wyznaczenia poziomu strat nieoczekiwanych (99.9%) rozumianych również jako suma rocznych strat.</p>
           </div>
           
           <!-- Kolumna 2 -->
           <div style="flex: 1;">
-            <p style="margin-bottom: 15px;">Interpretacja temporalna kwantyla nie jest bowiem, jak stara się wykazać ten artykuł, elementem koniecznym ani wewnętrznie wynikającym z konstrukcji takiego modelu. Jest to konwencja — zapożyczona, choć nigdy wprost nie wskazana jako zapożyczenie, z zupełnie innej dziedziny: hy-drologii, gdzie na przełomie XIX i XX wieku wypracowano pojęcie okresu powrotu do opisu takich zjawisk jak powódź stuletnia. Konwencja ta wymaga jednak dodatkowego założenia — indekso-wania kolejnych realizacji zjawiska, kolejnych zmiennych losowych, za pomocą czasu — którego zasadność w świecie zjawisk społeczno-ekonomicznych jest znacznie trudniejsza do wytłumaczenia, niż w świecie zjawisk fizycznych, rządzonych stałymi cyklami astronomicznymi. Co więcej, sama hydrologia, w obliczu wieloletniej krytyki (Pielke, 1999; Read i Vogel, 2015; Stedinger, Vogel i Foufoula-Georgiou, 1993), zdążyła już zrewidować sposób komunikowania tego pojęcia, wskazując na jego mylącą naturę. Świat finansów, jak się wydaje, tej refleksji jeszcze nie przeprowadził.</p>
+            <p style="margin-bottom: 15px;">W odniesieniu do poziomów nieoczekiwanych można powiedzieć, że wyznaczenie zabezpieczeń kapitałowych (wymogu kapitałowego) na poziomie odczytu <span class="hovernote2" data-note="kwantyl 99.9% - to pozycja na rozkładzie, która odnosi się do wartości znajdującej się na osi x. Występuje prawdopodobieństwo 99.9% wystąpienia wartości niższych niż na tej pozycji osi x i tylko 0.1% prawdopodobieństwa wartości wyższych."><span class="equiv-big">&equiv;</span>kwantyla 99.9%</span> rozkładu zagregowanych strat miało uchronić bank przed łączną kwotą rocznych strat, jaka zrealizuje się w tym niepomyślnym roku.
+              Integracja pojęcia poziomu kwantyla z horyzontem badania jest całkowicie zasadna. Takie <b style="font-weight: bold;">::: rozumowanie :::</b> prowadzi następnie do powszechnie przyjmowanego rozumowania dotyczącego interpretacji kwantyla 99.9%, jako poziomu rocznych strat występujących z prawdopodobieństwem 1 raz na 1000 lat. Rozumowanie to jest również wspierane przez nadzorcę:
+            </p>
             <p>"Tylko w ograniczonych przypadkach, na przykład gdy największy punkt danych jest wykazany jako większy lub równy zdarzeniu występującemu <u>rzadziej niż raz na 1000 lat</u>, użycie krzywych empirycznych do oszacowania ogona może być zaakceptowane w modelach SBA." 
               <span class="hovernote" data-note="Just in limited cases, for example when the biggest data point is demonstrated to be larger or equal in amount to the event that occurs less than once in 1000 years, the use of empirical curves to estimate the tail may be accepted in SBA models. — BCBS">[1]</span>
             </p>
             <p>Takie podejście ma swoje konsekwencje metodologiczne. Nie jest to jednak w moim przekonaniu podejście poprawne. Zjawisko &Phi;.<em>ryzyko.operacyjne</em> może być modelowane przez :AMA. Nieznane jest jednak rozproszenie &sigma;(&Phi;.<em>ryzyko.operacyjne</em>). Należy jednak pamiętać, że mamy tu też podjawiska: &phi;.<em>ryzyko.katastrof</em>, &phi;.<em>ryzyko.systemów</em>. Dodatkowo warto rozważyć przestrzeń stanów &Omega;: &omega;.<em>przestrzeń.oczekiwana</em>, &omega;.<em>przestrzeń.nieoczekiwana</em>.</p>
           </div>
         </div>
+
 
 
 
