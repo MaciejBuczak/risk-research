@@ -4252,13 +4252,11 @@ Unfortunately, this thought process cannot be carried out. We become stuck at th
 <div class="ryzmod-t52-text" style="padding-left: 0; padding-right: 20px;">
     
 <p>
-The quantile calibration levels formulated within the financial safety architecture are, in essence, the central parameters of this system. It is these that determine the level of extremity, and thus the levels of capital that are meant to govern this safety.
-</p>
-<p>
-For credit risk, the safety level was encoded within the IRB calculation formula - Art. 154 (EU, CRR, 2013):
+The quantile calibration levels formulated within the financial safety architecture are, in essence, the central parameters of this system. It is these that determine the level of extremity, and thus the levels of capital that are meant to govern this safety. For credit risk, the safety level was encoded within the IRB calculation formula - Art. 154 (EU, CRR, 2013):
 $$
 RW = \left\{ LGD \cdot N\left( \frac{1}{\sqrt{1-R}} \cdot G(PD) + \sqrt{\frac{R}{1-R}} \cdot G(0{,}999) \right) - LGD \cdot PD \right\} \cdot 12{,}5 \cdot 1{,}06
 $$
+where G(0.999) is the quantile of the systematic factor at the 0.999 level, and N(...) is the conditional probability of default under the worst-case macroeconomic scenario, read off the normal distribution.
 </p>
   </div>
 
