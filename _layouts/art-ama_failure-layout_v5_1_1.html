@@ -4541,7 +4541,7 @@ For an exceedance probability of 1 − p = 0.01, the return period amounts to 10
   
  
 <p>
-It should be added here that the return period T is the expected return period. In reality, this value is described by a distribution — the binomial distribution, which is the distribution of binary variables (exceedance, no exceedance). For large samples, this may, of course, be approximated by the Poisson or normal distribution. For a period of T = 100, there is thus a 36% chance of a single exceedance, an 18% chance of 2 exceedances within this period, and so on. There may also be no exceedance at all within the period T = 100 — a 36% chance.
+It should be added here that the return period T is the expected return period. In reality, this value is described by a distribution — the binomial distribution, which is the distribution of binary variables (exceedance, no exceedance). For large samples, this may, of course, be approximated by the Poisson or normal distribution.
 </p>
   
 
@@ -4559,13 +4559,14 @@ It should be added here that the return period T is the expected return period. 
     <!-- Kolumna 1 - 35% - tekst -->
     <div style="flex: 0 0 calc(35% - 14px);">
 
-        <p style="margin-bottom: 15px;">
+        <p style="margin-bottom: 15px; text-indent: 0px;">
+For a period of T = 100, there is thus a 36% chance of a single exceedance, an 18% chance of 2 exceedances within this period, and so on. There may also be no exceedance at all within the period T = 100 — a 36% chance.
+        </p>
+<p>          
 The problem can be presented differently. Using the geometric (or exponential) distribution, one can determine, from this distribution, the moment of first exceedance. If the result is read from the probability function, one obtains the chance of a first exceedance at a specific moment k; if from the cumulative distribution function, the chance of a first exceedance occurring by moment k.
         </p>
       
-      <p>
-In summary, a 100-year event will, on average, occur once within a period of 100 years, and the average waiting time for an event of this kind is 100 years (Table 3). It may nonetheless happen that such a 100-year event does not occur at all within 100 years, or that several such events occur within that period. The first occurrence of a 100-year event may take place after just a single year (a 1.00% chance); within the first 10 years, the chance of such an event occurring is 9.56%; and within 50 years, it is 39.5%. Interestingly, within the 100-year period under study, the first 100-year event has only a 63% chance of appearing. Within 500 years, however, it should appear with a probability of 99%. Analogous reasoning applies in the case of the 1,000-year event observed over a period of 1,000 years.
-      </p>
+
 
     </div>      
   
@@ -4602,8 +4603,71 @@ In summary, a 100-year event will, on average, occur once within a period of 100
 </div>
 
 
+
+
+        
         
 
+
+
+<!-- Sekcja "Czy warto to analizować?" część 2 -->
+<div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
+    <!-- Kolumna 1 - 35% - tekst -->
+   
+  
+    <!-- Kolumna 2 - 65% - tabela -->
+    <div style="flex: 0 0 calc(65% - 26px);">
+      <div style="overflow-x: auto; max-width: 100%; margin: 0;">
+        <p style="font-family: Georgia, serif; font-size: 15px; margin-bottom: 10px; text-indent: 0;"><strong>Table 1:</strong> Probabilities of k exceedances for a 100-year event (T = 100) and a 1,000-year event (T = 1,000)</p>
+        <table style="width: 100%; border-collapse: collapse; font-family: Georgia, serif; text-align: center; background-color: #ffffff; border: none;">
+          <thead>
+            <tr style="border-top: 2px solid #D4AF37; border-bottom: 1px solid #D4AF37;">
+              <th style="padding: 12px 15px; font-weight: bold; color: #444444; background-color: #ffffff; border: none;">Number of<br>Exceedances</th>
+              <th style="padding: 12px 15px; font-weight: bold; color: #444444; background-color: #ffffff; border: none;">Period T=100<br>100-Year<br>Event</th>
+              <th style="padding: 12px 15px; font-weight: bold; color: #444444; background-color: #ffffff; border: none;">Period T=1000<br>1,000-Year<br>Event</th>
+            </tr>
+            <tr style="border-bottom: 1px solid #D4AF37;">
+              <td style="padding: 8px 15px; font-style: italic; color: #666666; background-color: #ffffff; border: none;">k</td>
+              <td style="padding: 8px 15px; font-style: italic; color: #666666; background-color: #ffffff; border: none;">Poisson (&lambda; = 1)</td>
+              <td style="padding: 8px 15px; font-style: italic; color: #666666; background-color: #ffffff; border: none;">Poisson (&lambda; = 1)</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.3679</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.3679</td></tr>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">1</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.3679</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.3679</td></tr>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">2</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.1839</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.1839</td></tr>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">3</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.0613</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.0613</td></tr>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">4</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.0153</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.0153</td></tr>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 2px solid #D4AF37;">5</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 2px solid #D4AF37;">0.0031</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 2px solid #D4AF37;">0.0031</td></tr>
+          </tbody>
+        </table>
+        <p style="text-align: center; font-family: Georgia, serif; font-style: italic; font-size: 14px; color: #777777; margin-top: 10px; text-indent: 0;">Source: own elaboration</p>
+      </div>
+    </div>
+
+
+    <div style="flex: 0 0 calc(35% - 14px);">
+
+        <p style="margin-bottom: 15px;">
+In summary, a 100-year event will, on average, occur once within a period of 100 years, and the average waiting time for an event of this kind is 100 years (Table 3). It may nonetheless happen that such a 100-year event does not occur at all within 100 years, or that several such events occur within that period. The first occurrence of a 100-year event may take place after just a single year (a 1.00% chance); within the first 10 years, the chance of such an event occurring is 9.56%; and within 50 years, it is 39.5%. Interestingly, within the 100-year period under study, the first 100-year event has only a 63% chance of appearing. Within 500 years, however, it should appear with a probability of 99%. Analogous reasoning applies in the case of the 1,000-year event observed over a period of 1,000 years.
+      </p>
+
+    </div>   
+  
+      
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
         
 
 
