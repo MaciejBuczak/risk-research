@@ -4549,6 +4549,67 @@ It should be added here that the return period T is the expected return period. 
 
 
 
+
+
+
+
+
+<!-- Sekcja "Czy warto to analizować?" część 2 -->
+<div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 30px;">
+    <!-- Kolumna 1 - 35% - tekst -->
+    <div style="flex: 0 0 calc(35% - 14px);">
+        <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Return Period and T-Period Event</h5>
+        <p style="margin-bottom: 15px;">
+Fuller derived the definition of the return period as follows:
+        </p>
+      
+        <p style="text-indent: 0;">
+where Q_T is the maximum flow, and T is precisely the return period. Increasing T is equivalent to increasing rarity — thus, for a larger T (a rarer event), a larger flow Q_T (a larger flood) is to be expected. It should be noted that this equation is deterministic in nature — there is, as yet, no assumption here of the randomness of the phenomenon.
+        </p>
+      
+      <p>
+Once, however, we describe the phenomenon as random, we have:
+      </p>
+      <p style="text-indent: 0;">
+that is, the probability of exceeding a certain level x_p — the level of the rare event.
+      </p>
+    </div>      
+  
+    <!-- Kolumna 2 - 65% - tabela -->
+    <div style="flex: 0 0 calc(65% - 26px);">
+      <div style="overflow-x: auto; max-width: 100%; margin: 0;">
+        <p style="font-family: Georgia, serif; font-size: 15px; margin-bottom: 10px; text-indent: 0;"><strong>Table 1:</strong> Probabilities of k exceedances for a 100-year event (T = 100) and a 1,000-year event (T = 1,000)</p>
+        <table style="width: 100%; border-collapse: collapse; font-family: Georgia, serif; text-align: center; background-color: #ffffff; border: none;">
+          <thead>
+            <tr style="border-top: 2px solid #D4AF37; border-bottom: 1px solid #D4AF37;">
+              <th style="padding: 12px 15px; font-weight: bold; color: #444444; background-color: #ffffff; border: none;">Number of<br>Exceedances</th>
+              <th style="padding: 12px 15px; font-weight: bold; color: #444444; background-color: #ffffff; border: none;">Period T=100<br>100-Year<br>Event</th>
+              <th style="padding: 12px 15px; font-weight: bold; color: #444444; background-color: #ffffff; border: none;">Period T=1000<br>1,000-Year<br>Event</th>
+            </tr>
+            <tr style="border-bottom: 1px solid #D4AF37;">
+              <td style="padding: 8px 15px; font-style: italic; color: #666666; background-color: #ffffff; border: none;">k</td>
+              <td style="padding: 8px 15px; font-style: italic; color: #666666; background-color: #ffffff; border: none;">Poisson (&lambda; = 1)</td>
+              <td style="padding: 8px 15px; font-style: italic; color: #666666; background-color: #ffffff; border: none;">Poisson (&lambda; = 1)</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.3679</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.3679</td></tr>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">1</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.3679</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.3679</td></tr>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">2</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.1839</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.1839</td></tr>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">3</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.0613</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.0613</td></tr>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">4</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.0153</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee;">0.0153</td></tr>
+            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 2px solid #D4AF37;">5</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 2px solid #D4AF37;">0.0031</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 2px solid #D4AF37;">0.0031</td></tr>
+          </tbody>
+        </table>
+        <p style="text-align: center; font-family: Georgia, serif; font-style: italic; font-size: 14px; color: #777777; margin-top: 10px; text-indent: 0;">Source: own elaboration</p>
+      </div>
+    </div>
+      
+</div>
+
+
+        
+
         
 
 
