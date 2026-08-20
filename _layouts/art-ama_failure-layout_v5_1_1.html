@@ -4789,7 +4789,7 @@ A distinction needs to be drawn between the statistical properties from which pr
     <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Indexing by Time - Tacit Assumption</h5>
 
 <p>
-Embrechts, Klüppelberg, and Mikosch (1997), in deriving an example illustrating the concept of the return period, write: "Here we tacitly assumed that a structure failure for each year i can be modeled through the event \{X_{i}\gt u\}." We thus see the operation of a "tacit assumption" of indexing by time. In hydrology, this assumption is justified. The block maxima method adopted there imposes annual periods — annual maximum flows are modeled. This is consistent with the astronomical cycles of nature — the Earth's orbital motion. In the case of socio-economic phenomena, this is no longer so self-evident. It is difficult to say how long individual phenomena last — those that underlie the binary variables which, taken together, form the binomial (or geometric) distribution. In order to compose such a distribution, however, the independence of these variables is required. They must play themselves out, must exhaust their probabilities (much as a game of poker must be played through to its end — and each game, together with its associated probabilities, may take a different amount of time). If they are not played through to completion, the probabilities will bleed into one another across these variables, and they will not, in that case, be independent. It is then impossible to compose a binomial distribution. Nor is it possible, in that case, to obtain a reliable quantile reading from such a distribution — there is, accordingly, no 1,000-year event. How long do socio-economic phenomena last, and is this duration constant? It is not known. This is difficult to calculate. It is also doubtful that it would always be the same duration. The world, after all, is accelerating, and phenomena that once took many years to unfold may now play themselves out over a matter of months.
+Embrechts, Klüppelberg, and Mikosch (1997), in deriving an example illustrating the concept of the return period, write: "Here we tacitly assumed that a structure failure for each year <em>i</em> can be modeled through the event \(\{X_i > u\}\)." We thus see the operation of a "tacit assumption" of indexing by time. In hydrology, this assumption is justified. The block maxima method adopted there imposes annual periods — annual maximum flows are modeled. This is consistent with the astronomical cycles of nature — the Earth's orbital motion. In the case of socio-economic phenomena, this is no longer so self-evident. It is difficult to say how long individual phenomena last — those that underlie the binary variables which, taken together, form the binomial (or geometric) distribution. In order to compose such a distribution, however, the independence of these variables is required. They must play themselves out, must exhaust their probabilities (much as a game of poker must be played through to its end — and each game, together with its associated probabilities, may take a different amount of time). If they are not played through to completion, the probabilities will bleed into one another across these variables, and they will not, in that case, be independent. It is then impossible to compose a binomial distribution. Nor is it possible, in that case, to obtain a reliable quantile reading from such a distribution — there is, accordingly, no 1,000-year event. How long do socio-economic phenomena last, and is this duration constant? It is not known. This is difficult to calculate. It is also doubtful that it would always be the same duration. The world, after all, is accelerating, and phenomena that once took many years to unfold may now play themselves out over a matter of months.
 </p>
 
 <p>
@@ -4849,13 +4849,63 @@ If, then, the concept of the T-period event is not written into the mechanics of
 The application of the mechanics described above became sanctioned within the world of finance in the context of the problem of verifying extreme value models. Reasoning of this kind was already presented in the J.P. Morgan (1996) study, as well as in the work of Kupiec (1995). Testing exceedances precisely by arranging independent binary variables into a sequence, along the time axis, relates directly to these mechanics. The supervisor sanctioned such a backtesting method for market risk. There, exceedances of the 0.99 quantile of risk models, observable in days, are tested. This gives rise to the concept of a T-day event — for instance, a 100-day event. A problem of stationarity naturally arises here, though for periods measured in days this would seem to be a solvable one. For credit and operational risk — where, on account of the higher level of difficulty (the 0.999 quantile at an annual horizon), a verification tool of this kind would be of even greater usefulness — the supervisor formulated no backtesting methods. This is, of course, understandable. For how, indeed, is one to test a 1,000-year event? Institutions building such models were nonetheless left without recourse. No tools exist for verifying these super-extreme models. Jorion (2007) commented on this, anticipating, as it were, the course of events to come, writing: "The true test of these new models will come during a major economic downturn."
 </p>
 
+<p>
+With respect to the concept of the 1,000-year event, it must be noted here that, owing to the absence of a natural domain within which such an event could be derived — the domain of the backtesting procedure (where the concept of the 100-day event was, precisely, derived) — this definition vanishes. There is no way to derive a 1,000-year event.
+</p>
+  
 </div>
+
 
 
 
 
         
 
+
+<!-- OBIEKT TEKSTOWY (2 KOLUMNY) - SAM ŁAMIE TEKST NA KOLUMNY -->
+<div style="column-count: 2; column-gap: 40px; margin-top:30px; margin-bottom: 40px;">
+ <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Model Calibration Invalidates the "Once in 1,000 Years" Definition</h5>
+  <p style="margin-bottom: 15px;">
+What, however, if we did have such a test at our disposal — for instance, by shifting the tested quantile to the 0.9 level, which would make it feasible, in that case, to test a 10-year event? We would then still need to ensure stationarity over such a ten-year period. This, however, may prove difficult. Perhaps, though, this is not a problem at all. Let us note that models are calibrated on a continuous basis. This, in turn, anchors the model in current reality. The model, through calibration, shifts along with a changing reality. Each time, after every such shift, it indicates the probability of a VaR exceedance here and now, over the coming year. The requirement of calibration thus removes, from the conceptual space, any notion of a T-period event whatsoever. What concerns us is current reality, to which we adapt on a continuous basis.
+</p>
+
+<p>
+Let us note that matters stand differently in the world of hydrology. Flood barriers cannot be recalibrated every year; they cannot be raised and lowered on such cycles — this would be too costly. Such barriers must, therefore, be resilient over a certain time horizon. There, then, the concept of a T-period event — say, the 100-year flood — is considerably more natural.
+</p>
+  
+</div>
+        
+
+
+
+
+
+
+        <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 0px; margin-bottom: 0px;">
+          <!-- Kolumna 1 -->
+          <div style="flex: 1;">
+      <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Once in 1,000 Years — An Empty Artifact</h5>   
+        <p style="margin-bottom: 15px;">
+As has been attempted to demonstrate here, the 1,000-year event is not a definition built into a bank's risk profile, and is thus not a concept that can be read off from the mechanics of a risk model. This concept is merely a certain statistical label, a shorthand, an approximation, which, one must presume, was intended to help in describing extreme events. It must be borne in mind, however, that this label was derived on a certain conceptual map, and retains its meaning only within that map. In the world of finance, the natural domain in which such a conceptual map is employed — and along with it, the concept of the T-period event sanctioned — is the domain of model backtesting. Yet while such a testing procedure was formulated for market risk, it was not formulated for credit and operational risk, where the 0.999 quantile and an annual horizon are at issue. It is thus impossible to derive the concept of the 1,000-year event, for there exists no space within which such a derivation could take place. An attempt to construct such a testing framework, purely theoretical in nature, would encounter a barrier in the form of the absence of stationarity for the phenomenon over such a span of time — which would likewise preclude formulating the concept of the 1,000-year event. Viewed from another angle, the very idea of calibrating models — that is, of adapting them to a changing world — anchors the model in the reality of here and now, and points to a purely probabilistic, rather than temporal, interpretation of the safety levels expressed by the 0.999 quantile. This, too, rules out the possibility of applying an interpretation of the "once in 1,000 years" type.
+      </p>
+ 
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
 <!-- Blok cytatu w stylu z obrazka (bez znaku cudzysłowu) -->
 <div class="ryzmod-quote-box" style="width: 100%; margin: 30px 0; position: relative; padding: 0 0 0 30px; box-sizing: border-box;">
