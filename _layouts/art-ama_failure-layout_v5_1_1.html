@@ -2447,7 +2447,7 @@ async function updateViewCount() {
 // Zaktualizuj licznik wyświetleń
 const viewCounterElement = document.getElementById('view-counter');
 if (viewCounterElement) {
-    viewCounterElement.textContent = `${viewCount.toLocaleString()} wyświetleń`;
+    viewCounterElement.textContent = `${viewCount.toLocaleString()} views`;
     console.log('Licznik zaktualizowany na:', viewCount);
 }
 
@@ -3021,7 +3021,7 @@ function updateCommentsCount(count) {
             const end = Math.min(currentPage * COMMENTS_PER_PAGE, count);
             counterElement.textContent = `Komentarze ${start}-${end} z ${count}${categoryText} • Strona ${currentPage}/${totalPages}`;
         } else {
-            counterElement.textContent = `${count} komentarz${count === 1 ? '' : count < 5 ? 'e' : 'y'}${categoryText}`;
+            counterElement.textContent = `${count} comment${count === 1 ? '' : 's'}${categoryText}`;
         }
     }
 }
@@ -3041,7 +3041,7 @@ function updateTopCommentsCount() {
             if (!error) {
                 const counterElement = document.getElementById('comments-counter-top');
                 if (counterElement) {
-                    counterElement.textContent = `${count} komentarz${count === 1 ? '' : count < 5 ? 'e' : 'y'}`;
+                    counterElement.textContent = `${count} comment${count === 1 ? '' : 's'}`;
                 }
             }
         });
@@ -3880,7 +3880,7 @@ window.addEventListener('load', function() {
             <div class="ryzmod-intro-text">
     <h5 style="text-indent: 0px; font-family: 'Roboto', sans-serif; font-size: 22px; font-weight: 300; text-align: left; color: #444;">
       <span style="float: left; font-size: 400%; line-height: 0.8; margin-right: 8px; margin-top: 5px; color: #444;">H</span>
-ow many years must one wait to experience the financial catastrophe against which today's regulatory system protects us? The answer, which can be found in supervisory documents, is: a thousand years. The 0.999 quantile — the central parameter of the system, on the basis of which, throughout the twenty years of operation of the Basel safety architecture, capital requirements for credit risk, operational risk, and numerous Pillar II risks have been determined — is there explicitly interpreted as an event occurring once every thousand years. This formulation, reproduced without further comment in academic textbooks and in sectoral practice, is the point of departure for the present paper.
+ow many years must one wait to experience the financial catastrophe against which today's regulatory system protects us? The answer, which can be found in supervisory documents, is: a thousand years. The 0.999 quantile — the central parameter of the Basel safety system — is there explicitly interpreted as an event occurring once every thousand years. This formulation, reproduced without further comment in academic textbooks and in sectoral practice, is the point of departure for the present paper.
     </h5>
             </div>
          </div>
