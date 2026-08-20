@@ -4013,7 +4013,7 @@ ow many years must one wait to experience the financial catastrophe against whic
 
 
 
-
+<!-- OBIEKT TEKSTOWY (2 KOLUMNY) - SAM ŁAMIE TEKST NA KOLUMNY -->
 <div style="column-count: 2; column-gap: 40px; margin-top:30px; margin-bottom: 30px;">
   <p style="margin-bottom: 15px;">
 The criticism of the Value at Risk concept, along with the statistical apparatus accompanying it, already has a rich tradition. Artzner et al. (1999), Danielsson (2000), Danielsson et al. (2001), among others, have repeatedly pointed out that the estimation of distant distribution quantiles — such as 0.99 or 0.999 — is a task lying at the very limit of what available statistical methods can accomplish, one burdened by errors reaching entire orders of magnitude. This problem, well recognized and repeatedly described in the literature, is not the subject of the present paper. This article poses a different, narrower question — one that, it would seem, has not thus far been addressed directly: not whether we are able to reliably estimate the value located at the 0.999 quantile, but rather how the interpretation of the 0.999 quantile as an event occurring "once in 1,000 years" is to be understood. In other words, the object of the analysis is not the quality of estimation at the distant quantiles of distributions, but the validity of the temporal interpretation itself that is ascribed to the results of such estimation.
@@ -4043,17 +4043,22 @@ This distinction is key to understanding the contribution of this paper. Even if
 <p style="color: white; font-family: 'Poppins', Arial, sans-serif; font-weight: bold; margin: 0; line-height: 1.5; font-size: 24px; text-align: left; text-indent: 0;">
   <br>
   <br>
-  Rozdział 1
+  01
   <br><br>
-  Problemy z realnym stosowaniem wymogów bezpieczeństwa finansowego
+  Problems with the Practical Application of Financial Safety Requirements
 </p>
     </div>
   
   <!-- Tekst po prawej - bez zmian -->
   <div class="ryzmod-t52-text">
     
-    <p>Pierwszy projekt architektury bezpieczeństwa finansowego to Bazylea I (1988) – obejmujący ryzyko kredytowe z wymogami kapitałowymi wyznaczanymi w sposób arytmetyczny. W 1996 wprowadzono poprawkę, która włączyła ryzyko rynkowe do koncepcji. Pomiar tego ryzyka powierzono koncepcji VaR – nowej idei mierzenia ryzyka. W 2004 ogłoszono pakiet Bazylea II, gdzie wprowadzono koncepcję modeli wewnętrznych i przygotowano odpowiednie frameworki dla ryzyk: kredytowego, operacyjnego i rynkowego. Finalnym produktem architektury bazylejskiej miała być bariera antykryzysowa, którą wszystkie podmioty, poprzez modele wewnętrzne, wspólnie miały zbudować.</p>
-    <p>Fundamentem modeli ryzyka, we wszystkich obszarach ryzyk, była wprowadzona przez J.P.Morgan i Reuters w 1996 roku metoda VaR. Poziom bezpieczeństwa został zaś określony, w języku tej właśnie koncepcji, jako kwantyl rozkładu, na którym odczyt VaR miał się odbywać. Te kwantyle zaś, to skrajne poziomy 0.999 – dla ryzyka kredytowego i operacyjnego, 0.99 – dla ryzyka rynkowego.</p>
+<p>
+The first project of the financial safety architecture was Basel I (1988) — covering credit risk, with capital requirements determined arithmetically. In 1996, an amendment was introduced, incorporating market risk into the concept. The measurement of this risk was entrusted to the VaR concept — a new idea for measuring risk. In 2004, the Basel II package was announced, introducing the concept of internal models and providing corresponding frameworks for credit, operational, and market risk. The final product of the Basel architecture was meant to be an anti-crisis barrier, one that all entities, by means of internal models, were to build together.
+</p>
+
+<p>
+The foundation of risk models, across all risk domains, was the VaR method, introduced by J.P. Morgan and Reuters in 1996. The safety level was, in turn, defined, in the language of this very concept, as the distribution quantile at which the VaR reading was to be taken. These quantiles were the extreme levels of 0.999 — for credit and operational risk — and 0.99 — for market risk.
+</p>
   </div>
 </div>
 
@@ -4065,11 +4070,15 @@ This distinction is key to understanding the contribution of this paper. Even if
 
         <!-- Sekcja "Czy warto to analizować?" część 2 -->
 
-        <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 10px;">
+<div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 10px;">
           <!-- Kolumna 1 -->
-          <div style="flex: 1;">
-            <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Problem weryfikacji modelu na dalekim kwantylu</h5>
-            <p style="margin-bottom: 15px;">Wspólnym problemem modeli budowanych na takiej matrycy koncepcyjnej były trudności w weryfikacji ich poprawności. W zasadzie nie istnieją wiarygodne metody backtestu wartości na takich kwantylach. Pozostaje, zawsze użyteczna, ocena zgodności modelu z rzeczywistością. Proces weryfikacji wyników modelu na kwantylu 0.999 może mieć taki przebieg:</p>
+<div style="flex: 1;">
+
+  <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">The Problem of Model Verification at a Distant Quantile</h5>
+
+<p style="margin-bottom: 15px;">
+A common problem afflicting models built on this conceptual matrix was the difficulty in verifying their correctness. There exist, in essence, no reliable methods for backtesting values at such quantiles. What remains — always useful — is an assessment of the model's consistency with reality. The process of verifying a model's results at the 0.999 quantile might proceed as follows
+</p>
  
           </div>
         </div>
@@ -4086,7 +4095,9 @@ This distinction is key to understanding the contribution of this paper. Even if
           <!-- Element O 3.2 -->
           <div class="ryzmod-orange-box" style="width: 100%; background-color: #FDFAF1; margin-top: 5px; margin-bottom: 5px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border-right: 5px solid #D4AF37; border-radius: 20px; position: relative;">
    
-            <p style="font-family: 'Poppins', serif; font-size: 16px; line-height: 1.5; text-indent: 0; text-align: left; font-style: italic;">Przed czym mamy być bezpieczni? &rarr; Przed wydarzeniem skrajnym &rarr; Jak skrajnym? &rarr; Na kwantylu 0.999 &rarr; Co to znaczy? Jak to wygląda na mapie rzeczywistości, na mapie realnych zagrożeń?</p>
+<p style="font-family: 'Poppins', serif; font-size: 16px; line-height: 1.5; text-indent: 0; text-align: left; font-style: italic;">
+What are we meant to be protected against? → Against an extreme event → How extreme? → At the 0.999 quantile → What does that mean? What does it look like on the map of reality, on the map of real threats?
+</p>
           </div>
         </div>
 
@@ -4099,8 +4110,8 @@ This distinction is key to understanding the contribution of this paper. Even if
           <!-- Kolumna 1 -->
           <div style="flex: 1;">
          
-            <p style="margin-bottom: 15px;">Na ostatnie pytanie nie jest łatwo odpowiedzieć. Czy kapitał wyznaczony przez model na kwantylu 0.999, np. 100 mln dolarów, jest wystarczający do pokrycia realnie nam zagrażającej sytuacji skrajnej? Być może najlepszym sposobem połączenia modelu z rzeczywistością jest konstrukcja takiego scenariusza skrajnego, który nam zagraża. Jeśli nasz kapitał przewyższa skalę materialną materializacji takiego, wyobrażonego ale realnego, scenariusza – jesteśmy bezpieczni. Jeśli nie – kapitał jest za niski.
-Przy próbie konstrukcji takiego scenariusza skrajnego napotkamy jednak znów na te samą barierę:
+<p style="margin-bottom: 15px;">
+The last question is not easy to answer. Is the capital determined by the model at the 0.999 quantile, say, USD 100 million, sufficient to cover a real, extreme situation that threatens us? Perhaps the best way to connect the model with reality is to construct such an extreme scenario as actually threatens us. If our capital exceeds the material scale of the materialization of such an imagined, but real, scenario — we are safe. If not — the capital is too low. In attempting to construct such an extreme scenario, however, we again encounter the same barrier:
 </p>
  
           </div>
@@ -4118,7 +4129,9 @@ Przy próbie konstrukcji takiego scenariusza skrajnego napotkamy jednak znów na
           <!-- Element O 3.2 -->
           <div class="ryzmod-orange-box" style="width: 100%; background-color: #FDFAF1; margin-top: 5px; margin-bottom: 5px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border-right: 5px solid #D4AF37; border-radius: 20px; position: relative;">
    
-            <p style="font-family: 'Poppins', serif; font-size: 16px; line-height: 1.5; text-indent: 0; text-align: left; font-style: italic;">&rarr; Jak sformułować skrajność scenariusza? &rarr; Na poziomie kwantyla 0.999 &rarr; Jak jednak wygląda sytuacja skrajna na poziomie 0.999? Co oznacza kwantyl 99.9%?</p>
+<p style="font-family: 'Poppins', serif; font-size: 16px; line-height: 1.5; text-indent: 0; text-align: left; font-style: italic;">
+→ How is the extremity of the scenario to be formulated? → At the level of the 0.999 quantile → But what does an extreme situation at the 0.999 level look like? What does the 99.9% quantile mean?
+</p>
           </div>
         </div>
 
@@ -4134,7 +4147,8 @@ Przy próbie konstrukcji takiego scenariusza skrajnego napotkamy jednak znów na
           <!-- Kolumna 1 -->
           <div style="flex: 1;">
          
-            <p style="margin-bottom: 15px;">Każdy kto brał udział, lub przy najmniej moderował, różnorodne analizy scenariuszowe, np. w ramach metod scenariuszowych przewidzianych we frameworku AMA w ryzyku operacyjnym, rozumie problematyczność pytań tego typu. Uczestnicy takich paneli scenariuszowych, eksperci od ryzyka bankowego, nie są w stanie przetworzyć, zinterpretować i przyłożyć do rzeczywistości takiego parametru, kwantyla 0.999. Dla zapewnienia wiarygodnych wyników procesu scenariuszowego potrzebna jest interpretacja takiego, wyrażonego liczbowo, kwantyla. Podpowiedź odnajdziemy w regulacjach nadzorczych. Na pytanie: jak rozumieć kwantyl 0.999, nadzorca odpowiada:
+<p style="margin-bottom: 15px;">
+Anyone who has taken part in, or at least moderated, various scenario analyses — for example, within the scenario methods envisaged under the AMA framework in operational risk — understands the problematic nature of questions of this type. Participants in such scenario panels, experts in banking risk, are unable to process, interpret, and apply to reality a parameter such as the 0.999 quantile. To ensure credible results from the scenario process, an interpretation of such a numerically expressed quantile is needed. A hint can be found in supervisory regulations. To the question of how the 0.999 quantile is to be understood, the regulator answers:
 </p>
  
           </div>
@@ -4152,7 +4166,9 @@ Przy próbie konstrukcji takiego scenariusza skrajnego napotkamy jednak znów na
           <!-- Element O 3.2 -->
           <div class="ryzmod-orange-box" style="width: 100%; background-color: #FDFAF1; margin-top: 5px; margin-bottom: 5px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border-right: 5px solid #D4AF37; border-radius: 20px; position: relative;">
    
-            <p style="font-family: 'Poppins', serif; font-size: 16px; line-height: 1.5; text-indent: 0; text-align: left; font-style: italic;">&rarr; Kwantyl 0.999 to zdarzenie 1 raz na 1000 lat</p>
+<p style="font-family: 'Poppins', serif; font-size: 16px; line-height: 1.5; text-indent: 0; text-align: left; font-style: italic;">
+→ The 0.999 quantile is an event occurring once every 1,000 years.
+</p>
           </div>
         </div>
 
@@ -4169,7 +4185,8 @@ Przy próbie konstrukcji takiego scenariusza skrajnego napotkamy jednak znów na
           <!-- Kolumna 1 -->
           <div style="flex: 1;">
          
-            <p style="margin-bottom: 15px;">Co teraz?
+<p style="margin-bottom: 15px;">
+What now?
 </p>
  
           </div>
@@ -4187,7 +4204,9 @@ Przy próbie konstrukcji takiego scenariusza skrajnego napotkamy jednak znów na
           <!-- Element O 3.2 -->
           <div class="ryzmod-orange-box" style="width: 100%; background-color: #FDFAF1; margin-top: 5px; margin-bottom: 5px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border-right: 5px solid #D4AF37; border-radius: 20px; position: relative;">
    
-            <p style="font-family: 'Poppins', serif; font-size: 16px; line-height: 1.5; text-indent: 0; text-align: left; font-style: italic;">&rarr; Wyobraźmy sobie takie zdarzenie 1000-letnie, zastanówmy się jaki ma kształt i przebieg oraz jaką skalę materialną może przyjąć &rarr; Teraz porównajmy to wyobrażone zdarzenie z buforem kapitałowym wyznaczonym przez model (na kwantylu 0.999), który przed takim zdarzeniem nas zabezpiecza &rarr; Jeśli kapitał pokrywa skalę materialną zdarzenia 1000-letniego – jesteśmy bezpieczni.</p>
+<p style="font-family: 'Poppins', serif; font-size: 16px; line-height: 1.5; text-indent: 0; text-align: left; font-style: italic;">
+→ Let us imagine such a 1,000-year event, and consider what shape and course it would take, and what material scale it might assume → Let us now compare this imagined event with the capital buffer determined by the model (at the 0.999 quantile), which is meant to protect us against such an event → If the capital covers the material scale of the 1,000-year event — we are safe.
+</p>
           </div>
         </div>
 
@@ -4201,7 +4220,8 @@ Przy próbie konstrukcji takiego scenariusza skrajnego napotkamy jednak znów na
           <!-- Kolumna 1 -->
           <div style="flex: 1;">
          
-            <p style="margin-bottom: 15px;">Ten proces myślowy nie jest niestety możliwy do przeprowadzenia. Utkniemy w puncie „Wyobraźmy sobie zdarzenie 1000-letnie”. Próba wyobrażenia zdarzenia 1000-letniego wprzód, za 1000 lat, jest całkowicie pozbawiona sensu. Pomocna, jak się wydaje, próba wyobrażenia sobie zdarzenia 1000-letniego w tył, na kartach historii, również okazuje się bezużyteczna. Zarówno rzeczywistość za 1000-lat, jak i rzeczywistość sprzed 1000-lat w żaden sposób nie przystaje do świata, w którym działa model i do którego ma się odnosić.
+<p style="margin-bottom: 15px;">
+Unfortunately, this thought process cannot be carried out. We become stuck at the point "let us imagine a 1,000-year event." An attempt to imagine a 1,000-year event forward, 1,000 years from now, is entirely devoid of sense. A seemingly helpful attempt to imagine a 1,000-year event backward, on the pages of history, likewise proves useless. Neither the reality 1,000 years hence nor the reality 1,000 years past bears any resemblance whatsoever to the world in which the model operates and to which it is meant to relate.
 </p>
  
           </div>
