@@ -4725,6 +4725,59 @@ Value-at-Risk is a measure of the maximum potential change in value of a portfol
 
 
 
+<!-- OBIEKT TEKSTOWY (2 KOLUMNY) - SAM ŁAMIE TEKST NA KOLUMNY -->
+<div style="column-count: 2; column-gap: 40px; margin-top:30px; margin-bottom: 40px;">
+  <p style="margin-bottom: 15px;">
+We thus have:
+</p>
+
+<div style="overflow-x: auto; max-width: 100%; font-size: 14px;">
+$$
+P(X > VaR) = 1 - p
+$$
+</div>
+  
+ 
+<p>
+The key parameter here is the predefined extremity level, the quantile p. If we take p to be, say, 0.999, then the exceedance probability is 1 − p = 0.001. The level p is also referred to as the confidence level.
+</p>
+
+<p>
+It is precisely on this concept — Value at Risk — that the financial safety architecture has been built. Credit, operational, and market risk models, as well as various modeling constructs within the domain of internal capital, derive their final readings precisely by means of the VaR method. The key parameter is the extremity level p, predefined at the following levels: 0.999 for credit and operational risk, 0.99 for market risk.
+
+  <p>
+From the VaR formula, the definition of the return period can likewise be derived. Let us assume that a model describes a bank's risk profile, the variable R. This risk may materialize with the probabilities embedded within the very definition of this variable. For instance, with probability \(p = 0.001\), an extreme value — the VaR level — may materialize. An exceedance of the VaR level may thus occur. We may also consider a sequence of different risk profiles \((R_i)\). This can likewise be written as a sequence of binary variables \(\left(I_{\{R_i > VaR\}}\right)\). This, in turn, can take on only two values:
+</p>
+
+  <div style="overflow-x: auto; max-width: 100%; font-size: 14px;">
+$$
+I_{\{R_i>VaR\}} = \begin{cases} 1, & \text{if } R_i > VaR \text{ (a VaR exceedance)} \text{ — "success"} \\ 0, & \text{if } R_i \le VaR \text{ (no exceedance)} \text{ — "failure"} \end{cases}
+$$
+</div>
+
+
+<p>
+One can ask the question: which of the risk profiles R belonging to the index set I will assume a value higher than the VaR level. This can be written as:
+</p>
+
+
+  <div style="overflow-x: auto; max-width: 100%; font-size: 14px;">
+$$
+L(VaR) = \min\{i \ge 1 : R_i > VaR\}
+$$
+</div>
+
+  <p>
+which will denote the index of the risk profile at which an exceedance of the VaR level — that is, for instance, an exceedance of the 0.999 quantile — occurs for the first time. Now, if we adopt the assumption that the index in this sequence is time, and that the horizon is annual, then, for p = 0.999, we have an exceedance chance of 0.001, meaning an exceedance occurring once every 1,000 occurrences — that is, once every 1,000 annual periods. The concept of the 1,000-year event thus emerges.
+  </p>
+
+
+</div>
+
+
+
+
+
 
 
 
