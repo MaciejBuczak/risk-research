@@ -2565,20 +2565,20 @@ window.addEventListener('load', function() {
 // KONFIGURACJA KATEGORII - ŁATWE DO EDYCJI
 // =========================================
 const CATEGORIES_CONFIG = {
-  kwantyl: { 
-    displayName: 'kwantyl', 
+  question: { 
+    displayName: 'Question', 
     color: 'var(--cat-color1)' 
   },
-  'ryzyko-operacyjne': { 
-    displayName: 'ryzyko operacyjne', 
+  debate: { 
+    displayName: 'Debate', 
     color: 'var(--cat-color2)' 
   },
-    'ryzyko-modeli': { 
-    displayName: 'ryzyko mod', 
+  'practical-example': { 
+    displayName: 'Practical Example', 
     color: 'var(--cat-color3)' 
   },
-    'rzadkość': { 
-    displayName: 'frequency', 
+  application: { 
+    displayName: 'Application', 
     color: 'var(--cat-color4)' 
   },
 
@@ -2589,7 +2589,7 @@ const categories = Object.keys(CATEGORIES_CONFIG).map(name => ({
   name: name,
   color: CATEGORIES_CONFIG[name].color,
   displayName: CATEGORIES_CONFIG[name].displayName
-}));  
+}));
 
 
 // Zmienna do przechowywania aktualnego filtru
@@ -2662,7 +2662,7 @@ function initializeCategoryDropdown() {
     // Dodaj opcję "bez kategorii"
     const defaultOption = document.createElement('option');
     defaultOption.value = '';
-    defaultOption.textContent = 'Wybierz kategorię (opcjonalnie)';
+    defaultOption.textContent = 'Select a category (optional)';
     categorySelect.appendChild(defaultOption);
     
     // Dodaj kategorie
@@ -5294,7 +5294,7 @@ The mechanics of a crisis would seem familiar. As is well known, water will firs
   
 <span class="hovernote" data-note="Kiema and Jokivuolle (2013), after all, pointed to the problem of differing capital quality at distant quantiles.">[5]</span>  
   
-Water, much like a wave of crisis, seeks out the weakest link in the system. Once it finds it, it will sweep it from the face of the earth. Other links, connected to that one by a web of capital relationships — or even by a web of perception, one that operates within the minds of market participants and manifests itself, at critical moments, in the form of collective panic — will be undermined by a process of erosion, and will, in turn, gradually fail as well. All of this continues until the crisis is brought under control — a moment whose timing can never be known in advance. <span style="color: #D4AF37; font-size: 22px;">&#9632;</span>
+Water, much like a wave of crisis, seeks out the weakest link in the system. Once it finds it, it will sweep it from the face of the earth. Other links, connected to that one by a web of capital relationships — or even by a web of perception, one that operates within the minds of market participants and manifests itself, at critical moments, in the form of collective panic — will be undermined by a process of erosion, and will, in turn, gradually fail as well. All of this continues until the crisis is brought under control — a moment whose timing can never be known in advance. <span style="color: #D4AF37; font-size: 20px;">&#9632;</span>
 </p>
   </div>
 
@@ -5535,8 +5535,8 @@ Stedinger, J.R., Vogel, R.M., Foufoula-Georgiou, E. (1993), Frequency analysis o
         <div class="ryzmod-t31-o32-container" style="display: flex; gap: 20px; margin-bottom: 40px;">
           
           <!-- Element O 3.2 -->
-          <div class="ryzmod-orange-box" style="width: 100%; background-color: transparent; margin-top: 10px; margin-bottom: 80px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border: 2px solid #D4AF37; border-radius: 15px; position: relative;">
-            <h3 style="color: #D4AF37; font-family: 'Poppins', serif; font-weight: bold; font-size: 18px; margin-bottom: 20px;">Powiązane artykuły</h3>
+          <div class="ryzmod-orange-box" style="width: 100%; background-color: transparent; margin-top: 0px; margin-bottom: 80px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border: 2px solid #D4AF37; border-radius: 15px; position: relative;">
+            <h3 style="color: #D4AF37; font-family: 'Poppins', serif; font-weight: bold; font-size: 18px; margin-bottom: 20px;">Related Articles</h3>
             <br>
             <br>
             <br>
@@ -5579,7 +5579,7 @@ Stedinger, J.R., Vogel, R.M., Foufoula-Georgiou, E. (1993), Frequency analysis o
 
 <!-- SEPARATOR SEKCJI KOMENTARZY -->
 <div class="comments-separator">
-    <div class="separator-text">Dyskusja Czytelników</div>
+    <div class="separator-text">Reader Discussion</div>
 </div>
 
 
@@ -5594,9 +5594,9 @@ Stedinger, J.R., Vogel, R.M., Foufoula-Georgiou, E. (1993), Frequency analysis o
     <p style="color: #D4AF37; font-family: 'Poppins', Arial, sans-serif; font-weight: bold; margin: 0; line-height: 1.5; font-size: 24px; text-align: left; text-indent: 0;">
       <br>
       <br>
-      Podziel się
+      Share
       <br>
-      swoją opinią
+      your thoughts
     </p>
   </div>
   
@@ -5608,18 +5608,18 @@ Stedinger, J.R., Vogel, R.M., Foufoula-Georgiou, E. (1993), Frequency analysis o
         <!-- Opcje się wygenerują automatycznie -->
       </select>
       
-      <input id="author-name" type="text" placeholder="Twoje imię (2-50 znaków)" maxlength="50" 
+      <input id="author-name" type="text" placeholder="Your name (2–50 characters)" maxlength="50" 
              style="width: 100%; padding: 12px; margin: 10px 0; border: 0.5px solid #D4AF37; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
       
-      <textarea id="comment-text" placeholder="Twój komentarz (10-1000 znaków)" maxlength="1000" rows="4" 
+      <textarea id="comment-text" placeholder="Your comment (10–1000 characters)" maxlength="1000" rows="4" 
                 style="width: 100%; padding: 12px; margin: 10px 0; border: 0.5px solid #D4AF37; border-radius: 8px; font-size: 14px; resize: vertical; min-height: 100px; box-sizing: border-box;"></textarea>
       
       <button class="submit-comment-btn" onclick="submitComment()" 
               style="background: #D4AF37; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.3s ease; margin-top: 10px;">
-        Dodaj komentarz
+        Add comment
       </button>
       
-<p class="comment-hint-new"><strong>Wskazówka: </strong>Wybierz kategorię, która najlepiej opisuje Twój komentarz. To pomoże innym czytelnikom znaleźć dyskusje na interesujące ich tematy.</p>
+<p class="comment-hint-new"><strong>Wskazówka: </strong>Tip: Choose the category that best describes your comment. This will help other readers find discussions on topics that interest them.</p>
     </div>
   </div>
 </div>
@@ -5636,7 +5636,7 @@ Stedinger, J.R., Vogel, R.M., Foufoula-Georgiou, E. (1993), Frequency analysis o
    
    <!-- Filtry kategorii - ZACHOWANE Z TWOIMI FUNKCJAMI -->
    <div class="comments-filters">
-       <h4 style="color: #D4AF37; font-family: Georgia, serif; font-weight: 600; font-size: 17px; letter-spacing: 0px">Filtruj komentarze:</h4>
+       <h4 style="color: #D4AF37; font-family: Georgia, serif; font-weight: 600; font-size: 17px; letter-spacing: 0px">Filter comments:</h4>
        <div id="category-filters">
            <!-- Przyciski się wygenerują automatycznie przez Twoją funkcję -->
        </div>
