@@ -2852,7 +2852,7 @@ const sessionId = getSessionId();
         const likeKey = `${commentId}_${sessionId}`;
         
         if (window.likedCommentsSet && window.likedCommentsSet.has(likeKey)) {
-            alert('Już polubiłeś ten komentarz!');
+            alert("You've already liked this comment!");
             return;
         }
         
