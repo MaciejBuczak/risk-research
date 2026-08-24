@@ -3,15 +3,14 @@ layout: art-ama_failure-layout_v5_1_1
 ---
 <!-- Menu nawigacyjne - wyświetlane przed main_content -->
 <div id="myMenu">
-  <a href="/" class="menu-option">Cześć</a>
-  <a href="/about" class="menu-option">Co robię</a>
-  <a href="/topics" class="menu-option">Tematy badań</a>
-  <a href="/publications" class="menu-option">Publikacje</a>
+  <a href="/" class="menu-option">Hi There</a>
+  <a href="/about" class="menu-option">About me</a>
+  <a href="/articlestart" class="menu-option">Essays</a>
+  <a href="/risk_trainings" class="menu-option">RISK TRAININGS</a>
+  <a href="/publications" class="menu-option">Publications</a>
+  <a href="/conferences" class="menu-option">Talks</a>
   <a href="/researches" class="menu-option">Researches</a>
-  <a href="/conferences" class="menu-option">Wykłady</a>
-  <a href="/contact" class="menu-option">Kontakt</a>
-  <a href="/trials" class="menu-option">trials</a>
-  <a href="/oprisk" class="menu-option">Oprisk</a>
+  <a href="/contact" class="menu-option">Contact</a>
 </div>
 
 
