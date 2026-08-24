@@ -842,6 +842,22 @@
     column-count: 1 !important;
   }
 
+
+/* 1b) Zdjęcie tytułowe + tekst wstępny -> jedno pod drugim, zdjęcie na pełną szerokość */
+    .ryzmod-network-row {
+      flex-direction: column !important;
+    }
+    .ryzmod-network-container {
+      width: 100% !important;
+      height: 220px !important;
+      margin-bottom: 20px !important;
+    }
+    .ryzmod-text-block {
+      width: 100% !important;
+      padding-left: 0 !important;
+    }
+  
+
   /* 2) Bloki .ryzmod-columns (tekst obok zdjęcia/tekstu) -> jedna pod drugą */
   .ryzmod-columns {
     flex-direction: column !important;
