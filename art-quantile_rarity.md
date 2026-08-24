@@ -1,5 +1,5 @@
 ---
-layout: art-quantile-rarity_layout
+layout: art-quantile_rarity-layout
 ---
 <!-- Menu nawigacyjne - wyświetlane przed main_content -->
 <div id="myMenu">
