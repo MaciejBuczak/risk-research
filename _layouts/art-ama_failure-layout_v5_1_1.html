@@ -1618,14 +1618,12 @@
 
 
 <style>
-
 /* SEPARATOR SEKCJI KOMENTARZY - BEZ EFEKTÓW */
 .comments-separator {
     text-align: center;
     margin: 60px 0 40px 0;
     position: relative;
 }
-
 .comments-separator::before,
 .comments-separator::after {
     content: '';
@@ -1635,15 +1633,12 @@
     height: 2px;
     background: #D4AF37; /* Jednolity kolor */
 }
-
 .comments-separator::before { 
     left: 0; 
 }
-
 .comments-separator::after { 
     right: 0; 
 }
-
 .separator-text {
     background: white;
     padding: 10px 30px;
@@ -1655,15 +1650,18 @@
     display: inline-block;
     font-family: 'Poppins', sans-serif;
 }
-
 @media (max-width: 768px) {
+    .comments-separator::before,
+    .comments-separator::after {
+        width: 10%;
+    }
+
     .separator-text {
-        font-size: 16px;
-        letter-spacing: 1px;
-        padding: 8px 20px;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        padding: 6px 14px;
     }
 }
-
   </style>
 
 
