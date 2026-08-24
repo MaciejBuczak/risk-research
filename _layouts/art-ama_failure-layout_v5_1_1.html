@@ -3015,12 +3015,12 @@ function updateCommentsCount(count) {
     const counterElement = document.getElementById('comments-counter');
     if (counterElement) {
         const categoryText = currentCategoryFilter === 'all' ? '' : 
-            ` w kategorii "${categories.find(c => c.name === currentCategoryFilter)?.displayName}"`;
+            ` in category "${categories.find(c => c.name === currentCategoryFilter)?.displayName}"`;
         
         if (totalPages > 1) {
             const start = (currentPage - 1) * COMMENTS_PER_PAGE + 1;
             const end = Math.min(currentPage * COMMENTS_PER_PAGE, count);
-            counterElement.textContent = `Komentarze ${start}-${end} z ${count}${categoryText} • Strona ${currentPage}/${totalPages}`;
+            counterElement.textContent = `Comments ${start}-${end} of ${count}${categoryText} • Page ${currentPage}/${totalPages}`;
         } else {
             counterElement.textContent = `${count} comment${count === 1 ? '' : 's'}${categoryText}`;
         }
@@ -5727,7 +5727,7 @@ Choose the category that best describes your comment. This may help other reader
        <!-- PAGINACJA -->
        <div class="pagination-container" id="pagination-container">
            <button class="pagination-btn prev-btn" id="prev-btn" onclick="goToPage(currentPage - 1)">
-               ◀ Poprzednia
+               ◀ Previous
            </button>
            
            <div class="pagination-numbers" id="pagination-numbers">
@@ -5735,7 +5735,7 @@ Choose the category that best describes your comment. This may help other reader
            </div>
            
            <button class="pagination-btn next-btn" id="next-btn" onclick="goToPage(currentPage + 1)">
-               Następna ▶
+               Next ▶
            </button>
        </div>
    </div>
