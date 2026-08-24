@@ -922,6 +922,19 @@
       margin: 0 auto 15px auto !important;
     }
 
+
+/* References - opis na górze, badge pod spodem */
+    .references-summary {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 8px !important;
+    }
+    .references-desc {
+      order: 1 !important;
+    }
+    .references-badge {
+      order: 2 !important;
+    }
   
 
 }
@@ -5463,9 +5476,9 @@ Water, much like a wave of crisis, seeks out the weakest link in the system. Onc
 
 <!-- Nowy element: Ramka informacyjna (zwijana) -->
 <details style="width: 100%; margin: 30px 0; border: 2px solid #D4AF37; background-color: transparent; position: relative; padding: 20px; box-sizing: border-box; border-radius: 10px;">
-  <summary style="cursor: pointer; list-style: none; display: flex; align-items: center; gap: 14px;">
-    <span style="background-color: #D4AF37; color: white; padding: 5px 15px; font-family: 'Poppins', serif; font-weight: bold; font-size: 18px; border-radius: 5px; flex-shrink: 0;">References</span>
-    <span style="font-family: 'Poppins', serif; font-size: 13px; color: #999; font-style: italic;">27 academic sources cited throughout this article — click to expand the full list</span>
+<summary class="references-summary" style="cursor: pointer; list-style: none; display: flex; align-items: center; gap: 14px;">
+    <span class="references-badge" style="background-color: #D4AF37; color: white; padding: 5px 15px; font-family: 'Poppins', serif; font-weight: bold; font-size: 18px; border-radius: 5px; flex-shrink: 0;">References</span>
+    <span class="references-desc" style="font-family: 'Poppins', serif; font-size: 13px; color: #999; font-style: italic;">27 academic sources cited throughout this article — click to expand the full list</span>
   </summary>
   
   <!-- Treść bloku -->
