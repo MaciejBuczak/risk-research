@@ -4033,7 +4033,7 @@ Ultimately, in 1967, the approach to flood frequency modeling was standardized i
     <div style="flex: 0 0 calc(65% - 26px);">
         <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Flow Models in Hydrology</h5>
         <p style="margin-bottom: 15px;">
-Hydrological flow models are built on the concept of the return period. Two equivalent defini-tions have become established, of which one — cited here, relating to the so-called uncondi-tional return period — is used considerably more frequently. The return period indicates the time until the first extreme event — that is, one whose magnitude exceeds a certain fixed threshold. In hydrological models, researchers most often make use of the block maxima meth-od. In this approach, only a single flow value is drawn from a given period (block) — most often a single year — namely, the maximum value; and this value, together with other such values drawn from other blocks, is subjected to statistical modeling. Adopting such an ap-proach gives rise, in a natural manner, to the concept of the T-period flood — for example, the 100-year flood, that is, a flood occurring once every T (every 100) blocks, and thus once every 100 years. This is precisely the return period.
+Hydrological flow models are built on the concept of the return period. Two equivalent defini-tions have become established, of which one — cited here, relating to the so-called uncondi-tional return period — is used considerably more frequently. The return period indicates the time until the first extreme event — that is, one whose magnitude exceeds a certain fixed threshold. In hydrological models, researchers most often make use of the block maxima method.
         </p>
 
 
@@ -4050,8 +4050,39 @@ Hydrological flow models are built on the concept of the return period. Two equi
 
 <!-- OBIEKT TEKSTOWY (2 KOLUMNY) - SAM ŁAMIE TEKST NA KOLUMNY -->
 <div style="column-count: 2; column-gap: 40px; margin-top:5px; margin-bottom: 20px;">
-  <p style="margin-bottom: 15px;">
-Rare — meaning what exactly? The regulator formulated the concept of rarity on the time axis. This means that the intention is to protect against a situation occurring no more than once in some given period of time. This is a significant assumption, and one that carries conse-quences. A phenomenon can be described in various ways depending on the axis on which one chooses to place it. This is most clearly visible when a rare event is considered alongside other observations — those that are typical, and therefore not rare — that are placed on the same axis. These will constitute a reference point (sometimes of decisive importance, as will be demonstrated later) for the rare observation. It is thus apparent that the concept of rarity is inextricably linked to the concept of a typical event — average, everyday. It is precisely the definition of a typical event that determines the perception of what constitutes a rare one. Different types of non-rare (typical, average) observations will be placed: (a) on the time axis — where the non-rare observations are years in which the level of the phenomenon is typical and expected; and (b) on the value axis — where the non-rare observations are values of the phenomenon at an average, typical level. One may, for instance, have at one's disposal the following sets of observations: 10 years with typical values, or 300 observations of the phenom-enon with typical values. This represents a fundamental difference in the way of looking at the modeled phenomenon. This distinction affects the perception of what constitutes a rare (ex-treme) observation, on what its interpretation as rare depends, and how the probabilities as-signed to it are to be understood.
+  
+  <p style="margin-bottom: 15px; text-indent: 0px;">
+In this approach, only a single flow value is drawn from a given period (block) — most often a single year — namely, the maximum value; and this value, together with other such values drawn from other blocks, is subjected to statistical modeling. Adopting such an ap-proach gives rise, in a natural manner, to the concept of the T-period flood — for example, the 100-year flood, that is, a flood occurring once every T (every 100) blocks, and thus once every 100 years. This is precisely the return period.
+</p>
+
+  <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">The Assumption of Stationarity and Independence</h5>
+    <p style="margin-bottom: 15px;">
+It is self-evident within hydrology that the methods described above for determining the return period, as well as the number of events over the period T, can be applied only if two fundamental conditions are satisfied: (i) extreme events are drawn from a stationary distribution; and (ii) they are independent of one another. Both, when satisfied, are equivalent to ensuring the i.i.d. condition (independent and identically distributed) for the distribution of the phenomenon, and to ensuring the constancy of the exceedance probability p — the probability of exceeding a certain water level. Within hydrology, this is to be understood as meaning that, over the period observed (e.g., T = 100 years), we assume constant conditions — that is, an unchanging distribution and its variance (an unchanging probability p) — as well as the independence of successive observations drawn from such a flow distribution. Assumptions of this kind were formulated at the time when the scope of methods and approaches for modeling the flood phenomenon was being established. Doubts as to the validity of adopting such conditions, which were already emerging at that time within the research community, were commented on by Gumbel in 1941 in the following manner (Volpi et al., 2015):
+</p>
+
+
+<!-- Blok cytatu w stylu z obrazka (bez znaku cudzysłowu) -->
+<div class="ryzmod-quote-box" style="width: 100%; margin: 30px 0; position: relative; padding: 0 0 0 30px; box-sizing: border-box;">
+  <!-- Lewa pionowa linia (złota) -->
+  <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background-color: #D4AF37;"></div>
+  
+  <!-- Treść cytatu -->
+  <div style="font-family: Georgia, serif; font-size: 18px; line-height: 1.6; font-style: italic; color: #777; margin-left: 20px;">
+  
+    <p style="text-indent: 0; font-size: 16px;">
+In order to apply any theory, we have to suppose that the data are homogeneous, i.e., that no systematical change of climate and no important change in the basin have occurred within the observation period and that no such changes will take place in the period for which extrapolations are made. It is only under these obvious conditions that forecasts can be made.
+    </p>
+  </div>
+  
+  <!-- Autor cytatu w kolorze złotym -->
+  <div style="text-align: right; font-family: Georgia, serif; font-size: 15px; margin-top: 10px; color: #D4AF37; font-weight: bold; margin-left: 20px;">
+    (Volpi et al., 2015)
+  </div>
+</div>
+  
+
+      <p style="margin-bottom: 15px;">
+The hydrological models that have been in operation over the past hundred years in the United States, as well as the models widely applied in other countries, have thus been based on i.i.d. assumptions. This was an assumption that was necessary, and one not subject to discussion.
 </p>
 
 </div>
