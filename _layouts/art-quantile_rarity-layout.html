@@ -1114,7 +1114,21 @@
 }
 
 
+@media (orientation: landscape) and (max-height: 500px) {
+  .meta-info {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+  }
+  .meta-item[style*="margin-left: auto"] {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+}
 
+
+
+    
 
     
 
@@ -3842,14 +3856,14 @@ window.addEventListener('load', function() {
       <div class="ryzmod-container">
         <!-- Główny nagłówek -->
 <div class="ryzmod-header">
-  <div class="ryzmod-header-text">99.9% Quantile, Rarity, Unexpected Situation <span style="color: #D4AF37;">— Ambiguities of the AMA Method</span></div>
+  <div class="ryzmod-header-text">I Can't Predict <span style="color: #D4AF37;">a 1,000-Year Catastrophe</span></div>
 </div>
         
         <!-- Drugi wiersz z diagramem sieciowym i tekstami - POPRAWIONE -->
         <div class="ryzmod-network-row">
           <!-- Diagram sieciowy po lewej - POPRAWIONY -->
           <div class="ryzmod-network-container" style="width: 35%; border: 1px solid #a85903; position: relative; overflow: hidden; height: 250px;">
-            <img src="/risk-research/assets/images/risk_measure.jpg" alt="Diagram sieciowy" style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; margin: 0 !important; padding: 0 !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; max-width: none !important; max-height: none !important;">
+            <img src="/risk-research/assets/images/crisis2.jpg" alt="Diagram sieciowy" style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; margin: 0 !important; padding: 0 !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; max-width: none !important; max-height: none !important;">
           </div>
                 
           <!-- Teksty po prawej -->
@@ -3857,8 +3871,8 @@ window.addEventListener('load', function() {
             <!-- Tekst wstępny - bez tła -->
             <div class="ryzmod-intro-text">
     <h5 style="text-indent: 0px; font-family: 'Roboto', sans-serif; font-size: 22px; font-weight: 300; text-align: left; color: #444;">
-      <span style="float: left; font-size: 400%; line-height: 0.8; margin-right: 8px; margin-top: 5px; color: #444;">W</span>
-hy was the AMA method — the advanced approach to operational risk measurement — withdrawn from regulation, despite being regarded for a decade as the most precise capital tool in Basel? The answer lies at the very foundations of the method: in three key concepts that the regu-lator left undefined — the rarity of an event, the interpretation of the 99.9% quantile, and the nature of the unexpected situation. These gaps, filled for years with intuition rather than precision, led to divergent re-sults between institutions applying the same formula. It is precisely these three concepts and their insufficient definitions to which this article is de-voted.
+      <span style="float: left; font-size: 400%; line-height: 0.8; margin-right: 8px; margin-top: 5px; color: #444;">H</span>
+ow many years must one wait to experience the financial catastrophe against which today's regulatory system protects us? The answer, which can be found in supervisory documents, is: a thousand years. The 0.999 quantile — the central parameter of the Basel safety system — is there explicitly interpreted as an event occurring once every thousand years. This formulation, reproduced without further comment in academic textbooks and in sectoral practice, is the point of departure for the present paper.
     </h5>
             </div>
          </div>
@@ -4232,7 +4246,7 @@ Unfortunately, this thought process cannot be carried out. We become stuck at th
 The quantile calibration levels formulated within the financial safety architecture are, in essence, the central parameters of this system. It is these that determine the level of extremity, and thus the levels of capital that are meant to govern this safety. For credit risk, the safety level was encoded within the IRB calculation formula - Art. 154 (EU, CRR, 2013):
 </p>
   
-<div style="max-width: 100%; font-size: 14px;">
+<div style="overflow-x: auto; max-width: 100%; font-size: 14px;">
 $$
 RW = \left\{ LGD \cdot N\left( \frac{1}{\sqrt{1-R}} \cdot G(PD) + \sqrt{\frac{R}{1-R}} \cdot G(0{,}999) \right) - LGD \cdot PD \right\} \cdot 12{,}5 \cdot 1{,}06
 $$
