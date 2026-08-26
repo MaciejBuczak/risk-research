@@ -4093,7 +4093,7 @@ Black and Scholes (1973) applied precisely this continuous-time version of the r
 
 
 <!-- OBIEKT TEKSTOWY (2 KOLUMNY) - SAM ŁAMIE TEKST NA KOLUMNY -->
-<div style="column-count: 2; column-gap: 40px; margin-top:30px; margin-bottom: 40px;">
+<div style="column-count: 2; column-gap: 40px; margin-top:40px; margin-bottom: 50px;">
    <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">The Random Walk and the Normal Distribution in Market Risk</h5>
   <p style="margin-bottom: 15px;">
 In 1996, J.P. Morgan and Reuters (1996), in introducing the Value at Risk concept into the world of finance, placed precisely this random walk process at the foundation of their model, as the description of an asset's rate of return. From this followed the normal distribution they applied as the probabilistic description of the rate-of-return phenomenon; it was on this distribution that VaR values were read, given an assumed confidence level and time horizon. The supervisor, by way of the so-called Market Risk Amendment (BIS, BCBS, 1996), introduced this method into official use. Today, this is precisely how the world models the volatility of the market value of assets.
@@ -4135,152 +4135,37 @@ In the domain of credit risk, a decisive step was taken by Merton (1974). Buildi
 
 
 <!-- OBIEKT TEKSTOWY (2 KOLUMNY) - SAM ŁAMIE TEKST NA KOLUMNY -->
-<div style="column-count: 2; column-gap: 40px; margin-top:5px; margin-bottom: 20px;">
+<div style="column-count: 2; column-gap: 40px; margin-top:20px; margin-bottom: 20px;">
   
   <p style="margin-bottom: 15px; text-indent: 0px;">
-In this approach, only a single flow value is drawn from a given period (block) — most often a single year — namely, the maximum value; and this value, together with other such values drawn from other blocks, is subjected to statistical modeling. Adopting such an ap-proach gives rise, in a natural manner, to the concept of the T-period flood — for example, the 100-year flood, that is, a flood occurring once every T (every 100) blocks, and thus once every 100 years. This is precisely the return period.
+Merton's key insight was the isomorphism between a firm's capital structure and option instruments. The equity of a leveraged firm is mathematically equivalent to a European call option on the firm's assets: shareholders have the right, but not the obligation, to "repurchase" the firm from its creditors by repaying the debt at maturity. If, at that point, the value of the firm's assets exceeds the value of its liabilities, shareholders repay the debt and retain the surplus; if not, they surrender the firm to its creditors, much as an option holder who chooses not to exercise the option. Default is thus an endogenous event: it occurs precisely when the value of the firm's assets falls below the value of its debt at maturity. From this isomorphism, it was held to follow that the credit risk premium is a function solely of the volatility of the firm's assets and its leverage ratio — with no need to know either the expected rate of return or investors' preferences.
 </p>
 
-  <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">The Assumption of Stationarity and Independence</h5>
+  
     <p style="margin-bottom: 15px;">
-It is self-evident within hydrology that the methods described above for determining the return period, as well as the number of events over the period T, can be applied only if two fundamental conditions are satisfied: (i) extreme events are drawn from a stationary distribution; and (ii) they are independent of one another. Both, when satisfied, are equivalent to ensuring the i.i.d. condition (independent and identically distributed) for the distribution of the phenomenon, and to ensuring the constancy of the exceedance probability p — the probability of exceeding a certain water level. Within hydrology, this is to be understood as meaning that, over the period observed (e.g., T = 100 years), we assume constant conditions — that is, an unchanging distribution and its variance (an unchanging probability p) — as well as the independence of successive observations drawn from such a flow distribution. Assumptions of this kind were formulated at the time when the scope of methods and approaches for modeling the flood phenomenon was being established. Doubts as to the validity of adopting such conditions, which were already emerging at that time within the research community, were commented on by Gumbel in 1941 in the following manner (Volpi et al., 2015):
+Merton (1974) opened the way for the formation of an entire class of models known as structural models, in which credit risk follows directly from the observed capital structure and asset volatility of the firm. The logic of Merton's model — pricing through portfolio replication, the absence of arbitrage, the isomorphism with options — became the methodological template for the whole of modern credit instrument pricing theory.
 </p>
 
 
-<!-- Blok cytatu w stylu z obrazka (bez znaku cudzysłowu) -->
-<div class="ryzmod-quote-box" style="width: 100%; margin: 30px 0; position: relative; padding: 0 0 0 30px; box-sizing: border-box;">
-  <!-- Lewa pionowa linia (złota) -->
-  <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background-color: #D4AF37;"></div>
-  
-  <!-- Treść cytatu -->
-  <div style="font-family: Georgia, serif; font-size: 18px; line-height: 1.6; font-style: italic; color: #777; margin-left: 20px;">
-  
-    <p style="text-indent: 0; font-size: 16px;">
-In order to apply any theory, we have to suppose that the data are homogeneous, i.e., that no systematical change of climate and no important change in the basin have occurred within the observation period and that no such changes will take place in the period for which extrapolations are made. It is only under these obvious conditions that forecasts can be made.
-    </p>
-  </div>
-  
-  <!-- Autor cytatu w kolorze złotym -->
-  <div style="text-align: right; font-family: Georgia, serif; font-size: 15px; margin-top: 10px; color: #D4AF37; font-weight: bold; margin-left: 20px;">
-    (Volpi et al., 2015)
-  </div>
-</div>
   
 
       <p style="margin-bottom: 15px;">
-The hydrological models that have been in operation over the past hundred years in the United States, as well as the models widely applied in other countries, have thus been based on i.i.d. assumptions. This was an assumption that was necessary, and one not subject to discussion.
+Vasicek (1987) extended Merton's model to a credit portfolio. He assumed that the asset value of each borrower depends on two components: a systematic factor (the state of the economy), common to all borrowers, and an idiosyncratic factor, specific to each individual borrower. Vasicek likewise assumed that the portfolio contains an infinite number of small exposures. Under this assumption, idiosyncratic risk diversifies away to zero — only systematic risk remains. Thus, asymptotically, as the number of exposures tends to infinity, portfolio risk depends on a single factor — the systematic component. Hence the name later given to this approach: the Asymptotic Single Risk Factor (ASRF). By virtue of these assumptions, Vasicek derived a closed-form analytical formula for the loss distribution of a homogeneous credit portfolio, as a function of three parameters: the long-run PD, the correlation (denoting the correlation of a given borrower with the systematic factor — that is, with the state of the economy), and the confidence level.
 </p>
 
-</div>
-
-
-
-
-
-
-
-
-<!-- Sekcja "Czy warto to analizować?" część 2 -->
-<div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 20px; margin-bottom: 10px;">
-    <!-- Kolumna 1 - 35% - tekst -->
-    <div style="flex: 0 0 calc(35% - 14px);">
-
- <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Parametrizations of the Return Period in the World of Physical Phenomena</h5>
-        <p style="margin-bottom: 15px; text-indent: 0px;">
-Within the domain of physical phenomena, researchers and the institutions engaged in describing them have developed various calibrations of the return period, each useful in the processes for which they are applied. For instance, for modeling phenomena such as earthquakes, a calibration at the level of a 2,475-year event has been adopted; for extreme events whose materialization might occur on the site of a nuclear power plant, this figure is 409 years; while for flood infrastructure, we speak of a 100-year event.
-</p>
-
-    </div>      
-  
-    <!-- Kolumna 2 - 65% - tabela -->
-    <div style="flex: 0 0 calc(65% - 26px);">
-      <div style="overflow-x: auto; max-width: 100%; margin: 0;">
-        <p style="font-family: Georgia, serif; font-size: 15px; margin-bottom: 10px; text-indent: 0;"><strong>Table 1:</strong> Expected Return Period (T-Years) for Various Physical Phenomena</p>
-        <table style="width: 100%; border-collapse: collapse; font-family: Georgia, serif; text-align: left; background-color: #ffffff; border: none; font-size: 14px;">
-          <thead>
-            <tr style="border-top: 2px solid #D4AF37; border-bottom: 1px solid #D4AF37;">
-              <th style="padding: 12px 15px; font-weight: bold; color: #444444; background-color: #ffffff; border: none; text-align: left;">Field</th>
-              <th style="padding: 12px 15px; font-weight: bold; color: #444444; background-color: #ffffff; border: none; text-align: left; white-space: nowrap;">Expected Return Period (T-Years)</th>
-              <th style="padding: 12px 15px; font-weight: bold; color: #444444; background-color: #ffffff; border: none; text-align: left;">Source</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">Earthquakes</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">2475</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">NEHRP (2010)</td></tr>
-            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">Retirement portfolios</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">585</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">Ameriks et al. (2001) and Stout and Mitchell (2006)</td></tr>
-            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">Nuclear power plants</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">409</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">United States National Nuclear Regulatory Commission (1975)</td></tr>
-            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">Flood insurance</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">105</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 1px solid #eeeeee; vertical-align: top;">FEMA</td></tr>
-            <tr><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 2px solid #D4AF37; vertical-align: top;">Flood infrastructure</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 2px solid #D4AF37; vertical-align: top;">100</td><td style="padding: 8px 15px; color: #333333; background-color: #ffffff; border: none; border-bottom: 2px solid #D4AF37; vertical-align: top;">Yen (1970)</td></tr>
-          </tbody>
-        </table>
-        <p style="text-align: center; font-family: Georgia, serif; font-style: italic; font-size: 14px; color: #777777; margin-top: 10px; text-indent: 0;">Source: Based on Read and Vogel (2015)</p>
-        <p style="text-align: center; font-family: Georgia, serif; font-style: italic; font-size: 14px; color: #777777; margin-top: 10px; text-indent: 0;">Notes: It should be added that, in models of physical phenomena, researchers also make use of a further parameter — the planning horizon — which has been omitted here.</p>
-      </div>
-    </div>
-      
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Sekcja "Czy warto to analizować?" część 2 -->
-<div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 30px; margin-bottom: 0px;">
-
-      
-    <!-- Kolumna 1 - 65% -->
-    <div style="flex: 0 0 calc(65% - 26px);">
-        <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">
-          The End of the Stationarity Assumption
-        </h5>
         <p style="margin-bottom: 15px;">
-At the outset of the twenty-first century, Milly et al. (2008), in a widely noted article titled "Stationarity Is Dead: Whither Water Management," concluded: "Systems for management of water throughout the developed world have been designed and operated under the assumption of stationarity." At the time, in 2008, they valued the global investment in water infrastructure, designed on the basis of models employing the stationarity condition, at US$500 billion. They described the concept of stationarity, as employed in hydrology over the preceding several decades of the twentieth century, as: "the idea that natural systems fluctuate within an unchanging envelope of variability."
-        </p>
-      
-    </div>
+Gordy (2003), for his part, demonstrated that the property of portfolio invariance, underlying the Vasicek model, likewise holds for heterogeneous portfolios — with differing risk parameters across individual exposures — provided the portfolio is asymptotically fine-grained and a single systematic factor exists. This property made it possible to construct the IRB formula, in which capital is calculated additively, loan by loan. Ultimately, the level of credit losses in the IRB model, formulated on these principles, is read off from a normal distribution, at the 0.999 level. It was thus accepted that the loss phenomenon averages out to the shape of a normal distribution. A reading at the 0.999 quantile denotes, in turn, a situation of extremely low probability — the chance of default under an unexpected situation.
+</p>
 
+        <p style="margin-bottom: 15px;">
+In 2004, the regulator, by way of the Basel II regulations (BIS, BCBS, 2004), introduced the IRB framework into the safety architecture. Credit risk models were now built upon this long and consistently constructed tradition.
+</p>
 
-      <!-- Kolumna 2 - 35% -->
-    <div style="flex: 0 0 calc(35% - 14px); display: flex; align-items: center;">
-        <!-- Kontener na zdjęcie -->
-        <div class="image-container10" style="max-width: none; margin: 0; width: 100%; padding: 0; box-sizing: border-box;">
-            <img src="/risk-research/assets/images/non-stationarity2.jpg" alt="Opis zdjęcia" style="width: 100% !important; max-width: 100% !important; height: auto; display: block; object-fit: cover; margin: 0; padding: 0; border: none;">
-        </div>
-    </div>
-      
+        <p style="margin-bottom: 15px;">
+It is worth adding that other approaches to measuring credit risk exist as well, some fairly widely used. Unlike the IRB model discussed above, these are not models based on a structural approach. They rely, to a far greater degree, on empirical data, and it is on such information that the measurements — and, at times, the probability distributions — are based. These models typically make use of the VaR concept, applied to the final distributions arising within them. Ultimately, then, much like the IRB model, the character of these models remains strictly probabilistic. One example from this group is the CreditMetrics concept, developed by J.P. Morgan (1997). The model's architecture is based on a portfolio approach to risk measurement, an exposure migration matrix, and a VaR measure applied at the end of this construct. Another example is the CreditRisk+ model, developed by Credit Suisse (CSFP, 1997) — an actuarial concept, in which the number of losses is modeled by means of the Poisson distribution. Ultimately, here too, the model's result is read off by means of the Value at Risk measure.
+</p>
+
 </div>
-
-
-        
-
-
-
-
-        <!-- Sekcja "Czy warto to analizować?" część 2 -->
-
-        <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 15px; margin-bottom: 10px;">
-          <!-- Kolumna 1 -->
-          <div style="flex: 1;">
-         
-<p style="margin-bottom: 15px;">
-Milly et al. go on to state that this envelope of natural variability has been exceeded, and formulate their central thesis: stationarity is dead. Pointing to climate change as the principal cause of the breach of this hitherto inviolable condition, they write emphatically: "we assert that stationarity is dead and should no longer serve as a central, default assumption in water-resource risk assessment and planning." Drawing on projections of the average level of global surface water runoff for the year 2050, and comparing these levels to observations from the period 1900–1970, they point to a substantial change — one that cannot be captured within a variance understood in stationary terms. In addition, addressing the relationship between changes at the level of the mean and those at the level of distant quantiles, they argue that "paleohydrologic studies suggest that small changes in mean climate might produce large changes in extremes […]," and, with respect to the resilience of currently constructed safety systems, that "projected changes in runoff during the multidecade lifetime of major water infrastructure projects begun now are large enough to push hydroclimate beyond the range of historical behaviors." At the end, the authors propose adapting existing models so as to enable them to capture the temporal evolution of the probability distribution, together with an estimate of the associated uncertainty.
-</p>
-
-            <p style="margin-bottom: 15px;">
-The authors' closing statement — "stationarity cannot be revived" — provoked, within the hydrological community, a debate on the mortality and immortality of stationarity. This question became the dominant research problem within twenty-first-century hydrology (e.g., Cooley, 2013; Salas and Obeysekera, 2014; Du et al., 2015; Read and Vogel, 2015).
-</p>
- 
- 
-          </div>
-        </div>
-
-
 
 
 
@@ -4289,16 +4174,22 @@ The authors' closing statement — "stationarity cannot be revived" — provoked
 
 
 <!-- OBIEKT TEKSTOWY (2 KOLUMNY) - SAM ŁAMIE TEKST NA KOLUMNY -->
-<div style="column-count: 2; column-gap: 40px; margin-top:30px; margin-bottom: 20px;">
-   <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 16px; font-weight: bold; color: #D4AF37">The Return Period Under Conditions of Non-Stationarity</h5>
-  <p style="margin-bottom: 15px;">
-Read and Vogel (2015) examined the usefulness of the concept of the expected return period under conditions of non-stationarity, while retaining the assumption of temporal independence. They undertook an attempt to describe the flow phenomenon precisely under such non-stationary conditions — that is, with non-stationary return periods. They demonstrated that, under such unstable conditions, the concept of the T-year flood changes over time. For instance, the 100-year flood, 50 years from now, will be 1.6 times larger than today's 100-year flood. There is thus no single value corresponding to the 100-year flood. This may, of course, give rise to further interpretive — and consequently communicative — complications, with respect to a return-period definition that already causes considerable difficulty even under stationary conditions. It may be, however, that a time-varying exceedance probability p (that is, put differently, 1/T) renders this new, non-stationary concept of the return period altogether devoid of usefulness. What is more, the very form of the non-stationarity may itself be variable, which further complicates any modeling approach whatsoever.
+<div style="column-count: 2; column-gap: 40px; margin-top:20px; margin-bottom: 20px;">
+  <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Methods for Operational Risk</h5>
+  <p style="margin-bottom: 15px; text-indent: 0px;">
+It would seem that the framework proposed by the regulator in 2004 (BIS, BCBS, 2004) for the statistical description of operational risk (the AMA method) draws upon several different traditions. In part, on the actuarial tradition — marginal models of frequency and severity; in part, on the tradition described above — the reading of the risk level by way of a distribution quantile, the VaR method; and in part, on the tradition of catastrophe modeling — EVT I, EVT II, Embrechts et al. (1997). The description of the operational risk phenomenon (within the AMA framework) in terms of so-called heavy-tailed (sub-exponential) distributions is itself evidence of the framework's grounding in this third tradition. This method — in operation for twenty years and withdrawn in 2024 — irrespective of which of the aforementioned foundations one traces it to, drew, with certainty, on the assumption of the randomness of the phenomenon it sought to describe. It thus shares the same origin as the methods for describing market and credit risk discussed above — an origin having its roots in the, whether justified or not, "taming of chance."
 </p>
-  
-    <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 16px; font-weight: bold; color: #D4AF37">The Return Period Under Conditions of Temporal Dependence Among Observations</h5>
 
-<p>
-Volpi et al. (2015), in the reverse of Read and Vogel (2015), relaxed the assumption of temporal independence while retaining the assumption of stationarity. They constructed a time-dependent model, characterized by the presence of properties commonly found in phenomena of this kind: (i) persistence, and (ii) clustering. The first property denotes a tendency for the same state to persist over an extended period; the second, a tendency for extreme events to cluster within neighboring periods. Using a model built on these assumptions, the authors tested the usefulness of the return period definition. They conclude: "[…] in the context of time-dependent processes, the return period might not represent an exhaustive measure of the probability of failure, and that its blind application could lead to misleading results." Above all, however, the authors drew attention to the difference in results depending on the definition of the return period adopted. They note that, whereas under conditions of temporal independence both commonly used definitions (the unconditional return period and the conditional return period) are equivalent, under conditions of temporal dependence, different definitions yield different results. In addition, they demonstrate that readings of the classically understood return period, under conditions of temporal dependence, lead to erroneous interpretations, and they propose an alternative measure — the equivalent return period — which serves as the counterpart of the return period under conditions of temporal dependence.
+ <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">The Catalog of Methods for Internal Capital Models</h5> 
+    <p style="margin-bottom: 15px;">
+For internal capital models (Pillar II — Basel II) (BIS, BCBS, 2004), no dedicated frameworks exist. Such models, however, are most often built using the Value at Risk method. The structure of the phenomenon itself may be described in a variety of ways, and these concepts may thus draw on different traditions. They are, nonetheless, generally concepts grounded in the assumption of the randomness of the phenomena under study.
+</p>
+
+
+  
+<h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">The Financial Safety Architecture after CRR III</h5>
+      <p style="margin-bottom: 15px;">
+Four years after the Basel II safety framework was established, the greatest financial crisis in a hundred years took place (the 2008 crisis). Following this event, regulators set to work, almost immediately, on reforming the system. This work continued for well over a decade. In 2024, the CRR III package (EU, CRR III, 2024) was published, implementing into force the post-crisis regulatory project known as Basel III Endgame (BIS, BCBS, 2017). At the fundamental level, the regulations did not change substantially.
 </p>
 
 
@@ -4310,35 +4201,9 @@ Volpi et al. (2015), in the reverse of Read and Vogel (2015), relaxed the assump
 
 
 
-        <!-- Sekcja "Czy warto to analizować?" część 2 -->
 
-        <div class="ryzmod-columns" style="display: flex; gap: 40px; margin-top: 15px; margin-bottom: 10px;">
-          <!-- Kolumna 1 -->
-          <div style="flex: 1;">
-            
-    <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">Criticism of the Probabilistic Approach in Hydrology</h5>  
-<p style="margin-bottom: 15px;">
-In the field of hydrological research, a certain turning point, it would seem, can be observed: growing criticism of traditional statistical methods, and a shift toward mechanistic descriptions of phenomena. Over the past two decades, an increasing number of publications have appeared subjecting to criticism the assumption of the random character of the flow phenomenon, and of the floods that result from it. Merz and Blöschl (2008) cite Klemeš's statement: "If more light is to be shed on the probabilities of hydrological events, then it will have to come from more information on the physics of the phenomena, not from more mathematics." The authors go on to state that the hydrological literature has focused excessively on solving technical estimation problems (distribution fitting, parametrization methods), neglecting the wealth of hydrological knowledge in the process. They propose shifting the center of gravity of research, pointing out that there exists a rich diversity of hydrological processes, often specific to a given location, which cannot be fully captured by formal statistical methods.
-</p>
-            <p style="margin-bottom: 15px;">
-Dawdy, Griffis, and Gupta (2012), lending support to this line of argument, question the unrealistic assumption of stationarity — that is, the assumption that the future can be predicted by means of a model of the past. At the same time, they point to the insurmountable limitations of traditional statistical models. Despite the many improvements made to such models over time, they remain, they argue, a black box, closed off from knowledge of the physical processes actually taking place.
-</p>
-            <p style="margin-bottom: 15px;">
-Milly et al. (2008) point, it would seem aptly, to a necessary change in the philosophy of modeling. A model, they argue, should not be the central point of reference, but merely an aid in synthesizing observations: "Modeling should be used to synthesize observations; it can never replace them."
-</p>
 
-<h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">A New Perspective on the Description of Physical Phenomena</h5>
 
-            <p style="margin-bottom: 15px;">
-This emerging trend, moving toward a mechanistic approach to the construction of resilience systems, in a certain sense renders the ongoing probabilistic debates moot. Within such a new paradigm, it is no longer necessary to determine the exceedance probability, nor the associated concept of the return period, nor any of the other concepts deriving from it. The recently observed problem of non-stationarity in physical phenomena, and the question of the independence of random variables, cease to be of consequence. Consequently, all attempts to resolve problems of this type — that is, problems whose very definitions were constructed on the plane of statistics, or, more broadly, of probability theory — may likewise be rendered moot.
-</p>
-<p>
-As can be seen, within the world of natural phenomena — which the scientific community has studied for over a century, and for the description of which the entire, sophisticated statistical apparatus was developed — the fundamental assumptions underlying the models widely applied in this domain are increasingly being called into question. Stationarity and the independence of random variables — axioms indispensable to this statistical architecture — have vanished.
-  </p>
- 
- 
-          </div>
-        </div>
 
 
 
@@ -4365,7 +4230,7 @@ As can be seen, within the world of natural phenomena — which the scientific c
       <div style="padding: 20px;">
         <div style="font-family: Georgia, serif; color: #D4AF37; font-size: 24px; margin-bottom: 15px;">01</div>
         <p style="color: #444; font-family: Arial, sans-serif; margin: 0; font-size: 16px; line-height: 1.6; text-indent: 0px;">
-          The "hundred-year flood" isn't a natural law — it's a statistical convention built on two fragile assumptions.
+          Every major financial risk model — from options pricing to Basel's credit-risk formula — traces back to a single borrowed idea: Bachelier's transplant of Brownian motion (the random, jittery motion of physical particles) into the description of asset prices.
         </p>
       </div>
     </div>
@@ -4376,7 +4241,7 @@ As can be seen, within the world of natural phenomena — which the scientific c
       <div style="padding: 20px;">
         <div style="font-family: Georgia, serif; color: #D4AF37; font-size: 24px; margin-bottom: 15px;">02</div>
         <p style="color: #444; font-family: Arial, sans-serif; margin: 0; font-size: 16px; line-height: 1.6; text-indent: 0px;">
-    In 2008, hydrology's own researchers declared these foundations dead.
+    Black-Scholes, Merton, and Vasicek didn't invent new foundations — they each built a further layer on the same random-walk assumption, extending it from options to bonds to entire credit portfolios, until it became the mathematical backbone of Basel's IRB formula.
         </p>
       </div>
     </div>
@@ -4387,7 +4252,7 @@ As can be seen, within the world of natural phenomena — which the scientific c
       <div style="padding: 20px;">
         <div style="font-family: Georgia, serif; color: #D4AF37; font-size: 24px; margin-bottom: 15px;">03</div>
         <p style="color: #444; font-family: Arial, sans-serif; margin: 0; font-size: 16px; line-height: 1.6; text-indent: 0px;">
-          The field's response was to shift from statistics toward mechanics — describing the physical process itself, not just fitting a curve to it.
+          The 2008 crisis shook confidence in these models but never touched their foundations — CRR III still rests on the same paradigm that phenomena observed in finance are random and probabilistically modelable, exactly as it was before.
         </p>
       </div>
     </div>
@@ -4413,13 +4278,9 @@ As can be seen, within the world of natural phenomena — which the scientific c
 <div class="ryzmod-t52-text" style="padding-left: 0; padding-right: 20px;">
 
     <p style="text-indent: 0px;">
-What is more, the entire probabilistic edifice — the founding idea for problems of this class — is beginning to be widely challenged. Perhaps statistics and its tools are not, after all, the best instrument for describing phenomena of such importance to society. Such is the current state of the debate within this domain of phenomena — one relatively amenable to statistical description: natural phenomena, relatively stable and well understood.
+The paradigms remained untouched. Regulators and the financial sector continue to view the world through this same conceptual map. The concept of statistically modeling risk — in which the risk phenomenon is perceived as a random phenomenon, a random variable — was not called into question. The financial safety architecture thus remains grounded in a probabilistic method of describing phenomena. We see these phenomena as external and modelable. Risk models, in turn, function as the key objects of this system.
   </p>
 
-
-    <p>
-What, then, can be said of the possibility of statistically modeling phenomena that are far less well understood, yet far more dynamic — phenomena that play themselves out on a social substrate, marked by the generic unpredictability of human behavior, in an era of exponentially accelerating civilizational change? <span style="color: #D4AF37; font-size: 20px;">&#9632;</span>
-  </p>
   
   </div>
 
