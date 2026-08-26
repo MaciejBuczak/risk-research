@@ -3863,7 +3863,7 @@ window.addEventListener('load', function() {
         <div class="ryzmod-network-row">
           <!-- Diagram sieciowy po lewej - POPRAWIONY -->
           <div class="ryzmod-network-container" style="width: 35%; border: 1px solid #a85903; position: relative; overflow: hidden; height: 250px;">
-            <img src="/risk-research/assets/images/flood_barrier1.jpg" alt="Diagram sieciowy" style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; margin: 0 !important; padding: 0 !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; max-width: none !important; max-height: none !important;">
+            <img src="/risk-research/assets/images/finance_random1.jpg" alt="Diagram sieciowy" style="width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; margin: 0 !important; padding: 0 !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; max-width: none !important; max-height: none !important;">
           </div>
                 
           <!-- Teksty po prawej -->
@@ -4031,15 +4031,15 @@ In the sections that follow, the process will be traced by which economic — or
   <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">The Random Walk and the Normal Distribution</h5>
 <p style="margin-bottom: 15px;">
 As late as the nineteenth century, the value of assets (e.g., stock prices) was understood through two traditions:
-<p>
+<p style="margin-bottom: 15px; text-indent: 0px;">
 (a) The first tradition — the fundamental one. A stock price reflects the value of the company. A company's value depends on its profits, assets, and prospects. A skilled analyst, understanding the company, can predict whether the price will rise or fall.
 </p>
-<p>
+<p style="margin-bottom: 15px; text-indent: 0px;">
 (b) The second tradition — the technical one. Prices exhibit patterns — trends, resistance levels, support levels. A skilled observer, reading charts, can predict price movements.
 </p>
 
             <p style="margin-bottom: 15px;">
-The idea of the random walk — known in physics as Brownian motion — was transferred into the world of finance by Bachelier (1900). His work, however, was forgotten, and this idea is best known today under the name of the Wiener process (1923), or simply as Brownian motion . This widely disseminated concept holds that movements in asset values are, by their very nature, random, and follow a stochastic process (that is, a process composed of random variables). At any given moment in time, the value depends on the state at the previous period and on a random movement occurring within the current period. The stochastic process in question unfolds over time. Time, in turn, may be either discrete or continuous. Wiener (1923), who formalized the description of this process, addressed the process in continuous time.
+The idea of the random walk — known in physics as Brownian motion — was transferred into the world of finance by Bachelier (1900). His work, however, was forgotten, and this idea is best known today under the name of the Wiener process (1923), or simply as Brownian motion. This widely disseminated concept holds that movements in asset values are, by their very nature, random, and follow a stochastic process (that is, a process composed of random variables). At any given moment in time, the value depends on the state at the previous period and on a random movement occurring within the current period. The stochastic process in question unfolds over time. Time, in turn, may be either discrete or continuous. Wiener (1923), who formalized the description of this process, addressed the process in continuous time.
 </p>
  
  
@@ -4052,7 +4052,7 @@ The idea of the random walk — known in physics as Brownian motion — was tran
 
 
 <!-- OBIEKT TEKSTOWY (2 KOLUMNY) - SAM ŁAMIE TEKST NA KOLUMNY -->
-<div style="column-count: 2; column-gap: 40px; margin-top:5px; margin-bottom: 20px;">
+<div style="column-count: 2; column-gap: 40px; margin-top:5px; margin-bottom: 30px;">
   
   <p style="margin-bottom: 15px; text-indent: 0px;">
 Now, by means of the Central Limit Theorem (CLT), one can, at any given moment in the future, observe a distribution — a normal one — of possible values; that is, a picture of the potential for different possible trajectories to be realized. In the discrete version, however, the process needs more time to form a normal distribution — with a small sample (a short period t), the distribution will not yet be normal. If, on the other hand, continuous time is assumed, then, between the moments t0 and t1, infinitely many small steps are observed. Thus, within any arbitrarily small interval of time, the particle (the price) has taken infinitely many steps, and the CLT has already come into effect. The distribution of the particle's (the price's) position is thus normal for every t > 0. The Wiener process thus holds that the position of the particle at any given moment t is a random variable with a normal distribution. The marginal distribution of the Wiener process is written as follows:
@@ -4067,7 +4067,10 @@ $$
     <p style="margin-bottom: 15px;">
 where W(t) is the value of the Wiener process at time t — that is, the position of the particle (the price) at time t — with the normal distribution described by the following parameters: a mean equal to 0, and a variance equal to the time t (that is, the standard deviation is the square root of the time t).
 </p>
-
+  
+<p style="margin-bottom: 15px;">
+Black and Scholes (1973) applied precisely this continuous-time version of the random walk process, employing, in their option pricing formula, the heat conduction equation. In doing so, they accepted that the volatility of an asset's price over time could be described mathematically in the very same manner in which the random motion of a physical particle had been described. The distribution of such an asset price change is, accordingly, normal (Strictly speaking, this refers to the normality of the logarithm of the rate of return - geometric Brownian motion. It is useful to understand the rate of return as the change in value over time. In this sense, the normal distribution describes the logarithm of the change in stock price over time.).
+</p>
 
 </div>
 
@@ -4086,6 +4089,19 @@ where W(t) is the value of the Wiener process at time t — that is, the positio
 </div>
 
 
+
+
+
+<!-- OBIEKT TEKSTOWY (2 KOLUMNY) - SAM ŁAMIE TEKST NA KOLUMNY -->
+<div style="column-count: 2; column-gap: 40px; margin-top:30px; margin-bottom: 40px;">
+   <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">The Random Walk and the Normal Distribution in Market Risk</h5>
+  <p style="margin-bottom: 15px;">
+In 1996, J.P. Morgan and Reuters (1996), in introducing the Value at Risk concept into the world of finance, placed precisely this random walk process at the foundation of their model, as the description of an asset's rate of return. From this followed the normal distribution they applied as the probabilistic description of the rate-of-return phenomenon; it was on this distribution that VaR values were read, given an assumed confidence level and time horizon. The supervisor, by way of the so-called Market Risk Amendment (BIS, BCBS, 1996), introduced this method into official use. Today, this is precisely how the world models the volatility of the market value of assets.
+</p>
+
+</div>
+
+
         
         
 
@@ -4095,15 +4111,15 @@ where W(t) is the value of the Wiener process at time t — that is, the positio
     <div style="flex: 0 0 calc(35% - 14px); display: flex; align-items: center;">
         <!-- Kontener na zdjęcie -->
         <div class="image-container10" style="max-width: none; margin: 0; width: 100%; padding: 0; box-sizing: border-box;">
-            <img src="/risk-research/assets/images/flood2.jpg" alt="Opis zdjęcia" style="width: 100% !important; max-width: 100% !important; height: auto; display: block; object-fit: cover; margin: 0; padding: 0; border: none;">
+            <img src="/risk-research/assets/images/math1.jpg" alt="Opis zdjęcia" style="width: 100% !important; max-width: 100% !important; height: auto; display: block; object-fit: cover; margin: 0; padding: 0; border: none;">
         </div>
     </div>      
   
     <!-- Kolumna 1 - 65% -->
     <div style="flex: 0 0 calc(65% - 26px);">
-        <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">The Random Walk and the Normal Distribution</h5>
+        <h5 style="font-family: Arial Black, Arial, sans-serif; font-size: 20px; font-weight: bold; color: #D4AF37">The Emergence of Credit Instrument Pricing Methods</h5>
         <p style="margin-bottom: 15px;">
-Hydrological flow models are built on the concept of the return period. Two equivalent defini-tions have become established, of which one — cited here, relating to the so-called uncondi-tional return period — is used considerably more frequently. The return period indicates the time until the first extreme event — that is, one whose magnitude exceeds a certain fixed threshold. In hydrological models, researchers most often make use of the block maxima method.
+In the domain of credit risk, a decisive step was taken by Merton (1974). Building on the Black-Scholes model (1973), he formulated a theory for the pricing of bonds under conditions of significant default risk. Adopting a series of simplifying assumptions — the most important being the continuity of price movements (that is, the continuous-time random walk) and the serial independence of unexpected rates of return — he derived a pricing equation describing the value of any given financial instrument as a function of firm value and time. 
         </p>
 
 
