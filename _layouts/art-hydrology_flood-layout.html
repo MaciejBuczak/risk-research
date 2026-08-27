@@ -3358,7 +3358,7 @@ function shareLinkedIn() {
 // Funkcja udostępniania na X
 function shareX() {
     const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent("Kwantyl 99.9 i jego misinterpretacje - fascynujący artykuł o modelowaniu ryzyka operacyjnego");
+    const text = encodeURIComponent("");
     
     window.open(
         `https://x.com/intent/tweet?url=${url}&text=${text}&hashtags=RiskManagement,Analytics,Finance,Quantile`, 
@@ -3374,7 +3374,7 @@ function shareX() {
 function shareEmail() {
     const subject = encodeURIComponent(document.title);
     const body = encodeURIComponent(
-        `Cześć!\n\nZnalazłem bardzo ciekawy artykuł o analizie ryzyka, który może Cię zainteresować:\n\n"${document.title}"\n\n${window.location.href}\n\nArtykuł omawia problematykę interpretacji kwantyli w modelowaniu ryzyka operacyjnego. Polecam lekturę!\n\nPozdrawiam`
+        `${document.title}\n\n${window.location.href}`
     );
     
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
