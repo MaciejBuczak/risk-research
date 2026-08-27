@@ -4,7 +4,7 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,maximum-scale=2">
-  <title>I Can't Predict a 1,000-Year Catastrophe | Maciej Buczak</title>
+  <title>Stationarity and Time-Indexing – Does the Normal Distribution Even Emerge? | Maciej Buczak</title>
   <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&family=Indie+Flower&family=Shadows+Into+Light&family=Satisfy&family=Playfair+Display:wght@700;900&family=Source+Sans+Pro:wght@300;400;600&family=Roboto:wght@300;400;500&family=Montserrat:wght@400;600;800&family=Merriweather:wght@300;400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -3626,39 +3626,66 @@ window.addEventListener('load', function() {
 
 
 
-
-
-
-
-
 <!-- META TAGS DLA SOCIAL MEDIA (Open Graph) -->
-<meta property="og:title" content="I Can't Predict a 1,000-Year Catastrophe">
-<meta property="og:description" content="A risk model can only speak to probability here and now — not to a 1,000-year event. Why the 0.999 quantile's temporal interpretation, borrowed from hydrology, breaks down in finance.">
-<meta property="og:image" content="https://maciejbuczak.github.io/risk-research/assets/images/crisis2.jpg">
-<meta property="og:url" content="https://maciejbuczak.github.io/risk-research/art-ama_failure/">
+<meta property="og:title" content="Stationarity and Time-Indexing – Does the Normal Distribution Even Emerge?">
+<meta property="og:description" content="Behind the '1,000-year event' used in financial regulation lies a hidden step nobody questions: arranging risk realizations along a time axis, borrowed from hydrology. But finance has no physical clock — and the world keeps accelerating.">
+<meta property="og:image" content="https://maciejbuczak.github.io/risk-research/assets/images/accelerate1.jpg">
+<meta property="og:url" content="https://maciejbuczak.github.io/risk-research/art-stationarity_time/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Risk Research by Maciej Buczak">
 <!-- META TAGS SPECYFICZNE DLA LINKEDIN -->
 <meta property="article:author" content="Maciej Buczak">
-<meta property="article:published_time" content="2026-08-20T02:00:00Z">
+<meta property="article:published_time" content="2026-08-27T02:00:00Z">
 <meta property="article:section" content="Risk Management">
-<meta property="article:tag" content="0.999 quantile">
+<meta property="article:tag" content="stationarity">
+<meta property="article:tag" content="time-indexing">
+<meta property="article:tag" content="normal distribution">
 <meta property="article:tag" content="return period">
-<meta property="article:tag" content="Value at Risk">
-<meta property="article:tag" content="model risk">
 <!-- META TAGS DLA TWITTER -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="I Can't Predict a 1,000-Year Catastrophe">
-<meta name="twitter:description" content="A risk model can only speak to probability here and now — not to a 1,000-year event. Why the 0.999 quantile's temporal interpretation breaks down in finance.">
-<meta name="twitter:image" content="https://maciejbuczak.github.io/risk-research/assets/images/crisis2.jpg">
+<meta name="twitter:title" content="Stationarity and Time-Indexing – Does the Normal Distribution Even Emerge?">
+<meta name="twitter:description" content="Behind the '1,000-year event' used in financial regulation lies a hidden step nobody questions: arranging risk along a time axis, borrowed from hydrology. Finance has no physical clock — and the world keeps accelerating.">
+<meta name="twitter:image" content="https://maciejbuczak.github.io/risk-research/assets/images/accelerate1.jpg">
 <!-- PODSTAWOWE META TAGS -->
-<meta name="description" content="A risk model can only speak to probability here and now — not to a 1,000-year event. This article examines how the 0.999 quantile came to be interpreted through a borrowed hydrological convention, and why that interpretation breaks down in finance.">
-<meta name="keywords" content="0.999 quantile, return period, Value at Risk, model risk, extreme value theory, Basel II, CRR III, risk management">
+<meta name="description" content="An examination of the hidden step behind the '1,000-year event' concept in financial risk regulation: time-indexing a stochastic process, borrowed from hydrology's block maxima method. Without stationarity or a natural physical clock, does the normal distribution even emerge for financial phenomena?">
+<meta name="keywords" content="stationarity, time-indexing, normal distribution, return period, random walk, extreme value theory, block maxima, model risk">
 <meta name="author" content="Maciej Buczak">
 <!-- CANONICAL URL -->
-<link rel="canonical" href="https://maciejbuczak.github.io/risk-research/art-ama_failure/">
+<link rel="canonical" href="https://maciejbuczak.github.io/risk-research/art-stationarity_time/">
 
 
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stationarity and Time-Indexing – Does the Normal Distribution Even Emerge?",
+  "description": "An examination of the hidden step behind the '1,000-year event' concept in financial risk regulation: time-indexing a stochastic process, borrowed from hydrology's block maxima method. Without stationarity or a natural physical clock, does the normal distribution even emerge for financial phenomena?",
+  "image": "https://maciejbuczak.github.io/risk-research/assets/images/accelerate1.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Maciej Buczak",
+    "sameAs": [
+      "https://www.linkedin.com/in/maciej-buczak-561b95120/",
+      "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=7368581",
+      "https://www.researchgate.net/profile/Maciej-Buczak"
+    ]
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Maciej Buczak"
+  },
+  "datePublished": "2026-08-27T02:00:00Z",
+  "dateModified": "2026-08-27T02:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://maciejbuczak.github.io/risk-research/art-stationarity_time/"
+  },
+  "keywords": "stationarity, time-indexing, normal distribution, return period, random walk, extreme value theory, block maxima, model risk"
+}
+</script>
 
 
 
