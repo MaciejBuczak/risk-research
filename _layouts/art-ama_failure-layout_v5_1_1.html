@@ -5607,7 +5607,6 @@ Stedinger, J.R., Vogel, R.M., Foufoula-Georgiou, E. (1993), Frequency analysis o
 
 
 
-
 <!-- ZMIENIONE: O 3.2 w jednym wierszu -->
 <div class="ryzmod-t31-o32-container" style="display: flex; gap: 20px; margin-bottom: 40px;">
   
@@ -5631,11 +5630,9 @@ Stedinger, J.R., Vogel, R.M., Foufoula-Georgiou, E. (1993), Frequency analysis o
         <div class="related-article-title">Not Normal, Not Heavy-Tailed, the World Is What It Is</div>
       </a>
 
-      <a href="/risk-research/art-stationarity_time/" class="related-article-card">
-        <div class="related-article-image">
-          <img src="/assets/images/accelerate1.jpg" alt="Does the Normal Distribution Even Emerge?">
-        </div>
-        <div class="related-article-title">Does the Normal Distribution Even Emerge?</div>
+      <a href="/risk-research/articlestart/" class="related-article-card related-article-cta">
+        <div class="related-article-cta-icon">→</div>
+        <div class="related-article-cta-title">See All Articles</div>
       </a>
 
     </div>
@@ -5696,12 +5693,42 @@ Stedinger, J.R., Vogel, R.M., Foufoula-Georgiou, E. (1993), Frequency analysis o
   text-indent: 0;
 }
 
+/* KARTA CTA "See All Articles" */
+.related-article-cta {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #fdf3e9;
+  min-height: 178px;
+}
+
+.related-article-cta-icon {
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #a85903;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
+}
+
+.related-article-cta:hover .related-article-cta-icon {
+  transform: translateX(6px);
+}
+
+.related-article-cta-title {
+  font-family: Georgia, serif;
+  font-size: 1em;
+  font-weight: bold;
+  color: #a85903;
+  text-indent: 0;
+}
+
 @media screen and (max-width: 700px) {
   .related-articles-container {
     grid-template-columns: 1fr;
   }
 }
 </style>
+
 
 
 
