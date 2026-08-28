@@ -1,5 +1,5 @@
 ---
-layout: art-ama_failure-layout_v5_1_1
+layout: art-1_in_1000years-layout
 ---
 <!-- Menu nawigacyjne - wyświetlane przed main_content -->
 <div id="myMenu">
